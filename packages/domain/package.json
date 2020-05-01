@@ -1,0 +1,6 @@
+{
+  "name": "@planv7/domain",
+  "dependencies": {
+    "jest": "^25.5.3"
+  }
+}
