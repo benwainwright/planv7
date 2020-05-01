@@ -1,0 +1,13 @@
+{
+  "name": "@planv7/eslint-config-planv7",
+  "main": "index.json",
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.30.0",
+    "@typescript-eslint/parser": "^2.30.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-eslint-comments": "^3.1.2",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jest": "^23.8.2",
+    "eslint-plugin-promise": "^4.2.1"
+  }
+}
