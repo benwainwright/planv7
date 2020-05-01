@@ -1,5 +1,7 @@
 {
   "name": "planv7",
-  "private": "true",
-  "packages": ["packages/*"]
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
 }
