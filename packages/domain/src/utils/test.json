@@ -1,0 +1,15 @@
+{
+  "$": "MyCommandWithNesting",
+  "instance": {
+    "handled": false,
+    "otherCommand": {
+      "$": "MyMockCommand",
+      "instance": {
+        "handled": false,
+        "x":"a",
+        "y": "b",
+        "z": 1
+      }
+    }
+  }
+}
