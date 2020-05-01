@@ -1,3 +1,5 @@
 {
-  "name": "planv7"
+  "name": "planv7",
+  "private": "true",
+  "packages": ["packages/*"]
 }
