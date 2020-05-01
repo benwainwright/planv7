@@ -1,6 +1,11 @@
 {
   "name": "@planv7/domain",
-  "dependencies": {
-    "jest": "^25.5.3"
+  "devDependencies":{
+    "jest": "^25.5.3",
+    "prettier": "^2.0.5"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
   }
 }

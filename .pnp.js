@@ -676,7 +676,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/domain/",
           "packageDependencies": [
             ["@planv7/domain", "workspace:packages/domain"],
-            ["jest", "npm:25.5.3"]
+            ["jest", "npm:25.5.3"],
+            ["prettier", "npm:2.0.5"]
           ],
           "linkType": "SOFT",
         }]
@@ -4143,6 +4144,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/prelude-ls-npm-1.1.2-a0daac0886-3.zip/node_modules/prelude-ls/",
           "packageDependencies": [
             ["prelude-ls", "npm:1.1.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["prettier", [
+        ["npm:2.0.5", {
+          "packageLocation": "./.yarn/cache/prettier-npm-2.0.5-f0ee4e15ce-3.zip/node_modules/prettier/",
+          "packageDependencies": [
+            ["prettier", "npm:2.0.5"]
           ],
           "linkType": "HARD",
         }]
