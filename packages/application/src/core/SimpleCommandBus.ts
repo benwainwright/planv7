@@ -1,9 +1,8 @@
-import { DOMAIN_TYPES, DomainEvent } from "@planv5/domain";
-import { Command, CommandBus, Handler } from "@planv5/domain/ports";
+import { Command, CommandBus, DOMAIN_TYPES, Handler } from "@planv7/domain";
 import { inject, injectable, multiInject, optional } from "inversify";
 import { APP_TYPES } from "../ports/types";
-import { ApplicationError } from "../errors/applicationError";
-import { Logger } from "../ports/logger";
+import ApplicationError from "../ApplicationError";
+import Logger from "../ports/Logger";
 import { Dispatch } from "../ports";
 
 @injectable()

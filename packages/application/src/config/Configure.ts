@@ -1,12 +1,11 @@
 import "reflect-metadata";
 
-import { DOMAIN_TYPES } from "@planv5/domain";
-import { Command, CommandBus, Handler } from "@planv5/domain/ports";
-import { EventEmitterWrapper } from "../core/EventEmitterWrapper";
-import { Logger } from "../ports/logger";
+import { Command, CommandBus, DOMAIN_TYPES, Handler } from "@planv7/domain";
+import EventEmitterWrapper from "../core/EventEmitterWrapper";
+import Logger from "../ports/Logger";
 import { APP_TYPES } from "../ports/types";
 import { Container } from "inversify";
-import { SimpleCommandBus } from "../core/simpleCommandBus";
+import SimpleCommandBus from "../core/simpleCommandBus";
 
 /**
  * Try to resolve all the handlers first. If they can't be resolved

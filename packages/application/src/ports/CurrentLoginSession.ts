@@ -1,7 +1,7 @@
-import { User } from "@planv5/domain";
+import { User } from "@planv7/domain";
 import { AxiosResponse } from "axios";
 
-export interface CurrentLoginSession {
+export default interface CurrentLoginSession {
   /**
    * Get the currently logged in user
    */

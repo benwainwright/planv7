@@ -1,14 +1,18 @@
 import { mock } from "jest-mock-extended";
-import { UpdatePlanHandler } from "./updatePlanHandler";
-import { UpdatePlanCommand } from "@planv5/domain/commands";
+import {
+  UpdatePlanCommand,
+  Plan,
+  User,
+  CommandOutcome,
+  CurrentUserPlansChangedEvent,
+} from "@planv7/domain";
 
-import { Logger } from "../ports/logger";
-import { AuthenticatedEntityRepository } from "../ports/authenticatedEntityRepository";
-import { CurrentLoginSession } from "../ports/currentLoginSession";
-import { Plan, User } from "@planv5/domain/entities";
-import { EventEmitterWrapper } from "../core/EventEmitterWrapper";
-import { CommandOutcome } from "@planv5/domain";
-import { CurrentUserPlansChangedEvent } from "@planv5/domain/events";
+import UpdatePlanHandler from "./UpdatePlanHandler";
+
+import Logger from "../ports/Logger";
+import AuthenticatedEntityRepository from "../ports/AuthenticatedEntityRepository";
+import CurrentLoginSession from "../ports/CurrentLoginSession";
+import EventEmitterWrapper from "../core/EventEmitterWrapper";
 
 describe("Update plan handler", () => {
   it("Should throw an error if the user is not authenticated", async () => {
@@ -104,7 +108,7 @@ describe("Update plan handler", () => {
 
     const plans = [
       new Plan("fooUser", "fooSlug1", "oldTitle", "oldDescription", 0),
-      new Plan("fooUser", "fooSlug2", "oldTitle", "oldDescription", 0)
+      new Plan("fooUser", "fooSlug2", "oldTitle", "oldDescription", 0),
     ];
 
     repo.getAllByUser.mockReturnValue(Promise.resolve(plans));

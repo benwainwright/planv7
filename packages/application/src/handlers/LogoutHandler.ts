@@ -1,14 +1,20 @@
-import { CommandOutcome, USER_LOGIN_STATE_CHANGE_EVENT } from "@planv5/domain";
+import {
+  CommandOutcome,
+  USER_LOGIN_STATE_CHANGE_EVENT,
+  LogoutCommand,
+  UserLoginStateChangeEvent,
+} from "@planv7/domain";
+
 import { inject, injectable } from "inversify";
+
 import {
   APP_TYPES,
   EventEmitterWrapper,
   Logger,
   LoginSessionDestroyer,
 } from "../ports";
-import { HandlerBase } from "../core/handlerBase";
-import { LogoutCommand } from "@planv5/domain/commands";
-import { UserLoginStateChangeEvent } from "@planv5/domain/events";
+
+import HandlerBase from "../core/HandlerBase";
 
 @injectable()
 export default class LogoutHandler extends HandlerBase<LogoutCommand> {

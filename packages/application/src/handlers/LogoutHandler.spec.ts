@@ -1,11 +1,16 @@
-import { CommandOutcome, USER_LOGIN_STATE_CHANGE_EVENT } from "@planv5/domain";
-import { UserLoginStateChangeEvent } from "@planv5/domain/events";
-import { LogoutCommand } from "@planv5/domain/commands";
-import { EventEmitterWrapper } from "../core/EventEmitterWrapper";
-import { LoginSessionDestroyer } from "../ports/loginSessionDestroyer";
-import { Logger } from "../ports/logger";
 import { Arg, Substitute } from "@fluffy-spoon/substitute";
-import { LogoutHandler } from "./logoutHandler";
+
+import {
+  CommandOutcome,
+  LogoutCommand,
+  USER_LOGIN_STATE_CHANGE_EVENT,
+  UserLoginStateChangeEvent,
+} from "@planv7/domain";
+
+import EventEmitterWrapper from "../core/EventEmitterWrapper";
+import LoginSessionDestroyer from "../ports/LoginSessionDestroyer";
+import Logger from "../ports/Logger";
+import LogoutHandler from "./LogoutHandler";
 
 describe("Logouthandler", (): void => {
   it("Calls the sesssion destroyer when a command is received", async (): Promise<

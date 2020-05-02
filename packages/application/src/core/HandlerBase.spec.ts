@@ -1,7 +1,6 @@
 import { Substitute } from "@fluffy-spoon/substitute";
-import { Command } from "@planv5/domain/ports";
-import { DomainEvent } from "@planv5/domain";
-import { HandlerBase } from "./handlerBase";
+import { Command, DomainEvent } from "@planv7/domain";
+import HandlerBase from "./HandlerBase";
 
 describe("Handler", (): void => {
   describe("tryHandle", (): void => {

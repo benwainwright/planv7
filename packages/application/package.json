@@ -1,12 +1,16 @@
 {
   "name": "@planv7/application",
   "dependencies": {
+    "@fluffy-spoon/substitute": "^1.133.0",
     "@planv7/domain": "workspace:packages/domain",
     "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7",
+    "@types/jest": "^25.2.1",
     "axios": "^0.19.2",
     "eslint": "^6.8.0",
     "inversify": "^5.0.1",
+    "inversify-inject-decorators": "^3.1.0",
     "jest": "^25.5.4",
+    "jest-mock-extended": "^1.0.8",
     "prettier": "^2.0.5",
     "reflect-metadata": "^0.1.13",
     "typeson": "^5.18.2"

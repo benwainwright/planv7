@@ -1,6 +1,6 @@
-import { Serializable } from "@planv5/domain/ports";
+import { Serialisable } from "@planv7/domain";
 
-export class ApplicationError extends Error implements Serializable {
+export class ApplicationError extends Error implements Serialisable {
   public constructor(message: string) {
     super(message);
     this.name = this.constructor.name;

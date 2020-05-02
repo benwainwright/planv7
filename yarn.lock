@@ -365,6 +365,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fluffy-spoon/substitute@npm:^1.133.0":
+  version: 1.133.0
+  resolution: "@fluffy-spoon/substitute@npm:1.133.0"
+  checksum: 3/e0f26fd96f95f067cd4c172eff5988efc7e618103c1263474424bc04e1e61b375ddc9b1a71044908c85351cd29369c25c28995eac3dd985dbfe925b91fbdf840
+  languageName: node
+  linkType: hard
+
 "@istanbuljs/load-nyc-config@npm:^1.0.0":
   version: 1.0.0
   resolution: "@istanbuljs/load-nyc-config@npm:1.0.0"
@@ -629,12 +636,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@planv7/application@workspace:packages/application"
   dependencies:
+    "@fluffy-spoon/substitute": ^1.133.0
     "@planv7/domain": "workspace:packages/domain"
     "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7"
+    "@types/jest": ^25.2.1
     axios: ^0.19.2
     eslint: ^6.8.0
     inversify: ^5.0.1
+    inversify-inject-decorators: ^3.1.0
     jest: ^25.5.4
+    jest-mock-extended: ^1.0.8
     prettier: ^2.0.5
     reflect-metadata: ^0.1.13
     typeson: ^5.18.2
@@ -765,6 +776,16 @@ __metadata:
     "@types/istanbul-lib-coverage": "*"
     "@types/istanbul-lib-report": "*"
   checksum: 3/30445a3b32a8fae4623b5798c17f1e675e58e0deb01b66557c4a15a0f7e25e06039f37287bb3b36ed7c33c4d4f025322315fbb1f6fbf3907c677a7f69841f143
+  languageName: node
+  linkType: hard
+
+"@types/jest@npm:^25.2.1":
+  version: 25.2.1
+  resolution: "@types/jest@npm:25.2.1"
+  dependencies:
+    jest-diff: ^25.2.1
+    pretty-format: ^25.2.1
+  checksum: 3/a0facd670b1ad6da2355a2b4606a372284cbe7cfde51b84b9e636171fb3e6a6c17a6980ffe0c8d2b0a12b5756501d7c99d7043e8041d410d4a78f3f3cc4e5cac
   languageName: node
   linkType: hard
 
@@ -2923,6 +2944,13 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"inversify-inject-decorators@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "inversify-inject-decorators@npm:3.1.0"
+  checksum: 3/132df91579c95431f19951e4181bafadaec60fd5e8384d7d63ad44976bfe8506b3e12c0a2c22d5742563a67a8c874e79eddbac1f30501f207ceb4584bd04a652
+  languageName: node
+  linkType: hard
+
 "inversify@npm:^5.0.1":
   version: 5.0.1
   resolution: "inversify@npm:5.0.1"
@@ -3385,7 +3413,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"jest-diff@npm:^25.5.0":
+"jest-diff@npm:^25.2.1, jest-diff@npm:^25.5.0":
   version: 25.5.0
   resolution: "jest-diff@npm:25.5.0"
   dependencies:
@@ -3563,6 +3591,17 @@ fsevents@^2.1.2:
     slash: ^3.0.0
     stack-utils: ^1.0.1
   checksum: 3/b60d49c713e22028e7a64359ca976cf5e0e4a05d4b85c0a47cab67bb1ff7aecbd4bf846c67864b93d098f45d9ae28bb9648fef40f97ccb1938df4c88760ba178
+  languageName: node
+  linkType: hard
+
+"jest-mock-extended@npm:^1.0.8":
+  version: 1.0.8
+  resolution: "jest-mock-extended@npm:1.0.8"
+  dependencies:
+    ts-essentials: ^4.0.0
+  peerDependencies:
+    jest: ^24.0.0
+  checksum: 3/894a7a88859e4264dc29a2c63dedb85dda2180f3409d051465b2427da774b2283d33b96b5bca1e7ad16af39e745454d2465f8856b984d754b8735f6fd211ed49
   languageName: node
   linkType: hard
 
@@ -4930,7 +4969,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"pretty-format@npm:^25.5.0":
+"pretty-format@npm:^25.2.1, pretty-format@npm:^25.5.0":
   version: 25.5.0
   resolution: "pretty-format@npm:25.5.0"
   dependencies:
@@ -6073,6 +6112,15 @@ resolve@1.1.7:
   dependencies:
     punycode: ^2.1.0
   checksum: 3/66e2e4d6799d3c2fcc56ad6084e8ab7b3e744f138babc86100e5e2bfaf011231d00d229cfccfaf338da953b96c3ea9128d182274915c1516c5189ee75b7c0ad9
+  languageName: node
+  linkType: hard
+
+"ts-essentials@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "ts-essentials@npm:4.0.0"
+  peerDependencies:
+    typescript: ">=3.7.0"
+  checksum: 3/9fab54a1c2c0d32b34aa732a9abcae8b17216532c0178de8b530f77b60aba2be74abdc6411fa0e2c62f828dc8b5c23f4f962961946a3d6d5225fac7fee663574
   languageName: node
   linkType: hard
 

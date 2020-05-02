@@ -4,13 +4,17 @@ import {
   EventEmitterWrapper,
   Logger,
   LoginProvider,
-  Repository
+  Repository,
 } from "../ports";
-import { RegisterUserCommand } from "@planv5/domain/commands";
-import { CommandOutcome, User, UserRegisteredEvent } from "@planv5/domain";
+import {
+  CommandOutcome,
+  User,
+  UserRegisteredEvent,
+  RegisterUserCommand,
+  UserLoginStateChangeEvent,
+} from "@planv7/domain";
 
-import { UserLoginStateChangeEvent } from "@planv5/domain/events";
-import { RegisterUserHandler } from "./registerUserHandler";
+import RegisterUserHandler from "./RegisterUserHandler";
 
 describe("RegisterUserHandler", (): void => {
   test("Calls the repository save method when passed a command", (): void => {

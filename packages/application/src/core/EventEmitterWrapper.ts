@@ -1,9 +1,9 @@
 import "reflect-metadata";
-import { EventEmitter } from "events";
-import { Logger } from "../ports/logger";
 import { inject, injectable } from "inversify";
+import { EventEmitter } from "events";
+import Logger from "../ports/Logger";
 import { APP_TYPES } from "../ports/types";
-import { Serializable } from "@planv5/domain/ports";
+import { Serialisable } from "@planv7/domain";
 
 /**
  * Wrapper class to workaround the fact that directly
@@ -23,7 +23,7 @@ export default class EventEmitterWrapper {
     this.logger = logger;
   }
 
-  public emitEvent<T extends Serializable>(event: T): void {
+  public emitEvent<T extends Serialisable>(event: T): void {
     this.logger.verbose(`Emitting event ${event.toString()}`);
     this.events.emit(APP_EVENT_NAME, event);
   }
@@ -33,7 +33,7 @@ export default class EventEmitterWrapper {
     this.events.emit(APP_ERROR_NAME, error);
   }
 
-  public onEvent<T extends Serializable>(callback: (event: T) => void): void {
+  public onEvent<T extends Serialisable>(callback: (event: T) => void): void {
     this.logger.verbose("Adding event listener");
     this.events.on(APP_EVENT_NAME, callback);
   }

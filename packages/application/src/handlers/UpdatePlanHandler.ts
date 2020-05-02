@@ -1,17 +1,23 @@
 import { inject, injectable } from "inversify";
-import { HandlerBase } from "../core/handlerBase";
-import { UpdatePlanCommand } from "@planv5/domain/commands";
+
+import {
+  CommandOutcome,
+  CurrentUserPlansChangedEvent,
+  Plan,
+  UpdatePlanCommand,
+} from "@planv7/domain";
+
+import HandlerBase from "../core/HandlerBase";
+
 import {
   AuthenticatedEntityRepository,
   CurrentLoginSession,
   EventEmitterWrapper,
   Logger,
 } from "../ports";
+
 import { APP_TYPES } from "../ports/types";
-import { Plan } from "@planv5/domain/entities";
-import { ApplicationError } from "../errors";
-import { CommandOutcome } from "@planv5/domain";
-import { CurrentUserPlansChangedEvent } from "@planv5/domain/events";
+import { ApplicationError } from "../ApplicationError";
 
 @injectable()
 export default class UpdatePlanHandler extends HandlerBase<UpdatePlanCommand> {

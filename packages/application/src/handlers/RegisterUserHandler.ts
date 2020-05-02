@@ -1,11 +1,18 @@
-import { CommandOutcome, User, UserRegisteredEvent } from "@planv5/domain";
-import { UserLoginStateChangeEvent } from "@planv5/domain/events";
-import { HandlerBase } from "../core/handlerBase";
-import { RegisterUserCommand } from "@planv5/domain/commands";
+import { inject, injectable } from "inversify";
+
+import {
+  RegisterUserCommand,
+  UserLoginStateChangeEvent,
+  CommandOutcome,
+  User,
+  UserRegisteredEvent,
+} from "@planv5/domain";
+
+import HandlerBase from "../core/HandlerBase";
+
 import { EventEmitterWrapper, LoginProvider, Repository } from "../ports";
 import { APP_TYPES } from "../ports/types";
-import { inject, injectable } from "inversify";
-import { Logger } from "../ports/logger";
+import Logger from "../ports/Logger";
 
 @injectable()
 export default class RegisterUserHandler extends HandlerBase<

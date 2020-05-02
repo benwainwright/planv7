@@ -1,12 +1,12 @@
 import "reflect-metadata";
 import { Arg, Substitute } from "@fluffy-spoon/substitute";
 
-import { Command, Handler } from "@planv5/domain/ports";
-import { HandlerBase } from "./handlerBase";
-import { ApplicationError } from "../errors/applicationError";
-import { Logger } from "../ports/logger";
-import { SimpleCommandBus } from "./simpleCommandBus";
-import { Dispatch } from "../ports/dispatch";
+import { Command, Handler } from "@planv7/domain";
+import HandlerBase from "./HandlerBase";
+import { ApplicationError } from "../ApplicationError";
+import Logger from "../ports/Logger";
+import SimpleCommandBus from "./SimpleCommandBus";
+import Dispatch from "../ports/Dispatch";
 
 class MockCommand1 extends Command {
   public identifier(): string {
