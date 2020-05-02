@@ -1,13 +1,13 @@
-import { AuthenticatedEntityRepository } from "./authenticatedEntityRepository";
-import { LoginSessionDestroyer } from "./loginSessionDestroyer";
-import { EventEmitterWrapper } from "./../core/EventEmitterWrapper";
-import { APP_TYPES } from "./types";
-import { CurrentLoginSession } from "./currentLoginSession";
-import { Dispatch } from "./dispatch";
-import { Repository } from "./repository";
-import { Logger } from "./logger";
-import { LoginProvider } from "./loginProvider";
-import { SlugGenerator } from "./SlugGenerator";
+import AuthenticatedEntityRepository from "./AuthenticatedEntityRepository";
+import LoginSessionDestroyer from "./LoginSessionDestroyer";
+import EventEmitterWrapper from "./../core/EventEmitterWrapper";
+import APP_TYPES from "./types";
+import CurrentLoginSession from "./CurrentLoginSession";
+import Dispatch from "./Dispatch";
+import Repository from "./Repository";
+import Logger from "./Logger";
+import LoginProvider from "./LoginProvider";
+import SlugGenerator from "./SlugGenerator";
 
 export {
   APP_TYPES,
@@ -19,5 +19,5 @@ export {
   Repository,
   AuthenticatedEntityRepository,
   LoginSessionDestroyer,
-  CurrentLoginSession
+  CurrentLoginSession,
 };
