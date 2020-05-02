@@ -1,3 +1,3 @@
 export interface Response {
-  toString(): string;
+  toString: () => string;
 }

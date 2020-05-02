@@ -5,5 +5,5 @@ export interface Serializable {
    * changes class names when uglifying, meaning you
    * can't rely on constructor.name
    */
-  identifier(): string;
+  identifier: () => string;
 }
