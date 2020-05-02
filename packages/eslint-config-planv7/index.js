@@ -1,6 +1,6 @@
 module.exports = {
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint", "filenames", "import", "fp"],
+  plugins: ["@typescript-eslint", "filenames", "import", "fp", "spellcheck"],
   ignorePatterns: ["node_modules"],
   extends: [
     "prettier",
@@ -18,6 +18,23 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
+    "spellcheck/spell-checker": [
+      "error",
+      {
+        comments: true,
+        strings: true,
+        identifiers: true,
+        lang: "en_GB",
+        skipWords: ["Serialisable", "todo", "Webpack"],
+        skipIfMatch: [
+          "http://[^s]*",
+          "^[-\\w]+/[-\\w\\.]+$",
+          ".*eslint-disable.*$",
+          ".*declare module.*",
+        ],
+        minLength: 3,
+      },
+    ],
     "import/prefer-default-export": "error",
     // Eslint build in
     "no-inline-comments": "error",
@@ -74,7 +91,8 @@ module.exports = {
     "no-lone-blocks": "error",
     "no-labels": "error",
     "no-iterator": "error",
-    "no-invalid-this": "error",
+    // This is giving me false positives, so disabling for now
+    // "no-invalid-this": "error",
     "no-implied-eval": "error",
     "no-implicit-coercion": "error",
     "no-floating-decimal": "error",
