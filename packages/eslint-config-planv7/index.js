@@ -19,6 +19,7 @@ module.exports = {
     sourceType: "module"
   },
   rules: {
+    "capitalized-comments": ["error", "always", { "ignoreConsecutiveComments": true }],
     "camelcase": "error",
     "no-undefined": "error",
     "no-shadow": "error", 
