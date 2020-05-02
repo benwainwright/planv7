@@ -1,6 +1,6 @@
-import { CommandOutcome } from "./commandOutcome";
-import { DomainEvent } from "./domainEvent";
-import { LoginResponse } from "./loginResponse";
+import { CommandOutcome } from "./command-outcome";
+import { DomainEvent } from "./domain-event";
+import { LoginResponse } from "./login-response";
 import { Response } from "./response";
 
 export * from "./ports";

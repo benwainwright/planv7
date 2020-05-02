@@ -1,5 +1,5 @@
-import { DomainEvent } from "../domainEvent";
-import { CommandOutcome } from "../commandOutcome";
+import { DomainEvent } from "../domain-event";
+import { CommandOutcome } from "../command-outcome";
 import { User } from "../entities/user";
 
 export const USER_REGISTERED_EVENT = "UserRegisteredEvent";

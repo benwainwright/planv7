@@ -1,6 +1,6 @@
-import { DomainEvent } from "../domainEvent";
-import { CommandOutcome } from "../commandOutcome";
-import { User } from "../entities/user";
+import { DomainEvent } from "./domain-event";
+import { CommandOutcome } from "./command-outcome";
+import { User } from "./entities/user";
 
 export const USER_LOGIN_STATE_CHANGE_EVENT = "UserLoginStateChangeEvent";
 

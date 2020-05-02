@@ -1,4 +1,4 @@
-import { CommandOutcome } from "./commandOutcome";
+import { CommandOutcome } from "./command-outcome";
 import { Serializable } from "./ports/serializable";
 
 export abstract class DomainEvent implements Serializable {
