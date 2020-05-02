@@ -1,6 +1,7 @@
 module.exports = {
   parser: "@typescript-eslint/parser",
   plugins: ["@typescript-eslint", "filenames", "import", "fp"],
+  ignorePatterns: ["node_modules"],
   extends: [
     "prettier",
     "eslint:recommended",
