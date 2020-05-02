@@ -6,7 +6,7 @@ export const CURRENT_USER_PLANS_CHANGED_EVENT = "CurrentUserPlansChangedEvent";
 
 export class CurrentUserPlansChangedEvent extends DomainEvent {
   public getUserMessage(): string | undefined {
-    return undefined;
+    // eslint-disable @typescript-eslint/no-empty-function
   }
 
   private readonly plans: Plan[];

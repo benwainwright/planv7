@@ -19,6 +19,9 @@ module.exports = {
     sourceType: "module"
   },
   rules: {
+    "camelcase": "error",
+    "no-undefined": "error",
+    "no-shadow": "error", 
     "yoda": ["error", "never"],
     "require-unicode-regexp": "error",
     "require-await": "error",
@@ -55,7 +58,6 @@ module.exports = {
     "no-extend-native": "error",
     "no-eval": "error",
     "no-eq-null": "error",
-    "no-empty-function": "error",
     "no-constructor-return": "error",
     "no-caller": "error",
     "no-alert": "error",

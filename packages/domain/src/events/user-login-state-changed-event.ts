@@ -27,7 +27,7 @@ export class UserLoginStateChangeEvent extends DomainEvent {
   }
 
   public toString(): string {
-    const username = this.user !== undefined ? this.user.toString() : "";
+    const username = this.user ? this.user.toString() : "";
     return `${this.identifier()}(user: ${username})`;
   }
 }
