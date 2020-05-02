@@ -3,7 +3,8 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "lint": "eslint **/*.ts"
+    "lint": "eslint **/*.ts",
+    "lint:fix": "eslint --fix **/*.ts"
   },
   "devDependencies": {
     "@planv7/eslint-config-planv7": "workspace:*",
