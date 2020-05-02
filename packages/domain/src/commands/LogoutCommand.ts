@@ -1,7 +1,7 @@
 import Command from "../ports/Command";
-import Serializable from "../ports/Serializable";
+import Serialisable from "../ports/Serialisable";
 
-export default class LogoutCommand extends Command implements Serializable {
+export default class LogoutCommand extends Command implements Serialisable {
   public identifier(): string {
     return "LogoutCommand";
   }

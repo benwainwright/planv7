@@ -1,7 +1,7 @@
 import CommandOutcome from "./CommandOutcome";
-import Serializable from "./ports/Serializable";
+import Serialisable from "./ports/Serialisable";
 
-export default abstract class DomainEvent implements Serializable {
+export default abstract class DomainEvent implements Serialisable {
   public abstract identifier(): string;
 
   public abstract getUserMessage(): string | undefined;

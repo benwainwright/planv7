@@ -1,6 +1,6 @@
-import Serializable from "./Serializable";
+import Serialisable from "./Serialisable";
 
-export default abstract class Command implements Serializable {
+export default abstract class Command implements Serialisable {
   protected handled?: boolean = false;
 
   public abstract identifier(): string;

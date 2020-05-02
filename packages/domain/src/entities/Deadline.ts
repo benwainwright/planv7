@@ -1,6 +1,6 @@
-import Serializable from "../ports/Serializable";
+import Serialisable from "../ports/Serialisable";
 
-export default class Deadline implements Serializable {
+export default class Deadline implements Serialisable {
   private readonly name: string;
   private readonly link: URL | undefined;
   private readonly ratio: number;
