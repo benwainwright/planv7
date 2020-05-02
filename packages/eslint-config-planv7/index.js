@@ -22,7 +22,7 @@ module.exports = {
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/no-non-null-assertion": "error",
     "@typescript-eslint/no-unused-vars": "error",
-    "filenames/match-regex": ["error", "^[a-z\\-]+$", true],
+    "filenames/match-regex": ["error", "^[a-z\\-]+(\\.[a-z]+)*$", true],
     "filenames/match-exported": "error",
   },
   settings: {
