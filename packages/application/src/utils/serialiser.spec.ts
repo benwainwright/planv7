@@ -66,7 +66,7 @@ class MyMockCommandWithAnArrayOfMockCommands extends Command {
 
 describe("serialiseCommand", (): void => {
   it("Creates a JSON string with the type of the command at the root", (): void => {
-    const command = new MyMockCommand("a", "b", 1);
+    const command = new MyMockCommand("a", "b", 0);
     const serialiser = new Serialiser(Commands);
     const jsonString = serialiser.serialise(command);
     const obj = JSON.parse(jsonString);
@@ -74,7 +74,7 @@ describe("serialiseCommand", (): void => {
   });
 
   it("Creates a JSON string with an instance definition within it", (): void => {
-    const command = new MyMockCommand("a", "b", 1);
+    const command = new MyMockCommand("a", "b", 0);
     const serialiser = new Serialiser(Commands);
     const jsonString = serialiser.serialise(command);
     const obj = JSON.parse(jsonString);
@@ -82,14 +82,14 @@ describe("serialiseCommand", (): void => {
   });
 
   it("Creates an instance definition with the correct properties", (): void => {
-    const command = new MyMockCommand("a", "b", 1);
+    const command = new MyMockCommand("a", "b", 0);
     const serialiser = new Serialiser(Commands);
     debugger;
     const jsonString = serialiser.serialise(command);
     const obj = JSON.parse(jsonString);
     expect(obj.instance.x).toEqual("a");
     expect(obj.instance.y).toEqual("b");
-    expect(obj.instance.z).toEqual(1);
+    expect(obj.instance.z).toEqual(0);
   });
 
   it("Creates a string which results in an identical command when unserialized", (): void => {
@@ -141,7 +141,7 @@ describe("serialiseCommand", (): void => {
   });
 
   it("Works for nested commands", () => {
-    const command = new MyMockCommand("a", "b", 1);
+    const command = new MyMockCommand("a", "b", 0);
     const parent = new MyCommandWithNesting(command);
     const serialiser = new Serialiser({ MyMockCommand, MyCommandWithNesting });
     const jsonString = serialiser.serialise(parent);
@@ -156,7 +156,7 @@ describe("serialiseCommand", (): void => {
 
   it("Works for commands containing arrays", () => {
     const parent = new MyMockCommandWithAnArrayOfMockCommands([
-      new MyMockCommand("a", "b", 1),
+      new MyMockCommand("a", "b", 0),
       new MyMockCommand("c", "d", 2),
     ]);
 
