@@ -2,5 +2,5 @@ export interface LoginSessionDestroyer {
   /**
    * Kill the current login session
    */
-  killSession(): Promise<void>;
+  killSession: () => Promise<void>;
 }

@@ -6,7 +6,7 @@ import { AuthenticatedEntityRepository } from "../ports/authenticatedEntityRepos
 import { Plan } from "@planv5/domain/entities";
 import { AddPlanCommand } from "@planv5/domain/commands";
 import { HandlerBase } from "../core/handlerBase";
-import { injectable, inject } from "inversify";
+import { inject, injectable } from "inversify";
 import { APP_TYPES } from "../ports/types";
 import { EventEmitterWrapper, Logger, SlugGenerator } from "../ports";
 

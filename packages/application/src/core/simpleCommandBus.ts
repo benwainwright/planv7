@@ -1,6 +1,6 @@
 import { DOMAIN_TYPES, DomainEvent } from "@planv5/domain";
 import { Command, CommandBus, Handler } from "@planv5/domain/ports";
-import { optional, inject, injectable, multiInject } from "inversify";
+import { inject, injectable, multiInject, optional } from "inversify";
 import { APP_TYPES } from "../ports/types";
 import { ApplicationError } from "../errors/applicationError";
 import { Logger } from "../ports/logger";
@@ -50,15 +50,13 @@ export class SimpleCommandBus implements CommandBus {
           return;
         }
       }
-    } else {
-      if (this.logger) {
+    } else if (this.logger) {
         this.logger.verbose(`No handlers registered`);
       }
-    }
 
     if (this.dispatcher) {
       await this.dispatcher.dispatch(command);
-      return;
+      
     } else {
       throw new ApplicationError(
         `Could not find handler for ${command.toString()}`

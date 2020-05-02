@@ -1,3 +1,3 @@
 export interface SlugGenerator<T> {
-  getUniqueSlug(thing: T): Promise<string>;
+  getUniqueSlug: (thing: T) => Promise<string>;
 }

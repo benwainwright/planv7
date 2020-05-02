@@ -4,8 +4,8 @@ import { Serialiser } from "./serialiser";
 import * as COMMANDS from "../commands/index";
 import {
   GetAllUsersCommand,
-  RegisterUserCommand,
-  LoginCommand
+  LoginCommand,
+  RegisterUserCommand
 } from "../commands";
 
 class MyMockCommand extends Command {
@@ -93,7 +93,7 @@ describe("serialiseCommand", (): void => {
   });
 
   it("Creates a string which results in an identical command when unserialized", (): void => {
-    let inputRegisterUsers = new RegisterUserCommand("foo", "a@.com", "bash");
+    const inputRegisterUsers = new RegisterUserCommand("foo", "a@.com", "bash");
     const serialiser = new Serialiser(COMMANDS);
     let jsonString = serialiser.serialise(inputRegisterUsers);
     let output = serialiser.unSerialise(jsonString);

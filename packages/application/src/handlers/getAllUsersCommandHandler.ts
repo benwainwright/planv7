@@ -1,4 +1,4 @@
-// import { GetAllUsersEvent, User } from "@planv5/domain";
+// Import { GetAllUsersEvent, User } from "@planv5/domain";
 // import { HandlerBase } from "../core/handlerBase";
 // import { GetAllUsersCommand } from "@planv5/domain/commands";
 // import { Repository } from "../ports";

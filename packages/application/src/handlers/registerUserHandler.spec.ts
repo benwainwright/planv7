@@ -1,13 +1,13 @@
 import "reflect-metadata";
 import { Arg, Substitute } from "@fluffy-spoon/substitute";
 import {
-  LoginProvider,
+  EventEmitterWrapper,
   Logger,
-  Repository,
-  EventEmitterWrapper
+  LoginProvider,
+  Repository
 } from "../ports";
 import { RegisterUserCommand } from "@planv5/domain/commands";
-import { UserRegisteredEvent, User, CommandOutcome } from "@planv5/domain";
+import { CommandOutcome, User, UserRegisteredEvent } from "@planv5/domain";
 
 import { UserLoginStateChangeEvent } from "@planv5/domain/events";
 import { RegisterUserHandler } from "./registerUserHandler";

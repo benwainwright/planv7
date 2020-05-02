@@ -1,10 +1,10 @@
 import { CommandOutcome, USER_LOGIN_STATE_CHANGE_EVENT } from "@planv5/domain";
-import { injectable, inject } from "inversify";
+import { inject, injectable } from "inversify";
 import {
+  APP_TYPES,
   EventEmitterWrapper,
-  LoginSessionDestroyer,
   Logger,
-  APP_TYPES
+  LoginSessionDestroyer
 } from "../ports";
 import { HandlerBase } from "../core/handlerBase";
 import { LogoutCommand } from "@planv5/domain/commands";

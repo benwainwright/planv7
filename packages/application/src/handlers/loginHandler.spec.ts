@@ -3,7 +3,7 @@ import { CommandOutcome, USER_LOGIN_STATE_CHANGE_EVENT } from "@planv5/domain";
 import { UserLoginStateChangeEvent } from "@planv5/domain/events";
 import { EventEmitterWrapper } from "../core/EventEmitterWrapper";
 import { LoginHandler } from "./loginHandler";
-import { Substitute, Arg } from "@fluffy-spoon/substitute";
+import { Arg, Substitute } from "@fluffy-spoon/substitute";
 import { LoginProvider } from "../ports/loginProvider";
 import { Logger } from "../ports/logger";
 import { LoginCommand } from "@planv5/domain/commands";

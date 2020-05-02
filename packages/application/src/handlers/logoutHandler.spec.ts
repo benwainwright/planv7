@@ -4,7 +4,7 @@ import { LogoutCommand } from "@planv5/domain/commands";
 import { EventEmitterWrapper } from "../core/EventEmitterWrapper";
 import { LoginSessionDestroyer } from "../ports/loginSessionDestroyer";
 import { Logger } from "../ports/logger";
-import { Substitute, Arg } from "@fluffy-spoon/substitute";
+import { Arg, Substitute } from "@fluffy-spoon/substitute";
 import { LogoutHandler } from "./logoutHandler";
 
 describe("Logouthandler", (): void => {

@@ -2,7 +2,7 @@ import { CommandOutcome, User, UserRegisteredEvent } from "@planv5/domain";
 import { UserLoginStateChangeEvent } from "@planv5/domain/events";
 import { HandlerBase } from "../core/handlerBase";
 import { RegisterUserCommand } from "@planv5/domain/commands";
-import { Repository, EventEmitterWrapper, LoginProvider } from "../ports";
+import { EventEmitterWrapper, LoginProvider, Repository } from "../ports";
 import { APP_TYPES } from "../ports/types";
 import { inject, injectable } from "inversify";
 import { Logger } from "../ports/logger";

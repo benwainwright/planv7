@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { injectable } from "inversify";
-import { Handler, Command } from "@planv5/domain/ports";
+import { Command, Handler } from "@planv5/domain/ports";
 
 @injectable()
 export abstract class HandlerBase<T extends Command> implements Handler<T> {

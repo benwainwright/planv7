@@ -4,7 +4,7 @@ import Typeson from "typeson";
 import date from "typeson-registry/types/date";
 import error from "typeson-registry/types/error";
 
-import { injectable, inject } from "inversify";
+import { inject, injectable } from "inversify";
 import { Serializable } from "../ports/serializable";
 
 export const SerialisableConstructors = Symbol("serialisableConstructors");

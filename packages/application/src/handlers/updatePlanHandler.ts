@@ -1,11 +1,11 @@
-import { injectable, inject } from "inversify";
+import { inject, injectable } from "inversify";
 import { HandlerBase } from "../core/handlerBase";
 import { UpdatePlanCommand } from "@planv5/domain/commands";
 import {
-  EventEmitterWrapper,
-  Logger,
   AuthenticatedEntityRepository,
-  CurrentLoginSession
+  CurrentLoginSession,
+  EventEmitterWrapper,
+  Logger
 } from "../ports";
 import { APP_TYPES } from "../ports/types";
 import { Plan } from "@planv5/domain/entities";

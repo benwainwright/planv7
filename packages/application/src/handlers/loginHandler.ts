@@ -1,8 +1,8 @@
 import "reflect-metadata";
 import { UserLoginStateChangeEvent } from "@planv5/domain/events";
 import {
-  DomainEvent,
   CommandOutcome,
+  DomainEvent,
   USER_LOGIN_STATE_CHANGE_EVENT
 } from "@planv5/domain";
 import { APP_TYPES } from "../ports/types";

@@ -5,7 +5,7 @@ export interface CurrentLoginSession {
   /**
    * Get the currently logged in user
    */
-  getCurrentUser(): User | undefined;
+  getCurrentUser: () => User | undefined;
 
-  setCurrentUserFromHttpResponse(response: AxiosResponse): void;
+  setCurrentUserFromHttpResponse: (response: AxiosResponse) => void;
 }

@@ -1,7 +1,7 @@
 import "reflect-metadata";
-import { Substitute, Arg } from "@fluffy-spoon/substitute";
+import { Arg, Substitute } from "@fluffy-spoon/substitute";
 
-import { Handler, Command } from "@planv5/domain/ports";
+import { Command, Handler } from "@planv5/domain/ports";
 import { HandlerBase } from "./handlerBase";
 import { ApplicationError } from "../errors/applicationError";
 import { Logger } from "../ports/logger";

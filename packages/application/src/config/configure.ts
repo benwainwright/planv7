@@ -26,7 +26,7 @@ const getBindableHandlers = (
     if (handlers.hasOwnProperty(constructorName)) {
       try {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const constructor = (handlers as any)[constructorName];
+        const constructor = handlers as any[constructorName];
         logger.info(`Resolving ${constructorName}`);
         container.resolve(constructor);
         toBind.set(constructorName, constructor);

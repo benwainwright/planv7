@@ -4,13 +4,13 @@ import { AuthenticatedEntityRepository } from "../ports/authenticatedEntityRepos
 import { Plan } from "@planv5/domain/entities";
 import { GetMyPlansCommand } from "@planv5/domain/commands";
 import { HandlerBase } from "../core/handlerBase";
-import { injectable, inject } from "inversify";
+import { inject, injectable } from "inversify";
 import { APP_TYPES } from "../ports/types";
 import { EventEmitterWrapper, Logger } from "../ports";
 import {
+  CURRENT_USER_PLANS_CHANGED_EVENT,
   CommandOutcome,
-  DomainEvent,
-  CURRENT_USER_PLANS_CHANGED_EVENT
+  DomainEvent
 } from "@planv5/domain";
 import { CurrentUserPlansChangedEvent } from "@planv5/domain/events";
 

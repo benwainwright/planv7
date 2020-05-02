@@ -43,7 +43,7 @@ describe("Handler", (): void => {
     });
   });
 
-  // it("Marks command as executed if instances match", async (): Promise<
+  // It("Marks command as executed if instances match", async (): Promise<
   //   void
   // > => {
   //   class MockCommand1 extends Command {
