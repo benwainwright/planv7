@@ -1,6 +1,6 @@
-import { CommandOutcome } from "../command-outcome";
-import { DomainEvent } from "../domain-event";
-import { Plan } from "../entities/plan";
+import CommandOutcome from "../CommandOutcome";
+import DomainEvent from "../DomainEvent";
+import Plan from "../entities/Plan";
 
 export const CURRENT_USER_PLANS_CHANGED_EVENT = "CurrentUserPlansChangedEvent";
 

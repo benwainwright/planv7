@@ -1,12 +1,11 @@
-import { CommandOutcome } from "./command-outcome";
-import { DomainEvent } from "./domain-event";
-import { LoginResponse } from "./login-response";
-import { Response } from "./response";
+import CommandOutcome from "./CommandOutcome";
+import DomainEvent from "./DomainEvent";
+import LoginResponse from "./LoginResponse";
+import Response from "./Response";
 
 export * from "./ports";
 export * from "./events";
 export * from "./commands";
 export * from "./entities";
-export * from "./errors";
 
 export { CommandOutcome, DomainEvent, LoginResponse, Response };

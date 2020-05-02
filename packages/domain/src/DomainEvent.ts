@@ -1,15 +1,13 @@
-import { CommandOutcome } from "./command-outcome";
-import { Serializable } from "./ports/serializable";
+import CommandOutcome from "./CommandOutcome";
+import Serializable from "./ports/Serializable";
 
-export abstract class DomainEvent implements Serializable {
+export default abstract class DomainEvent implements Serializable {
   public abstract identifier(): string;
 
   public abstract getUserMessage(): string | undefined;
 
   private outcome: CommandOutcome;
 
-  public constructor();
-  public constructor(outcome: CommandOutcome);
   public constructor(outcome?: CommandOutcome) {
     this.outcome = outcome || CommandOutcome.SUCCESS;
   }

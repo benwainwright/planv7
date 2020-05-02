@@ -1,4 +1,4 @@
-export interface Serializable {
+export default interface Serializable {
   /**
    * Unique string identifying the type of the object
    * This is a workaround to the fact that webpack

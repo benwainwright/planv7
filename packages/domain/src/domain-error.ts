@@ -1,9 +1,9 @@
-import { Serializable } from "../ports/serializable";
+import Serializable from "./ports/Serializable";
 
 export const DOMAIN_ERROR = "DomainError";
 
 export class DomainError extends Error implements Serializable {
-  constructor(message: string) {
+  public constructor(message: string) {
     super(message);
   }
 

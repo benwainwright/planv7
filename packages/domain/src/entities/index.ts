@@ -1,5 +1,5 @@
-import { Plan } from "./plan";
-import { Deadline } from "./deadline";
-import { User } from "./user";
+import Deadline from "./Deadline";
+import Plan from "./Plan";
+import User from "./User";
 
 export { User, Deadline, Plan };

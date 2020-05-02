@@ -17,6 +17,7 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
+    "import/prefer-default-export": "error",
     // Eslint build in
     "no-inline-comments": "error",
     "no-bitwise": "error",
@@ -107,9 +108,14 @@ module.exports = {
         leadingUnderscore: "forbid",
         trailingUnderscore: "forbid",
       },
-
       {
         selector: "typeLike",
+        format: ["PascalCase"],
+        leadingUnderscore: "forbid",
+        trailingUnderscore: "forbid",
+      },
+      {
+        selector: "enumMember",
         format: ["PascalCase"],
         leadingUnderscore: "forbid",
         trailingUnderscore: "forbid",

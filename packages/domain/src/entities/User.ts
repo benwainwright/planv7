@@ -1,5 +1,6 @@
-import { Serializable } from "../ports/serializable";
-export class User implements Serializable {
+import Serializable from "../ports/Serializable";
+
+export default class User implements Serializable {
   private readonly name: string;
   private readonly email: string;
   private readonly password: string;

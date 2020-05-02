@@ -1,6 +1,6 @@
-import { User } from "../entities/user";
+import User from "../entities/User";
 
-export class GetAllUsersEvent {
+export default class GetAllUsersEvent {
   private users: User[];
 
   public constructor(users: User[]) {

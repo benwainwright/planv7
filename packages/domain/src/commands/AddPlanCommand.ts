@@ -1,9 +1,9 @@
-import { Command } from "../ports/command";
+import Command from "../ports/Command";
 
 /**
  * Create a new plan
  */
-export class AddPlanCommand extends Command {
+export default class AddPlanCommand extends Command {
   private readonly title: string;
   private readonly description: string;
   private readonly hoursPerWeek: number;

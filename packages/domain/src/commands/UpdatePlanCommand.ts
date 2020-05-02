@@ -1,10 +1,10 @@
-import { Command } from "../ports/command";
-import { Deadline } from "../entities/deadline";
+import Command from "../ports/Command";
+import Deadline from "../entities/Deadline";
 
 /**
  * Update the details of an existing plan
  */
-export class UpdatePlanCommand extends Command {
+export default class UpdatePlanCommand extends Command {
   private readonly slug: string;
   private readonly title: string;
   private readonly description: string;

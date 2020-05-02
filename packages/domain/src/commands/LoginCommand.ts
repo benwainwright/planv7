@@ -1,7 +1,7 @@
-import { Command } from "../ports/command";
-import { Serializable } from "../ports/serializable";
+import Command from "../ports/Command";
+import Serializable from "../ports/Serializable";
 
-export class LoginCommand extends Command implements Serializable {
+export default class LoginCommand extends Command implements Serializable {
   private readonly username: string;
   private readonly password: string;
 

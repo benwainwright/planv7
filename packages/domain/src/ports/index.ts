@@ -1,6 +1,6 @@
-import { Handler } from "./handler";
-import { Command } from "./command";
-import { CommandBus } from "./command-bus";
-import { Serializable } from "./serializable";
+import Command from "./Command";
+import CommandBus from "./CommandBus";
+import Handler from "./Handler";
+import Serializable from "./Serializable";
 
 export { Command, CommandBus, Handler, Serializable };

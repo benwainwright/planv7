@@ -1,11 +1,11 @@
-import { GetMyPlansCommand } from "./get-my-plans-command";
-import { AddPlanCommand } from "./add-plan-command";
-import { UpdatePlanCommand } from "./update-plan-command";
-import { LogoutCommand } from "./logout-command";
-import { DeletePlanCommand } from "./delete-plan-command";
-import { GetAllUsersCommand } from "./get-all-users-command";
-import { RegisterUserCommand } from "./register-user-command";
-import { LoginCommand } from "./login-command";
+import AddPlanCommand from "./AddPlanCommand";
+import DeletePlanCommand from "./DeletePlanCommand";
+import GetAllUsersCommand from "./GetAllUsersCommand";
+import GetMyPlansCommand from "./GetMyPlansCommand";
+import LoginCommand from "./LoginCommand";
+import LogoutCommand from "./LogoutCommand";
+import RegisterUserCommand from "./RegisterUserCommand";
+import UpdatePlanCommand from "./UpdatePlanCommand";
 
 export {
   LogoutCommand,

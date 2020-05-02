@@ -1,7 +1,7 @@
-import { Serializable } from "../ports/serializable";
-import { Deadline } from "./deadline";
+import Deadline from "./Deadline";
+import Serializable from "../ports/Serializable";
 
-export class Plan implements Serializable {
+export default class Plan implements Serializable {
   private readonly user: string;
   private readonly slug: string;
   private readonly title: string;

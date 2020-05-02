@@ -1,10 +1,10 @@
-import { Command } from "../ports/command";
+import Command from "../ports/Command";
 
 /**
  * Register a new user
  */
 
-export class RegisterUserCommand extends Command {
+export default class RegisterUserCommand extends Command {
   private readonly email: string;
   private readonly name: string;
   private readonly password: string;

@@ -1,9 +1,9 @@
-import { Command } from "../ports/command";
+import Command from "../ports/Command";
 
 /**
  * Delete an existing plan
  */
-export class DeletePlanCommand extends Command {
+export default class DeletePlanCommand extends Command {
   public identifier(): string {
     return "DeletePlanCommand";
   }
@@ -12,7 +12,6 @@ export class DeletePlanCommand extends Command {
 
   public constructor();
 
-  public constructor(slug: string);
   public constructor(slug?: string) {
     super();
     this.slug = slug || "";
