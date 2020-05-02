@@ -1,4 +1,4 @@
-export interface LoginSessionDestroyer {
+export default interface LoginSessionDestroyer {
   /**
    * Kill the current login session
    */

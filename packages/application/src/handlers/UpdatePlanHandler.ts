@@ -5,7 +5,7 @@ import {
   AuthenticatedEntityRepository,
   CurrentLoginSession,
   EventEmitterWrapper,
-  Logger
+  Logger,
 } from "../ports";
 import { APP_TYPES } from "../ports/types";
 import { Plan } from "@planv5/domain/entities";
@@ -14,7 +14,7 @@ import { CommandOutcome } from "@planv5/domain";
 import { CurrentUserPlansChangedEvent } from "@planv5/domain/events";
 
 @injectable()
-export class UpdatePlanHandler extends HandlerBase<UpdatePlanCommand> {
+export default class UpdatePlanHandler extends HandlerBase<UpdatePlanCommand> {
   private readonly planRepository: AuthenticatedEntityRepository<Plan>;
   private readonly session: CurrentLoginSession;
   private readonly logger: Logger;

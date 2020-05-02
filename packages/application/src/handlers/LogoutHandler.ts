@@ -4,14 +4,14 @@ import {
   APP_TYPES,
   EventEmitterWrapper,
   Logger,
-  LoginSessionDestroyer
+  LoginSessionDestroyer,
 } from "../ports";
 import { HandlerBase } from "../core/handlerBase";
 import { LogoutCommand } from "@planv5/domain/commands";
 import { UserLoginStateChangeEvent } from "@planv5/domain/events";
 
 @injectable()
-export class LogoutHandler extends HandlerBase<LogoutCommand> {
+export default class LogoutHandler extends HandlerBase<LogoutCommand> {
   private readonly logger: Logger;
   private readonly applicationEvents: EventEmitterWrapper;
   private readonly sessionDestroyer: LoginSessionDestroyer;

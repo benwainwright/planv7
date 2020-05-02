@@ -7,7 +7,7 @@ import { Logger } from "../ports/logger";
 import { Dispatch } from "../ports";
 
 @injectable()
-export class SimpleCommandBus implements CommandBus {
+export default class SimpleCommandBus implements CommandBus {
   private readonly handlers: Handler<Command>[] | undefined;
   private readonly logger: Logger | undefined;
   private readonly dispatcher: Dispatch | undefined;
@@ -51,12 +51,11 @@ export class SimpleCommandBus implements CommandBus {
         }
       }
     } else if (this.logger) {
-        this.logger.verbose(`No handlers registered`);
-      }
+      this.logger.verbose(`No handlers registered`);
+    }
 
     if (this.dispatcher) {
       await this.dispatcher.dispatch(command);
-      
     } else {
       throw new ApplicationError(
         `Could not find handler for ${command.toString()}`

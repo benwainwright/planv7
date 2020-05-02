@@ -3,7 +3,7 @@ import { UserLoginStateChangeEvent } from "@planv5/domain/events";
 import {
   CommandOutcome,
   DomainEvent,
-  USER_LOGIN_STATE_CHANGE_EVENT
+  USER_LOGIN_STATE_CHANGE_EVENT,
 } from "@planv5/domain";
 import { APP_TYPES } from "../ports/types";
 import { Logger } from "../ports/logger";
@@ -15,7 +15,7 @@ import { HandlerBase } from "../core/handlerBase";
 import { EventEmitterWrapper } from "../ports";
 
 @injectable()
-export class LoginHandler extends HandlerBase<LoginCommand> {
+export default class LoginHandler extends HandlerBase<LoginCommand> {
   private readonly logger: Logger;
   private readonly applicationEvents: EventEmitterWrapper;
   private readonly loginProvider: LoginProvider;

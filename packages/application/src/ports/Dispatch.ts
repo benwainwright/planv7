@@ -1,4 +1,4 @@
 import { Command } from "@planv5/domain/ports";
-export interface Dispatch {
+export default interface Dispatch {
   dispatch: (command: Command) => Promise<void>;
 }

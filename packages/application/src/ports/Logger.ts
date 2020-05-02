@@ -1,4 +1,4 @@
-export interface Logger {
+export default interface Logger {
   log: (level: string, message: string) => void;
   error: (message: string) => void;
   warning: (message: string) => void;

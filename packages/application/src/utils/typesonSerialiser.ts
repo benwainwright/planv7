@@ -7,7 +7,7 @@ import date from "typeson-registry/types/date";
 // @ts-ignore
 import error from "typeson-registry/types/error";
 
-export class Serialiser {
+export default class Serialiser {
   private typeson: any;
 
   constructor(constructors: {}) {

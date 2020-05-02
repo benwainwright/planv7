@@ -7,5 +7,7 @@ export const APP_TYPES = {
   LoginProvider: Symbol.for("LoginProvider"),
   Logger: Symbol.for("Logger"),
   Dispatch: Symbol.for("Dispatch"),
-  LoginSessionDestroyer: Symbol.for("LoginSessionDestroyer")
+  LoginSessionDestroyer: Symbol.for("LoginSessionDestroyer"),
 };
+
+export default APP_TYPES;

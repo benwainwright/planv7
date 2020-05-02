@@ -8,7 +8,9 @@ import { inject, injectable } from "inversify";
 import { Logger } from "../ports/logger";
 
 @injectable()
-export class RegisterUserHandler extends HandlerBase<RegisterUserCommand> {
+export default class RegisterUserHandler extends HandlerBase<
+  RegisterUserCommand
+> {
   private readonly userRepository: Repository<User>;
   private readonly loginProvider: LoginProvider;
 

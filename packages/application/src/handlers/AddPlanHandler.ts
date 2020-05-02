@@ -11,7 +11,7 @@ import { APP_TYPES } from "../ports/types";
 import { EventEmitterWrapper, Logger, SlugGenerator } from "../ports";
 
 @injectable()
-export class AddPlanHandler extends HandlerBase<AddPlanCommand> {
+export default class AddPlanHandler extends HandlerBase<AddPlanCommand> {
   private readonly planRepository: AuthenticatedEntityRepository<Plan>;
   private readonly session: CurrentLoginSession;
   private readonly logger: Logger;

@@ -3,7 +3,8 @@ import { injectable } from "inversify";
 import { Command, Handler } from "@planv5/domain/ports";
 
 @injectable()
-export abstract class HandlerBase<T extends Command> implements Handler<T> {
+export default abstract class HandlerBase<T extends Command>
+  implements Handler<T> {
   public async tryHandle(command: T): Promise<void> {
     if (command.identifier() === this.getCommandInstance().identifier()) {
       command.markHandlingComplete();

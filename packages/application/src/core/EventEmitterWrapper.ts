@@ -3,7 +3,7 @@ import { EventEmitter } from "events";
 import { Logger } from "../ports/logger";
 import { inject, injectable } from "inversify";
 import { APP_TYPES } from "../ports/types";
-import { Serializable } from '@planv5/domain/ports';
+import { Serializable } from "@planv5/domain/ports";
 
 /**
  * Wrapper class to workaround the fact that directly
@@ -15,8 +15,7 @@ const APP_EVENT_NAME = "appEvent";
 const APP_ERROR_NAME = "appError";
 
 @injectable()
-export class EventEmitterWrapper {
-
+export default class EventEmitterWrapper {
   private readonly logger: Logger;
   private readonly events = new EventEmitter();
 
@@ -35,12 +34,12 @@ export class EventEmitterWrapper {
   }
 
   public onEvent<T extends Serializable>(callback: (event: T) => void): void {
-    this.logger.verbose('Adding event listener');
+    this.logger.verbose("Adding event listener");
     this.events.on(APP_EVENT_NAME, callback);
   }
 
   public onError<T extends Error>(callback: (error: T) => void): void {
-    this.logger.verbose('Adding error listener');
+    this.logger.verbose("Adding error listener");
     this.events.on(APP_ERROR_NAME, callback);
   }
 }

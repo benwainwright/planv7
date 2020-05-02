@@ -1,3 +1,3 @@
-export interface SlugGenerator<T> {
+export default interface SlugGenerator<T> {
   getUniqueSlug: (thing: T) => Promise<string>;
 }

@@ -1,7 +1,8 @@
 import { Repository } from "./repository";
 import { User } from "@planv5/domain/entities";
 
-export interface AuthenticatedEntityRepository<T> extends Repository<T> {
+export default interface AuthenticatedEntityRepository<T>
+  extends Repository<T> {
   getAllByUser: (user: User) => Promise<T[]>;
   getByFieldAndUser: <V>(
     user: User,

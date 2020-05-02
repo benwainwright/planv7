@@ -1,6 +1,6 @@
 import { User } from "@planv5/domain";
 
-export interface LoginProvider {
+export default interface LoginProvider {
   /**
    * Create a new login session
    *

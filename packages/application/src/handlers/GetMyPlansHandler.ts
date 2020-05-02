@@ -10,12 +10,12 @@ import { EventEmitterWrapper, Logger } from "../ports";
 import {
   CURRENT_USER_PLANS_CHANGED_EVENT,
   CommandOutcome,
-  DomainEvent
+  DomainEvent,
 } from "@planv5/domain";
 import { CurrentUserPlansChangedEvent } from "@planv5/domain/events";
 
 @injectable()
-export class GetMyPlansHandler extends HandlerBase<GetMyPlansCommand> {
+export default class GetMyPlansHandler extends HandlerBase<GetMyPlansCommand> {
   private readonly planRepository: AuthenticatedEntityRepository<Plan>;
   private readonly session: CurrentLoginSession;
   private readonly logger: Logger;
