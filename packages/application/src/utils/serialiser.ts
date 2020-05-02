@@ -5,7 +5,7 @@ import date from "typeson-registry/types/date";
 import error from "typeson-registry/types/error";
 
 import { inject, injectable } from "inversify";
-import { Serializable } from "../ports/serializable";
+import { Serialisable } from "@planv7/domain";
 
 export const SerialisableConstructors = Symbol("serialisableConstructors");
 
@@ -19,11 +19,11 @@ export class Serialiser {
     this.typeson = new Typeson().register([constructors, date, error]);
   }
 
-  public serialise<T extends Serializable>(thing: T): string {
+  public serialise<T extends Serialisable>(thing: T): string {
     return this.typeson.stringify(thing);
   }
 
-  public unSerialise<T extends Serializable>(json: string): T {
+  public unSerialise<T extends Serialisable>(json: string): T {
     const obj = typeof json === "string" ? JSON.parse(json) : json;
     return this.typeson.revive(obj);
   }

@@ -1,5 +1,5 @@
 import deepEqual from "deep-equal";
-import { Serialiser } from "./typesonSerialiser";
+import Serialiser from "./TypesonSerialiser";
 
 describe("The serialiser", () => {
   class Foo {

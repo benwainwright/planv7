@@ -6,6 +6,7 @@
     "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7",
     "@types/jest": "^25.2.1",
     "axios": "^0.19.2",
+    "deep-equal": "^2.0.3",
     "eslint": "^6.8.0",
     "inversify": "^5.0.1",
     "inversify-inject-decorators": "^3.1.0",
@@ -13,7 +14,8 @@
     "jest-mock-extended": "^1.0.8",
     "prettier": "^2.0.5",
     "reflect-metadata": "^0.1.13",
-    "typeson": "^5.18.2"
+    "typeson": "^5.18.2",
+    "typeson-registry": "^1.0.0-alpha.35"
   },
   "scripts": {
     "test": "jest",

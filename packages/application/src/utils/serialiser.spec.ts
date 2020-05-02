@@ -1,12 +1,12 @@
-import { Command } from "../ports/command";
-import { DomainError } from "../errors/DomainError";
-import { Serialiser } from "./serialiser";
-import * as COMMANDS from "../commands/index";
 import {
+  Command,
   GetAllUsersCommand,
   LoginCommand,
-  RegisterUserCommand
-} from "../commands";
+  RegisterUserCommand,
+  Commands,
+} from "@planv7/domain";
+import { ApplicationError } from "../ApplicationError";
+import { Serialiser } from "./serialiser";
 
 class MyMockCommand extends Command {
   private readonly x: string;
@@ -67,7 +67,7 @@ class MyMockCommandWithAnArrayOfMockCommands extends Command {
 describe("serialiseCommand", (): void => {
   it("Creates a JSON string with the type of the command at the root", (): void => {
     const command = new MyMockCommand("a", "b", 1);
-    const serialiser = new Serialiser(COMMANDS);
+    const serialiser = new Serialiser(Commands);
     const jsonString = serialiser.serialise(command);
     const obj = JSON.parse(jsonString);
     expect(obj["$"]).toEqual("MyMockCommand");
@@ -75,7 +75,7 @@ describe("serialiseCommand", (): void => {
 
   it("Creates a JSON string with an instance definition within it", (): void => {
     const command = new MyMockCommand("a", "b", 1);
-    const serialiser = new Serialiser(COMMANDS);
+    const serialiser = new Serialiser(Commands);
     const jsonString = serialiser.serialise(command);
     const obj = JSON.parse(jsonString);
     expect(obj.instance).toBeDefined();
@@ -83,7 +83,7 @@ describe("serialiseCommand", (): void => {
 
   it("Creates an instance definition with the correct properties", (): void => {
     const command = new MyMockCommand("a", "b", 1);
-    const serialiser = new Serialiser(COMMANDS);
+    const serialiser = new Serialiser(Commands);
     debugger;
     const jsonString = serialiser.serialise(command);
     const obj = JSON.parse(jsonString);
@@ -94,7 +94,7 @@ describe("serialiseCommand", (): void => {
 
   it("Creates a string which results in an identical command when unserialized", (): void => {
     const inputRegisterUsers = new RegisterUserCommand("foo", "a@.com", "bash");
-    const serialiser = new Serialiser(COMMANDS);
+    const serialiser = new Serialiser(Commands);
     let jsonString = serialiser.serialise(inputRegisterUsers);
     let output = serialiser.unSerialise(jsonString);
     expect(output).toEqual(inputRegisterUsers);
@@ -112,8 +112,8 @@ describe("serialiseCommand", (): void => {
   });
 
   it("works correctly for serializable error objects", () => {
-    const error = new DomainError("foo");
-    const serialiser = new Serialiser({ DomainError });
+    const error = new ApplicationError("foo");
+    const serialiser = new Serialiser({ ApplicationError });
     const jsonString = serialiser.serialise(error);
     const obj = JSON.parse(jsonString);
     expect(obj.instance).toBeDefined();
@@ -121,8 +121,8 @@ describe("serialiseCommand", (): void => {
   });
 
   it("does not serialize the stack trace of error objects", () => {
-    const error = new DomainError("foo");
-    const serialiser = new Serialiser({ DomainError });
+    const error = new ApplicationError("foo");
+    const serialiser = new Serialiser({ ApplicationError });
     const jsonString = serialiser.serialise(error);
     const obj = JSON.parse(jsonString);
     expect(obj.instance).toBeDefined();
@@ -157,12 +157,12 @@ describe("serialiseCommand", (): void => {
   it("Works for commands containing arrays", () => {
     const parent = new MyMockCommandWithAnArrayOfMockCommands([
       new MyMockCommand("a", "b", 1),
-      new MyMockCommand("c", "d", 2)
+      new MyMockCommand("c", "d", 2),
     ]);
 
     const serialiser = new Serialiser({
       MyMockCommand,
-      MyMockCommandWithAnArrayOfMockCommands
+      MyMockCommandWithAnArrayOfMockCommands,
     });
 
     const jsonString = serialiser.serialise(parent);
@@ -211,7 +211,7 @@ describe("unserialiseCommand", (): void => {
 
     const serialiser = new Serialiser({
       MyMockCommandWithAnArrayOfMockCommands,
-      MyMockCommand
+      MyMockCommand,
     });
 
     const newInstance = serialiser.unSerialise(jsonString) as any;
@@ -243,7 +243,7 @@ describe("unserialiseCommand", (): void => {
     const serialiser = new Serialiser({
       MyMockCommand,
       MyCommandWithNesting,
-      MyMockCommandWithAnObjectKey
+      MyMockCommandWithAnObjectKey,
     });
 
     const newInstance = serialiser.unSerialise(jsonString) as any;
@@ -290,10 +290,10 @@ describe("unserialiseCommand", (): void => {
       instance: {
         name: "bar",
         email: "foo@foo.com",
-        password: "bap"
-      }
+        password: "bap",
+      },
     };
-    const serialiser = new Serialiser(COMMANDS);
+    const serialiser = new Serialiser(Commands);
     // @ts-ignore
     const newInstance = serialiser.unSerialise(object);
     expect(newInstance).toBeInstanceOf(RegisterUserCommand);
@@ -312,7 +312,7 @@ describe("unserialiseCommand", (): void => {
         }
       }`;
 
-    const serialiser = new Serialiser(COMMANDS);
+    const serialiser = new Serialiser(Commands);
     const newInstance = serialiser.unSerialise(jsonString);
     expect(newInstance).toBeInstanceOf(RegisterUserCommand);
   });
@@ -333,7 +333,7 @@ describe("unserialiseCommand", (): void => {
         }
       }`;
 
-    const serialiser = new Serialiser(COMMANDS);
+    const serialiser = new Serialiser(Commands);
     const newInstance = serialiser.unSerialise(jsonString);
     expect(newInstance).toEqual(expectedInstance);
   });
@@ -354,7 +354,7 @@ describe("unserialiseCommand", (): void => {
         }
       }`;
 
-    const serialiser = new Serialiser(COMMANDS);
+    const serialiser = new Serialiser(Commands);
     const newInstance = serialiser.unSerialise(jsonString);
     expect(newInstance.constructor.name).toEqual(
       expectedInstance.constructor.name
@@ -362,10 +362,10 @@ describe("unserialiseCommand", (): void => {
   });
 
   it("works correctly for serializable error objects", () => {
-    const error = new DomainError("foo");
-    const serialiser = new Serialiser({ DomainError });
-    const newInstance = serialiser.unSerialise<DomainError>(
-      '{ "$": "DomainError", "instance": { "message": "foo" } }'
+    const error = new ApplicationError("foo");
+    const serialiser = new Serialiser({ ApplicationError });
+    const newInstance = serialiser.unSerialise<ApplicationError>(
+      '{ "$": "ApplicationError", "instance": { "message": "foo" } }'
     );
     expect(newInstance.constructor.name).toEqual(error.constructor.name);
     expect(newInstance.message).toEqual("foo");
