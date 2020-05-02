@@ -1,4 +1,4 @@
-import { User } from "@planv5/domain";
+import { User } from "@planv7/domain";
 
 export default interface LoginProvider {
   /**

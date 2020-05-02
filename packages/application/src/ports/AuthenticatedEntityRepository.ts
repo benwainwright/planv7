@@ -1,5 +1,6 @@
-import { Repository } from "./repository";
-import { User } from "@planv5/domain/entities";
+import { User } from "@planv7/domain";
+
+import Repository from "./Repository";
 
 export default interface AuthenticatedEntityRepository<T>
   extends Repository<T> {
