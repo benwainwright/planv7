@@ -6,12 +6,12 @@ import {
   RegisterUserCommand,
 } from "@planv7/domain";
 import { ApplicationError } from "../ApplicationError";
-import { Serialiser } from "./Serialiser";
+import Serialiser from "./Serialiser";
 
 class MyMockCommand extends Command {
-  private readonly x: string;
-  private readonly y: string;
-  private readonly z: number;
+  public readonly x: string;
+  public readonly y: string;
+  public readonly z: number;
 
   public identifier(): string {
     return "MyMockCommand";
@@ -84,7 +84,6 @@ describe("serialiseCommand", (): void => {
   it("Creates an instance definition with the correct properties", (): void => {
     const command = new MyMockCommand("a", "b", 0);
     const serialiser = new Serialiser(Commands);
-    debugger;
     const jsonString = serialiser.serialise(command);
     const obj = JSON.parse(jsonString);
     expect(obj.instance.x).toEqual("a");
@@ -214,7 +213,9 @@ describe("unserialiseCommand", (): void => {
       MyMockCommand,
     });
 
-    const newInstance = serialiser.unSerialise(jsonString) as any;
+    const newInstance = serialiser.unSerialise<
+      MyMockCommandWithAnArrayOfMockCommands
+    >(jsonString);
 
     expect(newInstance).toBeInstanceOf(MyMockCommandWithAnArrayOfMockCommands);
     expect(Array.isArray(newInstance.array)).toBeTruthy();
@@ -246,9 +247,11 @@ describe("unserialiseCommand", (): void => {
       MyMockCommandWithAnObjectKey,
     });
 
-    const newInstance = serialiser.unSerialise(jsonString) as any;
+    const newInstance = serialiser.unSerialise<MyMockCommandWithAnObjectKey>(
+      jsonString
+    );
     expect(newInstance).toBeInstanceOf(MyMockCommandWithAnObjectKey);
-    expect(newInstance.handled).toEqual(false);
+    expect(newInstance.wasHandled()).toEqual(false);
     expect(typeof newInstance.obj).toBe("object");
     expect(newInstance.obj.foo).toEqual("baz");
   });
@@ -272,9 +275,11 @@ describe("unserialiseCommand", (): void => {
     }
 `;
     const serialiser = new Serialiser({ MyMockCommand, MyCommandWithNesting });
-    const newInstance = serialiser.unSerialise(jsonString) as any;
+    const newInstance = serialiser.unSerialise<MyCommandWithNesting>(
+      jsonString
+    );
     expect(newInstance).toBeInstanceOf(MyCommandWithNesting);
-    expect(newInstance.handled).toEqual(false);
+    expect(newInstance.wasHandled()).toEqual(false);
     expect(newInstance.otherCommand).toBeInstanceOf(MyMockCommand);
     expect(newInstance.otherCommand.x).toEqual("a");
   });
@@ -294,8 +299,7 @@ describe("unserialiseCommand", (): void => {
       },
     };
     const serialiser = new Serialiser(Commands);
-    // @ts-ignore
-    const newInstance = serialiser.unSerialise(object);
+    const newInstance = serialiser.unSerialise<RegisterUserCommand>(object);
     expect(newInstance).toBeInstanceOf(RegisterUserCommand);
     expect(newInstance).toEqual(expectedInstance);
   });

@@ -95,6 +95,8 @@ module.exports = {
     "no-extra-parens": "error",
     "no-template-curly-in-string": "error",
 
+    "import/no-named-as-default": "off",
+
     // TypeScript
     "@typescript-eslint/naming-convention": [
       "error",

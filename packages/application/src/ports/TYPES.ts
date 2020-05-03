@@ -10,4 +10,4 @@ export const TYPES = {
   loginSessionDestroyer: Symbol.for("LoginSessionDestroyer"),
 };
 
-export default APP_TYPES;
+export default TYPES;

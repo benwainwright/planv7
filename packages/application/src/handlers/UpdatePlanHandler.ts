@@ -1,4 +1,9 @@
-import { inject, injectable } from "inversify";
+import {
+  AuthenticatedEntityRepository,
+  CurrentLoginSession,
+  EventEmitterWrapper,
+  Logger,
+} from "../ports";
 
 import {
   CommandOutcome,
@@ -7,17 +12,11 @@ import {
   UpdatePlanCommand,
 } from "@planv7/domain";
 
-import HandlerBase from "../core/HandlerBase";
+import { inject, injectable } from "inversify";
 
-import {
-  AuthenticatedEntityRepository,
-  CurrentLoginSession,
-  EventEmitterWrapper,
-  Logger,
-} from "../ports";
-
-import { APP_TYPES } from "../ports/types";
 import { ApplicationError } from "../ApplicationError";
+import HandlerBase from "../core/HandlerBase";
+import TYPES from "../ports/TYPES";
 
 @injectable()
 export default class UpdatePlanHandler extends HandlerBase<UpdatePlanCommand> {
@@ -26,11 +25,11 @@ export default class UpdatePlanHandler extends HandlerBase<UpdatePlanCommand> {
   private readonly logger: Logger;
   private readonly applicationEvents: EventEmitterWrapper;
   public constructor(
-    @inject(APP_TYPES.PlanRepository)
+    @inject(TYPES.PlanRepository)
     planRepository: AuthenticatedEntityRepository<Plan>,
-    @inject(APP_TYPES.CurrentLoginSession) session: CurrentLoginSession,
-    @inject(APP_TYPES.Logger) logger: Logger,
-    @inject(APP_TYPES.EventEmitterWrapper)
+    @inject(TYPES.CurrentLoginSession) session: CurrentLoginSession,
+    @inject(TYPES.Logger) logger: Logger,
+    @inject(TYPES.EventEmitterWrapper)
     applicationEvents: EventEmitterWrapper
   ) {
     super();
@@ -40,11 +39,11 @@ export default class UpdatePlanHandler extends HandlerBase<UpdatePlanCommand> {
     this.applicationEvents = applicationEvents;
   }
 
-  public getCommandInstance() {
+  public getCommandInstance(): UpdatePlanCommand {
     return new UpdatePlanCommand();
   }
 
-  protected async execute(command: any): Promise<void> {
+  protected async execute(command: UpdatePlanCommand): Promise<void> {
     this.logger.verbose("Executing UpdatePlanHandler");
     const user = this.session.getCurrentUser();
 

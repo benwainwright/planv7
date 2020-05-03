@@ -13,6 +13,10 @@ export default abstract class Command implements Serialisable {
     this.handled = true;
   }
 
+  public wasHandled(): boolean {
+    return this.handled;
+  }
+
   public markHandlingIncomplete(): void {
     this.handled = false;
   }
