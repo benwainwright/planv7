@@ -1,3 +1,4 @@
+/* eslint-disable filenames/match-regex */
 import Serialiser from "./TypesonSerialiser";
 import deepEqual from "deep-equal";
 
@@ -13,6 +14,7 @@ describe("The serialiser", () => {
     const foo = new Foo();
     foo.x = "bar";
 
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     const serialiser = new Serialiser({ Foo });
     const json = serialiser.serialise(foo);
     const newObj = serialiser.unSerialise(json);

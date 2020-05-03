@@ -5,6 +5,7 @@ import date from "typeson-registry/types/date";
 import error from "typeson-registry/types/error";
 
 export default class TypesonSerialiser {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private typeson: any;
 
   public constructor(constructors: {}) {
@@ -17,7 +18,6 @@ export default class TypesonSerialiser {
   };
 
   public unSerialise = <T>(json: string): T => {
-    console.log(json);
     const parsed = JSON.parse(json);
     return this.typeson.revive(parsed);
   };
