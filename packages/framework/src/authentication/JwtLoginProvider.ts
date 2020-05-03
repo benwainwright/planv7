@@ -1,17 +1,22 @@
-import { ResponseAuthHeader } from "@planv5/framework";
-import { FRAMEWORK_TYPES } from "../../types";
-import { User } from "@planv5/domain";
-import { APP_TYPES , Logger, LoginProvider } from "@planv5/application/ports";
-import { compare } from "bcryptjs";
-import { inject, injectable, optional } from "inversify";
+import {
+  TYPES as APP,
+  ApplicationError,
+  Logger,
+  LoginProvider,
+} from "@planv7/application";
+
 import { Collection, Db } from "mongodb";
-import { USERS_COLLECTION_NAME } from "../storage/MongoDbUserRepository";
-import { ApplicationError } from "@planv5/application/errors";
+import { inject, injectable, optional } from "inversify";
+
+import MongoDbUserRepository from "../storage/MongoDbUserRepository";
+import { ResponseAuthHeader } from "../responseAuthHeaderAppender";
+import TYPES from "../TYPES";
+import { User } from "@planv7/domain";
+import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 
-
 @injectable()
-export class JwtLoginProvider implements LoginProvider {
+export default class JwtLoginProvider implements LoginProvider {
   private readonly collection: Collection;
   private readonly authHeader: ResponseAuthHeader | undefined;
   private readonly publicKey: string;
@@ -19,18 +24,18 @@ export class JwtLoginProvider implements LoginProvider {
   private readonly logger: Logger;
 
   public constructor(
-    @inject(FRAMEWORK_TYPES.Db) database: Db,
-    @inject(FRAMEWORK_TYPES.JwtPublicKey)
+    @inject(TYPES.db) database: Db,
+    @inject(TYPES.jwtPublicKey)
     publicKey: string,
-    @inject(FRAMEWORK_TYPES.JwtPrivateKey)
+    @inject(TYPES.jwtPrivateKey)
     privateKey: string,
-    @inject(APP_TYPES.Logger)
+    @inject(APP.logger)
     logger: Logger,
     @optional()
-    @inject(FRAMEWORK_TYPES.ResponseAuthHeader)
+    @inject(TYPES.responseAuthHeader)
     authHeader?: ResponseAuthHeader
   ) {
-    this.collection = database.collection(USERS_COLLECTION_NAME);
+    this.collection = database.collection(MongoDbUserRepository.collectionName);
     this.authHeader = authHeader;
     this.publicKey = publicKey;
     this.privateKey = privateKey;
@@ -48,46 +53,42 @@ export class JwtLoginProvider implements LoginProvider {
   }
 
   private async signUser(user: User): Promise<string> {
-    return new Promise<string>(
-      async (accept, reject): Promise<void> => {
-        sign(
-          { ...user},
-          this.privateKey,
-          { algorithm: "RS256" },
-          (error: Error, token: string): void => {
-            if (error) {
-              reject(error);
-            } else {
-              accept(token);
-            }
+    return new Promise<string>((accept, reject): void => {
+      sign(
+        { ...user },
+        this.privateKey,
+        { algorithm: "RS256" },
+        (error: Error | null, token: string | undefined): void => {
+          if (error) {
+            reject(error);
+          } else {
+            accept(token);
           }
-        );
-      }
-    );
+        }
+      );
+    });
   }
 
   private async doLogin(username: string, password: string): Promise<User> {
-    return new Promise(
-      async (accept, reject): Promise<void> => {
-        const query = { name: username };
-        const data = await this.collection.findOne(query);
-        if (data) {
-          compare(
-            password,
-            data.password,
-            (error: Error, success: boolean): void => {
-              if (success) {
-                const user = new User(data.name, data.email, "");
-                accept(user);
-              } else {
-                reject(new ApplicationError("Login Failed"));
-              }
+    const query = { name: username };
+    const data = await this.collection.findOne(query);
+    return new Promise((accept, reject): void => {
+      if (data) {
+        compare(
+          password,
+          data.password,
+          (error: Error, success: boolean): void => {
+            if (success) {
+              const user = new User(data.name, data.email, "");
+              accept(user);
+            } else {
+              reject(new ApplicationError("Login Failed"));
             }
-          );
-        } else {
-          reject(new ApplicationError("Login Failed"));
-        }
+          }
+        );
+      } else {
+        reject(new ApplicationError("Login Failed"));
       }
-    );
+    });
   }
 }

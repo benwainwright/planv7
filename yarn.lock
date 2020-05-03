@@ -691,6 +691,7 @@ __metadata:
   dependencies:
     "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7"
     "@types/bcryptjs": ^2.4.2
+    "@types/jsonwebtoken": ^8.3.9
     "@types/mongodb": ^3.5.14
     bcryptjs: ^2.4.3
     eslint: ^6.8.0
@@ -887,6 +888,15 @@ __metadata:
   version: 7.0.4
   resolution: "@types/json-schema@npm:7.0.4"
   checksum: 3/5094037431e4b29d5cc9d6938ea596d1145cc46d305d8d302a477a54d0a7a83ba4629abbf52fcabc3ffdb31cf94647bc366a7bcc544770cbb80212d903018e2b
+  languageName: node
+  linkType: hard
+
+"@types/jsonwebtoken@npm:^8.3.9":
+  version: 8.3.9
+  resolution: "@types/jsonwebtoken@npm:8.3.9"
+  dependencies:
+    "@types/node": "*"
+  checksum: 3/71a1fb7334ec2793cf5565379e2450cfe0e8f4f85ae664acff47dc1fa548ea0c3b68f20d705645b4783c6d33421ff468151aec5c75a85c58cd53a31fe4640596
   languageName: node
   linkType: hard
 

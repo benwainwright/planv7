@@ -1,34 +1,38 @@
 import {
-  APP_TYPES,
+  TYPES as APP,
   EventEmitterWrapper,
-  Logger
-, LoginSessionDestroyer } from "@planv5/application/ports";
-
-import { CommandOutcome, User } from "@planv5/domain";
-import { AxiosResponse } from "axios";
-import { UserLoginStateChangeEvent } from "@planv5/domain/events";
-import { FRAMEWORK_TYPES } from "@planv5/framework/types";
-import { inject, injectable } from "inversify";
+  Logger,
+  LoginSessionDestroyer,
+} from "@planv7/application";
 import { COOKIE_EXPIRY, JWT_TOKEN_NAME } from "../constants";
+import {
+  CommandOutcome,
+  User,
+  UserLoginStateChangeEvent,
+} from "@planv7/domain";
+import { inject, injectable } from "inversify";
+
+import { AxiosResponse } from "axios";
 import { Cookies } from "./Cookies";
-import { JwtLoginSession } from "./JwtLoginSession";
+import JwtLoginSession from "./JwtLoginSession";
+import TYPES from "../TYPES";
 import { WebsocketClient } from "../WebsocketClient";
 
 @injectable()
-export class JwtClientLoginSession extends JwtLoginSession
+export default class JwtClientLoginSession extends JwtLoginSession
   implements LoginSessionDestroyer {
   private readonly events: EventEmitterWrapper;
-  private token: string | undefined = undefined;
-  private currentUser: User | undefined;
+  private token: string | null = null;
+  private currentUser: User | null = null;
   private publicKey: string;
   private readonly socketClient: WebsocketClient;
 
   public constructor(
-    @inject(APP_TYPES.EventEmitterWrapper) events: EventEmitterWrapper,
-    @inject(FRAMEWORK_TYPES.JwtPublicKey)
+    @inject(APP.eventEmitterWrapper) events: EventEmitterWrapper,
+    @inject(TYPES.jwtPublicKey)
     publicKey: string,
-    @inject(APP_TYPES.Logger) logger: Logger,
-    @inject(FRAMEWORK_TYPES.WebsocketClient) socketClient: WebsocketClient
+    @inject(APP.logger) logger: Logger,
+    @inject(TYPES.websocketClient) socketClient: WebsocketClient
   ) {
     super(logger);
     this.events = events;
@@ -37,7 +41,7 @@ export class JwtClientLoginSession extends JwtLoginSession
     this.events.onEvent(this.onUserLogin.bind(this));
   }
 
-  public getToken(): string | undefined {
+  public getToken(): string | null {
     if (!this.token) {
       this.load();
     }
@@ -46,13 +50,13 @@ export class JwtClientLoginSession extends JwtLoginSession
   }
 
   public async killSession(): Promise<void> {
-    this.token = undefined;
-    this.currentUser = undefined;
+    this.token = null;
+    this.currentUser = null;
     Cookies.delete(JWT_TOKEN_NAME);
     this.socketClient.close();
 
     this.events.emitEvent(
-      new UserLoginStateChangeEvent(CommandOutcome.SUCCESS)
+      new UserLoginStateChangeEvent(CommandOutcome.SUCCESS, null)
     );
   }
 
@@ -60,7 +64,7 @@ export class JwtClientLoginSession extends JwtLoginSession
     this.currentUser = user;
   }
 
-  public getCurrentUser(): User | undefined {
+  public getCurrentUser(): User | null {
     if (!this.currentUser) {
       this.load();
     }
@@ -68,7 +72,7 @@ export class JwtClientLoginSession extends JwtLoginSession
     if (this.token) {
       return this.currentUser;
     }
-    return undefined;
+    return null;
   }
 
   public setCurrentUserFromHttpResponse(response: AxiosResponse): void {
@@ -83,7 +87,7 @@ export class JwtClientLoginSession extends JwtLoginSession
   }
 
   private load(): void {
-    this.token = Cookies.get(document.cookie, JWT_TOKEN_NAME) || undefined;
+    this.token = Cookies.get(document.cookie, JWT_TOKEN_NAME) || null;
     if (this.token) {
       this.currentUser = this.verifyAndDecodeToken(
         this.token || "",

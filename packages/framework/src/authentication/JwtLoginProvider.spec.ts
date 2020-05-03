@@ -1,12 +1,12 @@
-import { TEST_PRIVATE_KEY, TEST_PUBLIC_KEY } from "../keys";
 import { Arg, Substitute } from "@fluffy-spoon/substitute";
-
-import { USERS_COLLECTION_NAME } from "../storage/MongoDbUserRepository";
-import { JwtLoginProvider } from "./JwtLoginProvider";
 import { Collection, Db, MongoClient } from "mongodb";
+import { TEST_PRIVATE_KEY, TEST_PUBLIC_KEY } from "../keys";
+
+import JwtLoginProvider from "./JwtLoginProvider";
+import { Logger } from "@planv7/application";
+import MongoDbUserRepository from "../storage/MongoDbUserRepository";
 import { MongoMemoryServer } from "mongodb-memory-server";
-import { ResponseAuthHeader } from "@planv5/framework";
-import { Logger } from "@planv5/application/ports";
+import { ResponseAuthHeader } from "../responseAuthHeaderAppender";
 
 describe("JwtLoginProvider", (): void => {
   let client: MongoClient;
@@ -23,32 +23,32 @@ describe("JwtLoginProvider", (): void => {
       const uri = await server.getConnectionString();
       client = await MongoClient.connect(uri, {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
       });
       db = client.db(await server.getDbName());
-      collection = db.collection(USERS_COLLECTION_NAME);
+      collection = db.collection(MongoDbUserRepository.collectionName);
       await collection.insertMany([
         {
           name: "foo",
           email: "a@b.c",
           // Foobar
           password:
-            "$2a$10$GQTrDmqx3RaMXu27c8Ie7.CMkXihX7lk5ECP6NMkpevoyyJyr.GTa"
+            "$2a$10$GQTrDmqx3RaMXu27c8Ie7.CMkXihX7lk5ECP6NMkpevoyyJyr.GTa",
         },
         {
           name: "bar",
           email: "c@d.c",
           // Hell0mr
           password:
-            "$2a$10$WYx.VvtZyUx1c8JS9DYF.eknX6ffTFMc.b7xR74EIlhMqSjtHUhwa"
+            "$2a$10$WYx.VvtZyUx1c8JS9DYF.eknX6ffTFMc.b7xR74EIlhMqSjtHUhwa",
         },
         {
           name: "foobar",
           email: "r@f.g",
           // Carr0ts
           password:
-            "$2a$10$axoWkKghx18yW3aX6HETQ.bXnJJ7iULgb1hU19cPDdZ/1s3JDUipC"
-        }
+            "$2a$10$axoWkKghx18yW3aX6HETQ.bXnJJ7iULgb1hU19cPDdZ/1s3JDUipC",
+        },
       ]);
     }
   );
@@ -115,7 +115,9 @@ describe("JwtLoginProvider", (): void => {
         );
         await loginProvider.login("foobaz", "carr0ts");
         fail("Expected an error to be thrown");
-      } catch (e) {}
+      } catch (e) {
+        // Noop
+      }
       header.didNotReceive().setHeader(Arg.any());
     });
 
@@ -133,7 +135,9 @@ describe("JwtLoginProvider", (): void => {
           header
         );
         await loginProvider.login("foobar", "carrts");
-      } catch (e) {}
+      } catch (e) {
+        // Noop
+      }
       header.didNotReceive().setHeader(Arg.any());
     });
   });

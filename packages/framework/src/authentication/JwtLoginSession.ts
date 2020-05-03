@@ -1,9 +1,9 @@
-import { verify } from "jsonwebtoken";
-import { AxiosResponse } from "axios";
+import { CurrentLoginSession, Logger, TYPES } from "@planv7/application";
 import { inject, injectable } from "inversify";
 
+import { AxiosResponse } from "axios";
 import { User } from "@planv7/domain";
-import { CurrentLoginSession, Logger, TYPES } from "@planv7/application";
+import { verify } from "jsonwebtoken";
 
 @injectable()
 export default abstract class JwtLoginSession implements CurrentLoginSession {

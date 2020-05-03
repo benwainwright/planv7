@@ -1,20 +1,20 @@
-import { Logger } from "@planv5/application/src/ports/logger";
-import { TEST_PRIVATE_KEY, TEST_PUBLIC_KEY } from "@planv5/framework";
-import { sign } from "jsonwebtoken";
-
-import { JwtServerLoginSession } from "./JwtServerLoginSession";
-import { User } from "@planv5/domain";
 import { JWT_TOKEN_NAME, USER_COOKIE_NAME } from "../constants";
-import { Substitute } from "@fluffy-spoon/substitute";
+import { TEST_PRIVATE_KEY, TEST_PUBLIC_KEY } from "../keys";
+
 import { IncomingMessage } from "http";
+import JwtServerLoginSession from "./JwtServerLoginSession";
+import { Logger } from "@planv7/application";
+import { Substitute } from "@fluffy-spoon/substitute";
+import { User } from "@planv7/domain";
+import { sign } from "jsonwebtoken";
 
 const signUser = async (user: User, key: string): Promise<string> => {
   return new Promise<string>((accept, reject): void =>
     sign(
-      { ...user},
+      { ...user },
       key,
       { algorithm: "RS256" },
-      (error: Error, token: string): void => {
+      (error: Error | null, token: string | undefined): void => {
         if (error) {
           reject(error);
         } else {
@@ -34,7 +34,7 @@ describe("JwtServerLoginSession", (): void => {
     const userString = encodeURIComponent(JSON.stringify(user));
 
     const headers = {
-      cookie: `${USER_COOKIE_NAME}=${userString}`
+      cookie: `${USER_COOKIE_NAME}=${userString}`,
     };
 
     if (request.headers.returns) {
@@ -57,11 +57,11 @@ describe("JwtServerLoginSession", (): void => {
     const user = new User("foo", "bar", "baz");
     const userString = encodeURIComponent(JSON.stringify(user));
     const token = encodeURIComponent(
-      `${await signUser(user, TEST_PRIVATE_KEY)  }string to make token invalid`
+      `${await signUser(user, TEST_PRIVATE_KEY)}string to make token invalid`
     );
 
     const headers = {
-      cookie: `${JWT_TOKEN_NAME}=${token}; ${USER_COOKIE_NAME}=${userString}`
+      cookie: `${JWT_TOKEN_NAME}=${token}; ${USER_COOKIE_NAME}=${userString}`,
     };
 
     if (request.headers.returns) {

@@ -180,7 +180,7 @@ module.exports = {
       },
     },
     {
-      files: ["*.spec.ts"],
+      files: ["*.spec.ts", "*.spec.dom.ts"],
       rules: {
         "filenames/match-regex": "off",
         "filenames/match-exported": "off",

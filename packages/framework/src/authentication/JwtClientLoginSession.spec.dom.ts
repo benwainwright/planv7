@@ -1,22 +1,23 @@
-// @ts-ignore
-import Headers from "fetch-headers";
+import { Substitute } from "@fluffy-spoon/substitute";
+import {
+  CommandOutcome,
+  User,
+  UserLoginStateChangeEvent,
+} from "@planv7/domain";
+import { EventEmitterWrapper, Logger } from "@planv7/application";
+import { JWT_TOKEN_NAME, USER_COOKIE_NAME } from "../constants";
+import { TEST_PRIVATE_KEY, TEST_PUBLIC_KEY } from "../keys";
 
 import { AxiosResponse } from "axios";
-import { TEST_PRIVATE_KEY, TEST_PUBLIC_KEY } from "@planv5/framework";
 import { Cookies } from "./Cookies";
-import { JWT_TOKEN_NAME, USER_COOKIE_NAME } from "../constants";
-import { sign } from "jsonwebtoken";
-import { Arg, Substitute } from "@fluffy-spoon/substitute";
-import { EventEmitterWrapper, Logger } from "@planv5/application/ports";
-import { UserLoginStateChangeEvent } from "@planv5/domain/events";
-import { CommandOutcome, User } from "@planv5/domain";
-import { JwtClientLoginSession } from "./JwtClientLoginSession";
+import JwtClientLoginSession from "./JwtClientLoginSession";
 import { WebsocketClient } from "../WebsocketClient";
+import { sign } from "jsonwebtoken";
 
 const signUser = async (user: User, key: string): Promise<string> => {
   return new Promise<string>((accept, reject): void =>
     sign(
-      { ...user},
+      { ...user },
       key,
       { algorithm: "RS256" },
       (error: Error, token: string): void => {
@@ -39,7 +40,7 @@ describe("JwtLocalStorageCurrentLoginSession", (): void => {
       const equalsPosition = cookie.indexOf("=");
       const name =
         equalsPosition > -1 ? cookie.substr(0, equalsPosition) : cookie;
-      document.cookie = `${name  }=;expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+      document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT`;
     }
   });
 
