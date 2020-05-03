@@ -1,18 +1,18 @@
 import "reflect-metadata";
-import { Collection, Db } from "mongodb";
-import { inject, injectable } from "inversify";
-
-const THOUSAND_MILLISECONDS_IN_SECOND = 1000;
-
 import {
   TYPES as APP,
   AuthenticatedEntityRepository,
   Logger,
 } from "@planv7/application";
-
+import { Collection, Db } from "mongodb";
 import { Deadline, Plan, User } from "@planv7/domain";
+import { inject, injectable } from "inversify";
+
 import TYPES from "../../TYPES";
 
+const THOUSAND_MILLISECONDS_IN_SECOND = 1000;
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const mapDataToPlan = (planData: any): Plan => {
   return new Plan(
     planData.user,
@@ -35,6 +35,7 @@ const mapDataToPlan = (planData: any): Plan => {
   );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const mapPlanToObject = (plan: Plan): any => ({
   user: plan.getUser(),
   slug: plan.getSlug(),
@@ -48,8 +49,6 @@ const mapPlanToObject = (plan: Plan): any => ({
         ratio: number;
         due: number;
       } => {
-        console.log(plan);
-        console;
         const link = deadline.getLink();
         return {
           name: deadline.getName(),
@@ -81,11 +80,12 @@ export default class MongoDbPlanRepository
     name: string,
     value: V
   ): Promise<Plan | null> {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const query: any = { user: user.getName() };
     query[name] = value;
     const result = await this.collection.findOne(query);
 
-    if (result === null || result === undefined) {
+    if (!result) {
       return null;
     }
 
@@ -100,11 +100,11 @@ export default class MongoDbPlanRepository
     return plans.map(mapDataToPlan);
   }
 
-  public async deleteExisting(plan: Plan) {
+  public async deleteExisting(plan: Plan): Promise<void> {
     await this.collection.deleteOne({ slug: plan.getSlug() });
   }
 
-  public async updateExisting(plan: Plan) {
+  public async updateExisting(plan: Plan): Promise<void> {
     await this.collection.updateOne(
       { slug: plan.getSlug() },
       { $set: mapPlanToObject(plan) }
@@ -115,17 +115,14 @@ export default class MongoDbPlanRepository
     await this.collection.insertOne(mapPlanToObject(plan));
   }
 
-  public async getByField<V>(
-    name: string,
-    value: V
-  ): Promise<Plan | undefined> {
+  public async getByField<V>(name: string, value: V): Promise<Plan | null> {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const query: any = {};
     query[name] = value;
     const result = await this.collection.findOne(query);
 
-    if (result === null || result === undefined) {
-      return undefined;
+    if (!result) {
+      return null;
     }
 
     return mapDataToPlan(result);
