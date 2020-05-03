@@ -4,37 +4,39 @@ import {
   Logger,
   Serialiser,
 } from "@planv7/application";
+
 import {
+  Command,
+  CommandBus,
   TYPES as DOMAIN,
   DomainError,
   DomainEvent,
-  Command,
-  CommandBus,
 } from "@planv7/domain";
 import { inject, injectable } from "inversify";
+
 import WebSocket from "ws";
 
 @injectable()
-export class WebsocketConnection {
+export default class WebsocketConnection {
   private commandBus: CommandBus;
   private serialiser: Serialiser;
   private appEvents: EventEmitterWrapper;
   private logger: Logger;
   private socket: WebSocket;
 
-  constructor(
+  public constructor(
     @inject(WebSocket) socket: WebSocket,
 
-    @inject(DOMAIN.CommandBus)
+    @inject(DOMAIN.commandBus)
     commandBus: CommandBus,
 
     @inject(Serialiser)
     serialiser: Serialiser,
 
-    @inject(APP.EventEmitterWrapper)
+    @inject(APP.eventEmitterWrapper)
     events: EventEmitterWrapper,
 
-    @inject(APP.Logger)
+    @inject(APP.logger)
     logger: Logger
   ) {
     this.serialiser = serialiser;
@@ -49,13 +51,13 @@ export class WebsocketConnection {
     socket.on("message", this.onMessage);
   }
 
-  private onAppEvent(event: DomainEvent) {
+  private onAppEvent(event: DomainEvent): void {
     this.logger.verbose(`Sending event ${event.toString()}`);
     const eventString = this.serialiser.serialise<DomainEvent>(event);
     this.socket.send(eventString);
   }
 
-  private async onMessage(data: WebSocket.Data) {
+  private async onMessage(data: WebSocket.Data): Promise<void> {
     const command = this.serialiser.unSerialise<Command>(data as string);
     try {
       await this.commandBus.execute(command);

@@ -1,3 +1,5 @@
+import * as Transport from "winston-transport";
+
 export default class WinstonConfig {
   public readonly level: string;
   public readonly transports: Transport[];

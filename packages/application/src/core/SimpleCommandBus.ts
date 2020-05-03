@@ -1,4 +1,4 @@
-import { Command, CommandBus, DOMAIN_TYPES, Handler } from "@planv7/domain";
+import { Command, CommandBus, TYPES as DOMAIN, Handler } from "@planv7/domain";
 import { Dispatch, TYPES } from "../ports";
 import { inject, injectable, multiInject, optional } from "inversify";
 
@@ -13,13 +13,13 @@ export default class SimpleCommandBus implements CommandBus {
 
   public constructor(
     @optional()
-    @multiInject(DOMAIN_TYPES.Handler)
+    @multiInject(DOMAIN.handler)
     handlers?: Handler<Command>[],
     @inject(TYPES.logger)
     logger?: Logger,
 
     @optional()
-    @inject(DOMAIN_TYPES.Dispatch)
+    @inject(DOMAIN.dispatch)
     dispatcher?: Dispatch
   ) {
     this.handlers = handlers;
