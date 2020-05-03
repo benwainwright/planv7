@@ -2,7 +2,7 @@ import { TYPES as APP, Logger, SlugGenerator } from "@planv7/application";
 import { Collection, Db } from "mongodb";
 import { inject, injectable } from "inversify";
 
-import { PLANS_COLLECTION_NAME } from "./MongoDbPlanRepository";
+import MongoDbPlanRepository from "./MongoDbPlanRepository";
 import { Plan } from "@planv7/domain";
 import TYPES from "../../TYPES";
 
@@ -14,7 +14,7 @@ export default class MongoDbPlanSlugGenerator implements SlugGenerator<Plan> {
     @inject(TYPES.db) database: Db,
     @inject(APP.logger) logger: Logger
   ) {
-    this.collection = database.collection(PLANS_COLLECTION_NAME);
+    this.collection = database.collection(MongoDbPlanRepository.collectionName);
     this.logger = logger;
   }
 

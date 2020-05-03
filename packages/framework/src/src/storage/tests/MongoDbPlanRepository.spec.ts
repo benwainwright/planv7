@@ -1,11 +1,8 @@
 import { Db, MongoClient } from "mongodb";
 import { Deadline, Plan, User } from "@planv7/domain";
-import {
-  MongoDbPlanRepository,
-  PLANS_COLLECTION_NAME,
-} from "../MongoDbPlanRepository";
 
 import { Logger } from "@planv7/application";
+import MongoDbPlanRepository from "../MongoDbPlanRepository";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { Substitute } from "@fluffy-spoon/substitute";
 
@@ -28,7 +25,7 @@ describe("MongoDbPlanRepository", (): void => {
         useUnifiedTopology: true,
       });
       db = client.db(await server.getDbName());
-      const collection = db.collection(PLANS_COLLECTION_NAME);
+      const collection = db.collection(MongoDbPlanRepository.collectionName);
       await collection.insertMany([
         {
           user: "foo",

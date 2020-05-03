@@ -1,9 +1,9 @@
 import { Db, MongoClient } from "mongodb";
 
 import { Logger } from "@planv7/application";
+import MongoDbPlanRepository from "./MongoDbPlanRepository";
 import MongoDbPlanSlugGenerator from "./MongoDbPlanSlugGenerator";
 import { MongoMemoryServer } from "mongodb-memory-server";
-import { PLANS_COLLECTION_NAME } from "./MongoDbPlanRepository";
 import { Plan } from "@planv7/domain";
 import { mock } from "jest-mock-extended";
 
@@ -20,7 +20,7 @@ describe("The slug generator", () => {
         useUnifiedTopology: true,
       });
       db = client.db(await server.getDbName());
-      const collection = db.collection(PLANS_COLLECTION_NAME);
+      const collection = db.collection(MongoDbPlanRepository.collectionName);
       await collection.insertMany([
         {
           user: "foo",

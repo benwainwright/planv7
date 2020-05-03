@@ -1,6 +1,8 @@
 import "reflect-metadata";
-import { inject, injectable } from "inversify";
 import { Collection, Db } from "mongodb";
+import { inject, injectable } from "inversify";
+
+const THOUSAND_MILLISECONDS_IN_SECOND = 1000;
 
 import {
   TYPES as APP,
@@ -9,9 +11,7 @@ import {
 } from "@planv7/application";
 
 import { Deadline, Plan, User } from "@planv7/domain";
-import { FRAMEWORK_TYPES } from "../../types";
-
-export const PLANS_COLLECTION_NAME = "Plans";
+import TYPES from "../../TYPES";
 
 const mapDataToPlan = (planData: any): Plan => {
   return new Plan(
@@ -27,7 +27,7 @@ const mapDataToPlan = (planData: any): Plan => {
             new Deadline(
               d.name,
               d.ratio,
-              new Date(d.due * 1000),
+              new Date(d.due * THOUSAND_MILLISECONDS_IN_SECOND),
               new URL(d.link)
             )
         )
@@ -55,23 +55,24 @@ const mapPlanToObject = (plan: Plan): any => ({
           name: deadline.getName(),
           link: link ? link.toString() : "",
           ratio: deadline.getRatio(),
-          due: deadline.getDue().getTime() / 1000,
+          due: deadline.getDue().getTime() / THOUSAND_MILLISECONDS_IN_SECOND,
         };
       })
     : [],
 });
 
 @injectable()
-export class MongoDbPlanRepository
+export default class MongoDbPlanRepository
   implements AuthenticatedEntityRepository<Plan> {
+  public static readonly collectionName = "Plans";
   private readonly collection: Collection;
   private readonly logger: Logger;
 
   public constructor(
-    @inject(FRAMEWORK_TYPES.Db) database: Db,
-    @inject(APP.Logger) logger: Logger
+    @inject(TYPES.db) database: Db,
+    @inject(APP.logger) logger: Logger
   ) {
-    this.collection = database.collection(PLANS_COLLECTION_NAME);
+    this.collection = database.collection(MongoDbPlanRepository.collectionName);
     this.logger = logger;
   }
 
@@ -79,13 +80,13 @@ export class MongoDbPlanRepository
     user: User,
     name: string,
     value: V
-  ): Promise<Plan | undefined> {
+  ): Promise<Plan | null> {
     const query: any = { user: user.getName() };
     query[name] = value;
     const result = await this.collection.findOne(query);
 
     if (result === null || result === undefined) {
-      return undefined;
+      return null;
     }
 
     return mapDataToPlan(result);
