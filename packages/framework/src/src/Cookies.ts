@@ -1,4 +1,4 @@
-export class Cookies {
+export default class Cookies {
   public static set(name: string, value: string, expiry: number): void {
     const date = new Date();
     const offset = expiry * 24 * 60 * 60 * 1000;

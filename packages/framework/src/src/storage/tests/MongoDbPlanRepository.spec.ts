@@ -1,24 +1,31 @@
+import { Db, MongoClient } from "mongodb";
+import { Deadline, Plan, User } from "@planv7/domain";
 import {
   MongoDbPlanRepository,
-  PLANS_COLLECTION_NAME
+  PLANS_COLLECTION_NAME,
 } from "../MongoDbPlanRepository";
-import { Logger } from "@planv5/application/ports";
-import { Db, MongoClient } from "mongodb";
+
+import { Logger } from "@planv7/application";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { Substitute } from "@fluffy-spoon/substitute";
-import { Deadline, Plan, User } from "@planv5/domain/entities";
 
 describe("MongoDbPlanRepository", (): void => {
+  // eslint-disable-next-line fp/no-let
   let client: MongoClient;
+
+  // eslint-disable-next-line fp/no-let
   let server: MongoMemoryServer;
+
+  // eslint-disable-next-line fp/no-let
   let db: Db;
+
   beforeEach(
     async (): Promise<void> => {
       server = new MongoMemoryServer();
       const uri = await server.getConnectionString();
       client = await MongoClient.connect(uri, {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
       });
       db = client.db(await server.getDbName());
       const collection = db.collection(PLANS_COLLECTION_NAME);
@@ -29,7 +36,7 @@ describe("MongoDbPlanRepository", (): void => {
           title: "plan1",
           description: "description one",
           hoursPerWeek: 4,
-          deadlines: []
+          deadlines: [],
         },
         {
           user: "bar",
@@ -44,7 +51,7 @@ describe("MongoDbPlanRepository", (): void => {
               ratio: 1,
 
               // 5th of September 2019 14:23:09
-              due: 1567693389
+              due: 1567693389,
             },
             {
               name: "barDeadline",
@@ -52,9 +59,9 @@ describe("MongoDbPlanRepository", (): void => {
               ratio: 2,
 
               // 9th of september 2019 11:09:59
-              due: 1568286599
-            }
-          ]
+              due: 1568286599,
+            },
+          ],
         },
         {
           user: "foo",
@@ -68,9 +75,9 @@ describe("MongoDbPlanRepository", (): void => {
               link: "https://www.bbc.com",
               ratio: 0.5,
               // 1st of january 2023 02:45:23
-              due: 1672541123
-            }
-          ]
+              due: 1672541123,
+            },
+          ],
         },
         {
           user: "foo",
@@ -78,7 +85,7 @@ describe("MongoDbPlanRepository", (): void => {
           slug: "plan4",
           description: "description four",
           hoursPerWeek: 2,
-          deadlines: []
+          deadlines: [],
         },
         {
           user: "bar",
@@ -92,9 +99,9 @@ describe("MongoDbPlanRepository", (): void => {
               link: "https://www.bbc.com",
               ratio: 1,
               //7th of August 1984 18::37:33
-              due: 458159853
-            }
-          ]
+              due: 458159853,
+            },
+          ],
         },
         {
           user: "bar",
@@ -102,8 +109,8 @@ describe("MongoDbPlanRepository", (): void => {
           slug: "plan6",
           description: "description six",
           hoursPerWeek: 1,
-          deadlines: []
-        }
+          deadlines: [],
+        },
       ]);
     }
   );
@@ -143,7 +150,7 @@ describe("MongoDbPlanRepository", (): void => {
               2,
               new Date(1568286599 * 1000),
               new URL("https://www.github.com")
-            )
+            ),
           ]),
           new Plan("bar", "plan5", "plan5", "description five", 1, [
             new Deadline(
@@ -151,9 +158,9 @@ describe("MongoDbPlanRepository", (): void => {
               1,
               new Date(458159853 * 1000),
               new URL("https://www.bbc.com")
-            )
+            ),
           ]),
-          new Plan("bar", "plan6", "plan6", "description six", 1, [])
+          new Plan("bar", "plan6", "plan6", "description six", 1, []),
         ])
       );
     });
@@ -186,7 +193,7 @@ describe("MongoDbPlanRepository", (): void => {
       const repo = new MongoDbPlanRepository(db, logger);
       const user = new User("fooBar", "email", "bar");
       const output = await repo.getByFieldAndUser(user, "slug", "plan4");
-      expect(output).toEqual(undefined);
+      expect(output).toEqual(null);
     });
   });
 
@@ -204,7 +211,7 @@ describe("MongoDbPlanRepository", (): void => {
       const logger = Substitute.for<Logger>();
       const repo = new MongoDbPlanRepository(db, logger);
       const output = await repo.getByField("name", "blah");
-      expect(output).toBeUndefined();
+      expect(output).toBeNull();
     });
   });
 
@@ -220,7 +227,7 @@ describe("MongoDbPlanRepository", (): void => {
           1,
           new Date(458159854 * 1000),
           new URL("https://www.bbc.com")
-        )
+        ),
       ]);
       await repo.saveNew(newPlan);
 
@@ -290,9 +297,9 @@ describe("MongoDbPlanRepository", (): void => {
               2,
               new Date(1568286599 * 1000),
               new URL("https://www.github.com")
-            )
+            ),
           ]),
-          new Plan("foo", "plan4", "plan4", "description four", 2, [])
+          new Plan("foo", "plan4", "plan4", "description four", 2, []),
         ])
       );
     });

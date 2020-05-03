@@ -1,14 +1,14 @@
-import { User } from "@planv5/domain";
-import { CurrentLoginSession } from "@planv5/application/ports";
+import { User } from "@planv7/domain";
+import { CurrentLoginSession } from "@planv7/application";
 
-export class SimpleCurrentUserSession implements CurrentLoginSession {
+export default class SimpleCurrentUserSession implements CurrentLoginSession {
   private user: User;
 
-  constructor(user: User) {
+  public constructor(user: User) {
     this.user = user;
   }
 
-  public async getCurrentUser(): Promise<User> {
+  public getCurrentUser(): User | null {
     return this.user;
   }
 

@@ -2,9 +2,13 @@ import "reflect-metadata";
 import { inject, injectable } from "inversify";
 import { Collection, Db } from "mongodb";
 
-import { APP_TYPES, AuthenticatedEntityRepository , Logger } from "@planv5/application/ports";
+import {
+  TYPES as APP,
+  AuthenticatedEntityRepository,
+  Logger,
+} from "@planv7/application";
 
-import { Deadline, Plan, User } from "@planv5/domain/entities";
+import { Deadline, Plan, User } from "@planv7/domain";
 import { FRAMEWORK_TYPES } from "../../types";
 
 export const PLANS_COLLECTION_NAME = "Plans";
@@ -51,10 +55,10 @@ const mapPlanToObject = (plan: Plan): any => ({
           name: deadline.getName(),
           link: link ? link.toString() : "",
           ratio: deadline.getRatio(),
-          due: deadline.getDue().getTime() / 1000
+          due: deadline.getDue().getTime() / 1000,
         };
       })
-    : []
+    : [],
 });
 
 @injectable()
@@ -65,7 +69,7 @@ export class MongoDbPlanRepository
 
   public constructor(
     @inject(FRAMEWORK_TYPES.Db) database: Db,
-    @inject(APP_TYPES.Logger) logger: Logger
+    @inject(APP.Logger) logger: Logger
   ) {
     this.collection = database.collection(PLANS_COLLECTION_NAME);
     this.logger = logger;

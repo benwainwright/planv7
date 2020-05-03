@@ -6,6 +6,4 @@ export default interface CurrentLoginSession {
    * Get the currently logged in user
    */
   getCurrentUser: () => User | null;
-
-  setCurrentUserFromHttpResponse: (response: AxiosResponse) => void;
 }

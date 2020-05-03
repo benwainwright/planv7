@@ -1,18 +1,19 @@
-import { FRAMEWORK_TYPES } from "../../types";
 import "reflect-metadata";
-import { inject, injectable } from "inversify";
 import { Collection, Db } from "mongodb";
-import { Repository } from "@planv5/application/ports";
-import { User } from "@planv5/domain";
-import { genSalt, hash } from "bcryptjs";
+import { genSalt, hash as getHash } from "bcryptjs";
+import { inject, injectable } from "inversify";
+import TYPES from "../../TYPES";
+import { Repository } from "@planv7/application";
+import { User } from "@planv7/domain";
 
-export const USERS_COLLECTION_NAME = "users";
+const SALT_ROUNDS = 10;
 
 @injectable()
 export class MongoDbUserRepository implements Repository<User> {
+  public static readonly CollectionName = "users";
   private readonly collection: Collection;
-  public constructor(@inject(FRAMEWORK_TYPES.Db) database: Db) {
-    this.collection = database.collection(USERS_COLLECTION_NAME);
+  public constructor(@inject(TYPES.db) database: Db) {
+    this.collection = database.collection(MongoDbUserRepository.CollectionName);
   }
 
   public async getUniqueSlug(identifier: string): Promise<string> {
@@ -21,23 +22,23 @@ export class MongoDbUserRepository implements Repository<User> {
 
   public async saveNew(user: User): Promise<void> {
     return new Promise((resolve, reject): void => {
-      genSalt(10, (error: Error, salt: string): void => {
+      genSalt(SALT_ROUNDS, (error: Error, salt: string): void => {
         if (error) {
           reject(error);
         } else {
-          hash(
+          getHash(
             user.getPassword(),
             salt,
-            async (error: Error, hash: string): Promise<void> => {
-              if (!error) {
+            async (hashError: Error, hash: string): Promise<void> => {
+              if (!hashError) {
                 await this.collection.insertOne({
                   name: user.getName(),
                   email: user.getEmail(),
-                  password: hash
+                  password: hash,
                 });
                 resolve();
               } else {
-                reject(error);
+                reject(hashError);
               }
             }
           );
@@ -46,10 +47,12 @@ export class MongoDbUserRepository implements Repository<User> {
     });
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public async deleteExisting(user: User): Promise<void> {
     throw new Error("Not yet implemented");
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public async updateExisting(user: User): Promise<void> {
     throw new Error("Not yet implemented");
   }

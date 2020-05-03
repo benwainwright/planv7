@@ -1,4 +1,4 @@
-import { CommandOutcome , Serialiser } from "@planv5/domain";
+import { CommandOutcome, Serialiser } from "@planv5/domain";
 import { inject, injectable } from "inversify";
 import axios from "axios";
 
@@ -8,7 +8,7 @@ import {
   APP_TYPES,
   CurrentLoginSession,
   Dispatch,
-  EventEmitterWrapper
+  EventEmitterWrapper,
 } from "@planv5/application/ports";
 import { UserLoginStateChangeEvent } from "@planv5/domain/events";
 import { Command } from "@planv5/domain/ports";
@@ -16,7 +16,7 @@ import { Command } from "@planv5/domain/ports";
 export const AuthEndpoint = Symbol("AuthEndpoint");
 
 @injectable()
-export class AuthorisingDispatcher implements Dispatch {
+export default class AuthorisingDispatcher implements Dispatch {
   private webSocketClient: WebsocketClient;
   private serialiser: Serialiser;
   private userSession: CurrentLoginSession;
@@ -58,7 +58,7 @@ export class AuthorisingDispatcher implements Dispatch {
           method: "POST",
           url: this.authEndpoint,
           headers: { "Content-Type": "application/json" },
-          data: toSend
+          data: toSend,
         });
 
         this.userSession.setCurrentUserFromHttpResponse(response);
@@ -68,10 +68,13 @@ export class AuthorisingDispatcher implements Dispatch {
             this.userSession.getCurrentUser()
           )
         );
-      } catch(error) {
-        const data = typeof error.response.data !== 'string'? JSON.stringify(error.response.data) : error.response.data;
+      } catch (error) {
+        const data =
+          typeof error.response.data !== "string"
+            ? JSON.stringify(error.response.data)
+            : error.response.data;
         const receivedError = this.serialiser.unSerialise(data);
-        if(receivedError && receivedError instanceof Error) {
+        if (receivedError && receivedError instanceof Error) {
           this.events.emitError(receivedError);
         }
       }
