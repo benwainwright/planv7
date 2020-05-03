@@ -131,7 +131,7 @@ module.exports = {
     "@typescript-eslint/class-literal-property-style": ["error", "fields"],
     "@typescript-eslint/ban-ts-comment": "error",
     "@typescript-eslint/array-type": ["error", { default: "array" }],
-    "@typescript-eslint/no-magic-numbers": ["error", { ignore: [0] }],
+    "@typescript-eslint/no-magic-numbers": ["error", { ignore: [0, 1] }],
     "@typescript-eslint/explicit-function-return-type": "error",
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/no-non-null-assertion": "error",
@@ -184,6 +184,7 @@ module.exports = {
       rules: {
         "filenames/match-regex": "off",
         "filenames/match-exported": "off",
+        "fp/no-let": "off",
         "max-classes-per-file": "off",
         "@typescript-eslint/no-magic-numbers": "off",
         "@typescript-eslint/naming-convention": [

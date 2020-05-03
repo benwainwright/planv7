@@ -1,18 +1,18 @@
-import { APP_TYPES , Logger, SlugGenerator } from "@planv5/application/ports";
-import { inject, injectable } from "inversify";
-import { FRAMEWORK_TYPES } from "../../types";
-
-import { Plan } from "@planv5/domain/entities";
+import { TYPES as APP, Logger, SlugGenerator } from "@planv7/application";
 import { Collection, Db } from "mongodb";
+import { inject, injectable } from "inversify";
+
 import { PLANS_COLLECTION_NAME } from "./MongoDbPlanRepository";
+import { Plan } from "@planv7/domain";
+import TYPES from "../../TYPES";
 
 @injectable()
-export class MongoDbPlanSlugGenerator implements SlugGenerator<Plan> {
+export default class MongoDbPlanSlugGenerator implements SlugGenerator<Plan> {
   private readonly collection: Collection;
   private readonly logger: Logger;
   public constructor(
-    @inject(FRAMEWORK_TYPES.Db) database: Db,
-    @inject(APP_TYPES.Logger) logger: Logger
+    @inject(TYPES.db) database: Db,
+    @inject(APP.logger) logger: Logger
   ) {
     this.collection = database.collection(PLANS_COLLECTION_NAME);
     this.logger = logger;
@@ -25,11 +25,11 @@ export class MongoDbPlanSlugGenerator implements SlugGenerator<Plan> {
 
     const plans = await this.collection.findOne({ slug: encodedTitle });
 
-    if (plans === null || plans === undefined) {
+    if (!plans) {
       return encodedTitle;
     } else {
       const lastChar = encodedTitle.charAt(encodedTitle.length - 1);
-      const isNumber = /^\d$/.test(lastChar);
+      const isNumber = /^\d$/u.test(lastChar);
 
       if (isNumber) {
         const number = parseInt(lastChar, 10);

@@ -1,19 +1,22 @@
 import "reflect-metadata";
+
 import { Collection, Db } from "mongodb";
 import { genSalt, hash as getHash } from "bcryptjs";
 import { inject, injectable } from "inversify";
-import TYPES from "../../TYPES";
+
 import { Repository } from "@planv7/application";
+import TYPES from "../../TYPES";
 import { User } from "@planv7/domain";
 
 const SALT_ROUNDS = 10;
 
 @injectable()
-export class MongoDbUserRepository implements Repository<User> {
-  public static readonly CollectionName = "users";
+export default class MongoDbUserRepository implements Repository<User> {
+  public static readonly collectionName = "users";
+
   private readonly collection: Collection;
   public constructor(@inject(TYPES.db) database: Db) {
-    this.collection = database.collection(MongoDbUserRepository.CollectionName);
+    this.collection = database.collection(MongoDbUserRepository.collectionName);
   }
 
   public async getUniqueSlug(identifier: string): Promise<string> {
