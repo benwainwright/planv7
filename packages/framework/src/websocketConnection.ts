@@ -1,12 +1,18 @@
-import WebSocket from "ws";
-import { APP_TYPES , EventEmitterWrapper, Logger } from "@planv5/application/ports";
-
+import {
+  TYPES as APP,
+  EventEmitterWrapper,
+  Logger,
+  Serialiser,
+} from "@planv7/application";
+import {
+  TYPES as DOMAIN,
+  DomainError,
+  DomainEvent,
+  Command,
+  CommandBus,
+} from "@planv7/domain";
 import { inject, injectable } from "inversify";
-import { DOMAIN_TYPES, DomainError, DomainEvent , Serialiser } from "@planv5/domain";
-import { Command, CommandBus } from "@planv5/domain/ports";
-
-
-export const JwtToken = Symbol.for("JwtToken");
+import WebSocket from "ws";
 
 @injectable()
 export class WebsocketConnection {
@@ -19,16 +25,16 @@ export class WebsocketConnection {
   constructor(
     @inject(WebSocket) socket: WebSocket,
 
-    @inject(DOMAIN_TYPES.CommandBus)
+    @inject(DOMAIN.CommandBus)
     commandBus: CommandBus,
 
     @inject(Serialiser)
     serialiser: Serialiser,
 
-    @inject(APP_TYPES.EventEmitterWrapper)
+    @inject(APP.EventEmitterWrapper)
     events: EventEmitterWrapper,
 
-    @inject(APP_TYPES.Logger)
+    @inject(APP.Logger)
     logger: Logger
   ) {
     this.serialiser = serialiser;

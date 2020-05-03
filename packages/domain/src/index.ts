@@ -2,7 +2,8 @@ import CommandOutcome from "./CommandOutcome";
 import DomainEvent from "./DomainEvent";
 import LoginResponse from "./LoginResponse";
 import Response from "./Response";
-import DOMAIN_TYPES from "./types";
+import { DomainError } from "./domain-error";
+import TYPES from "./TYPES";
 import * as Commands from "./commands";
 
 export * from "./ports";
@@ -13,8 +14,9 @@ export * from "./entities";
 export {
   CommandOutcome,
   DomainEvent,
+  DomainError,
   LoginResponse,
   Response,
-  DOMAIN_TYPES,
+  TYPES,
   Commands,
 };

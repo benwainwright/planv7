@@ -1,26 +1,16 @@
+import { inject, injectable } from "inversify";
 import * as Transport from "winston-transport";
 import { Logger as Winston, createLogger } from "winston";
-import { inject, injectable } from "inversify";
-
-import { Logger } from "@planv5/application/ports";
-
-export class WinstonConfig {
-  public readonly level: string;
-  public readonly transports: Transport[];
-
-  public constructor(level: string, transports: Transport[]) {
-    this.level = level;
-    this.transports = transports;
-  }
-}
+import { Logger } from "@planv7/application";
+import WinstonConfig from "./WinstonConfig";
 
 @injectable()
-export class WinstonLogger implements Logger {
+export default class WinstonLogger implements Logger {
   private readonly logger: Winston;
 
   public constructor(@inject(WinstonConfig) config: WinstonConfig) {
     this.logger = createLogger({
-      level: config.level
+      level: config.level,
     });
 
     for (const transport of config.transports) {

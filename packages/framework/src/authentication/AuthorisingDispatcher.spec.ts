@@ -1,11 +1,11 @@
-import { Arg, Substitute } from "@fluffy-spoon/substitute";
-import { Command, User } from "@planv7/domain";
 import {
   ApplicationError,
   CurrentLoginSession,
   EventEmitterWrapper,
   Serialiser,
 } from "@planv7/application";
+import { Arg, Substitute } from "@fluffy-spoon/substitute";
+import { Command, User } from "@planv7/domain";
 
 import AuthorisingDispatcher from "./AuthorisingDispatcher";
 import { WebsocketClient } from "../WebsocketClient";
@@ -144,7 +144,9 @@ describe("Authorising dispatcher", () => {
       .reply(403, errorString);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    events.emitError(Arg.any()) as any.returns();
+    const mock = events.emitError(Arg.any()) as any;
+
+    mock.returns();
 
     serialiser
       .serialise(command)
