@@ -1,11 +1,7 @@
 import "reflect-metadata";
+
 import { Arg, Substitute } from "@fluffy-spoon/substitute";
-import {
-  EventEmitterWrapper,
-  Logger,
-  LoginProvider,
-  Repository,
-} from "../ports";
+
 import {
   CommandOutcome,
   RegisterUserCommand,
@@ -13,6 +9,13 @@ import {
   UserLoginStateChangeEvent,
   UserRegisteredEvent,
 } from "@planv7/domain";
+
+import {
+  EventEmitterWrapper,
+  Logger,
+  LoginProvider,
+  Repository,
+} from "../ports";
 
 import RegisterUserHandler from "./RegisterUserHandler";
 
@@ -76,18 +79,13 @@ describe("RegisterUserHandler", (): void => {
     );
     const user = new User("name", "a@b.d", "password");
     const command = new RegisterUserCommand("name", "a@b.d", "password");
-    let firedEvent: UserRegisteredEvent | undefined;
-    eventEmitter.onEvent((event: UserRegisteredEvent): void => {
-      if (event instanceof UserRegisteredEvent) {
-        firedEvent = event;
-      }
-    });
+    const event = jest.fn();
+    eventEmitter.onEvent(event);
+
     await handler.tryHandle(command);
-    expect(firedEvent).toBeDefined();
-    if (firedEvent) {
-      expect(firedEvent.getOutcome()).toEqual(CommandOutcome.SUCCESS);
-      expect(firedEvent.getUser()).toEqual(user);
-    }
+    expect(event).toBeCalledWith(
+      new UserRegisteredEvent(CommandOutcome.SUCCESS, user)
+    );
   });
 
   it("Calls the loginProvider with the username and password", async (): Promise<
@@ -107,7 +105,7 @@ describe("RegisterUserHandler", (): void => {
     );
     const command = new RegisterUserCommand("name", "a@b.d", "password");
 
-    loginProvider.login(Arg.all()).returns(Promise.resolve(undefined));
+    loginProvider.login(Arg.all()).returns(Promise.resolve(null));
     await handler.tryHandle(command);
     loginProvider.received().login("name", "password");
   });

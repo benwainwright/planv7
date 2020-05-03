@@ -3,13 +3,12 @@ import { Arg, Substitute } from "@fluffy-spoon/substitute";
 import {
   CommandOutcome,
   LogoutCommand,
-  USER_LOGIN_STATE_CHANGE_EVENT,
   UserLoginStateChangeEvent,
 } from "@planv7/domain";
 
 import EventEmitterWrapper from "../core/EventEmitterWrapper";
-import LoginSessionDestroyer from "../ports/LoginSessionDestroyer";
 import Logger from "../ports/Logger";
+import LoginSessionDestroyer from "../ports/LoginSessionDestroyer";
 import LogoutHandler from "./LogoutHandler";
 
 describe("Logouthandler", (): void => {

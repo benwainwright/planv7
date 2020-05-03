@@ -1,18 +1,18 @@
-import { inject, injectable } from "inversify";
-
 import {
   CommandOutcome,
   RegisterUserCommand,
   User,
   UserLoginStateChangeEvent,
   UserRegisteredEvent,
-} from "@planv5/domain";
-
-import HandlerBase from "../core/HandlerBase";
+} from "@planv7/domain";
 
 import { EventEmitterWrapper, LoginProvider, Repository } from "../ports";
-import { APP_TYPES } from "../ports/types";
+
+import { inject, injectable } from "inversify";
+
+import HandlerBase from "../core/HandlerBase";
 import Logger from "../ports/Logger";
+import TYPES from "../ports/TYPES";
 
 @injectable()
 export default class RegisterUserHandler extends HandlerBase<
@@ -25,10 +25,10 @@ export default class RegisterUserHandler extends HandlerBase<
   private readonly applicationEvents: EventEmitterWrapper;
 
   public constructor(
-    @inject(APP_TYPES.UserRepository) userRepository: Repository<User>,
-    @inject(APP_TYPES.LoginProvider) loginProvider: LoginProvider,
-    @inject(APP_TYPES.Logger) logger: Logger,
-    @inject(APP_TYPES.EventEmitterWrapper)
+    @inject(TYPES.UserRepository) userRepository: Repository<User>,
+    @inject(TYPES.LoginProvider) loginProvider: LoginProvider,
+    @inject(TYPES.Logger) logger: Logger,
+    @inject(TYPES.EventEmitterWrapper)
     applicationEvents: EventEmitterWrapper
   ) {
     super();

@@ -1,18 +1,17 @@
 import {
   CommandOutcome,
   LogoutCommand,
-  USER_LOGIN_STATE_CHANGE_EVENT,
   UserLoginStateChangeEvent,
 } from "@planv7/domain";
 
-import { inject, injectable } from "inversify";
-
 import {
-  APP_TYPES,
   EventEmitterWrapper,
   Logger,
   LoginSessionDestroyer,
+  TYPES,
 } from "../ports";
+
+import { inject, injectable } from "inversify";
 
 import HandlerBase from "../core/HandlerBase";
 
@@ -23,10 +22,10 @@ export default class LogoutHandler extends HandlerBase<LogoutCommand> {
   private readonly sessionDestroyer: LoginSessionDestroyer;
 
   public constructor(
-    @inject(APP_TYPES.Logger) logger: Logger,
-    @inject(APP_TYPES.LoginSessionDestroyer)
+    @inject(TYPES.Logger) logger: Logger,
+    @inject(TYPES.LoginSessionDestroyer)
     sessionDestroyer: LoginSessionDestroyer,
-    @inject(APP_TYPES.EventEmitterWrapper)
+    @inject(TYPES.EventEmitterWrapper)
     applicationEvents: EventEmitterWrapper
   ) {
     super();
@@ -45,10 +44,7 @@ export default class LogoutHandler extends HandlerBase<LogoutCommand> {
   ): Promise<void> {
     this.logger.verbose("Executing logout handler");
     await this.sessionDestroyer.killSession();
-    const event = new UserLoginStateChangeEvent(
-      CommandOutcome.SUCCESS,
-      undefined
-    );
+    const event = new UserLoginStateChangeEvent(CommandOutcome.SUCCESS);
     this.applicationEvents.emitEvent(event);
   }
 }

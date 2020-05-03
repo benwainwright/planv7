@@ -7,7 +7,6 @@ module.exports = {
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
     "prettier/@typescript-eslint",
     "plugin:import/errors",
     "plugin:import/warnings",
@@ -169,13 +168,17 @@ module.exports = {
     // Fp
     "fp/no-let": "error",
   },
-  settings: {
-    react: {
-      version: "detect",
-    },
-  },
 
   overrides: [
+    {
+      files: ["*.dom.spec.ts", "*.tsx"],
+      extends: ["plugin:react/recommended"],
+      settings: {
+        react: {
+          version: "detect",
+        },
+      },
+    },
     {
       files: ["*.spec.ts"],
       rules: {

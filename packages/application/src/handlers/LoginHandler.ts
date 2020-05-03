@@ -1,18 +1,18 @@
-import { inject, injectable } from "inversify";
 import "reflect-metadata";
+
 import {
   CommandOutcome,
-  DomainEvent,
   LoginCommand,
-  USER_LOGIN_STATE_CHANGE_EVENT,
   UserLoginStateChangeEvent,
 } from "@planv7/domain";
-import { APP_TYPES } from "../ports/types";
+
+import { inject, injectable } from "inversify";
+
+import { EventEmitterWrapper } from "../ports";
+import HandlerBase from "../core/HandlerBase";
 import Logger from "../ports/Logger";
 import LoginProvider from "../ports/LoginProvider";
-
-import HandlerBase from "../core/HandlerBase";
-import { EventEmitterWrapper } from "../ports";
+import TYPES from "../ports/TYPES";
 
 @injectable()
 export default class LoginHandler extends HandlerBase<LoginCommand> {
@@ -21,9 +21,9 @@ export default class LoginHandler extends HandlerBase<LoginCommand> {
   private readonly loginProvider: LoginProvider;
 
   public constructor(
-    @inject(APP_TYPES.Logger) logger: Logger,
-    @inject(APP_TYPES.LoginProvider) loginProvider: LoginProvider,
-    @inject(APP_TYPES.EventEmitterWrapper)
+    @inject(TYPES.Logger) logger: Logger,
+    @inject(TYPES.LoginProvider) loginProvider: LoginProvider,
+    @inject(TYPES.EventEmitterWrapper)
     applicationEvents: EventEmitterWrapper
   ) {
     super();
