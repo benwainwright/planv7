@@ -124,7 +124,6 @@ module.exports = {
       },
     ],
     "@typescript-eslint/method-signature-style": ["error", "property"],
-
     "@typescript-eslint/explicit-member-accessibility": "error",
     "@typescript-eslint/class-literal-property-style": ["error", "fields"],
     "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
@@ -173,4 +172,37 @@ module.exports = {
       version: "detect",
     },
   },
+
+  overrides: [
+    {
+      files: ["*.spec.ts"],
+      rules: {
+        "filenames/match-regex": "off",
+        "filenames/match-exported": "off",
+        "max-classes-per-file": "off",
+        "@typescript-eslint/no-magic-numbers": "off",
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            selector: "variable",
+            format: ["camelCase", "UPPER_CASE"],
+            leadingUnderscore: "forbid",
+            trailingUnderscore: "forbid",
+          },
+          {
+            selector: "typeLike",
+            format: ["PascalCase"],
+            leadingUnderscore: "forbid",
+            trailingUnderscore: "forbid",
+          },
+          {
+            selector: "enumMember",
+            format: ["PascalCase"],
+            leadingUnderscore: "forbid",
+            trailingUnderscore: "forbid",
+          },
+        ],
+      },
+    },
+  ],
 };
