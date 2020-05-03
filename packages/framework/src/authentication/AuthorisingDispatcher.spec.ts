@@ -1,14 +1,15 @@
-import nock from "nock";
 import { Arg, Substitute } from "@fluffy-spoon/substitute";
-import { ApplicationError } from "@planv5/application/errors";
-import { AuthorisingDispatcher } from "./AuthorisingDispatcher";
-import { WebsocketClient } from "../WebsocketClient";
-import { Serialiser, User } from "@planv5/domain";
-import { Command } from "@planv5/domain/ports";
+import { Command, User } from "@planv7/domain";
 import {
+  ApplicationError,
   CurrentLoginSession,
-  EventEmitterWrapper
-} from "@planv5/application/ports";
+  EventEmitterWrapper,
+  Serialiser,
+} from "@planv7/application";
+
+import AuthorisingDispatcher from "./AuthorisingDispatcher";
+import { WebsocketClient } from "../WebsocketClient";
+import nock from "nock";
 
 describe("Authorising dispatcher", () => {
   it("Sends commands via the websocket client if there is a current user", async () => {
@@ -70,7 +71,7 @@ describe("Authorising dispatcher", () => {
       .serialise(command)
       .returns('{"$": "MockCommand", "instance": {"handled": 0}}');
 
-    session.getCurrentUser().returns(undefined);
+    session.getCurrentUser().returns(null);
 
     await dispatcher.dispatch(command);
 
@@ -98,7 +99,7 @@ describe("Authorising dispatcher", () => {
       events
     );
 
-    const request = nock("http://localhost")
+    nock("http://localhost")
       .post("/auth", { $: "MockCommand", instance: { handled: 0 } })
       .reply(200);
 
@@ -106,7 +107,7 @@ describe("Authorising dispatcher", () => {
       .serialise(command)
       .returns('{"$": "MockCommand", "instance": {"handled": 0}}');
 
-    session.getCurrentUser().returns(undefined);
+    session.getCurrentUser().returns(null);
 
     await dispatcher.dispatch(command);
     session.received().setCurrentUserFromHttpResponse(Arg.any());
@@ -125,7 +126,7 @@ describe("Authorising dispatcher", () => {
     const client = Substitute.for<WebsocketClient>();
     const serialiser = Substitute.for<Serialiser>();
     const session = Substitute.for<CurrentLoginSession>();
-    session.getCurrentUser().returns(undefined);
+    session.getCurrentUser().returns(null);
     const dispatcher = new AuthorisingDispatcher(
       client,
       serialiser,
@@ -134,23 +135,22 @@ describe("Authorising dispatcher", () => {
       events
     );
 
-    const errorString = '{"$":"ApplicationError","instance":{"name":"ApplicationError","message":"Login Failed"}}';
+    const errorString =
+      '{"$":"ApplicationError","instance":{"name":"ApplicationError","message":"Login Failed"}}';
     const theError = new ApplicationError("Login Failed");
 
-    const request = nock("http://localhost")
+    nock("http://localhost")
       .post("/auth", { $: "MockCommand", instance: { handled: 0 } })
       .reply(403, errorString);
 
-    // @ts-ignore
-    events.emitError(Arg.any()).returns();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    events.emitError(Arg.any()) as any.returns();
 
     serialiser
       .serialise(command)
       .returns('{"$": "MockCommand", "instance": {"handled": 0}}');
 
-    serialiser
-      .unSerialise(errorString)
-      .returns(theError);
+    serialiser.unSerialise(errorString).returns(theError);
 
     await dispatcher.dispatch(command);
     session.didNotReceive().setCurrentUserFromHttpResponse(Arg.any());

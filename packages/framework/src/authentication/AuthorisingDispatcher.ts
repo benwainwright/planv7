@@ -12,11 +12,9 @@ import {
 } from "@planv7/domain";
 import { inject, injectable } from "inversify";
 
-import axios from "axios";
 import TYPES from "../TYPES";
 import { WebsocketClient } from "../WebsocketClient";
-
-export const AuthEndpoint = Symbol("AuthEndpoint");
+import axios from "axios";
 
 @injectable()
 export default class AuthorisingDispatcher implements Dispatch {
@@ -35,7 +33,7 @@ export default class AuthorisingDispatcher implements Dispatch {
     @inject(APP.currentLoginSession)
     session: CurrentLoginSession,
 
-    @inject(AuthEndpoint)
+    @inject(TYPES.authEndpoint)
     endpoint: string,
 
     @inject(APP.eventEmitterWrapper)
@@ -60,10 +58,12 @@ export default class AuthorisingDispatcher implements Dispatch {
         const response = await axios({
           method: "POST",
           url: this.authEndpoint,
+          // eslint-disable-next-line @typescript-eslint/naming-convention
           headers: { "Content-Type": "application/json" },
           data: toSend,
         });
 
+        this.userSession.setCurrentUserFromHttpResponse(response);
         this.events.emitEvent(
           new UserLoginStateChangeEvent(
             CommandOutcome.SUCCESS,

@@ -7,6 +7,8 @@ const TYPES = {
   clientStorage: Symbol.for("ClientStorage"),
   httpRequest: Symbol.for("HttpRequest"),
   websocketClient: Symbol.for("WebsocketClient"),
+  localStorageKey: Symbol.for("LocalStorageKey"),
+  authEndpoint: Symbol.for("AuthEndpoint"),
 };
 
 export default TYPES;

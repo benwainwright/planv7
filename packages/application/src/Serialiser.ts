@@ -2,18 +2,17 @@ import "reflect-metadata";
 
 import { inject, injectable } from "inversify";
 import { Serialisable } from "@planv7/domain";
+import TYPES from "./ports/TYPES";
 import Typeson from "typeson";
 import date from "typeson-registry/types/date";
 import error from "typeson-registry/types/error";
-
-export const serialisableConstructors = Symbol("serialisableConstructors");
 
 @injectable()
 export default class Serialiser {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private typeson: any;
   public constructor(
-    @inject(serialisableConstructors)
+    @inject(TYPES.serialisableConstructors)
     constructors: {}
   ) {
     this.typeson = new Typeson().register([constructors, date, error]);
