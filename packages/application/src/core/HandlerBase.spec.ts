@@ -1,5 +1,4 @@
-import { Substitute } from "@fluffy-spoon/substitute";
-import { Command, DomainEvent } from "@planv7/domain";
+import { Command } from "@planv7/domain";
 import HandlerBase from "./HandlerBase";
 
 describe("Handler", (): void => {
@@ -18,6 +17,7 @@ describe("Handler", (): void => {
         }
       }
 
+      // eslint-disable-next-line fp/no-let
       let executed = false;
       class MockHandler2 extends HandlerBase<MockCommand2> {
         public getCommandInstance(): MockCommand2 {

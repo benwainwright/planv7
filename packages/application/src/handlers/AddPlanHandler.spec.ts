@@ -1,5 +1,3 @@
-import { mock } from "jest-mock-extended";
-
 import {
   AddPlanCommand,
   CommandOutcome,
@@ -8,12 +6,13 @@ import {
   User,
 } from "@planv7/domain";
 
-import EventEmitterWrapper from "../core/EventEmitterWrapper";
-import Logger from "../ports/Logger";
+import AddPlanHandler from "./AddPlanHandler";
 import AuthenticatedEntityRepository from "../ports/AuthenticatedEntityRepository";
 import CurrentLoginSession from "../ports/CurrentLoginSession";
-import AddPlanHandler from "./AddPlanHandler";
+import EventEmitterWrapper from "../core/EventEmitterWrapper";
+import Logger from "../ports/Logger";
 import { SlugGenerator } from "../ports";
+import { mock } from "jest-mock-extended";
 
 describe("AddPlanHandler", (): void => {
   it("Should throw an error if the user is not authenticated", async () => {
@@ -23,7 +22,7 @@ describe("AddPlanHandler", (): void => {
     const events = mock<EventEmitterWrapper>();
     const slugGenerator = mock<SlugGenerator<Plan>>();
 
-    session.getCurrentUser.mockReturnValue(undefined);
+    session.getCurrentUser.mockReturnValue(null);
     const handler = new AddPlanHandler(
       repo,
       session,
@@ -34,7 +33,9 @@ describe("AddPlanHandler", (): void => {
     try {
       await handler.tryHandle(new AddPlanCommand("foo", "bar", 0));
       fail("Expected an error to be thrown");
-    } catch {}
+    } catch {
+      // Noop
+    }
   });
 
   it("Creates a new plan using a slug from the slugGenerator", async () => {

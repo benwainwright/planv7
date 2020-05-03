@@ -1,6 +1,6 @@
 import { Serialisable } from "@planv7/domain";
 
-export class ApplicationError extends Error implements Serialisable {
+export default class ApplicationError extends Error implements Serialisable {
   public constructor(message: string) {
     super(message);
     this.name = this.constructor.name;

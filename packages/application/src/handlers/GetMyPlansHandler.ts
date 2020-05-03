@@ -5,16 +5,14 @@ import {
   Plan,
 } from "@planv7/domain";
 
+import { EventEmitterWrapper, Logger } from "../ports";
 import { inject, injectable } from "inversify";
 
-import { TYPES } from "../ports/types";
-import { ApplicationError } from "../ApplicationError";
+import ApplicationError from "../ApplicationError";
 import AuthenticatedEntityRepository from "../ports/AuthenticatedEntityRepository";
 import CurrentLoginSession from "./../ports/CurrentLoginSession";
-
 import HandlerBase from "../core/HandlerBase";
-
-import { EventEmitterWrapper, Logger } from "../ports";
+import TYPES from "../ports/TYPES";
 
 @injectable()
 export default class GetMyPlansHandler extends HandlerBase<GetMyPlansCommand> {

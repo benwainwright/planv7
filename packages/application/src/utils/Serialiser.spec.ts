@@ -5,7 +5,7 @@ import {
   LoginCommand,
   RegisterUserCommand,
 } from "@planv7/domain";
-import { ApplicationError } from "../ApplicationError";
+import ApplicationError from "../ApplicationError";
 import Serialiser from "./Serialiser";
 
 class MyMockCommand extends Command {

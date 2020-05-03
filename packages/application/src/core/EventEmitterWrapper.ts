@@ -2,8 +2,8 @@ import "reflect-metadata";
 import { inject, injectable } from "inversify";
 import { EventEmitter } from "events";
 import Logger from "../ports/Logger";
-import { APP_TYPES } from "../ports/types";
 import { Serialisable } from "@planv7/domain";
+import TYPES from "../ports/TYPES";
 
 /**
  * Wrapper class to workaround the fact that directly
@@ -19,7 +19,7 @@ export default class EventEmitterWrapper {
   private readonly logger: Logger;
   private readonly events = new EventEmitter();
 
-  constructor(@inject(APP_TYPES.Logger) logger: Logger) {
+  public constructor(@inject(TYPES.Logger) logger: Logger) {
     this.logger = logger;
   }
 

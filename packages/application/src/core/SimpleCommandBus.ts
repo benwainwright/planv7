@@ -1,7 +1,7 @@
 import { Command, CommandBus, DOMAIN_TYPES, Handler } from "@planv7/domain";
 import { inject, injectable, multiInject, optional } from "inversify";
 
-import { ApplicationError } from "../ApplicationError";
+import ApplicationError from "../ApplicationError";
 import { Dispatch } from "../ports";
 import Logger from "../ports/Logger";
 

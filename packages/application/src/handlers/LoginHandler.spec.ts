@@ -1,12 +1,16 @@
 import "reflect-metadata";
-import { CommandOutcome, USER_LOGIN_STATE_CHANGE_EVENT } from "@planv5/domain";
-import { UserLoginStateChangeEvent } from "@planv5/domain/events";
-import { EventEmitterWrapper } from "../core/EventEmitterWrapper";
-import { LoginHandler } from "./loginHandler";
 import { Arg, Substitute } from "@fluffy-spoon/substitute";
-import { LoginProvider } from "../ports/loginProvider";
-import { Logger } from "../ports/logger";
-import { LoginCommand } from "@planv5/domain/commands";
+
+import {
+  CommandOutcome,
+  LoginCommand,
+  UserLoginStateChangeEvent,
+} from "@planv7/domain";
+
+import EventEmitterWrapper from "../core/EventEmitterWrapper";
+import Logger from "../ports/Logger";
+import LoginHandler from "./LoginHandler";
+import LoginProvider from "../ports/LoginProvider";
 
 describe("LoginHandler", (): void => {
   it("Calls the loginProvider with the username and password", async (): Promise<

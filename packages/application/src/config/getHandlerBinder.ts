@@ -1,9 +1,8 @@
 import "reflect-metadata";
 
-import { APP_TYPES } from "../ports/types";
 import { Command, DOMAIN_TYPES, Handler } from "@planv7/domain";
-import Logger from "../ports/Logger";
 import { Container } from "inversify";
+import TYPES from "../ports/TYPES";
 
 /**
  * Try to resolve all the handlers first. If they can't be resolved
@@ -15,12 +14,12 @@ const getBindableHandlers = (
   handlers: {}
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Map<string, any> => {
-  const logger = container.get<Logger>(APP_TYPES.Logger);
+  const logger = container.get<Logger>(TYPES.logger);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const toBind = new Map<string, any>();
   logger.verbose(`Starting handler mapping dry run`);
   for (const constructorName in handlers) {
-    if (handlers.hasOwnProperty(constructorName)) {
+    if (Object.prototype.hasOwnProperty.call(handlers, constructorName)) {
       try {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const constructor = handlers as any[constructorName];
@@ -44,13 +43,16 @@ const getHandlerBinder = (
   handlers: {}
 ): ((container: Container) => void) => {
   const toBind = getBindableHandlers(container, handlers);
-  const logger = container.get<Logger>(APP_TYPES.Logger);
+  const logger = container.get<Logger>(TYPES.logger);
 
-  return (container: Container): void => {
+  return (theContainer: Container): void => {
     logger.verbose(`Binding handlers`);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     toBind.forEach((constructor: any, name: string): void => {
       try {
-        container.bind<Handler<Command>>(DOMAIN_TYPES.Handler).to(constructor);
+        theContainer
+          .bind<Handler<Command>>(DOMAIN_TYPES.Handler)
+          .to(constructor);
         logger.verbose(`Binding handler ${name}`);
       } catch (error) {
         logger.error(`Unable to bind ${name} because of error: ${error}`);

@@ -2,7 +2,7 @@ import "reflect-metadata";
 import { Arg, Substitute } from "@fluffy-spoon/substitute";
 
 import { Command, Handler } from "@planv7/domain";
-import { ApplicationError } from "../ApplicationError";
+import ApplicationError from "../ApplicationError";
 import Dispatch from "../ports/Dispatch";
 import HandlerBase from "./HandlerBase";
 import Logger from "../ports/Logger";
@@ -31,6 +31,7 @@ class MockCommand4 extends Command {
 }
 describe("SimpleCommandBus", (): void => {
   test("Attempts to handle single command", async (): Promise<void> => {
+    // eslint-disable-next-line fp/no-let
     let executed = false;
     class MockHandler extends HandlerBase<MockCommand1> {
       public getCommandInstance(): MockCommand1 {
@@ -60,6 +61,37 @@ describe("SimpleCommandBus", (): void => {
   test("Bus keeps looking for handlers if found command is marked as handling incomplete", async (): Promise<
     void
   > => {
+    // eslint-disable-next-line fp/no-let
+    let executed = false;
+    class MockHandler extends HandlerBase<MockCommand1> {
+      public getCommandInstance(): MockCommand1 {
+        return new MockCommand1();
+      }
+
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      protected async execute(command: MockCommand1): Promise<void> {
+        executed = true;
+      }
+    }
+    const command = new MockCommand1();
+    const handler = new MockHandler();
+    const logger = Substitute.for<Logger>();
+
+    const bus = new SimpleCommandBus([handler], logger);
+
+    try {
+      await bus.execute(command);
+    } catch (error) {
+      fail(`Threw error: ${error}`);
+    }
+
+    expect(executed).toEqual(true);
+  });
+
+  test("Bus keeps looking for handlers if found command is marked as handling incomplete", async (): Promise<
+    void
+  > => {
+    // eslint-disable-next-line fp/no-let
     let executed = false;
     class MockHandler2 extends HandlerBase<MockCommand2> {
       public getCommandInstance(): MockCommand2 {
@@ -101,7 +133,9 @@ describe("SimpleCommandBus", (): void => {
       }
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      protected async execute(command: MockCommand1): Promise<void> {}
+      protected async execute(command: MockCommand1): Promise<void> {
+        // Noop
+      }
     }
     class MockHandler2 extends HandlerBase<MockCommand2> {
       public getCommandInstance(): MockCommand2 {
