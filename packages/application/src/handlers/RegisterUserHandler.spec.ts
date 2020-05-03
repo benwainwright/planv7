@@ -8,10 +8,10 @@ import {
 } from "../ports";
 import {
   CommandOutcome,
-  User,
-  UserRegisteredEvent,
   RegisterUserCommand,
+  User,
   UserLoginStateChangeEvent,
+  UserRegisteredEvent,
 } from "@planv7/domain";
 
 import RegisterUserHandler from "./RegisterUserHandler";

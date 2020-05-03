@@ -1,11 +1,9 @@
 import "reflect-metadata";
 
-import { Command, CommandBus, DOMAIN_TYPES, Handler } from "@planv7/domain";
-import EventEmitterWrapper from "../core/EventEmitterWrapper";
-import Logger from "../ports/Logger";
 import { APP_TYPES } from "../ports/types";
+import { Command, DOMAIN_TYPES, Handler } from "@planv7/domain";
+import Logger from "../ports/Logger";
 import { Container } from "inversify";
-import SimpleCommandBus from "../core/simpleCommandBus";
 
 /**
  * Try to resolve all the handlers first. If they can't be resolved
@@ -41,7 +39,7 @@ const getBindableHandlers = (
   return toBind;
 };
 
-export const getHandlerBinder = (
+const getHandlerBinder = (
   container: Container,
   handlers: {}
 ): ((container: Container) => void) => {
@@ -60,3 +58,5 @@ export const getHandlerBinder = (
     });
   };
 };
+
+export default getHandlerBinder;

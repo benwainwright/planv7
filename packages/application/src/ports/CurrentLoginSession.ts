@@ -1,5 +1,5 @@
-import { User } from "@planv7/domain";
 import { AxiosResponse } from "axios";
+import { User } from "@planv7/domain";
 
 export default interface CurrentLoginSession {
   /**

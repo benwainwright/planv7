@@ -1,7 +1,7 @@
 import {
   CommandOutcome,
-  USER_LOGIN_STATE_CHANGE_EVENT,
   LogoutCommand,
+  USER_LOGIN_STATE_CHANGE_EVENT,
   UserLoginStateChangeEvent,
 } from "@planv7/domain";
 

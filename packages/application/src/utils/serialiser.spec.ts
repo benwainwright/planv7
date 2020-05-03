@@ -1,9 +1,9 @@
 import {
   Command,
+  Commands,
   GetAllUsersCommand,
   LoginCommand,
   RegisterUserCommand,
-  Commands,
 } from "@planv7/domain";
 import { ApplicationError } from "../ApplicationError";
 import { Serialiser } from "./serialiser";

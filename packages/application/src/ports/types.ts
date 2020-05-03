@@ -1,13 +1,13 @@
-export const APP_TYPES = {
-  CurrentLoginSession: Symbol.for("CurrentLoginSession"),
-  EventEmitterWrapper: Symbol.for("EventEmitterWrapper"),
-  UserRepository: Symbol.for("UserRepository"),
-  SlugGenerator: Symbol.for("SlugGenerator"),
-  PlanRepository: Symbol.for("PlanRepository"),
-  LoginProvider: Symbol.for("LoginProvider"),
-  Logger: Symbol.for("Logger"),
-  Dispatch: Symbol.for("Dispatch"),
-  LoginSessionDestroyer: Symbol.for("LoginSessionDestroyer"),
+export const TYPES = {
+  currentLoginSession: Symbol.for("CurrentLoginSession"),
+  eventEmitterWrapper: Symbol.for("EventEmitterWrapper"),
+  userRepository: Symbol.for("UserRepository"),
+  slugGenerator: Symbol.for("SlugGenerator"),
+  planRepository: Symbol.for("PlanRepository"),
+  loginProvider: Symbol.for("LoginProvider"),
+  logger: Symbol.for("Logger"),
+  dispatch: Symbol.for("Dispatch"),
+  loginSessionDestroyer: Symbol.for("LoginSessionDestroyer"),
 };
 
 export default APP_TYPES;

@@ -125,7 +125,6 @@ module.exports = {
     ],
     "@typescript-eslint/method-signature-style": ["error", "property"],
 
-    "@typescript-eslint/explicit-module-boundary-types": "error",
     "@typescript-eslint/explicit-member-accessibility": "error",
     "@typescript-eslint/class-literal-property-style": ["error", "fields"],
     "@typescript-eslint/consistent-type-definitions": ["error", "interface"],

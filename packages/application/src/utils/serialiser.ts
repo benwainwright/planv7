@@ -10,7 +10,7 @@ import { Serialisable } from "@planv7/domain";
 export const SerialisableConstructors = Symbol("serialisableConstructors");
 
 @injectable()
-export class Serialiser {
+export default class Serialiser {
   private typeson: any;
   public constructor(
     @inject(SerialisableConstructors)

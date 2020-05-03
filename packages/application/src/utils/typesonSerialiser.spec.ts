@@ -1,10 +1,12 @@
-import deepEqual from "deep-equal";
 import Serialiser from "./TypesonSerialiser";
+import deepEqual from "deep-equal";
 
 describe("The serialiser", () => {
   class Foo {
-    x: string;
-    public method() {}
+    public x: string;
+    public method(): void {
+      // eslint-disable @typescript-eslint/no-empty-function
+    }
   }
 
   it("Serialises a class object so that it can be unserialized properly", () => {

@@ -1,10 +1,10 @@
 import { mock } from "jest-mock-extended";
 import {
-  UpdatePlanCommand,
-  Plan,
-  User,
   CommandOutcome,
   CurrentUserPlansChangedEvent,
+  Plan,
+  UpdatePlanCommand,
+  User,
 } from "@planv7/domain";
 
 import UpdatePlanHandler from "./UpdatePlanHandler";

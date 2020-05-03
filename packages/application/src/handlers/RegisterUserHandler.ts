@@ -1,10 +1,10 @@
 import { inject, injectable } from "inversify";
 
 import {
-  RegisterUserCommand,
-  UserLoginStateChangeEvent,
   CommandOutcome,
+  RegisterUserCommand,
   User,
+  UserLoginStateChangeEvent,
   UserRegisteredEvent,
 } from "@planv5/domain";
 

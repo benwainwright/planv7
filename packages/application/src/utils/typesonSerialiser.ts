@@ -1,25 +1,22 @@
-// @ts-ignore
 import Typeson from "typeson";
 
-// @ts-ignore
 import date from "typeson-registry/types/date";
 
-// @ts-ignore
 import error from "typeson-registry/types/error";
 
-export default class Serialiser {
+export default class TypesonSerialiser {
   private typeson: any;
 
-  constructor(constructors: {}) {
+  public constructor(constructors: {}) {
     this.typeson = new Typeson().register([constructors, date, error]);
   }
 
-  public serialise = (thing: any): string => {
+  public serialise = <T>(thing: T): string => {
     const objectifyClass = this.typeson.encapsulate(thing);
     return JSON.stringify(objectifyClass);
   };
 
-  public unSerialise = (json: string): any => {
+  public unSerialise = <T>(json: string): T => {
     console.log(json);
     const parsed = JSON.parse(json);
     return this.typeson.revive(parsed);

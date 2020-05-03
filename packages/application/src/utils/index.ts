@@ -1,3 +1,4 @@
-import { Serialiser } from "./serialiser";
+import Serialiser from "./Serialiser";
+import TypesonSerialiser from "./TypesonSerialiser";
 
-export { Serialiser };
+export { Serialiser, TypesonSerialiser };
