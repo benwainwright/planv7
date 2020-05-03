@@ -685,6 +685,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@planv7/framework@workspace:packages/framework":
+  version: 0.0.0-use.local
+  resolution: "@planv7/framework@workspace:packages/framework"
+  dependencies:
+    "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7"
+    eslint: ^6.8.0
+    jest: ^25.5.4
+    prettier: ^2.0.5
+    typescript: ^3.8.3
+  languageName: unknown
+  linkType: soft
+
 "@sinonjs/commons@npm:^1.7.0":
   version: 1.7.2
   resolution: "@sinonjs/commons@npm:1.7.2"
