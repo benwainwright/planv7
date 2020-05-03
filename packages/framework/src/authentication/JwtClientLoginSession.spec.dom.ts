@@ -1,4 +1,3 @@
-import { Substitute } from "@fluffy-spoon/substitute";
 import {
   CommandOutcome,
   User,
@@ -9,8 +8,9 @@ import { JWT_TOKEN_NAME, USER_COOKIE_NAME } from "../constants";
 import { TEST_PRIVATE_KEY, TEST_PUBLIC_KEY } from "../keys";
 
 import { AxiosResponse } from "axios";
-import { Cookies } from "./Cookies";
+import Cookies from "./Cookies";
 import JwtClientLoginSession from "./JwtClientLoginSession";
+import { Substitute } from "@fluffy-spoon/substitute";
 import { WebsocketClient } from "../WebsocketClient";
 import { sign } from "jsonwebtoken";
 
@@ -20,8 +20,8 @@ const signUser = async (user: User, key: string): Promise<string> => {
       { ...user },
       key,
       { algorithm: "RS256" },
-      (error: Error, token: string): void => {
-        if (error) {
+      (error: Error | null, token: string | undefined): void => {
+        if (error || !token) {
           reject(error);
         } else {
           accept(token);
@@ -35,8 +35,7 @@ describe("JwtLocalStorageCurrentLoginSession", (): void => {
   beforeEach((): void => {
     const cookies = document.cookie.split(";");
 
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i];
+    for (const cookie of cookies) {
       const equalsPosition = cookie.indexOf("=");
       const name =
         equalsPosition > -1 ? cookie.substr(0, equalsPosition) : cookie;

@@ -1,17 +1,33 @@
-export class Cookies {
+const TWENTY_FOUR_HOURS_IN_DAY = 24;
+
+const SIXTY_MINUTES_IN_HOUR = 60;
+
+const SIXTY_SECONDS_IN_MINUTE = 60;
+
+const THOUSAND_MILLISECONDS_IN_SECOND = 1000;
+
+export default class Cookies {
   public static set(name: string, value: string, expiry: number): void {
     const date = new Date();
-    const offset = expiry * 24 * 60 * 60 * 1000;
+
+    const dayInMilliseconds =
+      TWENTY_FOUR_HOURS_IN_DAY *
+      SIXTY_MINUTES_IN_HOUR *
+      SIXTY_SECONDS_IN_MINUTE *
+      THOUSAND_MILLISECONDS_IN_SECOND;
+
+    const offset = expiry * dayInMilliseconds;
+
     date.setTime(date.getTime() + offset);
-    value = encodeURIComponent(value);
-    const cookieString = `${name}=${value};expires=${date.toUTCString()};path=/`;
+    const encodedValue = encodeURIComponent(value);
+    const cookieString = `${name}=${encodedValue};expires=${date.toUTCString()};path=/`;
     document.cookie = cookieString;
   }
 
   public static get(cookieString: string, name: string): string {
-    const cookies = cookieString.split(/; ?/);
-    for (let i = 0; i < cookies.length; i++) {
-      const parts = cookies[i].split("=");
+    const cookies = cookieString.split(/; ?/u);
+    for (const cookie of cookies) {
+      const parts = cookie.split("=");
       if (parts.length > 1 && parts[0] === name) {
         return decodeURIComponent(parts[1]);
       }

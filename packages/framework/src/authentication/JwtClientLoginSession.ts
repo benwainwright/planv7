@@ -13,7 +13,7 @@ import {
 import { inject, injectable } from "inversify";
 
 import { AxiosResponse } from "axios";
-import { Cookies } from "./Cookies";
+import Cookies from "./Cookies";
 import JwtLoginSession from "./JwtLoginSession";
 import TYPES from "../TYPES";
 import { WebsocketClient } from "../WebsocketClient";

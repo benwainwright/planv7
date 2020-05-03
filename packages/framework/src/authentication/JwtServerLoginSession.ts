@@ -4,7 +4,7 @@ import { TYPES as APP, Logger } from "@planv7/application";
 import { inject, injectable, optional } from "inversify";
 
 import { AxiosResponse } from "axios";
-import { Cookies } from "./Cookies";
+import Cookies from "./Cookies";
 import { IncomingMessage } from "http";
 import { JWT_TOKEN_NAME } from "../constants";
 import JwtLoginSession from "./JwtLoginSession";

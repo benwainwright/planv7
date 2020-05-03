@@ -1,16 +1,14 @@
-import { Cookies } from "./Cookies";
+import Cookies from "./Cookies";
 
 describe("Cookies", (): void => {
   beforeEach((): void => {
     const cookies = document.cookie.split(";");
 
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i];
+    for (const cookie of cookies) {
       const equalsPosition = cookie.indexOf("=");
       const name =
         equalsPosition > -1 ? cookie.substr(0, equalsPosition) : cookie;
-      document.cookie =
-        `${name  }=;expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
+      document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
     }
   });
 

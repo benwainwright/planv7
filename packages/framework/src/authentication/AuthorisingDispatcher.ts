@@ -1,17 +1,20 @@
-import { CommandOutcome, Serialiser } from "@planv5/domain";
-import { inject, injectable } from "inversify";
-import axios from "axios";
-
-import { FRAMEWORK_TYPES } from "../../types";
-import { WebsocketClient } from "../WebsocketClient";
 import {
-  APP_TYPES,
+  TYPES as APP,
   CurrentLoginSession,
   Dispatch,
   EventEmitterWrapper,
-} from "@planv5/application/ports";
-import { UserLoginStateChangeEvent } from "@planv5/domain/events";
-import { Command } from "@planv5/domain/ports";
+  Serialiser,
+} from "@planv7/application";
+import {
+  Command,
+  CommandOutcome,
+  UserLoginStateChangeEvent,
+} from "@planv7/domain";
+import { inject, injectable } from "inversify";
+
+import axios from "axios";
+import TYPES from "../TYPES";
+import { WebsocketClient } from "../WebsocketClient";
 
 export const AuthEndpoint = Symbol("AuthEndpoint");
 
@@ -24,18 +27,18 @@ export default class AuthorisingDispatcher implements Dispatch {
   private events: EventEmitterWrapper;
 
   public constructor(
-    @inject(FRAMEWORK_TYPES.WebsocketClient) webSocketClient: WebsocketClient,
+    @inject(TYPES.websocketClient) webSocketClient: WebsocketClient,
 
     @inject(Serialiser)
     serialiser: Serialiser,
 
-    @inject(APP_TYPES.CurrentLoginSession)
+    @inject(APP.currentLoginSession)
     session: CurrentLoginSession,
 
     @inject(AuthEndpoint)
     endpoint: string,
 
-    @inject(APP_TYPES.EventEmitterWrapper)
+    @inject(APP.eventEmitterWrapper)
     events: EventEmitterWrapper
   ) {
     this.webSocketClient = webSocketClient;
@@ -61,7 +64,6 @@ export default class AuthorisingDispatcher implements Dispatch {
           data: toSend,
         });
 
-        this.userSession.setCurrentUserFromHttpResponse(response);
         this.events.emitEvent(
           new UserLoginStateChangeEvent(
             CommandOutcome.SUCCESS,
