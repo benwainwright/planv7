@@ -19,7 +19,7 @@ export default class EventEmitterWrapper {
   private readonly logger: Logger;
   private readonly events = new EventEmitter();
 
-  public constructor(@inject(TYPES.Logger) logger: Logger) {
+  public constructor(@inject(TYPES.logger) logger: Logger) {
     this.logger = logger;
   }
 

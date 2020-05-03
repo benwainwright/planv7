@@ -25,10 +25,10 @@ export default class RegisterUserHandler extends HandlerBase<
   private readonly applicationEvents: EventEmitterWrapper;
 
   public constructor(
-    @inject(TYPES.UserRepository) userRepository: Repository<User>,
-    @inject(TYPES.LoginProvider) loginProvider: LoginProvider,
-    @inject(TYPES.Logger) logger: Logger,
-    @inject(TYPES.EventEmitterWrapper)
+    @inject(TYPES.userRepository) userRepository: Repository<User>,
+    @inject(TYPES.loginProvider) loginProvider: LoginProvider,
+    @inject(TYPES.logger) logger: Logger,
+    @inject(TYPES.eventEmitterWrapper)
     applicationEvents: EventEmitterWrapper
   ) {
     super();

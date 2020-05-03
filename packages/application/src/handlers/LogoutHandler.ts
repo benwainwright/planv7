@@ -22,10 +22,10 @@ export default class LogoutHandler extends HandlerBase<LogoutCommand> {
   private readonly sessionDestroyer: LoginSessionDestroyer;
 
   public constructor(
-    @inject(TYPES.Logger) logger: Logger,
-    @inject(TYPES.LoginSessionDestroyer)
+    @inject(TYPES.logger) logger: Logger,
+    @inject(TYPES.loginSessionDestroyer)
     sessionDestroyer: LoginSessionDestroyer,
-    @inject(TYPES.EventEmitterWrapper)
+    @inject(TYPES.eventEmitterWrapper)
     applicationEvents: EventEmitterWrapper
   ) {
     super();
@@ -44,7 +44,7 @@ export default class LogoutHandler extends HandlerBase<LogoutCommand> {
   ): Promise<void> {
     this.logger.verbose("Executing logout handler");
     await this.sessionDestroyer.killSession();
-    const event = new UserLoginStateChangeEvent(CommandOutcome.SUCCESS);
+    const event = new UserLoginStateChangeEvent(CommandOutcome.SUCCESS, null);
     this.applicationEvents.emitEvent(event);
   }
 }

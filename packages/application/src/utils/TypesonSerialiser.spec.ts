@@ -4,7 +4,7 @@ import deepEqual from "deep-equal";
 
 describe("The serialiser", () => {
   class Foo {
-    public x: string;
+    public x: string = "";
     public method(): void {
       // eslint-disable @typescript-eslint/no-empty-function
     }

@@ -21,9 +21,9 @@ export default class LoginHandler extends HandlerBase<LoginCommand> {
   private readonly loginProvider: LoginProvider;
 
   public constructor(
-    @inject(TYPES.Logger) logger: Logger,
-    @inject(TYPES.LoginProvider) loginProvider: LoginProvider,
-    @inject(TYPES.EventEmitterWrapper)
+    @inject(TYPES.logger) logger: Logger,
+    @inject(TYPES.loginProvider) loginProvider: LoginProvider,
+    @inject(TYPES.eventEmitterWrapper)
     applicationEvents: EventEmitterWrapper
   ) {
     super();
@@ -42,8 +42,10 @@ export default class LoginHandler extends HandlerBase<LoginCommand> {
       command.getPassword()
     );
 
-    this.logger.info(`Login successful!`);
-    const event = new UserLoginStateChangeEvent(CommandOutcome.SUCCESS, user);
-    this.applicationEvents.emitEvent(event);
+    if (user) {
+      this.logger.info(`Login successful!`);
+      const event = new UserLoginStateChangeEvent(CommandOutcome.SUCCESS, user);
+      this.applicationEvents.emitEvent(event);
+    }
   }
 }

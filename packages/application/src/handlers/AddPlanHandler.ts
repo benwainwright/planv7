@@ -22,13 +22,13 @@ export default class AddPlanHandler extends HandlerBase<AddPlanCommand> {
   private readonly applicationEvents: EventEmitterWrapper;
   private readonly slugGenerator: SlugGenerator<Plan>;
   public constructor(
-    @inject(TYPES.PlanRepository)
+    @inject(TYPES.planRepository)
     planRepository: AuthenticatedEntityRepository<Plan>,
-    @inject(TYPES.CurrentLoginSession) session: CurrentLoginSession,
-    @inject(TYPES.Logger) logger: Logger,
-    @inject(TYPES.EventEmitterWrapper)
+    @inject(TYPES.currentLoginSession) session: CurrentLoginSession,
+    @inject(TYPES.logger) logger: Logger,
+    @inject(TYPES.eventEmitterWrapper)
     applicationEvents: EventEmitterWrapper,
-    @inject(TYPES.SlugGenerator)
+    @inject(TYPES.slugGenerator)
     slugGenerator: SlugGenerator<Plan>
   ) {
     super();

@@ -5,10 +5,6 @@ import Plan from "../entities/Plan";
 export const CURRENT_USER_PLANS_CHANGED_EVENT = "CurrentUserPlansChangedEvent";
 
 export class CurrentUserPlansChangedEvent extends DomainEvent {
-  public getUserMessage(): string | undefined {
-    // eslint-disable @typescript-eslint/no-empty-function
-  }
-
   private readonly plans: Plan[];
 
   public constructor(outcome: CommandOutcome, plans?: Plan[]) {

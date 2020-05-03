@@ -16,13 +16,13 @@ export class UserLoginStateChangeEvent extends DomainEvent {
   public identifier(): string {
     return USER_LOGIN_STATE_CHANGE_EVENT;
   }
-  private readonly user: User | undefined;
-  public constructor(outcome: CommandOutcome, user?: User) {
+  private readonly user: User | null;
+  public constructor(outcome: CommandOutcome, user: User | null) {
     super(outcome);
     this.user = user;
   }
 
-  public getUser(): User | undefined {
+  public getUser(): User | null {
     return this.user;
   }
 

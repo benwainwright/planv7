@@ -2,7 +2,7 @@ import { Command, CommandBus, DOMAIN_TYPES, Handler } from "@planv7/domain";
 import { inject, injectable, multiInject, optional } from "inversify";
 
 import ApplicationError from "../ApplicationError";
-import { Dispatch } from "../ports";
+import { Dispatch, TYPES } from "../ports";
 import Logger from "../ports/Logger";
 
 @injectable()
@@ -15,7 +15,7 @@ export default class SimpleCommandBus implements CommandBus {
     @optional()
     @multiInject(DOMAIN_TYPES.Handler)
     handlers?: Handler<Command>[],
-    @inject(APP_TYPES.Logger)
+    @inject(TYPES.logger)
     logger?: Logger,
 
     @optional()
