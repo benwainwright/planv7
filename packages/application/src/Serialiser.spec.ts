@@ -5,7 +5,7 @@ import {
   LoginCommand,
   RegisterUserCommand,
 } from "@planv7/domain";
-import ApplicationError from "../ApplicationError";
+import ApplicationError from "./ApplicationError";
 import Serialiser from "./Serialiser";
 
 class MyMockCommand extends Command {
@@ -35,32 +35,6 @@ class MyCommandWithNesting extends Command {
   public constructor(c: MyMockCommand) {
     super();
     this.otherCommand = c;
-  }
-}
-
-class MyMockCommandWithAnObjectKey extends Command {
-  public identifier(): string {
-    return "MyMockCommandWithAnObjectKey";
-  }
-
-  public obj: { foo: string };
-
-  public constructor(foo: { foo: string }) {
-    super();
-    this.obj = foo;
-  }
-}
-
-class MyMockCommandWithAnArrayOfMockCommands extends Command {
-  public identifier(): string {
-    return "MyMockCommandWithAnArrayOfMockCommands";
-  }
-
-  public array: MyMockCommand[];
-
-  public constructor(array: MyMockCommand[]) {
-    super();
-    this.array = array;
   }
 }
 
