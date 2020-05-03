@@ -8,7 +8,7 @@ import { Collection, Db } from "mongodb";
 import { Deadline, Plan, User } from "@planv7/domain";
 import { inject, injectable } from "inversify";
 
-import TYPES from "../../TYPES";
+import TYPES from "../TYPES";
 
 const THOUSAND_MILLISECONDS_IN_SECOND = 1000;
 

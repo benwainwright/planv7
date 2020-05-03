@@ -5,7 +5,7 @@ import { genSalt, hash as getHash } from "bcryptjs";
 import { inject, injectable } from "inversify";
 
 import { Repository } from "@planv7/application";
-import TYPES from "../../TYPES";
+import TYPES from "../TYPES";
 import { User } from "@planv7/domain";
 
 const SALT_ROUNDS = 10;

@@ -1,5 +1,5 @@
-import { User } from "@planv7/domain";
 import { CurrentLoginSession } from "@planv7/application";
+import { User } from "@planv7/domain";
 
 export default class SimpleCurrentUserSession implements CurrentLoginSession {
   private user: User;

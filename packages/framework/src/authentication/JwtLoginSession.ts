@@ -17,8 +17,7 @@ export default abstract class JwtLoginSession implements CurrentLoginSession {
   public abstract setCurrentUser(user: User): void;
   public abstract setCurrentUserFromHttpResponse(response: AxiosResponse): void;
 
-  public verifyAndDecodeToken(token: string, key: string): User | undefined {
-    const user = undefined;
+  public verifyAndDecodeToken(token: string, key: string): User | null {
     try {
       const decoded = verify(token, key, { algorithms: ["RS256"] });
       const user = new User("", "", "");
@@ -26,7 +25,7 @@ export default abstract class JwtLoginSession implements CurrentLoginSession {
       return user;
     } catch (e) {
       this.logger.debug(`Failed to verify token: ${e}`);
+      return null;
     }
-    return user;
   }
 }

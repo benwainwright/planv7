@@ -4,7 +4,7 @@ import { inject, injectable } from "inversify";
 
 import MongoDbPlanRepository from "./MongoDbPlanRepository";
 import { Plan } from "@planv7/domain";
-import TYPES from "../../TYPES";
+import TYPES from "../TYPES";
 
 @injectable()
 export default class MongoDbPlanSlugGenerator implements SlugGenerator<Plan> {
