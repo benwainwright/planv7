@@ -1,10 +1,11 @@
-import { mock } from "jest-mock-extended";
-import { Logger } from "@planv5/application/ports";
-import { Plan } from "@planv5/domain/entities";
 import { Db, MongoClient } from "mongodb";
-import { PLANS_COLLECTION_NAME } from "./MongoDbPlanRepository";
+
+import { Logger } from "@planv7/application";
+import MongoDbPlanSlugGenerator from "./MongoDbPlanSlugGenerator";
 import { MongoMemoryServer } from "mongodb-memory-server";
-import { MongoDbPlanSlugGenerator } from "./MongoDbPlanSlugGenerator";
+import { PLANS_COLLECTION_NAME } from "./MongoDbPlanRepository";
+import { Plan } from "@planv7/domain";
+import { mock } from "jest-mock-extended";
 
 describe("The slug generator", () => {
   let client: MongoClient;
@@ -16,7 +17,7 @@ describe("The slug generator", () => {
       const uri = await server.getConnectionString();
       client = await MongoClient.connect(uri, {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
       });
       db = client.db(await server.getDbName());
       const collection = db.collection(PLANS_COLLECTION_NAME);
@@ -27,7 +28,7 @@ describe("The slug generator", () => {
           title: "plan1",
           description: "description one",
           hoursPerWeek: 4,
-          deadlines: []
+          deadlines: [],
         },
         {
           user: "foo",
@@ -35,8 +36,8 @@ describe("The slug generator", () => {
           title: "plan1",
           description: "description one",
           hoursPerWeek: 4,
-          deadlines: []
-        }
+          deadlines: [],
+        },
       ]);
     }
   );
