@@ -9,7 +9,7 @@ import { Collection, Db } from "mongodb";
 import { inject, injectable, optional } from "inversify";
 
 import MongoDbUserRepository from "../storage/MongoDbUserRepository";
-import { ResponseAuthHeader } from "../responseAuthHeaderAppender";
+import ResponseAuthHeader from "../ResponseAuthHeader";
 import TYPES from "../TYPES";
 import { User } from "@planv7/domain";
 import { compare } from "bcryptjs";

@@ -1,30 +1,30 @@
-import { Command } from "@planv5/domain/ports";
-import { DomainEvent , Serialiser } from "@planv5/domain";
-
 import {
-  APP_TYPES,
+  TYPES as APP,
   Dispatch,
-  EventEmitterWrapper
-} from "@planv5/application/ports";
+  EventEmitterWrapper,
+  Serialiser,
+} from "@planv7/application";
+import { Command, DomainEvent } from "@planv7/domain";
 import { inject, injectable } from "inversify";
 
-export const DispatchEndpoint = Symbol("DispatchEndpoint");
-export const HTTP_RESPONSE_EVENT = "HttpResponseEvent";
+import TYPES from "./TYPES";
 
 @injectable()
-export class FetchDispatch<C extends Command> implements Dispatch {
+export default class FetchDispatch<C extends Command> implements Dispatch {
+  public static readonly httpResponseEvent = "HttpResponseEvent";
+
   private events: EventEmitterWrapper;
   private endpoint: string;
   private serialiser: Serialiser;
 
   public constructor(
-    @inject(APP_TYPES.EventEmitterWrapper)
+    @inject(APP.eventEmitterWrapper)
     applicationEvents: EventEmitterWrapper,
 
     @inject(Serialiser)
     serialiser: Serialiser,
 
-    @inject(DispatchEndpoint)
+    @inject(TYPES.dispatchEndpoint)
     endpoint: string
   ) {
     this.events = applicationEvents;
@@ -36,10 +36,11 @@ export class FetchDispatch<C extends Command> implements Dispatch {
     const body = this.serialiser.serialise(command);
     const response = await this.promisifyFetch(this.endpoint, {
       headers: {
-        "Content-Type": "application/json"
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        "Content-Type": "application/json",
       },
       method: "POST",
-      body
+      body,
     });
     this.events.emit(response.identifier(), response);
   }

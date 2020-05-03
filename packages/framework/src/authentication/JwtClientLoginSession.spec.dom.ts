@@ -11,7 +11,7 @@ import { AxiosResponse } from "axios";
 import Cookies from "./Cookies";
 import JwtClientLoginSession from "./JwtClientLoginSession";
 import { Substitute } from "@fluffy-spoon/substitute";
-import { WebsocketClient } from "../WebsocketClient";
+import WebsocketClient from "../WebsocketClient";
 import { sign } from "jsonwebtoken";
 
 const signUser = async (user: User, key: string): Promise<string> => {

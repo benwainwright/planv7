@@ -1,8 +1,8 @@
-import { injectable } from "inversify";
 import "reflect-metadata";
+import { injectable } from "inversify";
 
 @injectable()
-export class ResponseAuthHeader {
+export default class ResponseAuthHeader {
   private header = "";
   public setHeader(value: string): void {
     this.header = value;

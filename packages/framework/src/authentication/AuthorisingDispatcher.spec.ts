@@ -8,7 +8,7 @@ import { Arg, Substitute } from "@fluffy-spoon/substitute";
 import { Command, User } from "@planv7/domain";
 
 import AuthorisingDispatcher from "./AuthorisingDispatcher";
-import { WebsocketClient } from "../WebsocketClient";
+import WebsocketClient from "../WebsocketClient";
 import nock from "nock";
 
 describe("Authorising dispatcher", () => {

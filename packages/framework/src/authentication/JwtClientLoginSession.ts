@@ -16,7 +16,7 @@ import { AxiosResponse } from "axios";
 import Cookies from "./Cookies";
 import JwtLoginSession from "./JwtLoginSession";
 import TYPES from "../TYPES";
-import { WebsocketClient } from "../WebsocketClient";
+import WebsocketClient from "../WebsocketClient";
 
 @injectable()
 export default class JwtClientLoginSession extends JwtLoginSession

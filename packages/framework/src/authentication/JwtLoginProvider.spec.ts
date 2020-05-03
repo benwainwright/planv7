@@ -6,7 +6,7 @@ import JwtLoginProvider from "./JwtLoginProvider";
 import { Logger } from "@planv7/application";
 import MongoDbUserRepository from "../storage/MongoDbUserRepository";
 import { MongoMemoryServer } from "mongodb-memory-server";
-import { ResponseAuthHeader } from "../responseAuthHeaderAppender";
+import ResponseAuthHeader from "../ResponseAuthHeader";
 
 describe("JwtLoginProvider", (): void => {
   let client: MongoClient;

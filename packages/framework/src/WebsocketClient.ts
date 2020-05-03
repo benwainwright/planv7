@@ -1,40 +1,40 @@
-import { Command , Serializable } from "@planv5/domain/ports";
 import {
-  APP_TYPES,
+  TYPES as APP,
   Dispatch,
-  EventEmitterWrapper
-, Logger } from "@planv5/application/ports";
-
-import { Serialiser } from "@planv5/domain";
+  EventEmitterWrapper,
+  Logger,
+  Serialiser,
+} from "@planv7/application";
+import { Command, Serialisable } from "@planv7/domain";
 
 import { inject, injectable } from "inversify";
 
+import TYPES from "./TYPES";
+
 const OPEN_READYSTATE = 1;
 
-export const WAIT_TIMEOUT = 2000;
-
-export const AppWebsocketUrl = Symbol.for("AppWebsocketUrl");
-export const AuthEndpoint = Symbol("AuthEndpoint");
-
 @injectable()
-export class WebsocketClient implements Dispatch {
-  private socket: WebSocket | undefined;
+export default class WebsocketClient implements Dispatch {
+  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+  public static readonly waitTimeout = 2000;
+
+  private socket: WebSocket | null = null;
   private serialiser: Serialiser;
   private logger: Logger;
   private url: string;
   private events: EventEmitterWrapper;
 
-  constructor(
-    @inject(AppWebsocketUrl)
+  public constructor(
+    @inject(TYPES.appWebsocketUrl)
     url: string,
 
-    @inject(APP_TYPES.EventEmitterWrapper)
+    @inject(APP.eventEmitterWrapper)
     events: EventEmitterWrapper,
 
     @inject(Serialiser)
     serialiser: Serialiser,
 
-    @inject(APP_TYPES.Logger)
+    @inject(APP.logger)
     logger: Logger
   ) {
     this.serialiser = serialiser;
@@ -43,12 +43,12 @@ export class WebsocketClient implements Dispatch {
     this.events = events;
   }
 
-  public close() {
+  public close(): void {
     if (this.socket) {
       this.logger.info(`Closing connection`);
       this.socket.close();
       this.socket.onopen = null;
-      this.socket = undefined;
+      this.socket = null;
     }
   }
 
@@ -57,7 +57,9 @@ export class WebsocketClient implements Dispatch {
     await this.sendMessage(message);
   }
 
-  private async sendMessage(data: any): Promise<void> {
+  private async sendMessage(
+    data: string | ArrayBuffer | SharedArrayBuffer | Blob | ArrayBufferView
+  ): Promise<void> {
     await this.openSocketIfNotOpen();
     if (this.socket) {
       this.socket.send(data);
@@ -66,14 +68,14 @@ export class WebsocketClient implements Dispatch {
 
   private async onError(): Promise<void> {
     this.logger.info("Error received - reconnecting");
-    this.socket = undefined;
+    this.socket = null;
     await this.openSocketIfNotOpen();
   }
 
   private onMessage(message: MessageEvent): void {
     this.logger.debug(`Received: '${message.data.toString()}`);
     try {
-      const messageObject = this.serialiser.unSerialise<Serializable>(
+      const messageObject = this.serialiser.unSerialise<Serialisable>(
         message.data
       );
       if (messageObject instanceof Error) {
@@ -125,11 +127,11 @@ export class WebsocketClient implements Dispatch {
             if (this.socket) {
               this.logger.info(`Connection timed out`);
               this.close();
-              reject();
+              reject(new Error("Connection timed out..."));
             }
-          }, WAIT_TIMEOUT);
+          }, WebsocketClient.waitTimeout);
 
-          this.socket.onopen = event => {
+          this.socket.onopen = (): void => {
             clearTimeout(timeout);
             resolve();
           };

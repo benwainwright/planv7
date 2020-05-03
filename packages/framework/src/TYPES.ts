@@ -9,6 +9,9 @@ const TYPES = {
   websocketClient: Symbol.for("WebsocketClient"),
   localStorageKey: Symbol.for("LocalStorageKey"),
   authEndpoint: Symbol.for("AuthEndpoint"),
+  jwtToken: Symbol.for("JwtToken"),
+  appWebsocketUrl: Symbol.for("AppWebsocketUrl"),
+  dispatchEndpoint: Symbol.for("DispatchEndpoint"),
 };
 
 export default TYPES;

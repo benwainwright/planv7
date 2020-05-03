@@ -1,13 +1,17 @@
-import WebSocket from "ws";
-import deepEqual from "deep-equal";
-import { DOMAIN_TYPES, DomainError , DomainEvent, Serialiser } from "@planv5/domain";
-import { EventEmitterWrapper , Logger } from "@planv5/application/ports";
-import { Command, CommandBus } from "@planv5/domain/ports";
-
+import { Arg, Substitute } from "@fluffy-spoon/substitute";
+import {
+  Command,
+  CommandBus,
+  TYPES as DOMAIN,
+  DomainError,
+  DomainEvent,
+} from "@planv7/domain";
+import { EventEmitterWrapper, Logger, Serialiser } from "@planv7/application";
 
 import { Container } from "inversify";
-import { Arg, Substitute } from "@fluffy-spoon/substitute";
-import { WebsocketConnection } from "./websocketConnection";
+import WebSocket from "ws";
+import WebsocketConnection from "./WebsocketConnection";
+import deepEqual from "deep-equal";
 
 describe("Websocket connection", () => {
   class MockEvent extends DomainEvent {
@@ -19,7 +23,7 @@ describe("Websocket connection", () => {
       return "MockEvent";
     }
 
-    foobar: string;
+    public foobar = "";
   }
 
   test.todo("Rejects connections with different Origin header");
@@ -33,12 +37,13 @@ describe("Websocket connection", () => {
     const mockCommandBus = Substitute.for<CommandBus>();
 
     container
-      .bind<CommandBus>(DOMAIN_TYPES.CommandBus)
+      .bind<CommandBus>(DOMAIN.commandBus)
       .toConstantValue(mockCommandBus);
 
     const socket = Substitute.for<WebSocket>();
     socket.send(Arg.all()).returns();
 
+    // eslint-disable-next-line no-new
     new WebsocketConnection(
       socket,
       mockCommandBus,
@@ -46,17 +51,18 @@ describe("Websocket connection", () => {
       events,
       logger
     );
+
     const newEvent = new MockEvent();
     newEvent.foobar = "yes";
     events.emitEvent(newEvent);
 
     const expected = {
       $: "MockEvent",
-      instance: { outcome: 0, foobar: "yes" }
+      instance: { outcome: 0, foobar: "yes" },
     };
 
     socket.received().send(
-      Arg.is(x => {
+      Arg.is((x) => {
         const received = JSON.parse(x);
         return deepEqual(expected, received);
       }),
@@ -68,7 +74,7 @@ describe("Websocket connection", () => {
     );
   });
 
-  it("Unserialises commands and passes them into a command bus", done => {
+  it("Unserialises commands and passes them into a command bus", (done) => {
     const container = new Container();
 
     class MockCommand extends Command {
@@ -76,21 +82,21 @@ describe("Websocket connection", () => {
         return "MockCommand";
       }
 
-      foo: string;
+      public foo = "";
     }
 
     const mockCommand = {
       $: "MockCommand",
       instance: {
         handled: false,
-        foo: "bar"
-      }
+        foo: "bar",
+      },
     };
 
     const mockCommandBus = Substitute.for<CommandBus>();
 
     container
-      .bind<CommandBus>(DOMAIN_TYPES.CommandBus)
+      .bind<CommandBus>(DOMAIN.commandBus)
       .toConstantValue(mockCommandBus);
 
     const expected = new MockCommand();
@@ -103,18 +109,21 @@ describe("Websocket connection", () => {
     const server = new WebSocket.Server({ port: 7289 });
 
     server.on("connection", (socket: WebSocket) => {
+      // eslint-disable-next-line no-new
       new WebsocketConnection(
         socket,
         mockCommandBus,
         new Serialiser({
-          MockCommand
+          MockCommand,
         }),
         new EventEmitterWrapper(logger),
         logger
       );
 
       socket.on("message", () => {
-        mockCommandBus.received().execute(Arg.is(x => deepEqual(x, expected)));
+        mockCommandBus
+          .received()
+          .execute(Arg.is((x) => deepEqual(x, expected)));
         server.close();
         done();
       });
@@ -124,15 +133,16 @@ describe("Websocket connection", () => {
 
     setImmediate(() => {
       const address = server.address() as WebSocket.AddressInfo;
+      // eslint-disable-next-line no-new
       new WebSocket(`ws://[${address.address}]:${address.port}`);
     });
   });
 
-  it("Should return domainerrors to the websocket client", async done => {
+  it("Should return domainerrors to the websocket client", async (done) => {
     const container = new Container();
 
     const mockCommandBus = {
-      execute: jest.fn()
+      execute: jest.fn(),
     };
 
     class MockCommand extends Command {
@@ -140,7 +150,7 @@ describe("Websocket connection", () => {
         return "MockCommand";
       }
 
-      foo: string;
+      public foo = "";
     }
 
     mockCommandBus.execute.mockImplementation(
@@ -150,18 +160,20 @@ describe("Websocket connection", () => {
     );
 
     container
-      .bind<CommandBus>(DOMAIN_TYPES.CommandBus)
+      .bind<CommandBus>(DOMAIN.commandBus)
       .toConstantValue(mockCommandBus);
 
+    // eslint-disable-next-line no-new
     const server = new WebSocket.Server({ port: 7289 });
     server.on("connection", (socket: WebSocket) => {
       const logger = Substitute.for<Logger>();
+      // eslint-disable-next-line no-new
       new WebsocketConnection(
         socket,
         mockCommandBus,
         new Serialiser({
           MockCommand,
-          DomainError
+          DomainError,
         }),
         new EventEmitterWrapper(logger),
         logger
@@ -171,8 +183,8 @@ describe("Websocket connection", () => {
         $: "MockCommand",
         instance: {
           handled: false,
-          foo: "bar"
-        }
+          foo: "bar",
+        },
       };
 
       socket.emit("message", JSON.stringify(mockCommand));
@@ -186,8 +198,8 @@ describe("Websocket connection", () => {
         const expectedError = {
           $: "DomainError",
           instance: {
-            message: "foobar"
-          }
+            message: "foobar",
+          },
         };
         const returnedObject = JSON.parse(data as string);
         expect(returnedObject).toEqual(expectedError);

@@ -693,6 +693,7 @@ __metadata:
     "@types/bcryptjs": ^2.4.2
     "@types/jsonwebtoken": ^8.3.9
     "@types/mongodb": ^3.5.14
+    "@types/ws": ^7.2.4
     bcryptjs: ^2.4.3
     eslint: ^6.8.0
     jest: ^25.5.4
@@ -977,6 +978,15 @@ __metadata:
   version: 7.0.0
   resolution: "@types/uuid@npm:7.0.0"
   checksum: 3/e4c6e48acc900a56c302863f0b089b1ffded1730ff6b480b8992b6c846c13ace9bfd9dd6bb0bdff767f541cf8e2ed21fc7eadc2eedab6064ebbfd4c8493d4e1a
+  languageName: node
+  linkType: hard
+
+"@types/ws@npm:^7.2.4":
+  version: 7.2.4
+  resolution: "@types/ws@npm:7.2.4"
+  dependencies:
+    "@types/node": "*"
+  checksum: 3/8b8251a8c41b0a48c9e8940d6e447e285420bb77f297272c91fd07be302e0785112c7ee910ae79c90e7c1a988fb2adf5fec9d115c291750f371763d96ad8d20c
   languageName: node
   linkType: hard
 

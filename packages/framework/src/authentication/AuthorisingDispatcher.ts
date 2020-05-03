@@ -13,7 +13,7 @@ import {
 import { inject, injectable } from "inversify";
 
 import TYPES from "../TYPES";
-import { WebsocketClient } from "../WebsocketClient";
+import WebsocketClient from "../WebsocketClient";
 import axios from "axios";
 
 @injectable()

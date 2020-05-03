@@ -1,15 +1,15 @@
-import WS from "jest-websocket-mock";
+import { Command, DomainEvent, Serialisable } from "@planv7/domain";
+import { EventEmitterWrapper, Logger, Serialiser } from "@planv7/application";
 
-import { Command , Serializable } from "@planv5/domain/ports";
-import { WAIT_TIMEOUT, WebsocketClient } from "./WebsocketClient";
-import { DomainEvent , Serialiser } from "@planv5/domain";
-
-
-import { EventEmitterWrapper, Logger } from "@planv5/application/ports";
 import { Substitute } from "@fluffy-spoon/substitute";
+import WS from "jest-websocket-mock";
+import WebsocketClient from "./WebsocketClient";
+
+const THOUSAND_MILLISECONDS_IN_SECOND = 1000;
 
 describe("Websocket client", () => {
-  let server: any;
+  // eslint-disable-next-line fp/no-let
+  let server: WS;
 
   beforeEach(() => {
     server = new WS("ws://localhost:2314", { jsonProtocol: true });
@@ -29,7 +29,7 @@ describe("Websocket client", () => {
       return "MockEvent";
     }
 
-    foobar: string;
+    public foobar = "";
   }
 
   class MockCommand extends Command {
@@ -49,19 +49,19 @@ describe("Websocket client", () => {
       this.handled = false;
     }
 
-    foo: string;
+    public foo = "";
   }
 
   const mockCommand = {
     $: "MockCommand",
     instance: {
       foo: "bar",
-      handled: false
-    }
+      handled: false,
+    },
   };
 
-  it("Emits an event on the attached eventemitter when it receives an error", async done => {
-    class MockError extends Error implements Serializable {
+  it("Emits an event on the attached eventemitter when it receives an error", async (done) => {
+    class MockError extends Error implements Serialisable {
       public constructor(message: string) {
         super(message);
         this.name = this.constructor.name;
@@ -84,8 +84,8 @@ describe("Websocket client", () => {
     const mockEventObject = {
       $: "MockError",
       instance: {
-        message: "foo"
-      }
+        message: "foo",
+      },
     };
 
     await socketDispatch.openSocketIfNotOpen();
@@ -101,7 +101,7 @@ describe("Websocket client", () => {
     server.send(json);
   });
 
-  it("Emits an event on the attached eventemitter when it receives a domainevent", async done => {
+  it("Emits an event on the attached eventemitter when it receives a domainevent", async (done) => {
     const logger = Substitute.for<Logger>();
     const events = new EventEmitterWrapper(logger);
     const socketDispatch = new WebsocketClient(
@@ -114,8 +114,8 @@ describe("Websocket client", () => {
       $: "MockEvent",
       instance: {
         outcome: 0,
-        foobar: "baz"
-      }
+        foobar: "baz",
+      },
     };
 
     await socketDispatch.openSocketIfNotOpen();
@@ -165,7 +165,12 @@ describe("Websocket client", () => {
 
       const command = new MockCommand();
       await socketDispatch.dispatch(command);
-      await new Promise(resolve => setTimeout(resolve, WAIT_TIMEOUT + 1000));
+      await new Promise((resolve) =>
+        setTimeout(
+          resolve,
+          WebsocketClient.waitTimeout + THOUSAND_MILLISECONDS_IN_SECOND
+        )
+      );
       await socketDispatch.dispatch(command);
       expect(connections).toEqual(1);
     });
