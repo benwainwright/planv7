@@ -6,7 +6,7 @@ import {
   RegisterUserCommand,
 } from "@planv7/domain";
 import { ApplicationError } from "../ApplicationError";
-import { Serialiser } from "./serialiser";
+import { Serialiser } from "./Serialiser";
 
 class MyMockCommand extends Command {
   private readonly x: string;
@@ -95,20 +95,20 @@ describe("serialiseCommand", (): void => {
   it("Creates a string which results in an identical command when unserialized", (): void => {
     const inputRegisterUsers = new RegisterUserCommand("foo", "a@.com", "bash");
     const serialiser = new Serialiser(Commands);
-    let jsonString = serialiser.serialise(inputRegisterUsers);
-    let output = serialiser.unSerialise(jsonString);
+    const jsonString = serialiser.serialise(inputRegisterUsers);
+    const output = serialiser.unSerialise(jsonString);
     expect(output).toEqual(inputRegisterUsers);
 
     const inputAllUsers = new GetAllUsersCommand();
-    jsonString = serialiser.serialise(inputAllUsers);
-    output = serialiser.unSerialise(jsonString);
-    expect(output).toEqual(inputAllUsers);
+    const jsonString2 = serialiser.serialise(inputAllUsers);
+    const output2 = serialiser.unSerialise(jsonString2);
+    expect(output2).toEqual(inputAllUsers);
 
     const inputLogin = new LoginCommand("fooo", "bar");
 
-    jsonString = serialiser.serialise(inputLogin);
-    output = serialiser.unSerialise(jsonString);
-    expect(output).toEqual(inputLogin);
+    const jsonString3 = serialiser.serialise(inputLogin);
+    const output3 = serialiser.unSerialise(jsonString3);
+    expect(output3).toEqual(inputLogin);
   });
 
   it("works correctly for serializable error objects", () => {

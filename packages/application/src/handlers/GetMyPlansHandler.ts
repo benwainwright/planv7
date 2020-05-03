@@ -1,20 +1,19 @@
 import {
-  CURRENT_USER_PLANS_CHANGED_EVENT,
   CommandOutcome,
   CurrentUserPlansChangedEvent,
-  DomainEvent,
   GetMyPlansCommand,
   Plan,
 } from "@planv7/domain";
+
 import { inject, injectable } from "inversify";
 
+import { TYPES } from "../ports/types";
 import { ApplicationError } from "../ApplicationError";
-import CurrentLoginSession from "./../ports/CurrentLoginSession";
 import AuthenticatedEntityRepository from "../ports/AuthenticatedEntityRepository";
+import CurrentLoginSession from "./../ports/CurrentLoginSession";
 
 import HandlerBase from "../core/HandlerBase";
 
-import { APP_TYPES } from "../ports/types";
 import { EventEmitterWrapper, Logger } from "../ports";
 
 @injectable()
@@ -25,11 +24,11 @@ export default class GetMyPlansHandler extends HandlerBase<GetMyPlansCommand> {
   private readonly applicationEvents: EventEmitterWrapper;
 
   public constructor(
-    @inject(APP_TYPES.PlanRepository)
+    @inject(TYPES.PlanRepository)
     planRepository: AuthenticatedEntityRepository<Plan>,
-    @inject(APP_TYPES.CurrentLoginSession) session: CurrentLoginSession,
-    @inject(APP_TYPES.Logger) logger: Logger,
-    @inject(APP_TYPES.EventEmitterWrapper)
+    @inject(TYPES.CurrentLoginSession) session: CurrentLoginSession,
+    @inject(TYPES.Logger) logger: Logger,
+    @inject(TYPES.EventEmitterWrapper)
     applicationEvents: EventEmitterWrapper
   ) {
     super();
