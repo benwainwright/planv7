@@ -1,4 +1,3 @@
-import { mock } from "jest-mock-extended";
 import {
   CommandOutcome,
   CurrentUserPlansChangedEvent,
@@ -7,12 +6,12 @@ import {
   User,
 } from "@planv7/domain";
 
-import UpdatePlanHandler from "./UpdatePlanHandler";
-
-import Logger from "../ports/Logger";
 import AuthenticatedEntityRepository from "../ports/AuthenticatedEntityRepository";
 import CurrentLoginSession from "../ports/CurrentLoginSession";
 import EventEmitterWrapper from "../core/EventEmitterWrapper";
+import Logger from "../ports/Logger";
+import UpdatePlanHandler from "./UpdatePlanHandler";
+import { mock } from "jest-mock-extended";
 
 describe("Update plan handler", () => {
   it("Should throw an error if the user is not authenticated", async () => {
@@ -21,7 +20,7 @@ describe("Update plan handler", () => {
     const logger = mock<Logger>();
     const events = mock<EventEmitterWrapper>();
 
-    session.getCurrentUser.mockReturnValue(undefined);
+    session.getCurrentUser.mockReturnValue(null);
 
     const handler = new UpdatePlanHandler(repo, session, logger, events);
     try {
@@ -29,7 +28,9 @@ describe("Update plan handler", () => {
         new UpdatePlanCommand("foo", "bar", "baz", 0, [])
       );
       fail("Expected an error to be thrown");
-    } catch {}
+    } catch {
+      // Noop
+    }
   });
 
   it("Throw an error if this plan doesn't belong to this user", async () => {
@@ -42,7 +43,7 @@ describe("Update plan handler", () => {
       new User("foobar", "foo@bar.com", "foobar")
     );
 
-    repo.getByFieldAndUser.mockReturnValue(Promise.resolve(undefined));
+    repo.getByFieldAndUser.mockReturnValue(Promise.resolve(null));
 
     const handler = new UpdatePlanHandler(repo, session, logger, events);
     try {
@@ -50,7 +51,9 @@ describe("Update plan handler", () => {
         new UpdatePlanCommand("foo", "bar", "baz", 0, [])
       );
       fail("Expected an error to be thrown");
-    } catch {}
+    } catch {
+      // Noop
+    }
   });
 
   it("Updates the plan with the new values when a plan matches", async () => {

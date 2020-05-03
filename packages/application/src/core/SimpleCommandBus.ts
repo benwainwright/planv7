@@ -1,9 +1,9 @@
 import { Command, CommandBus, DOMAIN_TYPES, Handler } from "@planv7/domain";
 import { inject, injectable, multiInject, optional } from "inversify";
-import { APP_TYPES } from "../ports/types";
-import ApplicationError from "../ApplicationError";
-import Logger from "../ports/Logger";
+
+import { ApplicationError } from "../ApplicationError";
 import { Dispatch } from "../ports";
+import Logger from "../ports/Logger";
 
 @injectable()
 export default class SimpleCommandBus implements CommandBus {
