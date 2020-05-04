@@ -8,7 +8,7 @@ import WebsocketClient from "./WebsocketClient";
 const THOUSAND_MILLISECONDS_IN_SECOND = 1000;
 
 describe("Websocket client", () => {
-  // eslint-disable-next-line fp/no-let
+  // eslint-disable-next-line fp/no-let @typescript-eslint/no-explicit-any
   let server: WS;
 
   beforeEach(() => {
@@ -122,7 +122,7 @@ describe("Websocket client", () => {
 
     const json = JSON.stringify(mockEventObject);
 
-    events.onEvent<DomainEvent>((event: MockEvent) => {
+    events.onEvent<MockEvent>((event: MockEvent) => {
       expect(event).toBeDefined();
       expect(event.foobar).toEqual("baz");
       done();

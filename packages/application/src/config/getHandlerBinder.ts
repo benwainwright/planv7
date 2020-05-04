@@ -1,7 +1,8 @@
 import "reflect-metadata";
 
-import { Command, DOMAIN_TYPES, Handler } from "@planv7/domain";
+import { Command, TYPES as DOMAIN, Handler } from "@planv7/domain";
 import { Container } from "inversify";
+import Logger from "../ports/Logger";
 import TYPES from "../ports/TYPES";
 
 /**
@@ -11,7 +12,7 @@ import TYPES from "../ports/TYPES";
  */
 const getBindableHandlers = (
   container: Container,
-  handlers: {}
+  handlers: (new () => unknown)[]
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Map<string, any> => {
   const logger = container.get<Logger>(TYPES.logger);
@@ -22,7 +23,7 @@ const getBindableHandlers = (
     if (Object.prototype.hasOwnProperty.call(handlers, constructorName)) {
       try {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const constructor = handlers as any[constructorName];
+        const constructor = handlers[constructorName];
         logger.info(`Resolving ${constructorName}`);
         container.resolve(constructor);
         toBind.set(constructorName, constructor);
@@ -40,7 +41,7 @@ const getBindableHandlers = (
 
 const getHandlerBinder = (
   container: Container,
-  handlers: {}
+  handlers: (new () => unknown)[]
 ): ((container: Container) => void) => {
   const toBind = getBindableHandlers(container, handlers);
   const logger = container.get<Logger>(TYPES.logger);
@@ -50,9 +51,7 @@ const getHandlerBinder = (
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     toBind.forEach((constructor: any, name: string): void => {
       try {
-        theContainer
-          .bind<Handler<Command>>(DOMAIN_TYPES.Handler)
-          .to(constructor);
+        theContainer.bind<Handler<Command>>(DOMAIN.handler).to(constructor);
         logger.verbose(`Binding handler ${name}`);
       } catch (error) {
         logger.error(`Unable to bind ${name} because of error: ${error}`);

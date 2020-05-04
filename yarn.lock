@@ -691,6 +691,7 @@ __metadata:
   dependencies:
     "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7"
     "@types/bcryptjs": ^2.4.2
+    "@types/jest": ^25.2.1
     "@types/jsonwebtoken": ^8.3.9
     "@types/mongodb": ^3.5.14
     "@types/ws": ^7.2.4
@@ -703,6 +704,7 @@ __metadata:
     mongodb-memory-server: ^6.5.2
     nock: ^12.0.3
     prettier: ^2.0.5
+    ts-jest: ^25.4.0
     typescript: ^3.8.3
     winston: ^3.2.1
     winston-transport: ^4.3.0
