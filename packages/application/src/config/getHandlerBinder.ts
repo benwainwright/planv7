@@ -12,7 +12,7 @@ import TYPES from "../ports/TYPES";
  */
 const getBindableHandlers = (
   container: Container,
-  handlers: (new () => unknown)[]
+  handlers: {}(new () => unknown)[]
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Map<string, any> => {
   const logger = container.get<Logger>(TYPES.logger);

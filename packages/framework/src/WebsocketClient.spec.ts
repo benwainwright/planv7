@@ -8,8 +8,11 @@ import WebsocketClient from "./WebsocketClient";
 const THOUSAND_MILLISECONDS_IN_SECOND = 1000;
 
 describe("Websocket client", () => {
-  // eslint-disable-next-line fp/no-let @typescript-eslint/no-explicit-any
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  /* eslint-disable fp/no-let */
   let server: WS;
+  /* eslint-enable fp/no-let */
+  /* eslint-enable @typescript-eslint/no-explicit-any */
 
   beforeEach(() => {
     server = new WS("ws://localhost:2314", { jsonProtocol: true });
