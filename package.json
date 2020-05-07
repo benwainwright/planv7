@@ -6,6 +6,7 @@
     "packages/*"
   ],
   "dependencies": {
+    "@planv7/jest-common": "workspace:packages/jest-common",
     "typescript": "^3.8.3"
   },
   "scripts": {

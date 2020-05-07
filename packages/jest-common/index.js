@@ -1,8 +1,10 @@
-const getDom = require("./dom");
-const getNode = require("./node");
+const dom = require("./dom");
+const node = require("./node");
+const getCommon = require("./common");
 
 const getConfig = (package) => ({
-  projects: [getDom(package), getNode(package)],
+  ...getCommon(package),
+  projects: [dom, node],
 });
 
 module.exports = getConfig;

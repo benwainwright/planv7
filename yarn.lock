@@ -5806,6 +5806,7 @@ fsevents@^2.1.2:
   version: 0.0.0-use.local
   resolution: "planv7@workspace:."
   dependencies:
+    "@planv7/jest-common": "workspace:packages/jest-common"
     typescript: ^3.8.3
   languageName: unknown
   linkType: soft
