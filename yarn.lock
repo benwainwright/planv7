@@ -700,6 +700,7 @@ __metadata:
     jest: ^25.5.4
     jest-websocket-mock: ^2.0.2
     jsonwebtoken: ^8.5.1
+    mock-socket: ^9.0.3
     mongodb: ^3.5.7
     mongodb-memory-server: ^6.5.2
     nock: ^12.0.3
@@ -5122,6 +5123,15 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"mock-socket@npm:^9.0.3":
+  version: 9.0.3
+  resolution: "mock-socket@npm:9.0.3"
+  dependencies:
+    url-parse: ^1.4.4
+  checksum: 3/adb652014a176f907908f16ab8a5c46633d153a990500a51572ed2e2f9e160a53f2fca15baf7e447e907c4a8795c0ae19a3a3d6bb0e94917f4620747ad042bdf
+  languageName: node
+  linkType: hard
+
 "mongodb-memory-server-core@npm:6.5.2":
   version: 6.5.2
   resolution: "mongodb-memory-server-core@npm:6.5.2"
@@ -5906,6 +5916,13 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"querystringify@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "querystringify@npm:2.1.1"
+  checksum: 3/35301cc744d5de15040a6bdb6b751ef127f65a82675c5f3a9139a4ce0d047ed8b61a459a93261cd7ae0becfa389edd3f02e8aec1c025ae3e7f0d06dc758baa98
+  languageName: node
+  linkType: hard
+
 "react-is@npm:^16.12.0, react-is@npm:^16.8.1":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
@@ -6139,6 +6156,13 @@ fsevents@^2.1.2:
     resolve-from: ^2.0.0
     semver: ^5.1.0
   checksum: 3/2a7cae14fcb0f7aac9e1837bde2edc1e95b2cf635376df09e973151ea735b77f2069e6bf9e1a1c5dd27f052e0b00a477db15807302a1ceeb487307ea61416bee
+  languageName: node
+  linkType: hard
+
+"requires-port@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "requires-port@npm:1.0.0"
+  checksum: 3/0db25fb2ac9b4f2345a350846b7ba99d1f25a6686b1728246d14f05450c8f2fc066bdfae4561b4be2627c184a030a27e17268cfefdf46836e271db13734bc49e
   languageName: node
   linkType: hard
 
@@ -7261,6 +7285,16 @@ typescript@^3.8.3:
   version: 0.1.0
   resolution: "urix@npm:0.1.0"
   checksum: 3/6bdfca4e7fb7d035537068a47a04ace1bacfa32e6b1aaf54c5a0340c83125a186d59109a19b9a3a1c1f986d3eb718b82faf9ad03d53cb99cf868068580b15b3b
+  languageName: node
+  linkType: hard
+
+"url-parse@npm:^1.4.4":
+  version: 1.4.7
+  resolution: "url-parse@npm:1.4.7"
+  dependencies:
+    querystringify: ^2.1.1
+    requires-port: ^1.0.0
+  checksum: 3/33c44a24b9a9e9da7f2591652dc944b6164b93ad1d3ee4eea889b396788f716bd2d6c9d0a2b3ee2e8f863bde69bacbc12c3a4b4e666506ee4c88ea7444004f95
   languageName: node
   linkType: hard
 

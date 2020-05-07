@@ -49,7 +49,7 @@ describe("JwtServerLoginSession", (): void => {
       logger
     );
 
-    expect(await serverSession.getCurrentUser()).not.toBeDefined();
+    expect(await serverSession.getCurrentUser()).toBeNull();
   });
 
   it("Returns no user if the token is not valid", async (): Promise<void> => {
@@ -76,7 +76,7 @@ describe("JwtServerLoginSession", (): void => {
       logger
     );
 
-    expect(await serverSession.getCurrentUser()).not.toBeDefined();
+    expect(await serverSession.getCurrentUser()).toBeNull();
   });
 
   it("Returns the correct user if token is valid", async (): Promise<void> => {
@@ -100,7 +100,7 @@ describe("JwtServerLoginSession", (): void => {
 
     const decodedUser = await serverSession.getCurrentUser();
 
-    expect(decodedUser).toBeDefined();
+    expect(decodedUser).not.toBeNull();
 
     if (decodedUser) {
       expect(decodedUser.getEmail()).toEqual(user.getEmail());
