@@ -79,7 +79,7 @@ describe("JwtLocalStorageCurrentLoginSession", (): void => {
     );
     emitter.emitEvent(event);
 
-    expect(session.getCurrentUser()).not.toBeDefined();
+    expect(session.getCurrentUser()).toBeNull();
   });
 
   it("Returns a user if there is a token", async (): Promise<void> => {
@@ -158,7 +158,7 @@ describe("JwtLocalStorageCurrentLoginSession", (): void => {
     session.killSession();
     expect(Cookies.get(document.cookie, USER_COOKIE_NAME)).toEqual("");
     expect(Cookies.get(document.cookie, JWT_TOKEN_NAME)).toEqual("");
-    expect(session.getCurrentUser()).not.toBeDefined();
-    expect(session.getToken()).not.toBeDefined();
+    expect(session.getCurrentUser()).toBeNull();
+    expect(session.getToken()).toBeNull();
   });
 });
