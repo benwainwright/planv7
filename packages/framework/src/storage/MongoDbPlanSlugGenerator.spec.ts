@@ -41,6 +41,12 @@ describe("The slug generator", () => {
       ]);
     }
   );
+
+  afterEach(() => {
+    server.stop();
+    client.close();
+  });
+
   it("returns the title if the slug doesn't exist", async () => {
     const logger = mock<Logger>();
     const generator = new MongoDbPlanSlugGenerator(db, logger);
