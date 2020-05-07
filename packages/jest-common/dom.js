@@ -1,7 +1,7 @@
 const getCommon = require("./common");
 
 const getDom = (package) => ({
-  ...getCommon,
+  ...getCommon(package),
   displayName: "dom",
   testEnvironment: "jsdom",
   testMatch: ["**/*.spec.dom.(tsx|ts)"],

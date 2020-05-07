@@ -1,7 +1,5 @@
-module.exports = {
-  preset: "ts-jest/presets/js-with-ts",
-  testEnvironment: "node",
-  transformIgnorePatterns: ["node_modules/(?!(typeson-registry)/)"],
-  collectCoverage: true,
-  collectCoverageFrom: ["src/**/*.ts"],
-};
+const getConfig = require("@planv7/jest-common");
+
+const path = require("path");
+
+module.exports = getConfig(path.basename(__dirname));
