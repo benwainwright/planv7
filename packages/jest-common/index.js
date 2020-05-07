@@ -1,10 +1,10 @@
-const dom = require("./dom");
-const node = require("./node");
-const getCommon = require("./common");
+const getDom = require("./dom");
+const getNode = require("./node");
 
 const getConfig = (package) => ({
-  ...getCommon(package),
-  projects: [dom, node],
+  collectCoverage: true,
+  collectCoverageFrom: [`packages/${package}/src/**/*.ts`],
+  projects: [getDom(package), getNode(package)],
 });
 
 module.exports = getConfig;

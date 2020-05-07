@@ -1,6 +1,4 @@
-const path = require("path");
-
-const MONOREPO_ROOT = path.join(__dirname, "../..");
+const paths = require("./paths");
 
 const esModules = ["typeson-registry"].join("|");
 
@@ -8,17 +6,11 @@ const getCommon = (package) => ({
   preset: "ts-jest/presets/js-with-ts",
   testEnvironment: "node",
   transformIgnorePatterns: [`node_modules/(?!${esModules})`],
-  rootDir: MONOREPO_ROOT,
-  collectCoverage: true,
-  collectCoverageFrom: ["src/**/*.ts"],
-  roots: [`<rootDir>/packages/${path.basename(package)}`],
+  rootDir: paths.MONOREPO_ROOT,
+  roots: [paths.packageDir(package)],
   globals: {
     "ts-jest": {
-      tsConfig: path.join(
-        MONOREPO_ROOT,
-        `packages/${package}`,
-        "tsconfig.json"
-      ),
+      tsConfig: paths.packageFile(package, "tsconfig.json"),
     },
   },
 });
