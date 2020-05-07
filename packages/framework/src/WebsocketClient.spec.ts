@@ -116,8 +116,8 @@ describe("Websocket client", () => {
 
     const firedEvents: MockEvent[] = [];
 
-    events.onEvent<MockEvent>((event: MockEvent) => {
-      firedEvents.push(event);
+    events.onEvent<MockEvent>((firedEvent: MockEvent) => {
+      firedEvents.push(firedEvent);
     });
 
     server.send(json);
@@ -146,6 +146,7 @@ describe("Websocket client", () => {
       const command = new MockCommand();
       command.foo = "bar";
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const messages: any[] = [];
 
       server.on("message", (data) => {
@@ -155,6 +156,7 @@ describe("Websocket client", () => {
       await socketDispatch.dispatch(command);
 
       const message = await server.nextMessage;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const messageParsed = JSON.parse(message as any);
 
       expect(messageParsed).toEqual(mockCommand);

@@ -1,5 +1,4 @@
 import { Arg, Substitute } from "@fluffy-spoon/substitute";
-import { mock as mockExtended } from "jest-mock-extended";
 import {
   Command,
   CommandBus,
@@ -14,20 +13,14 @@ import { Container } from "inversify";
 import WebSocket from "ws";
 import WebsocketConnection from "./WebsocketConnection";
 import deepEqual from "deep-equal";
+import { mock as mockExtended } from "jest-mock-extended";
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const asMock = <T>(thing: any): T => {
+  return (thing as unknown) as T;
+};
 
 describe("Websocket connection", () => {
-  class MockEvent extends DomainEvent {
-    public getUserMessage(): string | undefined {
-      return "foo";
-    }
-
-    public identifier(): string {
-      return "MockEvent";
-    }
-
-    public foobar = "";
-  }
-
   test.todo("Rejects connections with different Origin header");
   test.todo("Disconnects clients when token has expired");
 
@@ -132,10 +125,6 @@ describe("Websocket connection", () => {
     });
   });
 
-  const asMock = <T>(thing: any) => {
-    return (thing as unknown) as T;
-  };
-
   it("Should return domainerrors to the websocket client", async () => {
     const container = new Container();
 
@@ -159,6 +148,7 @@ describe("Websocket connection", () => {
     const logger = mockExtended<Logger>();
     const mockCommand = mockExtended<Serialisable>();
     mockCommand.toString = jest.fn();
+    // eslint-disable-next-line no-extra-parens
     (mockCommand.toString as jest.Mock).mockReturnValue("string");
 
     const serialiser = {
