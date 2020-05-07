@@ -55,16 +55,6 @@ describe("Websocket client", () => {
     public foo = "";
   }
 
-  const mockCommand = {
-    $types: {
-      "": "MockCommand",
-    },
-    $: {
-      foo: "bar",
-      handled: false,
-    },
-  };
-
   it("Emits an event on the attached eventemitter when it receives an error", async (done) => {
     class MockError extends Error implements Serialisable {
       public constructor(message: string) {
@@ -145,10 +135,29 @@ describe("Websocket client", () => {
         new Serialiser({ MockCommand, MockEvent }),
         logger
       );
+
+      const mockCommand = {
+        $types: {
+          "": "MockCommand",
+        },
+        foo: "bar",
+        handled: false,
+      };
       const command = new MockCommand();
       command.foo = "bar";
+
+      const messages: any[] = [];
+
+      server.on("message", (data) => {
+        messages.push(data);
+      });
+
       await socketDispatch.dispatch(command);
-      await expect(server).toReceiveMessage(mockCommand);
+
+      const message = await server.nextMessage;
+      const messageParsed = JSON.parse(message as any);
+
+      expect(messageParsed).toEqual(mockCommand);
     });
 
     it("Uses a single connection for multiple dispatches", async () => {
