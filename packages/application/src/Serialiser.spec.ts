@@ -1,10 +1,10 @@
 import {
   Command,
   Commands,
+  DomainEvent,
   GetAllUsersCommand,
   LoginCommand,
   RegisterUserCommand,
-  DomainEvent,
 } from "@planv7/domain";
 import ApplicationError from "./ApplicationError";
 import Serialiser from "./Serialiser";
