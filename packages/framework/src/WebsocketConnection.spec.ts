@@ -33,47 +33,41 @@ describe("Websocket connection", () => {
 
   it("Handles events by replying to the client", () => {
     const container = new Container();
-    const logger = Substitute.for<Logger>();
-    const events = new EventEmitterWrapper(logger);
-
-    const mockCommandBus = Substitute.for<CommandBus>();
+    const mockCommandBus = mockExtended<CommandBus>();
 
     container
       .bind<CommandBus>(DOMAIN.commandBus)
       .toConstantValue(mockCommandBus);
 
-    const socket = Substitute.for<WebSocket>();
-    socket.send(Arg.all()).returns();
+    const socket = {
+      send: jest.fn(),
+      on: jest.fn(),
+    };
 
-    // eslint-disable-next-line no-new
-    new WebsocketConnection(
-      socket,
+    const logger = mockExtended<Logger>();
+
+    const serialiser = {
+      serialise: jest.fn(),
+      unSerialise: jest.fn(),
+    };
+
+    serialiser.serialise.mockReturnValue("foobar2");
+
+    const events = mockExtended<EventEmitterWrapper>();
+
+    const connection = new WebsocketConnection(
+      asMock<WebSocket>(socket),
       mockCommandBus,
-      new Serialiser({}),
+      asMock<Serialiser>(serialiser),
       events,
       logger
     );
 
-    const newEvent = new MockEvent();
-    newEvent.foobar = "yes";
-    events.emitEvent(newEvent);
+    const mockEvent = mockExtended<DomainEvent>();
 
-    const expected = {
-      $: "MockEvent",
-      instance: { outcome: 0, foobar: "yes" },
-    };
+    connection.onAppEvent(mockEvent);
 
-    socket.received().send(
-      Arg.is((x) => {
-        const received = JSON.parse(x);
-        return deepEqual(expected, received);
-      }),
-      // This function doesn't need a second argument
-      // but for some reason the compiler thinks it does
-      // when I use it with a mock, so this Arg.any() is
-      // a hack to overcome that
-      Arg.any()
-    );
+    expect(socket.send).toHaveBeenCalledWith("foobar2");
   });
 
   it("Unserialises commands and passes them into a command bus", (done) => {
