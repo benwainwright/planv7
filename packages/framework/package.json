@@ -26,7 +26,6 @@
     "ws": "^7.2.5"
   },
   "scripts": {
-    "pretest": "yarn lint",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint src/**/*.ts",

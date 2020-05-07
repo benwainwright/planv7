@@ -21,7 +21,6 @@
     "typeson-registry": "^1.0.0-alpha.35"
   },
   "scripts": {
-    "pretest": "yarn lint",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint src/**/*.ts",

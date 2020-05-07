@@ -9,6 +9,7 @@
     "typescript": "^3.8.3"
   },
   "scripts": {
-    "test": "yarn workspaces foreach --interlaced --parallel run test"
+    "test": "yarn workspaces foreach --interlaced --parallel run test",
+    "lint": "yarn workspaces foreach --interlaced --parallel run lint"
   }
 }
