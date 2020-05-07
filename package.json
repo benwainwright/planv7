@@ -1,6 +1,7 @@
 {
   "name": "planv7",
   "private": true,
+  "main": "index.js",
   "workspaces": [
     "packages/*"
   ],

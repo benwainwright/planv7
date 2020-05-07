@@ -690,6 +690,7 @@ __metadata:
   resolution: "@planv7/framework@workspace:packages/framework"
   dependencies:
     "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7"
+    "@planv7/jest-common": "workspace:packages/jest-common"
     "@types/bcryptjs": ^2.4.2
     "@types/jest": ^25.2.1
     "@types/jsonwebtoken": ^8.3.9
@@ -711,6 +712,12 @@ __metadata:
     winston: ^3.2.1
     winston-transport: ^4.3.0
     ws: ^7.2.5
+  languageName: unknown
+  linkType: soft
+
+"@planv7/jest-common@workspace:packages/jest-common":
+  version: 0.0.0-use.local
+  resolution: "@planv7/jest-common@workspace:packages/jest-common"
   languageName: unknown
   linkType: soft
 
