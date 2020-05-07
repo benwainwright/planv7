@@ -51,13 +51,13 @@ export default class WebsocketConnection {
     socket.on("message", this.onMessage);
   }
 
-  private onAppEvent(event: DomainEvent): void {
+  public onAppEvent(event: DomainEvent): void {
     this.logger.verbose(`Sending event ${event.toString()}`);
     const eventString = this.serialiser.serialise<DomainEvent>(event);
     this.socket.send(eventString);
   }
 
-  private async onMessage(data: WebSocket.Data): Promise<void> {
+  public async onMessage(data: WebSocket.Data): Promise<void> {
     const command = this.serialiser.unSerialise<Command>(data as string);
     try {
       await this.commandBus.execute(command);

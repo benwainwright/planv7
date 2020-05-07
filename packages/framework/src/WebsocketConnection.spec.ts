@@ -1,10 +1,12 @@
 import { Arg, Substitute } from "@fluffy-spoon/substitute";
+import { mock as mockExtended } from "jest-mock-extended";
 import {
   Command,
   CommandBus,
   TYPES as DOMAIN,
   DomainError,
   DomainEvent,
+  Serialisable,
 } from "@planv7/domain";
 import { EventEmitterWrapper, Logger, Serialiser } from "@planv7/application";
 
@@ -86,11 +88,9 @@ describe("Websocket connection", () => {
     }
 
     const mockCommand = {
-      $: "MockCommand",
-      instance: {
-        handled: false,
-        foo: "bar",
-      },
+      $types: { "": "MockCommand" },
+      handled: false,
+      foo: "bar",
     };
 
     const mockCommandBus = Substitute.for<CommandBus>();
@@ -138,74 +138,56 @@ describe("Websocket connection", () => {
     });
   });
 
-  it("Should return domainerrors to the websocket client", async (done) => {
+  const asMock = <T>(thing: any) => {
+    return (thing as unknown) as T;
+  };
+
+  it("Should return domainerrors to the websocket client", async () => {
     const container = new Container();
 
     const mockCommandBus = {
       execute: jest.fn(),
     };
 
-    class MockCommand extends Command {
-      public identifier(): string {
-        return "MockCommand";
-      }
+    const theError = new DomainError("foobar");
 
-      public foo = "";
-    }
-
-    mockCommandBus.execute.mockImplementation(
-      async (): Promise<void> => {
-        throw new DomainError("foobar");
-      }
-    );
+    mockCommandBus.execute.mockRejectedValue(theError);
 
     container
       .bind<CommandBus>(DOMAIN.commandBus)
       .toConstantValue(mockCommandBus);
 
-    // eslint-disable-next-line no-new
-    const server = new WebSocket.Server({ port: 7289 });
-    server.on("connection", (socket: WebSocket) => {
-      const logger = Substitute.for<Logger>();
-      // eslint-disable-next-line no-new
-      new WebsocketConnection(
-        socket,
-        mockCommandBus,
-        new Serialiser({
-          MockCommand,
-          DomainError,
-        }),
-        new EventEmitterWrapper(logger),
-        logger
-      );
+    const socket = {
+      send: jest.fn(),
+      on: jest.fn(),
+    };
 
-      const mockCommand = {
-        $: "MockCommand",
-        instance: {
-          handled: false,
-          foo: "bar",
-        },
-      };
+    const logger = mockExtended<Logger>();
+    const mockCommand = mockExtended<Serialisable>();
+    mockCommand.toString = jest.fn();
+    (mockCommand.toString as jest.Mock).mockReturnValue("string");
 
-      socket.emit("message", JSON.stringify(mockCommand));
-    });
+    const serialiser = {
+      serialise: jest.fn(),
+      unSerialise: jest.fn(),
+    };
 
-    setImmediate(() => {
-      const address = server.address() as WebSocket.AddressInfo;
-      const client = new WebSocket(`ws://[${address.address}]:${address.port}`);
+    serialiser.serialise.mockReturnValue("foobar");
+    serialiser.unSerialise.mockReturnValue(mockCommand);
 
-      client.on("message", (data: WebSocket.Data) => {
-        const expectedError = {
-          $: "DomainError",
-          instance: {
-            message: "foobar",
-          },
-        };
-        const returnedObject = JSON.parse(data as string);
-        expect(returnedObject).toEqual(expectedError);
-        server.close();
-        done();
-      });
-    });
+    const events = mockExtended<EventEmitterWrapper>();
+
+    const connection = new WebsocketConnection(
+      asMock<WebSocket>(socket),
+      mockCommandBus,
+      asMock<Serialiser>(serialiser),
+      events,
+      logger
+    );
+
+    await connection.onMessage("foo");
+
+    expect(serialiser.serialise).toHaveBeenCalledWith(theError);
+    expect(socket.send).toHaveBeenCalledWith("foobar");
   });
 });

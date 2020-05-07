@@ -264,7 +264,7 @@ describe("MongoDbPlanRepository", (): void => {
       const plans = await repo.getAll();
       expect(plans.length).toEqual(5);
       const plan = await repo.getByField("slug", "plan6");
-      expect(plan).not.toBeDefined();
+      expect(plan).toBeNull();
     });
   });
 
