@@ -9,6 +9,8 @@ const getCommon = (package) => ({
   testEnvironment: "node",
   transformIgnorePatterns: [`node_modules/(?!${esModules})`],
   rootDir: MONOREPO_ROOT,
+  collectCoverage: true,
+  collectCoverageFrom: ["src/**/*.ts"],
   roots: [`<rootDir>/packages/${path.basename(package)}`],
   globals: {
     "ts-jest": {
