@@ -15,7 +15,7 @@ describe("Websocket client", () => {
   /* eslint-enable @typescript-eslint/no-explicit-any */
 
   beforeEach(() => {
-    server = new WS("ws://localhost:2314", { jsonProtocol: true });
+    server = new WS("ws://localhost:2314");
   });
 
   afterEach(async () => {
@@ -56,8 +56,10 @@ describe("Websocket client", () => {
   }
 
   const mockCommand = {
-    $: "MockCommand",
-    instance: {
+    $types: {
+      "": "MockCommand",
+    },
+    $: {
       foo: "bar",
       handled: false,
     },
@@ -85,10 +87,10 @@ describe("Websocket client", () => {
       logger
     );
     const mockEventObject = {
-      $: "MockError",
-      instance: {
-        message: "foo",
+      $types: {
+        "": "MockError",
       },
+      message: "foo",
     };
 
     await socketDispatch.openSocketIfNotOpen();
@@ -104,34 +106,33 @@ describe("Websocket client", () => {
     server.send(json);
   });
 
-  it("Emits an event on the attached eventemitter when it receives a domainevent", async (done) => {
+  it("Emits an event on the attached eventemitter when it receives a domainevent", async () => {
     const logger = Substitute.for<Logger>();
     const events = new EventEmitterWrapper(logger);
+    const serialiser = new Serialiser({ MockCommand, MockEvent });
     const socketDispatch = new WebsocketClient(
       "ws://localhost:2314",
       events,
-      new Serialiser({ MockCommand, MockEvent }),
+      serialiser,
       logger
     );
-    const mockEventObject = {
-      $: "MockEvent",
-      instance: {
-        outcome: 0,
-        foobar: "baz",
-      },
-    };
 
     await socketDispatch.openSocketIfNotOpen();
 
-    const json = JSON.stringify(mockEventObject);
+    const event = new MockEvent();
+
+    event.foobar = "baz";
+    const json = serialiser.serialise(event);
+
+    const firedEvents: MockEvent[] = [];
 
     events.onEvent<MockEvent>((event: MockEvent) => {
-      expect(event).toBeDefined();
-      expect(event.foobar).toEqual("baz");
-      done();
+      firedEvents.push(event);
     });
 
     server.send(json);
+    expect(firedEvents.length).toEqual(1);
+    expect(firedEvents[0].foobar).toEqual("baz");
   });
 
   describe("dispatch", () => {

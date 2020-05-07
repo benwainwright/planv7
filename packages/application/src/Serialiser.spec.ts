@@ -4,9 +4,21 @@ import {
   GetAllUsersCommand,
   LoginCommand,
   RegisterUserCommand,
+  DomainEvent,
 } from "@planv7/domain";
 import ApplicationError from "./ApplicationError";
 import Serialiser from "./Serialiser";
+
+class MockEvent extends DomainEvent {
+  public getUserMessage(): string | undefined {
+    return "foo";
+  }
+  public identifier(): string {
+    return "MockEvent";
+  }
+
+  public foobar = "";
+}
 
 class MyMockCommand extends Command {
   public readonly x: string;
@@ -56,6 +68,12 @@ describe("serialiseCommand", (): void => {
     const jsonString3 = serialiser.serialise(inputLogin);
     const output3 = serialiser.unSerialise(jsonString3);
     expect(output3).toEqual(inputLogin);
+
+    const inputEvent = new MockEvent();
+    const serialiser2 = new Serialiser({ MockEvent });
+    const jsonString4 = serialiser2.serialise(inputEvent);
+    const output4 = serialiser2.unSerialise(jsonString4);
+    expect(output4).toEqual(inputEvent);
   });
 });
 
