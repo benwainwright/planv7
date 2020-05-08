@@ -672,6 +672,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@planv7/types@workspace:packages/types":
+  version: 0.0.0-use.local
+  resolution: "@planv7/types@workspace:packages/types"
+  languageName: unknown
+  linkType: soft
+
 "@sinonjs/commons@npm:^1.7.0":
   version: 1.7.2
   resolution: "@sinonjs/commons@npm:1.7.2"

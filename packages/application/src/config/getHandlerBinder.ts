@@ -41,7 +41,7 @@ const getBindableHandlers = (
 
 const getHandlerBinder = (
   container: Container,
-  handlers: new () => unknown
+  handlers: (new () => unknown)[]
 ): ((container: Container) => void) => {
   const toBind = getBindableHandlers(container, handlers);
   const logger = container.get<Logger>(TYPES.logger);
