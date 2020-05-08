@@ -12,6 +12,7 @@
     "typescript": "^3.8.3"
   },
   "scripts": {
+    "start:dev": "webpack --env=dev",
     "test": "jest",
     "lint": "yarn workspaces foreach --interlaced --parallel run lint"
   },
