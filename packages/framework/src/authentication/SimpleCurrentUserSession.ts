@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
-import { User } from "@planv7/domain";
 import { CurrentLoginSession } from "@planv7/application";
+import { User } from "@planv7/domain";
 
 export default class SimpleCurrentUserSession implements CurrentLoginSession {
   private user: User;
@@ -17,6 +17,7 @@ export default class SimpleCurrentUserSession implements CurrentLoginSession {
     this.user = user;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public setCurrentUserFromHttpResponse(response: AxiosResponse): void {
     throw new Error("Not implemented");
   }

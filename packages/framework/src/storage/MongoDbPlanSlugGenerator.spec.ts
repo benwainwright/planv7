@@ -3,7 +3,7 @@ import { Db, MongoClient } from "mongodb";
 import { Logger } from "@planv7/application";
 import MongoDbPlanRepository from "./MongoDbPlanRepository";
 import MongoDbPlanSlugGenerator from "./MongoDbPlanSlugGenerator";
-import { MongoMemoryServer, MongoBinary } from "mongodb-memory-server";
+import { MongoMemoryServer } from "mongodb-memory-server";
 import { Plan } from "@planv7/domain";
 import { mock } from "jest-mock-extended";
 
@@ -45,8 +45,8 @@ describe("The slug generator", () => {
   );
 
   afterEach(() => {
-    server.stop();
-    client && client.close();
+    server?.stop();
+    client?.close();
   });
 
   it("returns the title if the slug doesn't exist", async () => {
