@@ -1,14 +1,14 @@
 import {
-  CurrentUserPlansChangedEvent,
   CURRENT_USER_PLANS_CHANGED_EVENT,
+  CurrentUserPlansChangedEvent,
 } from "./current-user-plans-changed-event";
 
-import GetAllUsersEvent from "./GetAllUsersEvent";
-
 import {
-  UserLoginStateChangeEvent,
   USER_LOGIN_STATE_CHANGE_EVENT,
+  UserLoginStateChangeEvent,
 } from "./user-login-state-changed-event";
+
+import GetAllUsersEvent from "./GetAllUsersEvent";
 
 import { UserRegisteredEvent } from "./user-registered-event";
 

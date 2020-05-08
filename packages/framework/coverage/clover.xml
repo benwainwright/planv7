@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1588898571414" clover="3.2.0">
-  <project timestamp="1588898571414" name="All files">
-    <metrics statements="918" coveredstatements="288" conditionals="125" coveredconditionals="64" methods="188" coveredmethods="50" elements="1231" coveredelements="402" complexity="0" loc="918" ncloc="918" packages="4" files="28" classes="28"/>
+<coverage generated="1588899034689" clover="3.2.0">
+  <project timestamp="1588899034689" name="All files">
+    <metrics statements="918" coveredstatements="288" conditionals="123" coveredconditionals="64" methods="188" coveredmethods="50" elements="1229" coveredelements="402" complexity="0" loc="918" ncloc="918" packages="4" files="28" classes="28"/>
     <package name="src">
       <metrics statements="259" coveredstatements="74" conditionals="18" coveredconditionals="10" methods="59" coveredmethods="11"/>
       <file name="ResponseAuthHeader.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/ResponseAuthHeader.ts">
@@ -765,11 +765,11 @@
         <line num="9" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
       </file>
     </package>
     <package name="src.storage">
-      <metrics statements="126" coveredstatements="61" conditionals="24" coveredconditionals="12" methods="34" coveredmethods="14"/>
+      <metrics statements="126" coveredstatements="61" conditionals="22" coveredconditionals="12" methods="34" coveredmethods="14"/>
       <file name="LocalStorageClientStorage.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/storage/LocalStorageClientStorage.ts">
         <metrics statements="8" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
@@ -820,7 +820,7 @@
         <line num="133" count="4" type="stmt"/>
       </file>
       <file name="MongoDbPlanSlugGenerator.spec.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/storage/MongoDbPlanSlugGenerator.spec.ts">
-        <metrics statements="42" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <metrics statements="42" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="4" count="0" type="stmt"/>
         <line num="5" count="0" type="stmt"/>
@@ -838,7 +838,7 @@
         <line num="26" count="0" type="stmt"/>
         <line num="47" count="0" type="stmt"/>
         <line num="48" count="0" type="stmt"/>
-        <line num="49" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="49" count="0" type="stmt"/>
         <line num="52" count="0" type="stmt"/>
         <line num="53" count="0" type="stmt"/>
         <line num="54" count="0" type="stmt"/>
