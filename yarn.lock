@@ -793,6 +793,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/eslint@npm:6.8.0":
+  version: 6.8.0
+  resolution: "@types/eslint@npm:6.8.0"
+  dependencies:
+    "@types/estree": "*"
+    "@types/json-schema": "*"
+  checksum: 3/c3a3db5e5427380bf066230e8138b28bf6999aea23c2967732aca46a63d3d8f2b2ecb36938ee823951cf72bb91225074ec6620c8fef9c92bce20eb9d2059ecb9
+  languageName: node
+  linkType: hard
+
+"@types/estree@npm:*":
+  version: 0.0.44
+  resolution: "@types/estree@npm:0.0.44"
+  checksum: 3/b8b905f9dabd23ff3f566397a60e24cff5e56f076b89ef34acf4281e6819c75a534c827f473d777cf1bed06d054b3e717fad3816308febc3bc55018db9b9a1e9
+  languageName: node
+  linkType: hard
+
 "@types/find-cache-dir@npm:^3.2.0":
   version: 3.2.0
   resolution: "@types/find-cache-dir@npm:3.2.0"
@@ -863,7 +880,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/json-schema@npm:^7.0.3":
+"@types/json-schema@npm:*, @types/json-schema@npm:^7.0.3":
   version: 7.0.4
   resolution: "@types/json-schema@npm:7.0.4"
   checksum: 3/5094037431e4b29d5cc9d6938ea596d1145cc46d305d8d302a477a54d0a7a83ba4629abbf52fcabc3ffdb31cf94647bc366a7bcc544770cbb80212d903018e2b
@@ -930,6 +947,23 @@ __metadata:
   version: 1.19.1
   resolution: "@types/prettier@npm:1.19.1"
   checksum: 3/394a4364ce5e3364bd230eaeed16cfa816b686bb05fc71968188f6a29b1f69abc235ccd4fd0aef4c4eec124480a6e3420962e99406e2bf2f552c9aae46073546
+  languageName: node
+  linkType: hard
+
+"@types/prop-types@npm:*":
+  version: 15.7.3
+  resolution: "@types/prop-types@npm:15.7.3"
+  checksum: 3/bd0eab69d5120ad3784d0c9985f902653d5924707a7f2b3702a330e762dfd61b6494954cb54ad0c52b918ffd6f1e7e27c9270e4442bc15250de348596f2f60cb
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:16.9.34":
+  version: 16.9.34
+  resolution: "@types/react@npm:16.9.34"
+  dependencies:
+    "@types/prop-types": "*"
+    csstype: ^2.2.0
+  checksum: 3/40912bdb87db9663ee77b7a0980c07a7a2617ec60495631d6f9575f4abab41269fad522eb4d6d2109e119c06891d03ac65bb96ddb847fc35c8a5558bfb4ebae0
   languageName: node
   linkType: hard
 
@@ -2006,6 +2040,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"csstype@npm:^2.2.0":
+  version: 2.6.10
+  resolution: "csstype@npm:2.6.10"
+  checksum: 3/b48260010e9bdc28ab80554375c14e2aec3f7fd46806a9206c0a15f99a0b559049bc4d75f91676183b76baf03708d10c1308b94be89870958797eced54cfe661
+  languageName: node
+  linkType: hard
+
 "dashdash@npm:^1.12.0":
   version: 1.14.1
   resolution: "dashdash@npm:1.14.1"
@@ -3053,6 +3094,10 @@ __metadata:
   dependencies:
     "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7"
     "@planv7/jest-common": "workspace:packages/jest-common"
+    "@types/eslint": 6.8.0
+    "@types/react": 16.9.34
+    eslint: ^6.8.0
+    react: ^16.13.1
   languageName: unknown
   linkType: soft
 
@@ -4827,7 +4872,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"loose-envify@npm:^1.4.0":
+"loose-envify@npm:^1.1.0, loose-envify@npm:^1.4.0":
   version: 1.4.0
   resolution: "loose-envify@npm:1.4.0"
   dependencies:
@@ -5775,7 +5820,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.7.2":
+"prop-types@npm:^15.6.2, prop-types@npm:^15.7.2":
   version: 15.7.2
   resolution: "prop-types@npm:15.7.2"
   dependencies:
@@ -5842,6 +5887,17 @@ fsevents@^2.1.2:
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: 3/11bcf1267a314a522615f626f3ce3727a3a24cdbf61c4d452add3550a7875326669631326cfb1ba3e92b6f72244c32ffecf93ad21c0cad8455d3e169d0e3f060
+  languageName: node
+  linkType: hard
+
+"react@npm:^16.13.1":
+  version: 16.13.1
+  resolution: "react@npm:16.13.1"
+  dependencies:
+    loose-envify: ^1.1.0
+    object-assign: ^4.1.1
+    prop-types: ^15.6.2
+  checksum: 3/13dcc9ba8a7521ecc3d7e69998dbc5703ae9515308d06a94a474ad34b42f1fc109372265e924a8c9b11d20fa1828407c290b8f61617c36734c4ca907ae7e5f45
   languageName: node
   linkType: hard
 
