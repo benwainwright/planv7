@@ -5,7 +5,11 @@ const getProjects = (package) => [getDom(package), getNode(package)];
 
 const getPackageConfig = (package) => ({
   collectCoverage: true,
-  collectCoverageFrom: [`packages/${package}/src/**/*.ts`],
+  collectCoverageFrom: [
+    `packages/${package}/src/**/*.tsx?`,
+    "!**/*.spec.ts",
+    "!**/*.spec.dom.ts",
+  ],
   projects: [getDom(package), getNode(package)],
 });
 
