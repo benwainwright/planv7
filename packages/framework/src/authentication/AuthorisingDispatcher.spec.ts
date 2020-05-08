@@ -11,6 +11,12 @@ import AuthorisingDispatcher from "./AuthorisingDispatcher";
 import WebsocketClient from "../WebsocketClient";
 import nock from "nock";
 
+const LOCALHOST = "http://localhost";
+const AUTH = "/auth";
+const LOCALHOST_SLASH_AUTH = `${LOCALHOST}/${AUTH}`;
+const MOCK_COMMAND_OBJECT = { $: "MockCommand", instance: { handled: 0 } };
+const MOCK_COMMAND_STRING = '{"$": "MockCommand", "instance": {"handled": 0}}';
+
 describe("Authorising dispatcher", () => {
   it("Sends commands via the websocket client if there is a current user", async () => {
     class MockCommand extends Command {
@@ -59,17 +65,13 @@ describe("Authorising dispatcher", () => {
       client,
       serialiser,
       session,
-      "http://localhost/auth",
+      LOCALHOST_SLASH_AUTH,
       events
     );
 
-    const request = nock("http://localhost")
-      .post("/auth", { $: "MockCommand", instance: { handled: 0 } })
-      .reply(200);
+    const request = nock(LOCALHOST).post(AUTH).reply(200);
 
-    serialiser
-      .serialise(command)
-      .returns('{"$": "MockCommand", "instance": {"handled": 0}}');
+    serialiser.serialise(command).returns("");
 
     session.getCurrentUser().returns(null);
 
@@ -95,17 +97,13 @@ describe("Authorising dispatcher", () => {
       client,
       serialiser,
       session,
-      "http://localhost/auth",
+      `${LOCALHOST}/auth`,
       events
     );
 
-    nock("http://localhost")
-      .post("/auth", { $: "MockCommand", instance: { handled: 0 } })
-      .reply(200);
+    nock(LOCALHOST).post(AUTH, MOCK_COMMAND_OBJECT).reply(200);
 
-    serialiser
-      .serialise(command)
-      .returns('{"$": "MockCommand", "instance": {"handled": 0}}');
+    serialiser.serialise(command).returns(MOCK_COMMAND_STRING);
 
     session.getCurrentUser().returns(null);
 
@@ -131,7 +129,7 @@ describe("Authorising dispatcher", () => {
       client,
       serialiser,
       session,
-      "http://localhost/auth",
+      LOCALHOST_SLASH_AUTH,
       events
     );
 
@@ -139,18 +137,14 @@ describe("Authorising dispatcher", () => {
       '{"$":"ApplicationError","instance":{"name":"ApplicationError","message":"Login Failed"}}';
     const theError = new ApplicationError("Login Failed");
 
-    nock("http://localhost")
-      .post("/auth", { $: "MockCommand", instance: { handled: 0 } })
-      .reply(403, errorString);
+    nock(LOCALHOST).post(AUTH, MOCK_COMMAND_STRING).reply(403, errorString);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const mock = events.emitError(Arg.any()) as any;
 
     mock.returns();
 
-    serialiser
-      .serialise(command)
-      .returns('{"$": "MockCommand", "instance": {"handled": 0}}');
+    serialiser.serialise(command).returns(MOCK_COMMAND_STRING);
 
     serialiser.unSerialise(errorString).returns(theError);
 

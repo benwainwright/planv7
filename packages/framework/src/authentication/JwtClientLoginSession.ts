@@ -103,11 +103,12 @@ export default class JwtClientLoginSession extends JwtLoginSession
   }
 
   private onUserLogin(event: UserLoginStateChangeEvent): void {
-    if (event instanceof UserLoginStateChangeEvent) {
-      if (event.getOutcome() === CommandOutcome.SUCCESS) {
-        this.currentUser = event.getUser();
-        this.save();
-      }
+    if (
+      event instanceof UserLoginStateChangeEvent &&
+      event.getOutcome() === CommandOutcome.SUCCESS
+    ) {
+      this.currentUser = event.getUser();
+      this.save();
     }
   }
 }

@@ -7,6 +7,8 @@ import WebsocketClient from "./WebsocketClient";
 
 const THOUSAND_MILLISECONDS_IN_SECOND = 1000;
 
+const LOCAL_SERVER_ADDRESS = "ws://localhost:2314";
+
 describe("Websocket client", () => {
   /* eslint-disable @typescript-eslint/no-explicit-any */
   /* eslint-disable fp/no-let */
@@ -15,7 +17,7 @@ describe("Websocket client", () => {
   /* eslint-enable @typescript-eslint/no-explicit-any */
 
   beforeEach(() => {
-    server = new WS("ws://localhost:2314");
+    server = new WS(LOCAL_SERVER_ADDRESS);
   });
 
   afterEach(async () => {
@@ -71,7 +73,7 @@ describe("Websocket client", () => {
 
     const events = new EventEmitterWrapper(logger);
     const socketDispatch = new WebsocketClient(
-      "ws://localhost:2314",
+      LOCAL_SERVER_ADDRESS,
       events,
       new Serialiser({ MockCommand, MockEvent, MockError }),
       logger
@@ -101,7 +103,7 @@ describe("Websocket client", () => {
     const events = new EventEmitterWrapper(logger);
     const serialiser = new Serialiser({ MockCommand, MockEvent });
     const socketDispatch = new WebsocketClient(
-      "ws://localhost:2314",
+      LOCAL_SERVER_ADDRESS,
       events,
       serialiser,
       logger
@@ -130,7 +132,7 @@ describe("Websocket client", () => {
       const logger = Substitute.for<Logger>();
       const events = new EventEmitterWrapper(logger);
       const socketDispatch = new WebsocketClient(
-        "ws://localhost:2314",
+        LOCAL_SERVER_ADDRESS,
         events,
         new Serialiser({ MockCommand, MockEvent }),
         logger
@@ -145,13 +147,6 @@ describe("Websocket client", () => {
       };
       const command = new MockCommand();
       command.foo = "bar";
-
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const messages: any[] = [];
-
-      server.on("message", (data) => {
-        messages.push(data);
-      });
 
       await socketDispatch.dispatch(command);
 

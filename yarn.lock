@@ -632,6 +632,7 @@ __metadata:
     eslint-plugin-fp: ^2.3.0
     eslint-plugin-import: ^2.20.2
     eslint-plugin-react: ^7.19.0
+    eslint-plugin-sonarjs: ^0.5.0
     eslint-plugin-spellcheck: ^0.0.14
   languageName: unknown
   linkType: soft
@@ -660,6 +661,7 @@ __metadata:
     prettier: ^2.0.5
     ts-jest: ^25.4.0
     typescript: ^3.8.3
+    verify-it: ^2.3.2
     winston: ^3.2.1
     winston-transport: ^4.3.0
     ws: ^7.2.5
@@ -2482,6 +2484,15 @@ __metadata:
   peerDependencies:
     eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
   checksum: 3/3e5b7bd3b2ea663716fd2518efd1eed359712711a3c0284ed04e5955e6b7019151d8b54dddad2a9116a54e251dd180bf5ba0ccf34a80ffbe8f4d535a0d03e6b3
+  languageName: node
+  linkType: hard
+
+"eslint-plugin-sonarjs@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "eslint-plugin-sonarjs@npm:0.5.0"
+  peerDependencies:
+    eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
+  checksum: 3/c87c5f461e61cd471f03b03c10c5c962d5a954f124ba5602b85a05f80677e79e0c368b910f754e0595a706c4a261141e951fef3af41583e28b5f35b31a6ea094
   languageName: node
   linkType: hard
 
@@ -5734,6 +5745,13 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"random-js@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "random-js@npm:2.1.0"
+  checksum: 3/20439f2387168da5ffa1274d134b47a88e10892bd5407eba6209dd685ad3ac94087793ac6303edcc190b3ba3d1d0b97f323c8f13d83a632e5e8f3a50bb6822ff
+  languageName: node
+  linkType: hard
+
 "react-is@npm:^16.12.0, react-is@npm:^16.8.1":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
@@ -7181,6 +7199,15 @@ typescript@^3.8.3:
     spdx-correct: ^3.0.0
     spdx-expression-parse: ^3.0.0
   checksum: 3/940899bd4eacfa012ceecb10a5814ba0e8103da5243aa74d0d62f1f8a405efcd23e034fb7193e2d05b392870c53aabcb1f66439b062075cdcb28bc5d562a8ff6
+  languageName: node
+  linkType: hard
+
+"verify-it@npm:^2.3.2":
+  version: 2.3.2
+  resolution: "verify-it@npm:2.3.2"
+  dependencies:
+    random-js: ^2.1.0
+  checksum: 3/8619a5912a955d8ee17f8b141d46a064ea39b5382d98073d1e6d164ded4eb1e50b16d2f2d301653aec6f107bbd9a8767f3ea3567bbc981af501510a558f06c93
   languageName: node
   linkType: hard
 

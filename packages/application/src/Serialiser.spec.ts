@@ -9,6 +9,8 @@ import {
 import ApplicationError from "./ApplicationError";
 import Serialiser from "./Serialiser";
 
+const FAKE_EMAIL = "foo@foo.com";
+
 class MockEvent extends DomainEvent {
   public getUserMessage(): string | undefined {
     return "foo";
@@ -110,15 +112,11 @@ describe("unserialiseCommand", (): void => {
   });
 
   it("Works fine when passed an object rather than a string", () => {
-    const expectedInstance = new RegisterUserCommand(
-      "bar",
-      "foo@foo.com",
-      "bap"
-    );
+    const expectedInstance = new RegisterUserCommand("bar", FAKE_EMAIL, "bap");
     const object = {
       $: {
         name: "bar",
-        email: "foo@foo.com",
+        email: FAKE_EMAIL,
         handled: false,
         password: "bap",
       },
@@ -138,7 +136,7 @@ describe("unserialiseCommand", (): void => {
       {
         "$": {
           "name": "bar",
-          "email": "foo@foo.com",
+          "email": "${FAKE_EMAIL}"
           "password": "bap"
         },
         "$types" : { "$": { "": "${expectedInstance.constructor.name}" } }
@@ -150,16 +148,12 @@ describe("unserialiseCommand", (): void => {
   });
 
   it("Creates an instance of a RegisterUserCommand with the correct data in it", (): void => {
-    const expectedInstance = new RegisterUserCommand(
-      "bar",
-      "foo@foo.com",
-      "bap"
-    );
+    const expectedInstance = new RegisterUserCommand("bar", FAKE_EMAIL, "bap");
     const jsonString = `
       {
         "$": {
           "name": "bar",
-          "email": "foo@foo.com",
+          "email": "${FAKE_EMAIL}",
           "handled": false,
           "password": "bap"
         },
@@ -172,16 +166,12 @@ describe("unserialiseCommand", (): void => {
   });
 
   it("Creates an instance of a command with the constructor name set correctly", (): void => {
-    const expectedInstance = new RegisterUserCommand(
-      "bar",
-      "foo@foo.com",
-      "bap"
-    );
+    const expectedInstance = new RegisterUserCommand("bar", FAKE_EMAIL, "bap");
     const jsonString = `
       {
         "$": {
           "name": "bar",
-          "email": "foo@foo.com",
+          "email": "${FAKE_EMAIL}",
           "password": "bap"
         },
         "$types": { "$": { "": "${expectedInstance.constructor.name}" } }

@@ -21,6 +21,7 @@
     "prettier": "^2.0.5",
     "ts-jest": "^25.4.0",
     "typescript": "^3.8.3",
+    "verify-it": "^2.3.2",
     "winston": "^3.2.1",
     "winston-transport": "^4.3.0",
     "ws": "^7.2.5"

@@ -1,6 +1,6 @@
 module.exports = {
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint", "filenames", "import", "fp"],
+  plugins: ["@typescript-eslint", "filenames", "import", "fp", "sonarjs"],
   ignorePatterns: ["node_modules"],
   extends: [
     "prettier",
@@ -11,6 +11,7 @@ module.exports = {
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
+    "plugin:sonarjs/recommended",
   ],
   parserOptions: {
     ecmaVersion: 2018,

@@ -13,6 +13,8 @@ import Logger from "../ports/Logger";
 import UpdatePlanHandler from "./UpdatePlanHandler";
 import { mock } from "jest-mock-extended";
 
+const FAKE_EMAIL = "foo@bar.com";
+
 describe("Update plan handler", () => {
   it("Should throw an error if the user is not authenticated", async () => {
     const repo = mock<AuthenticatedEntityRepository<Plan>>();
@@ -40,7 +42,7 @@ describe("Update plan handler", () => {
     const events = mock<EventEmitterWrapper>();
 
     session.getCurrentUser.mockReturnValue(
-      new User("foobar", "foo@bar.com", "foobar")
+      new User("foobar", FAKE_EMAIL, "foobar")
     );
 
     repo.getByFieldAndUser.mockReturnValue(Promise.resolve(null));
@@ -63,7 +65,7 @@ describe("Update plan handler", () => {
     const events = mock<EventEmitterWrapper>();
 
     session.getCurrentUser.mockReturnValue(
-      new User("fooUser", "foo@bar.com", "foobar")
+      new User("fooUser", FAKE_EMAIL, "foobar")
     );
     const command = new UpdatePlanCommand(
       "fooSlug",
@@ -92,7 +94,7 @@ describe("Update plan handler", () => {
     const events = mock<EventEmitterWrapper>();
 
     session.getCurrentUser.mockReturnValue(
-      new User("fooUser", "foo@bar.com", "foobar")
+      new User("fooUser", FAKE_EMAIL, "foobar")
     );
 
     const command = new UpdatePlanCommand(

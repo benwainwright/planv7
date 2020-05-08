@@ -31,11 +31,10 @@ export default class SimpleCommandBus implements CommandBus {
   }
 
   public async execute(command: Command): Promise<void> {
-    if (this.logger) {
-      this.logger.verbose(
-        `Trying to find a handler for ${command.identifier()}`
-      );
-    }
+    this.logger?.verbose(
+      `Trying to find a handler for ${command.identifier()}`
+    );
+
     if (this.handlers) {
       for (const handler of this.handlers) {
         if (this.logger) {
@@ -50,9 +49,9 @@ export default class SimpleCommandBus implements CommandBus {
           return;
         }
       }
-    } else if (this.logger) {
-      this.logger.verbose(`No handlers registered`);
     }
+
+    this.logger?.verbose(`No handlers registered`);
 
     if (this.dispatcher) {
       await this.dispatcher.dispatch(command);

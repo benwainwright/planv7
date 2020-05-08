@@ -1,3 +1,5 @@
+/* eslint-disable sonarjs/no-duplicate-string */
+
 import { Db, MongoClient } from "mongodb";
 import { Deadline, Plan, User } from "@planv7/domain";
 
