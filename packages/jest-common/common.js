@@ -3,6 +3,7 @@ const paths = require("./paths");
 const esModules = ["typeson-registry"].join("|");
 
 const getCommon = (package) => ({
+  reporters: ["default", "jest-junit"],
   preset: "ts-jest/presets/js-with-ts",
   testEnvironment: "node",
   transformIgnorePatterns: [`node_modules/(?!${esModules})`],
