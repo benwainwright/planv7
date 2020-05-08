@@ -1,0 +1,28 @@
+image: node:14-stretch
+
+stages:
+  - test
+
+variables:
+  YARN_CACHE_FOLDER: $CI_PROJECT_DIR/.yarn
+  CYPRESS_CACHE_FOLDER: $CI_PROJECT_DIR/cache/Cypress
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .yarn
+    - cache/Cypress
+    - node_modules/
+    - yarn.lock
+jest:
+  stage: test
+  script:
+    - yarn test
+    - mkdir public
+    - cp -r coverage/lcov-report/* public/
+  coverage: /All files\s*\|\s*([\d\.]+)/
+  artifacts:
+    paths:
+      - public
+    reports:
+      junit: junit.xml
