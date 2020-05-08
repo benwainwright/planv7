@@ -1,4 +1,4 @@
 import App from "./components/App";
+import renderApp from "./renderApp";
 
-// eslint-disable-next-line import/prefer-default-export
-export { App };
+export { App, renderApp };

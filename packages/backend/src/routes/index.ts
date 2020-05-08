@@ -1,4 +1,4 @@
 import app from "./app";
+import statics from "./statics";
 
-// eslint-disable-next-line import/prefer-default-export
-export { app };
+export { app, statics };

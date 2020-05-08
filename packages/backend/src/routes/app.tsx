@@ -13,11 +13,11 @@ const app = async (): Promise<
 > => {
   const router = new Router();
   const getIndexTemplate = await indexTemplateLoader();
-  const baseUrlRegex = new RegExp(`/\\/${APP_BASE_URL}($|\\/.*)/`, "u");
+  const baseUrlRegex = new RegExp(`\\/${APP_BASE_URL}($|\\/.*)`, "u");
 
   router.get(baseUrlRegex, async (context: RouterContext, next: Next) => {
     const reactApp = ReactDOMServer.renderToString(
-      <App compiler="typescript" framework="react" />
+      <App compiler="Typescript" framework="React" />
     );
 
     const indexTemplate = getIndexTemplate();

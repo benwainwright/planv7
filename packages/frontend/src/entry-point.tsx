@@ -1,9 +1,3 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import renderApp from "./renderApp";
 
-import App from "./components/App";
-
-ReactDOM.render(
-  <App compiler="Typescript" framework="React" />,
-  document.querySelector("example")
-);
+renderApp();
