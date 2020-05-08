@@ -7,6 +7,7 @@ module.exports = {
     "fp",
     "sonarjs",
     "unicorn",
+    "promise",
   ],
   ignorePatterns: ["node_modules"],
   extends: [
@@ -20,6 +21,7 @@ module.exports = {
     "plugin:import/typescript",
     "plugin:sonarjs/recommended",
     "plugin:unicorn/recommended",
+    "plugin:promise/recommended",
   ],
   parserOptions: {
     ecmaVersion: 2018,
