@@ -1,4 +1,5 @@
 const merge = require("webpack-merge");
+const webpack = require("webpack");
 const { CheckerPlugin } = require("awesome-typescript-loader");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const nodeExternals = require("webpack-node-externals");
@@ -6,7 +7,7 @@ const path = require("path");
 
 const serverConfig = {
   mode: "development",
-  entry: "./src/server/run.ts",
+  entry: ["./src/start.ts"],
   target: "node",
   node: {
     dns: "mock",
@@ -32,7 +33,6 @@ const serverConfig = {
         test: /\.ts(x?)$/,
         exclude: /node_modules/,
         use: [
-          "cache-loader",
           {
             loader: "babel-loader",
           },
@@ -52,9 +52,13 @@ const serverConfig = {
       },
     ],
   },
-  plugins: [new CheckerPlugin(), new ForkTsCheckerWebpackPlugin()],
+  plugins: [
+    new CheckerPlugin(),
+    new ForkTsCheckerWebpackPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+  ],
   externals: [
-    nodeExternals({ modulesFromFile: true, whitelist: [/^@planv5/] }),
+    nodeExternals({ modulesFromFile: true, whitelist: [/^@planv7/] }),
   ],
 };
 module.exports = merge(require("./webpack.common.config"), serverConfig);
