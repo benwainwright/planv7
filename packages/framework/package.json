@@ -10,7 +10,7 @@
     "@types/ws": "^7.2.4",
     "bcryptjs": "^2.4.3",
     "eslint": "^6.8.0",
-    "jest": "^25.5.4",
+    "jest": "^25.0.0",
     "jest-mock-extended": "^1.0.8",
     "jest-websocket-mock": "^2.0.2",
     "jsonwebtoken": "^8.5.1",
@@ -35,5 +35,10 @@
     "extends": [
       "@planv7/eslint-config-planv7"
     ]
+  },
+  "config": {
+    "mongoDbMemoryServer": {
+      "downloadDir": "../../node_modules/.cache/mongodb-memory-server/mongodb-binaries"
+    }
   }
 }

@@ -1,27 +1,16 @@
 {
   "compilerOptions": {
     "target": "esnext",
-
     "outDir": "./dist/",
-
     "strictNullChecks": true,
-
     "allowSyntheticDefaultImports": true,
-
     "experimentalDecorators": true,
-
     "moduleResolution": "node",
-
     "allowJs": true,
-
     "strict": true,
-
     "esModuleInterop": true,
-
     "jsx": "react",
-
     "baseUrl": "./src",
-
     "lib": [
       "es2015",
       "dom.iterable",
@@ -29,29 +18,20 @@
       "es2017.object",
       "dom"
     ],
-
     "module": "es6",
-
     "removeComments": true,
-
     "alwaysStrict": true,
-
     "allowUnreachableCode": false,
-
     "noImplicitAny": true,
-
     "noImplicitThis": true,
-
     "noUnusedLocals": false,
-
     "noUnusedParameters": false,
-
     "noImplicitReturns": true,
-
     "noFallthroughCasesInSwitch": true,
-
     "forceConsistentCasingInFileNames": true,
-
-    "importHelpers": true
+    "importHelpers": true,
+    "typeRoots": [
+      "../../node_modules/@types", "./src/types"
+    ]
   }
 }

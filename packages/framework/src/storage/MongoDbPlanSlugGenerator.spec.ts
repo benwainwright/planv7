@@ -3,9 +3,11 @@ import { Db, MongoClient } from "mongodb";
 import { Logger } from "@planv7/application";
 import MongoDbPlanRepository from "./MongoDbPlanRepository";
 import MongoDbPlanSlugGenerator from "./MongoDbPlanSlugGenerator";
-import { MongoMemoryServer } from "mongodb-memory-server";
+import { MongoMemoryServer, MongoBinary } from "mongodb-memory-server";
 import { Plan } from "@planv7/domain";
 import { mock } from "jest-mock-extended";
+
+jest.setTimeout(100000);
 
 describe("The slug generator", () => {
   let client: MongoClient;
@@ -44,7 +46,7 @@ describe("The slug generator", () => {
 
   afterEach(() => {
     server.stop();
-    client.close();
+    client && client.close();
   });
 
   it("returns the title if the slug doesn't exist", async () => {
@@ -53,7 +55,7 @@ describe("The slug generator", () => {
     const plan = new Plan("foo", "", "fooTitle", "", 0);
     const slug = await generator.getUniqueSlug(plan);
     expect(slug).toEqual("fooTitle");
-  });
+  }, 1000);
 
   it("replaces spaces with dashes", async () => {
     const logger = mock<Logger>();
@@ -61,7 +63,7 @@ describe("The slug generator", () => {
     const plan = new Plan("foo", "", "foo title", "", 0);
     const slug = await generator.getUniqueSlug(plan);
     expect(slug).toEqual("foo-title");
-  });
+  }, 1000);
 
   it("Adds a number on the end of slug already exists", async () => {
     const logger = mock<Logger>();
