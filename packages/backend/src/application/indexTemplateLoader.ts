@@ -63,7 +63,6 @@ const generateIndexTemplate = (
             <script src="${reactCdnPath}" type="text/javascript"></script>
             <script src="${reactDomCdnPath}" type="text/javascript"></script>
             ${scriptsString}
-          </script>
           </body>
           </html>`);
 };
