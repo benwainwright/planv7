@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1588897313803" clover="3.2.0">
-  <project timestamp="1588897313803" name="All files">
-    <metrics statements="913" coveredstatements="288" conditionals="125" coveredconditionals="64" methods="184" coveredmethods="50" elements="1222" coveredelements="402" complexity="0" loc="913" ncloc="913" packages="6" files="29" classes="29"/>
+<coverage generated="1588898571414" clover="3.2.0">
+  <project timestamp="1588898571414" name="All files">
+    <metrics statements="918" coveredstatements="288" conditionals="125" coveredconditionals="64" methods="188" coveredmethods="50" elements="1231" coveredelements="402" complexity="0" loc="918" ncloc="918" packages="4" files="28" classes="28"/>
     <package name="src">
       <metrics statements="259" coveredstatements="74" conditionals="18" coveredconditionals="10" methods="59" coveredmethods="11"/>
       <file name="ResponseAuthHeader.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/ResponseAuthHeader.ts">
@@ -295,7 +295,7 @@
       </file>
     </package>
     <package name="src.authentication">
-      <metrics statements="430" coveredstatements="153" conditionals="77" coveredconditionals="42" methods="70" coveredmethods="25"/>
+      <metrics statements="435" coveredstatements="153" conditionals="77" coveredconditionals="42" methods="74" coveredmethods="25"/>
       <file name="AuthorisingDispatcher.spec.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/authentication/AuthorisingDispatcher.spec.ts">
         <metrics statements="64" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
@@ -759,6 +759,14 @@
         <line num="47" count="3" type="stmt"/>
         <line num="51" count="0" type="stmt"/>
       </file>
+      <file name="SimpleCurrentUserSession.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/authentication/SimpleCurrentUserSession.ts">
+        <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+      </file>
     </package>
     <package name="src.storage">
       <metrics statements="126" coveredstatements="61" conditionals="24" coveredconditionals="12" methods="34" coveredmethods="14"/>
@@ -1006,18 +1014,6 @@
         <line num="281" count="0" type="stmt"/>
         <line num="282" count="0" type="stmt"/>
         <line num="283" count="0" type="stmt"/>
-      </file>
-    </package>
-    <package name="src.types.typeson">
-      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="index.d.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/types/typeson/index.d.ts">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
-    </package>
-    <package name="src.types.typeson-registry">
-      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="index.d.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/types/typeson-registry/index.d.ts">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
   </project>

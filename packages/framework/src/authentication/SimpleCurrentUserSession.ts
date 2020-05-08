@@ -1,5 +1,6 @@
-import { CurrentLoginSession } from "@planv7/application";
+import { AxiosResponse } from "axios";
 import { User } from "@planv7/domain";
+import { CurrentLoginSession } from "@planv7/application";
 
 export default class SimpleCurrentUserSession implements CurrentLoginSession {
   private user: User;
@@ -14,5 +15,9 @@ export default class SimpleCurrentUserSession implements CurrentLoginSession {
 
   public setCurrentUser(user: User): void {
     this.user = user;
+  }
+
+  public setCurrentUserFromHttpResponse(response: AxiosResponse): void {
+    throw new Error("Not implemented");
   }
 }
