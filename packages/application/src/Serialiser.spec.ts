@@ -136,7 +136,7 @@ describe("unserialiseCommand", (): void => {
       {
         "$": {
           "name": "bar",
-          "email": "${FAKE_EMAIL}"
+          "email": "${FAKE_EMAIL}",
           "password": "bap"
         },
         "$types" : { "$": { "": "${expectedInstance.constructor.name}" } }

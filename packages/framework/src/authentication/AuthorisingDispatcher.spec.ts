@@ -13,7 +13,7 @@ import nock from "nock";
 
 const LOCALHOST = "http://localhost";
 const AUTH = "/auth";
-const LOCALHOST_SLASH_AUTH = `${LOCALHOST}/${AUTH}`;
+const LOCALHOST_SLASH_AUTH = `${LOCALHOST}${AUTH}`;
 const MOCK_COMMAND_OBJECT = { $: "MockCommand", instance: { handled: 0 } };
 const MOCK_COMMAND_STRING = '{"$": "MockCommand", "instance": {"handled": 0}}';
 
