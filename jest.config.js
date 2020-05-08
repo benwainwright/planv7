@@ -5,5 +5,6 @@ module.exports = {
   projects: [
     ...jestCommon.getProjects("application"),
     ...jestCommon.getProjects("framework"),
+    ...jestCommon.getProjects("backend"),
   ],
 };

@@ -30,12 +30,14 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
-    "unicorn/prevent-abbreviations": ["error", { WhiteList: { props: true } }],
+    "unicorn/prevent-abbreviations": "off",
     "unicorn/filename-case": "off",
+    "import/namespace": "off",
     "import/prefer-default-export": "error",
     // Eslint build in
     "no-inline-comments": "error",
     "no-bitwise": "error",
+    "array-func/prefer-array-from": "off",
     "sort-imports": "error",
     "prefer-template": "error",
     "prefer-spread": "error",
