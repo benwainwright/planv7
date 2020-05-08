@@ -14,5 +14,10 @@
   "scripts": {
     "test": "yarn workspaces foreach --interlaced --parallel run test",
     "lint": "yarn workspaces foreach --interlaced --parallel run lint"
+  },
+  "config": {
+    "mongoDbMemoryServer": {
+      "downloadDir": "node_modules/.cache/mongodb-memory-server/mongodb-binaries"
+    }
   }
 }
