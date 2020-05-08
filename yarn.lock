@@ -635,6 +635,7 @@ __metadata:
   resolution: "@planv7/backend@workspace:packages/backend"
   dependencies:
     "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7"
+    "@planv7/frontend": "workspace:packages/frontend"
     "@planv7/jest-common": "workspace:packages/jest-common"
     "@types/eslint": 6.8.0
     "@types/execa": 2.0.0
