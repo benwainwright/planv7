@@ -3,5 +3,3 @@
 .yarn/install-state.gz
 coverage
 junit.xml
-.yarn/build-state.yml
-.yarn/plugins
