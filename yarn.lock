@@ -628,6 +628,7 @@ __metadata:
     eslint: ^6.8.0
     eslint-config-import: ^0.13.0
     eslint-config-prettier: ^6.11.0
+    eslint-plugin-array-func: ^3.1.5
     eslint-plugin-filenames: ^1.3.2
     eslint-plugin-fp: ^2.3.0
     eslint-plugin-import: ^2.20.2
@@ -2423,6 +2424,15 @@ __metadata:
     debug: ^2.6.9
     pkg-dir: ^2.0.0
   checksum: 3/f584af176480a702eedcdb3f610797f8b8d1293c3835ed71fadb579ec28400b91ded5283729418f63d48dc27c6358bd66f2bd839614d565a1b78d3c3440ee8f7
+  languageName: node
+  linkType: hard
+
+"eslint-plugin-array-func@npm:^3.1.5":
+  version: 3.1.5
+  resolution: "eslint-plugin-array-func@npm:3.1.5"
+  peerDependencies:
+    eslint: ">=3.0.0"
+  checksum: 3/c23cec53424d4e370d06a7d17b543ca0af1ad8af34a03742b16fc222ad14553afcf1683f3dffaed42e3410a3f1647b252649467de1f18cb111d702ca8268a6a7
   languageName: node
   linkType: hard
 

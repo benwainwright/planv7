@@ -8,6 +8,7 @@ module.exports = {
     "sonarjs",
     "unicorn",
     "promise",
+    "array-func",
   ],
   ignorePatterns: ["node_modules"],
   extends: [
@@ -22,6 +23,7 @@ module.exports = {
     "plugin:sonarjs/recommended",
     "plugin:unicorn/recommended",
     "plugin:promise/recommended",
+    "plugin:array-func/all",
   ],
   parserOptions: {
     ecmaVersion: 2018,

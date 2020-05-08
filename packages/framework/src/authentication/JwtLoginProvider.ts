@@ -55,7 +55,7 @@ export default class JwtLoginProvider implements LoginProvider {
   }
 
   private async signUser(user: User): Promise<string> {
-    return new Promise<string>((accept, reject): void => {
+    return new Promise<string>((resolve, reject): void => {
       sign(
         { ...user },
         this.privateKey,
@@ -64,7 +64,7 @@ export default class JwtLoginProvider implements LoginProvider {
           if (error) {
             reject(error);
           } else {
-            accept(token);
+            resolve(token);
           }
         }
       );
@@ -74,7 +74,7 @@ export default class JwtLoginProvider implements LoginProvider {
   private async doLogin(username: string, password: string): Promise<User> {
     const query = { name: username };
     const data = await this.collection.findOne(query);
-    return new Promise((accept, reject): void => {
+    return new Promise((resolve, reject): void => {
       if (data) {
         compare(
           password,
@@ -82,7 +82,7 @@ export default class JwtLoginProvider implements LoginProvider {
           (error: Error, success: boolean): void => {
             if (success) {
               const user = new User(data.name, data.email, "");
-              accept(user);
+              resolve(user);
             } else {
               reject(new ApplicationError("Login Failed"));
             }

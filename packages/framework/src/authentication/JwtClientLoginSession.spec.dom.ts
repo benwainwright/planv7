@@ -15,7 +15,7 @@ import WebsocketClient from "../WebsocketClient";
 import { sign } from "jsonwebtoken";
 
 const signUser = async (user: User, key: string): Promise<string> => {
-  return new Promise<string>((accept, reject): void =>
+  return new Promise<string>((resolve, reject): void =>
     sign(
       { ...user },
       key,
@@ -24,7 +24,7 @@ const signUser = async (user: User, key: string): Promise<string> => {
         if (error || !token) {
           reject(error);
         } else {
-          accept(token);
+          resolve(token);
         }
       }
     )
