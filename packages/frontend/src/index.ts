@@ -1,4 +1,5 @@
 import App from "./components/App";
+import Theme from "./components/Theme";
 import renderApp from "./renderApp";
 
-export { App, renderApp };
+export { App, Theme, renderApp };

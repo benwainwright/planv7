@@ -1,6 +1,8 @@
 {
   "name": "@planv7/backend",
   "dependencies": {
+    "@material-ui/core": "^4.9.13",
+    "@material-ui/icons": "^4.9.1",
     "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7",
     "@planv7/frontend": "workspace:packages/frontend",
     "@planv7/jest-common": "workspace:packages/jest-common",

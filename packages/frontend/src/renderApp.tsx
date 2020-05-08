@@ -2,10 +2,17 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import App from "./components/App";
+import Container from "@material-ui/core/Container";
+import Theme from "./components/Theme";
+import { ThemeProvider } from "@material-ui/core/styles";
 
 const renderApp = (): void => {
   ReactDOM.hydrate(
-    <App compiler="Typescript" framework="React" />,
+    <Container maxWidth="md" className="App">
+      <ThemeProvider theme={Theme}>
+        <App compiler="Typescript" framework="React" />
+      </ThemeProvider>
+    </Container>,
     document.querySelector("#root")
   );
 };

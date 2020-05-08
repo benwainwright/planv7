@@ -1,8 +1,10 @@
 import * as React from "react";
+import { App, Theme } from "@planv7/frontend";
 import Koa, { Next } from "koa";
 import Router, { RouterContext } from "koa-router";
-import { App } from "@planv7/frontend";
+import Container from "@material-ui/core/Container";
 import ReactDOMServer from "react-dom/server";
+import { ServerStyleSheets, ThemeProvider } from "@material-ui/core/styles";
 import indexTemplateLoader from "../application/indexTemplateLoader";
 
 const APP_BASE_URL = "app";
@@ -16,16 +18,25 @@ const app = async (): Promise<
   const baseUrlRegex = new RegExp(`\\/${APP_BASE_URL}($|\\/.*)`, "u");
 
   router.get(baseUrlRegex, async (context: RouterContext, next: Next) => {
+    const sheets = new ServerStyleSheets();
     const reactApp = ReactDOMServer.renderToString(
-      <App compiler="Typescript" framework="React" />
+      sheets.collect(
+        <Container maxWidth="md" className="App">
+          <ThemeProvider theme={Theme}>
+            <App compiler="Typescript" framework="React" />
+          </ThemeProvider>
+        </Container>
+      )
     );
 
     const indexTemplate = getIndexTemplate();
 
-    const renderedPage = indexTemplate.replace(
-      '<div id="root"></div>',
-      `<div id="root">${reactApp}</div>`
-    );
+    const renderedPage = indexTemplate
+      .replace('<div id="root"></div>', `<div id="root">${reactApp}</div>`)
+      .replace(
+        '<style id="css-server-side"></style>',
+        `<style id="css-server-side">${sheets.toString()}</style>`
+      );
 
     context.set("Content-Type", " text/html");
     context.body = renderedPage;

@@ -1,6 +1,7 @@
 {
   "name": "@planv7/frontend",
   "dependencies": {
+    "@material-ui/icons": "^4.9.1",
     "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.1.0",
