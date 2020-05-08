@@ -1,6 +1,7 @@
 image: node:14-stretch
 
 stages:
+  - install
   - test
 
 variables:
@@ -14,6 +15,15 @@ cache:
     - cache/Cypress
     - node_modules/
     - yarn.lock
+
+before_script:
+  - yarn install
+
+install:
+  stage: install
+  script:
+    - yarn install
+
 jest:
   stage: test
   script:
