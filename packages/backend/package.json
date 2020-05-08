@@ -27,7 +27,7 @@
     "xmldom": "^0.3.0"
   },
   "scripts": {
-    "start": "ts-node src/start.ts",
+    "start:dev": "APP_LOG_LEVEL=verbose webpack --env=dev",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint src/**/*.ts",
