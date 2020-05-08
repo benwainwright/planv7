@@ -19,6 +19,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 14.1.0 
+    - uses: actions/cache@v1
     - run: yarn install --immutable
  
   lint:
