@@ -1,0 +1,19 @@
+{
+  "name": "frontend",
+  "dependencies": {
+    "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7",
+    "@planv7/jest-common": "workspace:packages/jest-common"
+  },
+
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/**/*.{ts,tsx}",
+    "lint:fix": "eslint --fix src/**/*.{ts,tsx}"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@planv7/eslint-config-planv7"
+    ]
+  }
+}

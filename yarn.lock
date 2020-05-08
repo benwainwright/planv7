@@ -3047,6 +3047,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"frontend@workspace:packages/frontend":
+  version: 0.0.0-use.local
+  resolution: "frontend@workspace:packages/frontend"
+  dependencies:
+    "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7"
+    "@planv7/jest-common": "workspace:packages/jest-common"
+  languageName: unknown
+  linkType: soft
+
 "fs-constants@npm:^1.0.0":
   version: 1.0.0
   resolution: "fs-constants@npm:1.0.0"
