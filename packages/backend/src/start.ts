@@ -1,7 +1,6 @@
 import * as routes from "./routes";
 
 import Koa from "koa";
-import koaWebpack from "koa-webpack";
 
 const SERVER_PORT = 80;
 
