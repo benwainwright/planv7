@@ -716,6 +716,7 @@ __metadata:
     react-dom: ^16.13.1
     react-router-dom: ^5.1.2
     source-map-loader: ^0.2.4
+    start-server-webpack-plugin: ^2.2.5
     supertest: ^4.0.2
     ts-loader: ^7.0.3
     ts-node: ^8.10.1
@@ -9907,6 +9908,13 @@ resolve@1.1.7:
   version: 1.0.2
   resolution: "stack-utils@npm:1.0.2"
   checksum: 3/593a8bc5ca6d4bc0f97a5eb9b4d5739614a1037ccbeb05989de7e24c9352e2744c779611fa30a441ab40a97a1cc770d6cd4acdbc621fd80ea8d309c3d8068c49
+  languageName: node
+  linkType: hard
+
+"start-server-webpack-plugin@npm:^2.2.5":
+  version: 2.2.5
+  resolution: "start-server-webpack-plugin@npm:2.2.5"
+  checksum: 3/fe850d4de27c64e6749044dcd37aed9387ac97f846a4c6f8de6f3e6d519ddb14f32addc7a6ab959c7a2c4327605449f8dfdabbb0466941677a4710f7a34da6f8
   languageName: node
   linkType: hard
 
