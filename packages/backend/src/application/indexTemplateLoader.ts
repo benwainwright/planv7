@@ -25,7 +25,7 @@ const loadAssets = async (assetsDir: string): Promise<string[]> => {
   }
 };
 
-const getScriptsFiles = (items: string[]): string[] => {
+const getScriptFiles = (items: string[]): string[] => {
   const scripts = items.filter((item) => item.endsWith(".js"));
 
   if (scripts.length !== 0) {
@@ -71,7 +71,7 @@ const generateIndexTemplate = (
 const indexTemplateLoader = async (): Promise<() => string> => {
   const assetsDir = path.join(process.cwd(), "dist", "assets");
   const assets = await loadAssets(assetsDir);
-  const scriptFiles = getScriptsFiles(assets);
+  const scriptFiles = getScriptFiles(assets);
 
   const cssFiles = assets.filter((assetFilename) =>
     assetFilename.endsWith(".css")
