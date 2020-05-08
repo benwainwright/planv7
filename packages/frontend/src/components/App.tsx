@@ -7,7 +7,7 @@ export interface AppProps {
 
 const App: React.FC<AppProps> = (props: AppProps): React.ReactElement => (
   <h1>
-    App! from {props.compiler} and {props.framework}
+    App from {props.compiler} and {props.framework}
   </h1>
 );
 

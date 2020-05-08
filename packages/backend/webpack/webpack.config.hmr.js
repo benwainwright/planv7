@@ -65,7 +65,6 @@ const clientConfig = {
   externals: ["module"],
   plugins: [
     new CheckerPlugin(),
-    new ForkTsCheckerWebpackPlugin(),
     new webpack.EnvironmentPlugin([
       "NODE_ENV",
       "DEBUG",
