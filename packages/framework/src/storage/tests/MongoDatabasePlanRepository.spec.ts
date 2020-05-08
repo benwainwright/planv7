@@ -4,7 +4,7 @@ import { Db, MongoClient } from "mongodb";
 import { Deadline, Plan, User } from "@planv7/domain";
 
 import { Logger } from "@planv7/application";
-import MongoDbPlanRepository from "../MongoDbPlanRepository";
+import MongoDatabasePlanRepository from "../MongoDatabasePlanRepository";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { Substitute } from "@fluffy-spoon/substitute";
 
@@ -16,7 +16,7 @@ describe("MongoDbPlanRepository", (): void => {
   let server: MongoMemoryServer;
 
   // eslint-disable-next-line fp/no-let
-  let db: Db;
+  let database: Db;
 
   beforeEach(
     async (): Promise<void> => {
@@ -26,8 +26,10 @@ describe("MongoDbPlanRepository", (): void => {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });
-      db = client.db(await server.getDbName());
-      const collection = db.collection(MongoDbPlanRepository.collectionName);
+      database = client.db(await server.getDbName());
+      const collection = database.collection(
+        MongoDatabasePlanRepository.collectionName
+      );
       await collection.insertMany([
         {
           user: "foo",
@@ -131,7 +133,7 @@ describe("MongoDbPlanRepository", (): void => {
       void
     > => {
       const logger = Substitute.for<Logger>();
-      const repo = new MongoDbPlanRepository(db, logger);
+      const repo = new MongoDatabasePlanRepository(database, logger);
       const user = new User("bar", "a@b.c", "foobar");
       const output = await repo.getAllByUser(user);
       expect(output.length).toEqual(3);
@@ -168,7 +170,7 @@ describe("MongoDbPlanRepository", (): void => {
       void
     > => {
       const logger = Substitute.for<Logger>();
-      const repo = new MongoDbPlanRepository(db, logger);
+      const repo = new MongoDatabasePlanRepository(database, logger);
       const user = new User("bebop", "a@b.c", "foobar");
       const output = await repo.getAllByUser(user);
       expect(output).toBeDefined();
@@ -179,7 +181,7 @@ describe("MongoDbPlanRepository", (): void => {
   describe("Get by field and user", () => {
     it("Allows me to get a plan by name", async () => {
       const logger = Substitute.for<Logger>();
-      const repo = new MongoDbPlanRepository(db, logger);
+      const repo = new MongoDatabasePlanRepository(database, logger);
       const user = new User("foo", "email", "bar");
       const output = await repo.getByFieldAndUser(user, "slug", "plan4");
       expect(output).toEqual(
@@ -189,17 +191,17 @@ describe("MongoDbPlanRepository", (): void => {
 
     it("Returns undefined if the wrong user is specified", async () => {
       const logger = Substitute.for<Logger>();
-      const repo = new MongoDbPlanRepository(db, logger);
+      const repo = new MongoDatabasePlanRepository(database, logger);
       const user = new User("fooBar", "email", "bar");
       const output = await repo.getByFieldAndUser(user, "slug", "plan4");
-      expect(output).toEqual(null);
+      expect(output).toBeUndefined();
     });
   });
 
   describe("Get by field", () => {
     it("Allows me to get a plan by name", async (): Promise<void> => {
       const logger = Substitute.for<Logger>();
-      const repo = new MongoDbPlanRepository(db, logger);
+      const repo = new MongoDatabasePlanRepository(database, logger);
       const output = await repo.getByField("slug", "plan4");
       expect(output).toEqual(
         new Plan("foo", "plan4", "plan4", "description four", 2, [])
@@ -208,9 +210,9 @@ describe("MongoDbPlanRepository", (): void => {
 
     it("Returns undefined if plan doesn't exist", async (): Promise<void> => {
       const logger = Substitute.for<Logger>();
-      const repo = new MongoDbPlanRepository(db, logger);
+      const repo = new MongoDatabasePlanRepository(database, logger);
       const output = await repo.getByField("name", "blah");
-      expect(output).toBeNull();
+      expect(output).toBeUndefined();
     });
   });
 
@@ -219,7 +221,7 @@ describe("MongoDbPlanRepository", (): void => {
       void
     > => {
       const logger = Substitute.for<Logger>();
-      const repo = new MongoDbPlanRepository(db, logger);
+      const repo = new MongoDatabasePlanRepository(database, logger);
       const newPlan = new Plan("bar", "plan9", "plan9", "description nine", 1, [
         new Deadline(
           "bopdeadline",
@@ -238,7 +240,7 @@ describe("MongoDbPlanRepository", (): void => {
   describe("Update existing", () => {
     it("Results in a record being updated", async () => {
       const logger = Substitute.for<Logger>();
-      const repo = new MongoDbPlanRepository(db, logger);
+      const repo = new MongoDatabasePlanRepository(database, logger);
       await repo.updateExisting(
         new Plan("fooUser", "plan6", "fooTitle", "fooDescription", 0)
       );
@@ -258,7 +260,7 @@ describe("MongoDbPlanRepository", (): void => {
   describe("Delete existing", () => {
     it("Removes a record from the collection", async () => {
       const logger = Substitute.for<Logger>();
-      const repo = new MongoDbPlanRepository(db, logger);
+      const repo = new MongoDatabasePlanRepository(database, logger);
       await repo.deleteExisting(
         new Plan("fooUser", "plan6", "fooTitle", "fooDescription", 0)
       );
@@ -266,21 +268,21 @@ describe("MongoDbPlanRepository", (): void => {
       const plans = await repo.getAll();
       expect(plans.length).toEqual(5);
       const plan = await repo.getByField("slug", "plan6");
-      expect(plan).toBeNull();
+      expect(plan).toBeUndefined();
     });
   });
 
   describe("Get all", (): void => {
     it("Gets the correct amount of records", async (): Promise<void> => {
       const logger = Substitute.for<Logger>();
-      const repo = new MongoDbPlanRepository(db, logger);
+      const repo = new MongoDatabasePlanRepository(database, logger);
       const plans = await repo.getAll();
       expect(plans.length).toEqual(6);
     });
 
     it("Gets at least a few known records", async (): Promise<void> => {
       const logger = Substitute.for<Logger>();
-      const repo = new MongoDbPlanRepository(db, logger);
+      const repo = new MongoDatabasePlanRepository(database, logger);
       const plans = await repo.getAll();
       expect(plans).toEqual(
         expect.arrayContaining([

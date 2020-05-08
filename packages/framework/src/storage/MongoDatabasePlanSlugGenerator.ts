@@ -2,19 +2,22 @@ import { TYPES as APP, Logger, SlugGenerator } from "@planv7/application";
 import { Collection, Db } from "mongodb";
 import { inject, injectable } from "inversify";
 
-import MongoDbPlanRepository from "./MongoDbPlanRepository";
+import MongoDatabasePlanRepository from "./MongoDatabasePlanRepository";
 import { Plan } from "@planv7/domain";
 import TYPES from "../TYPES";
 
 @injectable()
-export default class MongoDbPlanSlugGenerator implements SlugGenerator<Plan> {
+export default class MongoDatabasePlanSlugGenerator
+  implements SlugGenerator<Plan> {
   private readonly collection: Collection;
   private readonly logger: Logger;
   public constructor(
     @inject(TYPES.db) database: Db,
     @inject(APP.logger) logger: Logger
   ) {
-    this.collection = database.collection(MongoDbPlanRepository.collectionName);
+    this.collection = database.collection(
+      MongoDatabasePlanRepository.collectionName
+    );
     this.logger = logger;
   }
 
@@ -32,8 +35,11 @@ export default class MongoDbPlanSlugGenerator implements SlugGenerator<Plan> {
       const isNumber = /^\d$/u.test(lastChar);
 
       if (isNumber) {
-        const number = parseInt(lastChar, 10);
-        const prefix = encodedTitle.substring(0, encodedTitle.length - 1);
+        const number = Number.parseInt(lastChar, 10);
+        const prefix = encodedTitle.slice(
+          0,
+          Math.max(0, encodedTitle.length - 1)
+        );
         return `${prefix}${number + 1}`;
       } else {
         return `${encodedTitle}1`;

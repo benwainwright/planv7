@@ -105,7 +105,7 @@ describe("RegisterUserHandler", (): void => {
     );
     const command = new RegisterUserCommand("name", "a@b.d", "password");
 
-    loginProvider.login(Arg.all()).returns(Promise.resolve(null));
+    loginProvider.login(Arg.all()).returns(Promise.resolve(undefined));
     await handler.tryHandle(command);
     loginProvider.received().login("name", "password");
   });
@@ -131,10 +131,10 @@ describe("RegisterUserHandler", (): void => {
 
     emitter.received().emitEvent(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      Arg.is((arg: any): boolean => {
+      Arg.is((argument: any): boolean => {
         return (
-          arg.getOutcome() === CommandOutcome.SUCCESS &&
-          arg instanceof UserLoginStateChangeEvent
+          argument.getOutcome() === CommandOutcome.SUCCESS &&
+          argument instanceof UserLoginStateChangeEvent
         );
       })
     );

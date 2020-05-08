@@ -38,7 +38,7 @@ describe("JwtLocalStorageCurrentLoginSession", (): void => {
     for (const cookie of cookies) {
       const equalsPosition = cookie.indexOf("=");
       const name =
-        equalsPosition > -1 ? cookie.substr(0, equalsPosition) : cookie;
+        equalsPosition > -1 ? cookie.slice(0, equalsPosition) : cookie;
       document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT`;
     }
   });
@@ -79,7 +79,7 @@ describe("JwtLocalStorageCurrentLoginSession", (): void => {
     );
     emitter.emitEvent(event);
 
-    expect(session.getCurrentUser()).toBeNull();
+    expect(session.getCurrentUser()).toBeUndefined();
   });
 
   it("Returns a user if there is a token", async (): Promise<void> => {
@@ -155,10 +155,10 @@ describe("JwtLocalStorageCurrentLoginSession", (): void => {
       client
     );
     session.setCurrentUserFromHttpResponse(response);
-    session.killSession();
+    await session.killSession();
     expect(Cookies.get(document.cookie, USER_COOKIE_NAME)).toEqual("");
     expect(Cookies.get(document.cookie, JWT_TOKEN_NAME)).toEqual("");
-    expect(session.getCurrentUser()).toBeNull();
-    expect(session.getToken()).toBeNull();
+    expect(session.getCurrentUser()).toBeUndefined();
+    expect(session.getToken()).toEqual("");
   });
 });

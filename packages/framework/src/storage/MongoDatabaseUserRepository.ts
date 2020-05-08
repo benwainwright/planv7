@@ -11,12 +11,14 @@ import { User } from "@planv7/domain";
 const SALT_ROUNDS = 10;
 
 @injectable()
-export default class MongoDbUserRepository implements Repository<User> {
+export default class MongoDatabaseUserRepository implements Repository<User> {
   public static readonly collectionName = "users";
 
   private readonly collection: Collection;
   public constructor(@inject(TYPES.db) database: Db) {
-    this.collection = database.collection(MongoDbUserRepository.collectionName);
+    this.collection = database.collection(
+      MongoDatabaseUserRepository.collectionName
+    );
   }
 
   public async getUniqueSlug(identifier: string): Promise<string> {

@@ -23,7 +23,7 @@ export default class Serialiser {
   }
 
   public unSerialise<T extends Serialisable>(json: string | {}): T {
-    const obj = typeof json === "string" ? JSON.parse(json) : json;
-    return this.typeson.revive(obj);
+    const object = typeof json === "string" ? JSON.parse(json) : json;
+    return this.typeson.revive(object);
   }
 }

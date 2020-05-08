@@ -1,8 +1,8 @@
 import { Db, MongoClient } from "mongodb";
 
 import { Logger } from "@planv7/application";
-import MongoDbPlanRepository from "./MongoDbPlanRepository";
-import MongoDbPlanSlugGenerator from "./MongoDbPlanSlugGenerator";
+import MongoDatabasePlanRepository from "./MongoDatabasePlanRepository";
+import MongoDatabasePlanSlugGenerator from "./MongoDatabasePlanSlugGenerator";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { Plan } from "@planv7/domain";
 import { mock } from "jest-mock-extended";
@@ -12,7 +12,7 @@ jest.setTimeout(100000);
 describe("The slug generator", () => {
   let client: MongoClient;
   let server: MongoMemoryServer;
-  let db: Db;
+  let database: Db;
   beforeEach(
     async (): Promise<void> => {
       server = new MongoMemoryServer();
@@ -21,8 +21,10 @@ describe("The slug generator", () => {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });
-      db = client.db(await server.getDbName());
-      const collection = db.collection(MongoDbPlanRepository.collectionName);
+      database = client.db(await server.getDbName());
+      const collection = database.collection(
+        MongoDatabasePlanRepository.collectionName
+      );
       await collection.insertMany([
         {
           user: "foo",
@@ -51,7 +53,7 @@ describe("The slug generator", () => {
 
   it("returns the title if the slug doesn't exist", async () => {
     const logger = mock<Logger>();
-    const generator = new MongoDbPlanSlugGenerator(db, logger);
+    const generator = new MongoDatabasePlanSlugGenerator(database, logger);
     const plan = new Plan("foo", "", "fooTitle", "", 0);
     const slug = await generator.getUniqueSlug(plan);
     expect(slug).toEqual("fooTitle");
@@ -59,7 +61,7 @@ describe("The slug generator", () => {
 
   it("replaces spaces with dashes", async () => {
     const logger = mock<Logger>();
-    const generator = new MongoDbPlanSlugGenerator(db, logger);
+    const generator = new MongoDatabasePlanSlugGenerator(database, logger);
     const plan = new Plan("foo", "", "foo title", "", 0);
     const slug = await generator.getUniqueSlug(plan);
     expect(slug).toEqual("foo-title");
@@ -67,7 +69,7 @@ describe("The slug generator", () => {
 
   it("Adds a number on the end of slug already exists", async () => {
     const logger = mock<Logger>();
-    const generator = new MongoDbPlanSlugGenerator(db, logger);
+    const generator = new MongoDatabasePlanSlugGenerator(database, logger);
     const plan = new Plan("foo", "", "plan", "", 0);
     const slug = await generator.getUniqueSlug(plan);
     expect(slug).toEqual("plan1");
@@ -75,7 +77,7 @@ describe("The slug generator", () => {
 
   it("Increments the number of the slug already has a number on the end", async () => {
     const logger = mock<Logger>();
-    const generator = new MongoDbPlanSlugGenerator(db, logger);
+    const generator = new MongoDatabasePlanSlugGenerator(database, logger);
     const plan = new Plan("foo", "", "planny1", "", 0);
     const slug = await generator.getUniqueSlug(plan);
     expect(slug).toEqual("planny2");

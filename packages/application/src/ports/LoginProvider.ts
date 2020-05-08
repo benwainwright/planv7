@@ -7,5 +7,5 @@ export default interface LoginProvider {
    * @param username
    * @param password
    */
-  login: (username: string, password: string) => Promise<User | null>;
+  login: (username: string, password: string) => Promise<User | undefined>;
 }

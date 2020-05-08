@@ -22,8 +22,8 @@ import WebsocketClient from "../WebsocketClient";
 export default class JwtClientLoginSession extends JwtLoginSession
   implements LoginSessionDestroyer {
   private readonly events: EventEmitterWrapper;
-  private token: string | null = null;
-  private currentUser: User | null = null;
+  private token = "";
+  private currentUser?: User;
   private publicKey: string;
   private readonly socketClient: WebsocketClient;
 
@@ -41,7 +41,7 @@ export default class JwtClientLoginSession extends JwtLoginSession
     this.events.onEvent(this.onUserLogin.bind(this));
   }
 
-  public getToken(): string | null {
+  public getToken(): string {
     if (!this.token) {
       this.load();
     }
@@ -50,13 +50,13 @@ export default class JwtClientLoginSession extends JwtLoginSession
   }
 
   public async killSession(): Promise<void> {
-    this.token = null;
-    this.currentUser = null;
+    this.token = "";
+    this.currentUser = undefined;
     Cookies.delete(JWT_TOKEN_NAME);
     this.socketClient.close();
 
     this.events.emitEvent(
-      new UserLoginStateChangeEvent(CommandOutcome.SUCCESS, null)
+      new UserLoginStateChangeEvent(CommandOutcome.SUCCESS)
     );
   }
 
@@ -64,7 +64,7 @@ export default class JwtClientLoginSession extends JwtLoginSession
     this.currentUser = user;
   }
 
-  public getCurrentUser(): User | null {
+  public getCurrentUser(): User | undefined {
     if (!this.currentUser) {
       this.load();
     }
@@ -72,7 +72,7 @@ export default class JwtClientLoginSession extends JwtLoginSession
     if (this.token) {
       return this.currentUser;
     }
-    return null;
+    return undefined;
   }
 
   public setCurrentUserFromHttpResponse(response: AxiosResponse): void {
@@ -87,7 +87,7 @@ export default class JwtClientLoginSession extends JwtLoginSession
   }
 
   private load(): void {
-    this.token = Cookies.get(document.cookie, JWT_TOKEN_NAME) || null;
+    this.token = Cookies.get(document.cookie, JWT_TOKEN_NAME);
     if (this.token) {
       this.currentUser = this.verifyAndDecodeToken(
         this.token || "",

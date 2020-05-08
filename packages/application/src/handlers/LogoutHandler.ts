@@ -44,7 +44,7 @@ export default class LogoutHandler extends HandlerBase<LogoutCommand> {
   ): Promise<void> {
     this.logger.verbose("Executing logout handler");
     await this.sessionDestroyer.killSession();
-    const event = new UserLoginStateChangeEvent(CommandOutcome.SUCCESS, null);
+    const event = new UserLoginStateChangeEvent(CommandOutcome.SUCCESS);
     this.applicationEvents.emitEvent(event);
   }
 }

@@ -39,10 +39,10 @@ describe("Logouthandler", (): void => {
 
     emitter.received().emitEvent(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      Arg.is((arg: any): boolean => {
+      Arg.is((argument: any): boolean => {
         return (
-          arg.getOutcome() === CommandOutcome.SUCCESS &&
-          arg instanceof UserLoginStateChangeEvent
+          argument.getOutcome() === CommandOutcome.SUCCESS &&
+          argument instanceof UserLoginStateChangeEvent
         );
       })
     );

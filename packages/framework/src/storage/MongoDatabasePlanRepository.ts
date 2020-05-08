@@ -61,7 +61,7 @@ const mapPlanToObject = (plan: Plan): any => ({
 });
 
 @injectable()
-export default class MongoDbPlanRepository
+export default class MongoDatabasePlanRepository
   implements AuthenticatedEntityRepository<Plan> {
   public static readonly collectionName = "Plans";
   private readonly collection: Collection;
@@ -71,7 +71,9 @@ export default class MongoDbPlanRepository
     @inject(TYPES.db) database: Db,
     @inject(APP.logger) logger: Logger
   ) {
-    this.collection = database.collection(MongoDbPlanRepository.collectionName);
+    this.collection = database.collection(
+      MongoDatabasePlanRepository.collectionName
+    );
     this.logger = logger;
   }
 
@@ -79,14 +81,14 @@ export default class MongoDbPlanRepository
     user: User,
     name: string,
     value: V
-  ): Promise<Plan | null> {
+  ): Promise<Plan | undefined> {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const query: any = { user: user.getName() };
     query[name] = value;
     const result = await this.collection.findOne(query);
 
     if (!result) {
-      return null;
+      return undefined;
     }
 
     return mapDataToPlan(result);
@@ -94,10 +96,11 @@ export default class MongoDbPlanRepository
 
   public async getAllByUser(user: User): Promise<Plan[]> {
     const plans = await this.collection
+      // eslint-disable-next-line unicorn/no-fn-reference-in-iterator
       .find({ user: user.getName() })
       .toArray();
 
-    return plans.map(mapDataToPlan);
+    return plans.map((item) => mapDataToPlan(item));
   }
 
   public async deleteExisting(plan: Plan): Promise<void> {
@@ -115,14 +118,17 @@ export default class MongoDbPlanRepository
     await this.collection.insertOne(mapPlanToObject(plan));
   }
 
-  public async getByField<V>(name: string, value: V): Promise<Plan | null> {
+  public async getByField<V>(
+    name: string,
+    value: V
+  ): Promise<Plan | undefined> {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const query: any = {};
     query[name] = value;
     const result = await this.collection.findOne(query);
 
     if (!result) {
-      return null;
+      return;
     }
 
     return mapDataToPlan(result);
@@ -130,6 +136,6 @@ export default class MongoDbPlanRepository
 
   public async getAll(): Promise<Plan[]> {
     const plans = await this.collection.find().toArray();
-    return plans.map(mapDataToPlan);
+    return plans.map((item) => mapDataToPlan(item));
   }
 }

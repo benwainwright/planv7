@@ -9,7 +9,7 @@ export default class SimpleCurrentUserSession implements CurrentLoginSession {
     this.user = user;
   }
 
-  public getCurrentUser(): User | null {
+  public getCurrentUser(): User | undefined {
     return this.user;
   }
 

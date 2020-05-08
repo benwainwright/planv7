@@ -1,6 +1,13 @@
 module.exports = {
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint", "filenames", "import", "fp", "sonarjs"],
+  plugins: [
+    "@typescript-eslint",
+    "filenames",
+    "import",
+    "fp",
+    "sonarjs",
+    "unicorn",
+  ],
   ignorePatterns: ["node_modules"],
   extends: [
     "prettier",
@@ -12,12 +19,14 @@ module.exports = {
     "plugin:import/warnings",
     "plugin:import/typescript",
     "plugin:sonarjs/recommended",
+    "plugin:unicorn/recommended",
   ],
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: "module",
   },
   rules: {
+    "unicorn/filename-case": "off",
     "import/prefer-default-export": "error",
     // Eslint build in
     "no-inline-comments": "error",
@@ -45,7 +54,6 @@ module.exports = {
       "always",
       { ignoreConsecutiveComments: true },
     ],
-    "no-undefined": "error",
     "no-shadow": "error",
     yoda: ["error", "never"],
     "require-unicode-regexp": "error",

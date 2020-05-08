@@ -73,7 +73,7 @@ describe("Authorising dispatcher", () => {
 
     serialiser.serialise(command).returns("");
 
-    session.getCurrentUser().returns(null);
+    session.getCurrentUser().returns(undefined);
 
     await dispatcher.dispatch(command);
 
@@ -105,7 +105,7 @@ describe("Authorising dispatcher", () => {
 
     serialiser.serialise(command).returns(MOCK_COMMAND_STRING);
 
-    session.getCurrentUser().returns(null);
+    session.getCurrentUser().returns(undefined);
 
     await dispatcher.dispatch(command);
     session.received().setCurrentUserFromHttpResponse(Arg.any());
@@ -124,7 +124,7 @@ describe("Authorising dispatcher", () => {
     const client = Substitute.for<WebsocketClient>();
     const serialiser = Substitute.for<Serialiser>();
     const session = Substitute.for<CurrentLoginSession>();
-    session.getCurrentUser().returns(null);
+    session.getCurrentUser().returns(undefined);
     const dispatcher = new AuthorisingDispatcher(
       client,
       serialiser,

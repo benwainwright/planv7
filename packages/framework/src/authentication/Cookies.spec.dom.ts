@@ -7,7 +7,7 @@ describe("Cookies", (): void => {
     for (const cookie of cookies) {
       const equalsPosition = cookie.indexOf("=");
       const name =
-        equalsPosition > -1 ? cookie.substr(0, equalsPosition) : cookie;
+        equalsPosition > -1 ? cookie.slice(0, equalsPosition) : cookie;
       document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
     }
   });

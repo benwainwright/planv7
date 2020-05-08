@@ -22,7 +22,7 @@ describe("Update plan handler", () => {
     const logger = mock<Logger>();
     const events = mock<EventEmitterWrapper>();
 
-    session.getCurrentUser.mockReturnValue(null);
+    session.getCurrentUser.mockReturnValue(undefined);
 
     const handler = new UpdatePlanHandler(repo, session, logger, events);
     try {
@@ -45,7 +45,7 @@ describe("Update plan handler", () => {
       new User("foobar", FAKE_EMAIL, "foobar")
     );
 
-    repo.getByFieldAndUser.mockReturnValue(Promise.resolve(null));
+    repo.getByFieldAndUser.mockReturnValue(Promise.resolve(undefined));
 
     const handler = new UpdatePlanHandler(repo, session, logger, events);
     try {

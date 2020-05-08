@@ -18,7 +18,7 @@ export default class WebsocketClient implements Dispatch {
   // eslint-disable-next-line @typescript-eslint/no-magic-numbers
   public static readonly waitTimeout = 2000;
 
-  private socket: WebSocket | null = null;
+  private socket?: WebSocket;
   private serialiser: Serialiser;
   private logger: Logger;
   private url: string;
@@ -47,8 +47,7 @@ export default class WebsocketClient implements Dispatch {
     if (this.socket) {
       this.logger.info(`Closing connection`);
       this.socket.close();
-      this.socket.onopen = null;
-      this.socket = null;
+      this.socket = undefined;
     }
   }
 
@@ -68,7 +67,7 @@ export default class WebsocketClient implements Dispatch {
 
   private async onError(): Promise<void> {
     this.logger.info("Error received - reconnecting");
-    this.socket = null;
+    this.socket = undefined;
     await this.openSocketIfNotOpen();
   }
 
@@ -108,8 +107,8 @@ export default class WebsocketClient implements Dispatch {
         await this.openSocketIfNotOpen();
         return;
       }
-      this.socket.onerror = this.onError.bind(this);
-      this.socket.onmessage = this.onMessage.bind(this);
+      this.socket.addEventListener("error", this.onError.bind(this));
+      this.socket.addEventListener("message", this.onMessage.bind(this));
       this.logger.info("Socket connection established");
     }
   }
@@ -131,10 +130,10 @@ export default class WebsocketClient implements Dispatch {
             }
           }, WebsocketClient.waitTimeout);
 
-          this.socket.onopen = (): void => {
+          this.socket.addEventListener("open", (): void => {
             clearTimeout(timeout);
             resolve();
-          };
+          });
         }
       });
     }

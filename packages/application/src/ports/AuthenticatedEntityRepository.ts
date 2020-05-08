@@ -8,5 +8,5 @@ export default interface AuthenticatedEntityRepository<T>
     user: User,
     name: string,
     value: V
-  ) => Promise<T | null>;
+  ) => Promise<T | undefined>;
 }

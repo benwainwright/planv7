@@ -22,7 +22,7 @@ describe("AddPlanHandler", (): void => {
     const events = mock<EventEmitterWrapper>();
     const slugGenerator = mock<SlugGenerator<Plan>>();
 
-    session.getCurrentUser.mockReturnValue(null);
+    session.getCurrentUser.mockReturnValue(undefined);
     const handler = new AddPlanHandler(
       repo,
       session,

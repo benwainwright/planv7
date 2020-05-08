@@ -8,7 +8,7 @@ import {
 import { Collection, Db } from "mongodb";
 import { inject, injectable, optional } from "inversify";
 
-import MongoDbUserRepository from "../storage/MongoDbUserRepository";
+import MongoDatabaseUserRepository from "../storage/MongoDatabaseUserRepository";
 import ResponseAuthHeader from "../ResponseAuthHeader";
 import TYPES from "../TYPES";
 import { User } from "@planv7/domain";
@@ -35,7 +35,9 @@ export default class JwtLoginProvider implements LoginProvider {
     @inject(TYPES.responseAuthHeader)
     authHeader?: ResponseAuthHeader
   ) {
-    this.collection = database.collection(MongoDbUserRepository.collectionName);
+    this.collection = database.collection(
+      MongoDatabaseUserRepository.collectionName
+    );
     this.authHeader = authHeader;
     this.publicKey = publicKey;
     this.privateKey = privateKey;

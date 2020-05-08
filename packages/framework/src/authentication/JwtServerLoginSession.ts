@@ -14,8 +14,8 @@ import { User } from "@planv7/domain";
 @injectable()
 export default class JwtServerLoginSession extends JwtLoginSession {
   private readonly privateKey: string;
-  private readonly token: string | null = null;
-  private currentUser: User | null = null;
+  private readonly token?: string;
+  private currentUser?: User;
 
   public constructor(
     @optional()
@@ -40,7 +40,7 @@ export default class JwtServerLoginSession extends JwtLoginSession {
     }
   }
 
-  public getCurrentUser(): User | null {
+  public getCurrentUser(): User | undefined {
     if (!this.currentUser && this.token && this.privateKey) {
       this.currentUser = this.verifyAndDecodeToken(this.token, this.privateKey);
     }

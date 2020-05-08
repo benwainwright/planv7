@@ -4,9 +4,11 @@ import { TEST_PRIVATE_KEY, TEST_PUBLIC_KEY } from "../keys";
 
 import JwtLoginProvider from "./JwtLoginProvider";
 import { Logger } from "@planv7/application";
-import MongoDbUserRepository from "../storage/MongoDbUserRepository";
+import MongoDatabaseUserRepository from "../storage/MongoDatabaseUserRepository";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import ResponseAuthHeader from "../ResponseAuthHeader";
+
+jest.setTimeout(600000);
 
 describe("JwtLoginProvider", (): void => {
   let client: MongoClient;
@@ -14,7 +16,7 @@ describe("JwtLoginProvider", (): void => {
   let collection: Collection;
   let publicKey: string;
   let privateKey: string;
-  let db: Db;
+  let database: Db;
   beforeEach(
     async (): Promise<void> => {
       publicKey = TEST_PUBLIC_KEY;
@@ -25,8 +27,10 @@ describe("JwtLoginProvider", (): void => {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });
-      db = client.db(await server.getDbName());
-      collection = db.collection(MongoDbUserRepository.collectionName);
+      database = client.db(await server.getDbName());
+      collection = database.collection(
+        MongoDatabaseUserRepository.collectionName
+      );
       await collection.insertMany([
         {
           name: "foo",
@@ -72,7 +76,7 @@ describe("JwtLoginProvider", (): void => {
       const header = Substitute.for<ResponseAuthHeader>();
       const logger = Substitute.for<Logger>();
       const loginProvider = new JwtLoginProvider(
-        db,
+        database,
         publicKey,
         privateKey,
         logger,
@@ -88,7 +92,7 @@ describe("JwtLoginProvider", (): void => {
       const header = Substitute.for<ResponseAuthHeader>();
       const logger = Substitute.for<Logger>();
       const loginProvider = new JwtLoginProvider(
-        db,
+        database,
         publicKey,
         privateKey,
         logger,
@@ -107,7 +111,7 @@ describe("JwtLoginProvider", (): void => {
       const logger = Substitute.for<Logger>();
       try {
         const loginProvider = new JwtLoginProvider(
-          db,
+          database,
           publicKey,
           privateKey,
           logger,
@@ -115,7 +119,7 @@ describe("JwtLoginProvider", (): void => {
         );
         await loginProvider.login("foobaz", "carr0ts");
         fail("Expected an error to be thrown");
-      } catch (e) {
+      } catch (error) {
         // Noop
       }
       header.didNotReceive().setHeader(Arg.any());
@@ -128,14 +132,14 @@ describe("JwtLoginProvider", (): void => {
       const logger = Substitute.for<Logger>();
       try {
         const loginProvider = new JwtLoginProvider(
-          db,
+          database,
           publicKey,
           privateKey,
           logger,
           header
         );
         await loginProvider.login("foobar", "carrts");
-      } catch (e) {
+      } catch (error) {
         // Noop
       }
       header.didNotReceive().setHeader(Arg.any());

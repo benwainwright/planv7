@@ -130,8 +130,8 @@ describe("SimpleCommandBus", (): void => {
 
     try {
       await bus.execute(command);
-    } catch (e) {
-      fail(`Error thrown: ${e}`);
+    } catch (error) {
+      fail(`Error thrown: ${error}`);
     }
 
     handler3.didNotReceive().tryHandle(Arg.any());
