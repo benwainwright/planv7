@@ -14,7 +14,7 @@ const reactDomCdnPath =
     ? "https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"
     : "https://unpkg.com/react-dom@16/umd/react-dom.development.js";
 
-const getItems = async (assetsDir: string): Promise<string[]> => {
+const loadAssets = async (assetsDir: string): Promise<string[]> => {
   try {
     return await fs.readdir(assetsDir);
   } catch (error) {
@@ -25,7 +25,7 @@ const getItems = async (assetsDir: string): Promise<string[]> => {
   }
 };
 
-const getScripts = (items: string[]): string[] => {
+const getScriptsFiles = (items: string[]): string[] => {
   const scripts = items.filter((item) => item.endsWith(".js"));
 
   if (scripts.length !== 0) {
@@ -35,23 +35,22 @@ const getScripts = (items: string[]): string[] => {
   return ["app.js", "vendor.js"];
 };
 
-const indexTemplateLoader = async (): Promise<() => string> => {
-  const assetsDir = path.join(process.cwd(), "dist", "assets");
-  const items = await getItems(assetsDir);
-  const scripts = getScripts(items);
-  const scriptsString = scripts
+const generateIndexTemplate = (
+  scriptFiles: string[],
+  cssFiles: string[]
+): string => {
+  const scriptsString = scriptFiles
     .map(
       (item) =>
         `<script src="/assets/${item}" type="application/javascript"></script>`
     )
     .join("\n");
 
-  const css = items.filter((item) => item.endsWith(".css"));
-  const cssString = css
+  const cssString = cssFiles
     .map((item) => `<link rel="stylesheet" href="/assets/${item}" />`)
     .join("\n");
 
-  const indexFile = pretty(`
+  return pretty(`
           <!DOCTYPE html>
           <html>
           <head>
@@ -67,7 +66,18 @@ const indexTemplateLoader = async (): Promise<() => string> => {
           </script>
           </body>
           </html>`);
+};
 
+const indexTemplateLoader = async (): Promise<() => string> => {
+  const assetsDir = path.join(process.cwd(), "dist", "assets");
+  const assets = await loadAssets(assetsDir);
+  const scriptFiles = getScriptsFiles(assets);
+
+  const cssFiles = assets.filter((assetFilename) =>
+    assetFilename.endsWith(".css")
+  );
+
+  const indexFile = generateIndexTemplate(scriptFiles, cssFiles);
   return (): string => indexFile;
 };
 
