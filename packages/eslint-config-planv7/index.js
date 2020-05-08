@@ -30,6 +30,7 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
+    "unicorn/prevent-abbreviations": ["error", { WhiteList: { props: true } }],
     "unicorn/filename-case": "off",
     "import/prefer-default-export": "error",
     // Eslint build in
@@ -104,7 +105,7 @@ module.exports = {
     "no-console": "error",
     "require-atomic-updates": "error",
     "array-callback-return": "error",
-    "no-extra-parens": "error",
+    "no-extra-parens": "off", // Too many false positives
     "no-template-curly-in-string": "error",
 
     "import/no-named-as-default": "off",
@@ -184,12 +185,35 @@ module.exports = {
 
   overrides: [
     {
-      files: ["*.dom.spec.ts", "*.tsx"],
+      files: ["*.dom.spec.tsx", "*.tsx"],
       extends: ["plugin:react/recommended"],
       settings: {
         react: {
           version: "detect",
         },
+      },
+      rules: {
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            selector: "variable",
+            format: ["camelCase", "UPPER_CASE", "PascalCase"],
+            leadingUnderscore: "forbid",
+            trailingUnderscore: "forbid",
+          },
+          {
+            selector: "typeLike",
+            format: ["PascalCase"],
+            leadingUnderscore: "forbid",
+            trailingUnderscore: "forbid",
+          },
+          {
+            selector: "enumMember",
+            format: ["PascalCase"],
+            leadingUnderscore: "forbid",
+            trailingUnderscore: "forbid",
+          },
+        ],
       },
     },
     {

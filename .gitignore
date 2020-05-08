@@ -3,3 +3,4 @@
 .yarn/install-state.gz
 coverage
 junit.xml
+dist
