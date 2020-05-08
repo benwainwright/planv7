@@ -3,6 +3,11 @@ const getNode = require("./node");
 
 const getProjects = (package) => [getDom(package), getNode(package)];
 
+const globalSettings = {
+  reporters: ["default", ["jest-junit", { outputName: "junit.xml" }]],
+  collectCoverage: true,
+};
+
 const coverageExclusions = ["!**/*.spec.{ts, tsx}", "!**/*.spec.dom.{ts, tsx}"];
 
 const collectCoverageFromPackage = (package) => [
@@ -11,13 +16,13 @@ const collectCoverageFromPackage = (package) => [
 ];
 
 const getPackageConfig = (package) => ({
-  collectCoverage: true,
+  ...globalSettings,
   collectCoverageFrom: collectCoverageFromPackage(package),
   projects: [getDom(package), getNode(package)],
 });
 
 const rootConfig = {
-  collectCoverage: true,
+  ...globalSettings,
   collectCoverageFrom: collectCoverageFromPackage("**"),
 };
 
