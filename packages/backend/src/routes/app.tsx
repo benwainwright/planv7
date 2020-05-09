@@ -21,11 +21,9 @@ const app = async (): Promise<
     const sheets = new ServerStyleSheets();
     const reactApp = ReactDOMServer.renderToString(
       sheets.collect(
-        <Container maxWidth="md" className="App">
-          <ThemeProvider theme={Theme}>
-            <App />
-          </ThemeProvider>
-        </Container>
+        <ThemeProvider theme={Theme}>
+          <App />
+        </ThemeProvider>
       )
     );
 

@@ -8,11 +8,9 @@ import { ThemeProvider } from "@material-ui/core/styles";
 
 const renderApp = (): void => {
   ReactDOM.hydrate(
-    <Container maxWidth="md" className="App">
-      <ThemeProvider theme={Theme}>
-        <App />
-      </ThemeProvider>
-    </Container>,
+    <ThemeProvider theme={Theme}>
+      <App />
+    </ThemeProvider>,
     document.querySelector("#root")
   );
 };
