@@ -2,7 +2,7 @@ import * as constants from "../constants";
 import { Db, MongoClient } from "mongodb";
 
 const connectToDatabase = async (): Promise<Db> => {
-  const mongoUrl = process.env.MONGO_URL || "mongodb://localhost:27017";
+  const mongoUrl = process.env.MONGO_URL || constants.MONGO_URL;
 
   const mongoClient = await MongoClient.connect(mongoUrl, {
     useUnifiedTopology: true,
