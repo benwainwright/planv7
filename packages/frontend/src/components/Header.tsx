@@ -1,9 +1,7 @@
 import * as React from "react";
 
 import AppBar from "@material-ui/core/AppBar";
-import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
-import { Link } from "@reach/router";
 import MenuIcon from "@material-ui/icons/Menu";
 import NavigationButton from "./NavigationButton";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -42,9 +40,9 @@ const Header: React.FC = (): React.ReactElement => {
           <Typography variant="h6" className={classes.title}>
             Planner App
           </Typography>
-
           <NavigationButton to="/app">Home</NavigationButton>
           <NavigationButton to="/app/register">Register</NavigationButton>
+          <NavigationButton to="/app/login">Login</NavigationButton>
         </Toolbar>
       </AppBar>
     </header>

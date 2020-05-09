@@ -1,4 +1,5 @@
 import * as React from "react";
+import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Header from "./Header";
 import Home from "../pages/Home";
@@ -17,12 +18,14 @@ const App: React.FC = (): React.ReactElement => {
     <React.Fragment>
       <CssBaseline />
       <Header />
-      <main>
-        <Router>
-          <Home path="/app" />
-          <Register path="/app/register" />
-        </Router>
-      </main>
+      <Container>
+        <main>
+          <Router>
+            <Home path="/app" />
+            <Register path="/app/register" />
+          </Router>
+        </main>
+      </Container>
     </React.Fragment>
   );
 };
