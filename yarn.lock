@@ -855,6 +855,7 @@ __metadata:
     cache-loader: ^4.1.0
     eslint: ^6.8.0
     execa: ^4.0.0
+    jest-mock-extended: ^1.0.8
     koa: ^2.11.0
     koa-bodyparser: ^4.3.0
     koa-mount: ^4.0.0
@@ -979,6 +980,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@planv7/jest-common@workspace:packages/jest-common"
   dependencies:
+    inversify: ^5.0.1
     jest-junit: ^10.0.0
   languageName: unknown
   linkType: soft
@@ -986,6 +988,8 @@ __metadata:
 "@planv7/types@workspace:packages/types":
   version: 0.0.0-use.local
   resolution: "@planv7/types@workspace:packages/types"
+  dependencies:
+    inversify: ^5.0.1
   languageName: unknown
   linkType: soft
 

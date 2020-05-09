@@ -1,6 +1,7 @@
 {
   "name": "@planv7/jest-common",
   "dependencies": {
+    "inversify": "^5.0.1",
     "jest-junit": "^10.0.0"
   }
 }

@@ -1,9 +1,13 @@
 const getDom = require("./dom");
 const getNode = require("./node");
+const path = require("path");
 
 const getProjects = (package) => [getDom(package), getNode(package)];
 
+const setupFile = path.join(__dirname, "setup.ts");
+
 const globalSettings = {
+  setupFilesAfterEnv: [setupFile],
   reporters: ["default", ["jest-junit", { outputName: "junit.xml" }]],
   collectCoverage: true,
 };
