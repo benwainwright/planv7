@@ -2,8 +2,8 @@ import * as React from "react";
 import { App, Theme } from "@planv7/frontend";
 import Koa, { Next } from "koa";
 import Router, { RouterContext } from "koa-router";
-import ReactDOMServer from "react-dom/server";
 import { ServerStyleSheets, ThemeProvider } from "@material-ui/core/styles";
+import ReactDOMServer from "react-dom/server";
 import { ServerLocation } from "@reach/router";
 import indexTemplateLoader from "../application/indexTemplateLoader";
 
