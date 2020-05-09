@@ -20,7 +20,7 @@ const SERVER_PORT = 80;
   const database = await connectToDatabase();
 
   logger.info(`Binding service dependencies`);
-  bindDependencies(container, database);
+  await bindDependencies(container, database);
 
   logger.info(`Loading middleware`);
   loadMiddleware(koaApp);
