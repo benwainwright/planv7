@@ -2,9 +2,9 @@ import * as React from "react";
 import { App, Theme } from "@planv7/frontend";
 import Koa, { Next } from "koa";
 import Router, { RouterContext } from "koa-router";
-import Container from "@material-ui/core/Container";
 import ReactDOMServer from "react-dom/server";
 import { ServerStyleSheets, ThemeProvider } from "@material-ui/core/styles";
+import { ServerLocation } from "@reach/router";
 import indexTemplateLoader from "../application/indexTemplateLoader";
 
 const APP_BASE_URL = "app";
@@ -22,7 +22,9 @@ const app = async (): Promise<
     const reactApp = ReactDOMServer.renderToString(
       sheets.collect(
         <ThemeProvider theme={Theme}>
-          <App />
+          <ServerLocation url={context.url}>
+            <App />
+          </ServerLocation>
         </ThemeProvider>
       )
     );

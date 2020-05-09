@@ -30,6 +30,7 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
+    "react/prop-types": "off",
     "unicorn/prevent-abbreviations": "off",
     "unicorn/filename-case": "off",
     "import/namespace": "off",

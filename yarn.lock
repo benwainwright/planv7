@@ -840,6 +840,7 @@ __metadata:
     "@types/koa-static": 4.0.1
     "@types/koa-webpack": 5.0.1
     "@types/pretty": 2.0.0
+    "@types/reach__router": ^1.3.5
     "@types/react": 16.9.34
     "@types/react-dom": 16.9.7
     "@types/react-router-dom": 5.1.5
@@ -941,10 +942,13 @@ __metadata:
     "@babel/polyfill": ^7.8.7
     "@material-ui/icons": ^4.9.1
     "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7"
+    "@reach/router": ^1.3.3
     "@types/eslint": 6.8.0
     "@types/mini-css-extract-plugin": 0.9.1
+    "@types/reach__router": 1.3.5
     "@types/react": 16.9.34
     "@types/react-dom": 16.9.7
+    "@types/react-router-dom": 5.1.5
     "@types/webpack": 4.41.12
     "@types/webpack-merge": 4.1.5
     awesome-typescript-loader: ^5.2.1
@@ -954,6 +958,7 @@ __metadata:
     mini-css-extract-plugin: ^0.9.0
     react: ^16.13.1
     react-dom: ^16.13.1
+    react-router-dom: ^5.1.2
     source-map-loader: ^0.2.4
     ts-loader: ^7.0.3
     typescript: ^3.8.3
@@ -976,6 +981,21 @@ __metadata:
   resolution: "@planv7/types@workspace:packages/types"
   languageName: unknown
   linkType: soft
+
+"@reach/router@npm:^1.3.3":
+  version: 1.3.3
+  resolution: "@reach/router@npm:1.3.3"
+  dependencies:
+    create-react-context: 0.3.0
+    invariant: ^2.2.3
+    prop-types: ^15.6.1
+    react-lifecycles-compat: ^3.0.4
+  peerDependencies:
+    react: 15.x || 16.x || 16.4.0-alpha.0911da3
+    react-dom: 15.x || 16.x || 16.4.0-alpha.0911da3
+  checksum: 3/a6564be20f5b7d00ed48461b9e0f00b880eb95d477d9880eceb338fc1a2748da080daa3ab8c2a74c304ea0a0027afe81aa38f4e692f96d5f3a38b47ebef097b0
+  languageName: node
+  linkType: hard
 
 "@sinonjs/commons@npm:^1.7.0":
   version: 1.7.2
@@ -1481,6 +1501,16 @@ __metadata:
   version: 1.2.3
   resolution: "@types/range-parser@npm:1.2.3"
   checksum: 3/092fabae0ecbd728d3e4debc938cd043e97cb9f210cfec1c56ff6065c6e91666f376eb586591825d6757a058fd1a1dc4831d34e04ecfbb0800f35b8d86d38635
+  languageName: node
+  linkType: hard
+
+"@types/reach__router@npm:1.3.5, @types/reach__router@npm:^1.3.5":
+  version: 1.3.5
+  resolution: "@types/reach__router@npm:1.3.5"
+  dependencies:
+    "@types/history": "*"
+    "@types/react": "*"
+  checksum: 3/5823fb382da3c3596b8de2a5f6536bf4f69dae33c0b8d493187527704f1fef45a74b6cd34cb6d5e4c2f0a5632302c2f2e63d99108152fa2a7e8ecc5ea7ebad92
   languageName: node
   linkType: hard
 
@@ -3480,6 +3510,19 @@ __metadata:
     safe-buffer: ^5.0.1
     sha.js: ^2.4.8
   checksum: 3/98957676a93081678a2a915ae14898d65aac9b5651ffa55b8888484dd9d79c06d3cb3f85b137cd833ab536d87adee17394bb2b0efc591ea0e34110266d5bcd75
+  languageName: node
+  linkType: hard
+
+"create-react-context@npm:0.3.0":
+  version: 0.3.0
+  resolution: "create-react-context@npm:0.3.0"
+  dependencies:
+    gud: ^1.0.0
+    warning: ^4.0.3
+  peerDependencies:
+    prop-types: ^15.0.0
+    react: ^0.14.0 || ^15.0.0 || ^16.0.0
+  checksum: 3/dfb153bbcfe44fb0b5d74e097f41fef382c9ea513084f604fea1759aea6683da0eef13b02ede2f0672c4eeacdd8efce0023935ca02909fcb2ae8be28b9aa63f5
   languageName: node
   linkType: hard
 
@@ -5755,6 +5798,15 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
+"invariant@npm:^2.2.3":
+  version: 2.2.4
+  resolution: "invariant@npm:2.2.4"
+  dependencies:
+    loose-envify: ^1.0.0
+  checksum: 3/96d8a2a4f0ad21020c5847546fc36bec5c0870d99f071aaa93df00c1036439d48211a1823ab6128f78a15ccc4c4f62baf6a65f6c0ed489270dd44d0a04f443a1
+  languageName: node
+  linkType: hard
+
 "inversify-inject-decorators@npm:^3.1.0":
   version: 3.1.0
   resolution: "inversify-inject-decorators@npm:3.1.0"
@@ -7504,7 +7556,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"loose-envify@npm:^1.1.0, loose-envify@npm:^1.2.0, loose-envify@npm:^1.3.1, loose-envify@npm:^1.4.0":
+"loose-envify@npm:^1.0.0, loose-envify@npm:^1.1.0, loose-envify@npm:^1.2.0, loose-envify@npm:^1.3.1, loose-envify@npm:^1.4.0":
   version: 1.4.0
   resolution: "loose-envify@npm:1.4.0"
   dependencies:
@@ -8966,7 +9018,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.6.2, prop-types@npm:^15.7.2":
+"prop-types@npm:^15.6.1, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2":
   version: 15.7.2
   resolution: "prop-types@npm:15.7.2"
   dependencies:
@@ -9174,6 +9226,13 @@ fsevents@^2.1.2:
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: 3/11bcf1267a314a522615f626f3ce3727a3a24cdbf61c4d452add3550a7875326669631326cfb1ba3e92b6f72244c32ffecf93ad21c0cad8455d3e169d0e3f060
+  languageName: node
+  linkType: hard
+
+"react-lifecycles-compat@npm:^3.0.4":
+  version: 3.0.4
+  resolution: "react-lifecycles-compat@npm:3.0.4"
+  checksum: 3/82176a55ef7526414d770d5e07dc1d28b4c7f20281f22c6f53f3a98df9dbbb5d70c94bebee57b4ea8ccc2eee430b907ca7b564a42fbdd0ed21e7c43bfee35404
   languageName: node
   linkType: hard
 
@@ -11335,6 +11394,15 @@ typescript@^3.8.3:
   dependencies:
     makeerror: 1.0.x
   checksum: 3/c014f264c473fc4464ba8f59eb9f7ffa1c0cf2c83b65353de28a6012d8dd29e974bf2b0fbd5c71231f56762a3ea0d970b635f7d6f6d670ff83f426741ce6a4da
+  languageName: node
+  linkType: hard
+
+"warning@npm:^4.0.3":
+  version: 4.0.3
+  resolution: "warning@npm:4.0.3"
+  dependencies:
+    loose-envify: ^1.0.0
+  checksum: 3/20ef5d29ff9c20af3060e504914a00d5a90ce346e75e6691efbedb540481cdc82070c966d75195f812de64bb0bd7f1b02315fcb52469db151c0f15e29002781c
   languageName: node
   linkType: hard
 
