@@ -23,7 +23,7 @@ const app = async (): Promise<
       sheets.collect(
         <Container maxWidth="md" className="App">
           <ThemeProvider theme={Theme}>
-            <App compiler="Typescript" framework="React" />
+            <App />
           </ThemeProvider>
         </Container>
       )

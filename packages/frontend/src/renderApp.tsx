@@ -10,7 +10,7 @@ const renderApp = (): void => {
   ReactDOM.hydrate(
     <Container maxWidth="md" className="App">
       <ThemeProvider theme={Theme}>
-        <App compiler="Typescript" framework="React" />
+        <App />
       </ThemeProvider>
     </Container>,
     document.querySelector("#root")

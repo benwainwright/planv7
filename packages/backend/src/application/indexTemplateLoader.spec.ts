@@ -49,7 +49,7 @@ describe("Index template", () => {
 
     expect(scripts.length).toEqual(3);
     expect(scripts[2].getAttribute("src")).toEqual("/assets/app.js");
-    expect(cssLinks.length).toEqual(0);
+    expect(cssLinks.length).toEqual(1);
   });
 
   it("Creates stylesheet tags in the header for css assets", async () => {
@@ -69,7 +69,7 @@ describe("Index template", () => {
     );
 
     expect(scripts.length).toEqual(4);
-    expect(cssLinks.length).toEqual(1);
+    expect(cssLinks.length).toEqual(2);
     expect(cssLinks[0].getAttribute("href")).toEqual("/assets/app.css");
   });
 
@@ -89,6 +89,6 @@ describe("Index template", () => {
       (item: HTMLLinkElement) => item.getAttribute("rel") === "stylesheet"
     );
 
-    expect(cssLinks.length).toEqual(1);
+    expect(cssLinks.length).toEqual(2);
   });
 });
