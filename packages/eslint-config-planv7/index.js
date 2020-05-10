@@ -31,6 +31,7 @@ module.exports = {
   },
   rules: {
     "react/prop-types": "off",
+    "unicorn/no-fn-reference-in-iterator": "off",
     "unicorn/prevent-abbreviations": "off",
     "unicorn/filename-case": "off",
     "import/namespace": "off",
@@ -189,7 +190,7 @@ module.exports = {
 
   overrides: [
     {
-      files: ["*.dom.spec.tsx", "*.tsx"],
+      files: ["*.tsx", "!*.spec.dom.tsx"],
       extends: ["plugin:react/recommended"],
       settings: {
         react: {
@@ -221,7 +222,7 @@ module.exports = {
       },
     },
     {
-      files: ["*.spec.ts", "*.spec.dom.ts"],
+      files: ["*.spec.ts", "*.spec.dom.ts", "*.spec.dom.tsx"],
       rules: {
         "filenames/match-regex": "off",
         "filenames/match-exported": "off",

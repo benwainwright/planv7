@@ -13,6 +13,8 @@ const useStyles = makeStyles(() => ({
 }));
 
 const Register: React.FC<RouteComponentProps> = () => {
+  const [dirty, setDirty] = React.useState(false);
+
   const classes = useStyles();
 
   return (
@@ -21,12 +23,23 @@ const Register: React.FC<RouteComponentProps> = () => {
         Register
       </Typography>
       <form noValidate autoComplete="off">
-        <TextField fullWidth id="username" label="Username" />
-        <TextField fullWidth id="password" label="Password" />
-        <TextField fullWidth id="password" label="Verify password" />
+        <TextField
+          id="username"
+          onChange={(): void => setDirty(true)}
+          fullWidth
+          label="Username"
+        />
+
+        <TextField
+          fullWidth
+          id="password"
+          onChange={(): void => setDirty(true)}
+          label="Password"
+        />
+        <TextField fullWidth id="verifyPassword" label="Verify password" />
         <ButtonGroup className={classes.root}>
           <Button color="primary">Submit</Button>
-          <Button>Clear</Button>
+          {dirty && <Button id="clearButton">Clear</Button>}
         </ButtonGroup>
       </form>
     </React.Fragment>

@@ -1,4 +1,5 @@
 import { Container, interfaces } from "inversify";
+import "@testing-library/jest-dom";
 
 declare global {
   namespace jest {
