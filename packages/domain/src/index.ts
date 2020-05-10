@@ -1,3 +1,4 @@
+import * as Commands from "./commands";
 import CommandOutcome from "./CommandOutcome";
 import { DomainError } from "./domain-error";
 import DomainEvent from "./DomainEvent";
@@ -17,4 +18,5 @@ export {
   LoginResponse,
   Response,
   TYPES,
+  Commands,
 };

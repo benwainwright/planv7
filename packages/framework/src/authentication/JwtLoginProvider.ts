@@ -32,7 +32,7 @@ export default class JwtLoginProvider implements LoginProvider {
     @inject(APP.logger)
     logger: Logger,
     @optional()
-    @inject(TYPES.responseAuthHeader)
+    @inject(ResponseAuthHeader)
     authHeader?: ResponseAuthHeader
   ) {
     this.collection = database.collection(

@@ -3,6 +3,7 @@ import { Container, interfaces } from "inversify";
 import { TYPES as FRAMEWORK, ResponseAuthHeader } from "@planv7/framework";
 import { Db } from "mongodb";
 import bindDependencies from "./bindDependencies";
+import { bindDependencies as bindDependenciesClient } from "@planv7/frontend";
 import { mock as mockExtended } from "jest-mock-extended";
 
 const testSatisfiesDependency = (
@@ -20,7 +21,7 @@ const testSatisfiesDependency = (
   }
 };
 
-describe("Bind dependencies", () => {
+describe("Bind dependencies on server", () => {
   it("Can retrieve the response auth header", async () => {
     const container = new Container();
     const db = mockExtended<Db>();
@@ -34,39 +35,6 @@ describe("Bind dependencies", () => {
     await bindDependencies(container, db);
 
     testSatisfiesDependency(container, ResponseAuthHeader);
-  });
-
-  const testService = async (
-    identifiers: {},
-    identifierKey: string
-  ): Promise<void> => {
-    const container = new Container();
-
-    const db = mockExtended<Db>();
-    const logger = mockExtended<Logger>();
-    container.bind<Logger>(APP.logger).toConstantValue(logger);
-
-    await bindDependencies(container, db);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    testSatisfiesDependency(container, (identifiers as any)[identifierKey]);
-  };
-
-  Object.keys(FRAMEWORK).forEach((identifierKey) => {
-    it(
-      `Can retrieve dependency for framework layer identifier: ${String(
-        identifierKey
-      )}`,
-      testService.bind(undefined, FRAMEWORK, identifierKey)
-    );
-  });
-
-  Object.keys(APP).forEach((identifierKey) => {
-    it(
-      `Can retrieve dependency for application ayer identifier: ${String(
-        identifierKey
-      )}`,
-      testService.bind(undefined, APP, identifierKey)
-    );
   });
 
   it("Can retreive the jwt public key", async () => {
@@ -89,5 +57,75 @@ describe("Bind dependencies", () => {
 
     await bindDependencies(container, db);
     testSatisfiesDependency(container, FRAMEWORK.jwtPrivateKey);
+  });
+});
+
+describe("Client and server combined", () => {
+  it("Can retreive all dependencies", async (): Promise<void> => {
+    const container = new Container();
+
+    const db = mockExtended<Db>();
+    const logger = mockExtended<Logger>();
+    container.bind<Logger>(APP.logger).toConstantValue(logger);
+
+    await bindDependencies(container, db);
+    const appLeftOver: [string, string][] = [];
+    Object.keys(APP).forEach((identifierKey) => {
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        container.get((APP as any)[identifierKey]);
+      } catch (error) {
+        appLeftOver.push([identifierKey, error]);
+      }
+    });
+
+    const frameworkLeftOver: [string, string][] = [];
+    Object.keys(FRAMEWORK).forEach((identifierKey) => {
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        container.get((FRAMEWORK as any)[identifierKey]);
+      } catch (error) {
+        frameworkLeftOver.push([identifierKey, error]);
+      }
+    });
+
+    const clientContainer = new Container();
+    clientContainer.bind<Logger>(APP.logger).toConstantValue(logger);
+
+    await bindDependenciesClient(clientContainer, "foo");
+
+    const missing: [string, string, string][] = [];
+    appLeftOver.forEach((missingItem) => {
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        clientContainer.get((APP as any)[missingItem[0]]);
+      } catch (error) {
+        missing.push([`app/${missingItem[0]}`, error.message, missingItem[1]]);
+      }
+    });
+
+    frameworkLeftOver.forEach((missingItem) => {
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        clientContainer.get((FRAMEWORK as any)[missingItem[0]]);
+      } catch (error) {
+        missing.push([
+          `framework/${missingItem[0]}`,
+          error.message,
+          missingItem[1],
+        ]);
+      }
+    });
+
+    if (missing.length > 0) {
+      fail(
+        `${missing.length} services missing:\n\n${missing
+          .map(
+            (item) =>
+              `${item[0]}\nClient Error: ${item[1]}\nServer Error: ${item[2]}`
+          )
+          .join("\n\n")}`
+      );
+    }
   });
 });
