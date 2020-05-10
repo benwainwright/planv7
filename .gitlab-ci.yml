@@ -27,6 +27,7 @@ install:
 jest:
   stage: test
   script:
+    - yarn lint
     - yarn test
     - mkdir public
     - cp -r coverage/lcov-report/* public/
