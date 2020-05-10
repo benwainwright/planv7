@@ -12,6 +12,13 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const handleChange = (
+  setValue: React.Dispatch<React.SetStateAction<string>>,
+  event: React.ChangeEvent<HTMLInputElement>
+): void => {
+  setValue(event?.target.value);
+};
+
 const Register: React.FC<RouteComponentProps> = () => {
   const [dirty, setDirty] = React.useState(false);
   const [username, setUsername] = React.useState("");
@@ -24,13 +31,6 @@ const Register: React.FC<RouteComponentProps> = () => {
     setUsername("");
     setPassword("");
     setVerifyPassword("");
-  };
-
-  const handleChange = (
-    setValue: React.Dispatch<React.SetStateAction<string>>,
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    setValue(event?.target.value);
   };
 
   React.useEffect(() => {

@@ -49,7 +49,7 @@ describe("Register page", () => {
       expect(screen.queryByText("Clear")).not.toBeNull();
     });
 
-    /* it("Must dissapear if all fields change to empty", async () => { */
+    /* It("Must dissapear if all fields change to empty", async () => { */
     /*   await act(async () => { */
     /*     render(<Register />); */
     /*     const changeValue = { */

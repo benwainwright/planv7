@@ -27,7 +27,6 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
-    "react/prop-types": "off",
     "unicorn/no-fn-reference-in-iterator": "off",
     "unicorn/prevent-abbreviations": "off",
     "unicorn/filename-case": "off",
@@ -148,7 +147,6 @@ module.exports = {
     // Fp
     "fp/no-let": "error",
   },
-
   overrides: [
     {
       files: ["*.ts", "*.tsx"],
@@ -213,6 +211,7 @@ module.exports = {
         },
       },
       rules: {
+        "react/prop-types": "off",
         "@typescript-eslint/naming-convention": [
           "error",
           {

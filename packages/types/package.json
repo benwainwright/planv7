@@ -9,7 +9,12 @@
     "@types/eslint": "6.8.0"
   },
   "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
+    "lint": "eslint '**/*.{ts,tsx,js,jsx,d.ts}'",
+    "lint:fix": "eslint --fix '**/*.{ts,tsx,js,jsx,d.ts}'"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@planv7/eslint-config-planv7"
+    ]
   }
 }

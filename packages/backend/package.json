@@ -39,8 +39,8 @@
     "start:dev": "USE_MONGO_MEMORY_SERVER=true node dist/server.js",
     "test": "jest",
     "test:watch": "jest --watch",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
+    "lint": "eslint '**/*.{ts,tsx,js,jsx,d.ts}'",
+    "lint:fix": "eslint --fix '**/*.{ts,tsx,js,jsx,d.ts}'",
     "build:prod": "NODE_ENV=production webpack --env=prod"
   },
   "eslintConfig": {

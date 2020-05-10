@@ -7,8 +7,8 @@
     "jest-junit": "^10.0.0"
   },
   "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
+    "lint": "eslint '**/*.{ts,tsx,js,jsx,d.ts}'",
+    "lint:fix": "eslint --fix '**/*.{ts,tsx,js,jsx,d.ts}'"
   },
   "eslintConfig": {
     "extends": [
