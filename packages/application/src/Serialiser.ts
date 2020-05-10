@@ -1,10 +1,10 @@
 import "reflect-metadata";
 
-import { injectable } from "inversify";
 import { Serialisable } from "@planv7/domain";
 import Typeson from "typeson";
 import date from "typeson-registry/types/date";
 import error from "typeson-registry/types/error";
+import { injectable } from "inversify";
 
 @injectable()
 export default class Serialiser {
