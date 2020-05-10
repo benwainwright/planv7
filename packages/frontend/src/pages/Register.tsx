@@ -36,7 +36,14 @@ const Register: React.FC<RouteComponentProps> = () => {
           onChange={(): void => setDirty(true)}
           label="Password"
         />
-        <TextField fullWidth id="verifyPassword" label="Verify password" />
+
+        <TextField
+          fullWidth
+          id="verifyPassword"
+          label="Verify password"
+          onChange={(): void => setDirty(true)}
+        />
+
         <ButtonGroup className={classes.root}>
           <Button color="primary">Submit</Button>
           {dirty && <Button id="clearButton">Clear</Button>}
