@@ -5,6 +5,7 @@ import {
   AuthenticatedEntityRepository,
   CurrentLoginSession,
   Logger,
+  LoginProvider,
   Repository,
   Serialiser,
   SlugGenerator,
@@ -12,6 +13,7 @@ import {
 
 import {
   TYPES as FRAMEWORK,
+  JwtLoginProvider,
   JwtServerLoginSession,
   MongoDatabasePlanRepository,
   MongoDatabasePlanSlugGenerator,
@@ -68,6 +70,8 @@ const bindDependencies = async (
   container
     .bind<Serialiser>(APP.serialiser)
     .toConstantValue(new Serialiser(Domain));
+
+  container.bind<LoginProvider>(APP.loginProvider).to(JwtLoginProvider);
 };
 
 export default bindDependencies;
