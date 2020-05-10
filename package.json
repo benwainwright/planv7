@@ -14,6 +14,7 @@
   "scripts": {
     "start:dev": "webpack --env=dev",
     "test": "jest",
+    "build:prod": "yarn workspaces foreach --parallel run build:prod",
     "lint": "yarn workspaces foreach --parallel run lint"
   },
   "config": {

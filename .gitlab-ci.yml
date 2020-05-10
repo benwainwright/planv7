@@ -2,7 +2,7 @@ image: node:14-stretch
 
 stages:
   - install
-  - test
+  - prepare
 
 variables:
   YARN_CACHE_FOLDER: $CI_PROJECT_DIR/.yarn/cache
@@ -25,7 +25,7 @@ install:
     - yarn install
 
 jest:
-  stage: test
+  stage: prepare 
   script:
     - yarn lint
     - yarn test
@@ -38,3 +38,16 @@ jest:
       - public
     reports:
       junit: junit.xml
+
+build:
+  stage: prepare
+  script:
+    - yarn build:prod
+
+  artifacts:
+    paths:
+      - packages/backend/dist
+      - packages/frontend/dist
+
+
+ 

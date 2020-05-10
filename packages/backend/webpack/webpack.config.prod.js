@@ -69,7 +69,7 @@ const clientConfig = {
     }),
   ],
   plugins: [
-    new BundleAnalyzerPlugin({ openAnalyzer: false }),
+    new BundleAnalyzerPlugin({ openAnalyzer: false, analyzerMode: "static" }),
     new webpack.NoEmitOnErrorsPlugin(),
     new CheckerPlugin(),
     new ForkTsCheckerWebpackPlugin(),

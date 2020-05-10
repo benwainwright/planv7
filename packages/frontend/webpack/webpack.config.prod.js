@@ -1,10 +1,16 @@
 const merge = require("webpack-merge");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CheckerPlugin } = require("awesome-typescript-loader");
+const nodeExternals = require("webpack-node-externals");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const webpack = require("webpack");
 const path = require("path");
 
+if (!process.env.JWT_PUBLIC_KEY) {
+  throw new Error("Please set JWT_PUBLIC_KEY");
+}
 const clientConfig = {
   mode: "production",
   node: {
@@ -55,8 +61,14 @@ const clientConfig = {
       },
     ],
   },
-  externals: ["module"],
+  externals: [
+    nodeExternals({
+      modulesFromFile: true,
+      whitelist: [/^@planv7/u],
+    }),
+  ],
   plugins: [
+    new BundleAnalyzerPlugin({ openAnalyzer: false, analyzerMode: "static" }),
     new webpack.NoEmitOnErrorsPlugin(),
     new CheckerPlugin(),
     new ForkTsCheckerWebpackPlugin(),
@@ -64,11 +76,7 @@ const clientConfig = {
       filename: "[name].css",
     }),
 
-    nodeExternals({
-      modulesFromFile: true,
-      whitelist: [/^@planv7/u],
-    }),
-    new webpack.EnvironmentPlugin(["NODE_ENV", "DEBUG", "JWT_PUBLIC_KEY"]),
+    new webpack.EnvironmentPlugin(["JWT_PUBLIC_KEY"]),
   ],
 };
 
