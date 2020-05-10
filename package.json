@@ -14,7 +14,7 @@
   "scripts": {
     "start:dev": "webpack --env=dev",
     "test": "jest",
-    "lint": "yarn workspace @planv7/domain lint && yarn workspace @planv7/framework lint && yarn workspace @planv7/application lint && yarn workspace @planv7/frontend lint && yarn workspace @planv7/backend lint"
+    "lint": "yarn workspaces foreach --parallel run lint"
   },
   "config": {
     "mongoDbMemoryServer": {
