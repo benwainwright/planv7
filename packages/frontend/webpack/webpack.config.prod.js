@@ -14,7 +14,7 @@ const clientConfig = {
     tls: "mock",
   },
   entry: {
-    app: ["./src/index.tsx"],
+    app: ["./src/entry-point.ts"],
     vendor: ["@babel/polyfill", "react"],
   },
 
