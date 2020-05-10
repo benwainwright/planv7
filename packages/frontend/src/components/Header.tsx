@@ -13,6 +13,7 @@ const RIGHT_MARGIN_SPACING = 2;
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    marginBottom: "2rem",
   },
   menuButton: {
     marginRight: theme.spacing(RIGHT_MARGIN_SPACING),
@@ -27,7 +28,7 @@ const Header: React.FC = (): React.ReactElement => {
   const classes = useStyles();
   return (
     <header>
-      <AppBar position="static">
+      <AppBar className={classes.root} position="static">
         <Toolbar>
           <IconButton
             edge="start"
