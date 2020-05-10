@@ -1,5 +1,5 @@
 import * as constants from "../constants";
-import { Db, MongoClient } from "mongodb";
+import { MongoClient } from "mongodb";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import connectToDatabase from "./connectToDatabase";
 import { mock as mockExtended } from "jest-mock-extended";
