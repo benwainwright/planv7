@@ -1,5 +1,7 @@
 const merge = require("webpack-merge");
 const nodeExternals = require("webpack-node-externals");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CheckerPlugin } = require("awesome-typescript-loader");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
@@ -67,6 +69,7 @@ const clientConfig = {
     }),
   ],
   plugins: [
+    new BundleAnalyzerPlugin({ openAnalyzer: false }),
     new webpack.NoEmitOnErrorsPlugin(),
     new CheckerPlugin(),
     new ForkTsCheckerWebpackPlugin(),
