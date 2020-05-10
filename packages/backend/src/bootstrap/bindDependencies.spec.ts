@@ -32,7 +32,7 @@ describe("Bind dependencies on server", () => {
     const logger = mockExtended<Logger>();
     container.bind<Logger>(APP.logger).toConstantValue(logger);
 
-    await bindDependencies(container, db);
+    await bindDependencies(container, db, "foo", "foo");
 
     testSatisfiesDependency(container, ResponseAuthHeader);
   });
@@ -44,7 +44,7 @@ describe("Bind dependencies on server", () => {
     const logger = mockExtended<Logger>();
     container.bind<Logger>(APP.logger).toConstantValue(logger);
 
-    await bindDependencies(container, db);
+    await bindDependencies(container, db, "foo", "foo");
     testSatisfiesDependency(container, FRAMEWORK.jwtPublicKey);
   });
 
@@ -55,7 +55,7 @@ describe("Bind dependencies on server", () => {
     const logger = mockExtended<Logger>();
     container.bind<Logger>(APP.logger).toConstantValue(logger);
 
-    await bindDependencies(container, db);
+    await bindDependencies(container, db, "foo", "foo");
     testSatisfiesDependency(container, FRAMEWORK.jwtPrivateKey);
   });
 });
@@ -68,7 +68,7 @@ describe("Client and server combined", () => {
     const logger = mockExtended<Logger>();
     container.bind<Logger>(APP.logger).toConstantValue(logger);
 
-    await bindDependencies(container, db);
+    await bindDependencies(container, db, "foo", "foo");
     const appLeftOver: [string, string][] = [];
     Object.keys(APP).forEach((identifierKey) => {
       try {
