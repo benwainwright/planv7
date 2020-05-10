@@ -1,14 +1,13 @@
 import "reflect-metadata";
 
-import { inject, injectable } from "inversify";
 import ClientStorage from "./ClientStorage";
-import TYPES from "../TYPES";
+import { injectable } from "inversify";
 
 @injectable()
 export default class LocalStorageClientStorage<T> implements ClientStorage<T> {
   private readonly name: string;
 
-  public constructor(@inject(TYPES.localStorageKey) name: string) {
+  public constructor(name: string) {
     this.name = name;
   }
 
