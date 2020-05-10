@@ -1,5 +1,5 @@
-const getDom = require("./dom");
-const getNode = require("./node");
+const getDom = require("./getDom");
+const getNode = require("./getNode");
 const path = require("path");
 
 const getProjects = (package) => [getDom(package), getNode(package)];

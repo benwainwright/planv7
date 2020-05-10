@@ -2,6 +2,15 @@
   "name": "@planv7/eslint-config-planv7",
   "main": "index.js",
   "version": "0.0.1",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
+  },
+  "eslintConfig": {
+    "extends": [
+      "./index.js"
+    ]
+  },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^2.30.0",
     "@typescript-eslint/parser": "^2.30.0",

@@ -32,12 +32,11 @@ const clientConfig = {
   },
 
   devtool: "cheap-module-eval-source-map",
-  //plugins: [new webpack.NoEmitOnErrorsPlugin()],
   module: {
     rules: [
       {
-        test: /\.ts(x?)$/,
-        exclude: /node_modules/,
+        test: /\.ts(?:x?)$/u,
+        exclude: /node_modules/u,
         use: [
           {
             loader: "babel-loader",
@@ -52,18 +51,19 @@ const clientConfig = {
         ],
       },
       {
-        test: /\.css$/,
+        test: /\.css$/u,
         use: ["style-loader", "css-loader"],
       },
       {
         enforce: "pre",
-        test: /.js$/,
+        test: /.js$/u,
         loader: require.resolve("source-map-loader"),
       },
     ],
   },
   externals: ["module"],
   plugins: [
+    new webpack.NoEmitOnErrorsPlugin(),
     new CheckerPlugin(),
     new ForkTsCheckerWebpackPlugin(),
     new webpack.EnvironmentPlugin([

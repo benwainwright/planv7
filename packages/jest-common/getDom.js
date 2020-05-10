@@ -1,4 +1,4 @@
-const getCommon = require("./common");
+const getCommon = require("./getCommon");
 
 const getDom = (package) => ({
   ...getCommon(package),

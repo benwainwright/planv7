@@ -1,7 +1,21 @@
 {
   "name": "@planv7/jest-common",
   "dependencies": {
+    "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7",
+    "eslint": "^7.0.0",
     "inversify": "^5.0.1",
     "jest-junit": "^10.0.0"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
+  },
+  "eslintConfig": {
+    "extends": [
+      "@planv7/eslint-config-planv7"
+    ]
+  },
+  "devDependencies": {
+    "@types/eslint": "6.8.0"
   }
 }

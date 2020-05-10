@@ -26,13 +26,13 @@ const devServerConfig = {
     "pnpapi",
     nodeExternals({
       modulesFromFile: true,
-      whitelist: ["webpack/hot/poll?1000", /^@planv7/],
+      whitelist: ["webpack/hot/poll?1000", /^@planv7/u],
     }),
   ],
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.tsx?$/u,
         use: [
           { loader: "babel-loader" },
           {
@@ -43,11 +43,11 @@ const devServerConfig = {
             },
           },
         ],
-        exclude: /node_modules/,
+        exclude: /node_modules/u,
       },
       {
-        exclude: /node_modules/,
-        test: /\.css$/,
+        exclude: /node_modules/u,
+        test: /\.css$/u,
         use: ["css-loader"],
       },
     ],

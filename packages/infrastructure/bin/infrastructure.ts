@@ -1,7 +1,5 @@
 #!/usr/bin/env node
-import 'source-map-support/register';
-import * as cdk from '@aws-cdk/core';
-import { InfrastructureStack } from '../lib/infrastructure-stack';
+import "source-map-support/register";
+import * as cdk from "@aws-cdk/core";
 
-const app = new cdk.App();
-new InfrastructureStack(app, 'InfrastructureStack');
+new cdk.App();
