@@ -11,4 +11,8 @@ const app = new cdk.App();
 new ApplicationDeploymentStack(app, {
   applicationName: "Planv7",
   codeDeployBucket: EU_WEST_2_LONDON_CODE_DEPLOY_RESOURCES_BUCKET,
+  env: {
+    region: "eu-west-2",
+    account: "661272765443",
+  },
 });

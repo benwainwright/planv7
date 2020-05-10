@@ -1,6 +1,5 @@
-import * as ec2 from "@aws-cdk/aws-ec2";
 import * as cdk from "@aws-cdk/core";
-import * as path from "path";
+import * as ec2 from "@aws-cdk/aws-ec2";
 
 interface ApplicationDeploymentStackProps {
   applicationName: string;
@@ -13,9 +12,9 @@ const TAG_VALUE = "Planv7";
 export default class ApplicationDeploymentStack extends cdk.Stack {
   public constructor(
     context: cdk.Construct,
-    props: ApplicationDeploymentStackProps
+    props: ApplicationDeploymentStackProps & cdk.StackProps
   ) {
-    super(context, `${props.applicationName}DeploymentStack`);
+    super(context, `${props.applicationName}DeploymentStack`, props);
 
     const vpc = new ec2.Vpc(this, `${props.applicationName}Vpc`);
     const machineImage = ec2.MachineImage.latestAmazonLinux();
@@ -44,8 +43,6 @@ chmod +x ./install
         instanceName: `${props.applicationName}Instance`,
       }
     );
-
-    instance.connections.allowDefaultPortFromAnyIpv4();
 
     cdk.Tag.add(instance, TAG_KEY, TAG_VALUE);
   }
