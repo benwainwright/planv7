@@ -37,48 +37,20 @@ describe("Bind dependencies", () => {
     testSatisfiesDependency(container, ResponseAuthHeader);
   });
 
-  it("Can retrieve the user repository", async () => {
-    const container = new Container();
-    const db = mockExtended<Db>();
+  Object.keys(APP).forEach((identifier) => {
+    it(`Can retrieve dependency for identifier: ${String(
+      identifier
+    )}`, async () => {
+      const container = new Container();
 
-    const logger = mockExtended<Logger>();
-    container.bind<Logger>(APP.logger).toConstantValue(logger);
-    await bindDependencies(container, db);
+      const db = mockExtended<Db>();
+      const logger = mockExtended<Logger>();
+      container.bind<Logger>(APP.logger).toConstantValue(logger);
 
-    testSatisfiesDependency(container, APP.userRepository);
-  });
-
-  it("Can retrieve the plan repository", async () => {
-    const container = new Container();
-    const db = mockExtended<Db>();
-
-    const logger = mockExtended<Logger>();
-    container.bind<Logger>(APP.logger).toConstantValue(logger);
-
-    await bindDependencies(container, db);
-    testSatisfiesDependency(container, APP.planRepository);
-  });
-
-  it("Can retreive the slug generator", async () => {
-    const container = new Container();
-    const db = mockExtended<Db>();
-
-    const logger = mockExtended<Logger>();
-    container.bind<Logger>(APP.logger).toConstantValue(logger);
-
-    await bindDependencies(container, db);
-    testSatisfiesDependency(container, APP.slugGenerator);
-  });
-
-  it("Can retreive the current login session", async () => {
-    const container = new Container();
-    const db = mockExtended<Db>();
-
-    const logger = mockExtended<Logger>();
-    container.bind<Logger>(APP.logger).toConstantValue(logger);
-
-    await bindDependencies(container, db);
-    testSatisfiesDependency(container, APP.currentLoginSession);
+      await bindDependencies(container, db);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      testSatisfiesDependency(container, (APP as any)[identifier]);
+    });
   });
 
   it("Can retreive the jwt public key", async () => {

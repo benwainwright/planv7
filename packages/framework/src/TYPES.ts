@@ -1,5 +1,5 @@
 const TYPES = {
-  db: Symbol.for("db"),
+  db: Symbol.for("b"),
   responseAuthHeader: Symbol.for("responseAuthHeader"),
   authorisingDispatcher: Symbol.for("authorisingDispatcher"),
   jwtPublicKey: Symbol.for("jwtPublicKey"),
