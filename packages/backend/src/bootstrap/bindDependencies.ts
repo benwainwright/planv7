@@ -1,9 +1,12 @@
+import * as Domain from "@planv7/domain";
+
 import {
   TYPES as APP,
   AuthenticatedEntityRepository,
   CurrentLoginSession,
   Logger,
   Repository,
+  Serialiser,
   SlugGenerator,
 } from "@planv7/application";
 
@@ -17,8 +20,6 @@ import {
   TEST_PRIVATE_KEY,
   TEST_PUBLIC_KEY,
 } from "@planv7/framework";
-
-import { Plan, User } from "@planv7/domain";
 
 import { Container } from "inversify";
 import { Db } from "mongodb";
@@ -48,21 +49,25 @@ const bindDependencies = async (
   container.bind<Db>(FRAMEWORK.db).toConstantValue(database);
 
   container
-    .bind<Repository<User>>(APP.userRepository)
+    .bind<Repository<Domain.User>>(APP.userRepository)
     .to(MongoDatabaseUserRepository);
 
   container
-    .bind<AuthenticatedEntityRepository<Plan>>(APP.planRepository)
+    .bind<AuthenticatedEntityRepository<Domain.Plan>>(APP.planRepository)
     .to(MongoDatabasePlanRepository);
 
   container
-    .bind<SlugGenerator<Plan>>(APP.slugGenerator)
+    .bind<SlugGenerator<Domain.Plan>>(APP.slugGenerator)
     .to(MongoDatabasePlanSlugGenerator);
 
   container
     .bind<CurrentLoginSession>(APP.currentLoginSession)
     .to(JwtServerLoginSession)
     .inRequestScope();
+
+  container
+    .bind<Serialiser>(APP.serialiser)
+    .toConstantValue(new Serialiser(Domain));
 };
 
 export default bindDependencies;

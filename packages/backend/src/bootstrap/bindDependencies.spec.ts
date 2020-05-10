@@ -1,7 +1,6 @@
-// eslint-disable-next-line import/named
+import { TYPES as APP, Logger } from "@planv7/application";
 import { Container, interfaces } from "inversify";
-import { Logger, TYPES as APP } from "@planv7/application";
-import { ResponseAuthHeader, TYPES as FRAMEWORK } from "@planv7/framework";
+import { TYPES as FRAMEWORK, ResponseAuthHeader } from "@planv7/framework";
 import { Db } from "mongodb";
 import bindDependencies from "./bindDependencies";
 import { mock as mockExtended } from "jest-mock-extended";
@@ -37,20 +36,37 @@ describe("Bind dependencies", () => {
     testSatisfiesDependency(container, ResponseAuthHeader);
   });
 
-  Object.keys(APP).forEach((identifier) => {
-    it(`Can retrieve dependency for identifier: ${String(
-      identifier
-    )}`, async () => {
-      const container = new Container();
+  const testService = async (
+    identifiers: {},
+    identifierKey: string
+  ): Promise<void> => {
+    const container = new Container();
 
-      const db = mockExtended<Db>();
-      const logger = mockExtended<Logger>();
-      container.bind<Logger>(APP.logger).toConstantValue(logger);
+    const db = mockExtended<Db>();
+    const logger = mockExtended<Logger>();
+    container.bind<Logger>(APP.logger).toConstantValue(logger);
 
-      await bindDependencies(container, db);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      testSatisfiesDependency(container, (APP as any)[identifier]);
-    });
+    await bindDependencies(container, db);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    testSatisfiesDependency(container, (identifiers as any)[identifierKey]);
+  };
+
+  Object.keys(FRAMEWORK).forEach((identifierKey) => {
+    it(
+      `Can retrieve dependency for framework layer identifier: ${String(
+        identifierKey
+      )}`,
+      testService.bind(undefined, FRAMEWORK, identifierKey)
+    );
+  });
+
+  Object.keys(APP).forEach((identifierKey) => {
+    it(
+      `Can retrieve dependency for application ayer identifier: ${String(
+        identifierKey
+      )}`,
+      testService.bind(undefined, APP, identifierKey)
+    );
   });
 
   it("Can retreive the jwt public key", async () => {

@@ -34,6 +34,7 @@ module.exports = {
     "unicorn/prevent-abbreviations": "off",
     "unicorn/filename-case": "off",
     "import/namespace": "off",
+    "import/named": "off",
     "import/prefer-default-export": "error",
     // Eslint build in
     "no-inline-comments": "error",

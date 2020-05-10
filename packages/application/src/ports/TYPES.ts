@@ -9,6 +9,7 @@ export const TYPES = {
   dispatch: Symbol.for("Dispatch"),
   loginSessionDestroyer: Symbol.for("LoginSessionDestroyer"),
   serialisableConstructors: Symbol.for("SerialisableConstructors"),
+  serialiser: Symbol.for("Serialiser"),
 };
 
 export default TYPES;
