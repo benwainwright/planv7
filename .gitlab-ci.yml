@@ -31,6 +31,7 @@ jest:
     - yarn test
     - mkdir public
     - cp -r coverage/lcov-report/* public/
+
   coverage: /All files\s*\|\s*([\d\.]+)/
   artifacts:
     paths:
