@@ -31,12 +31,11 @@ const clientConfig = {
     },
   },
 
-  plugins: [new webpack.NoEmitOnErrorsPlugin()],
   module: {
     rules: [
       {
-        test: /\.ts(x?)$/,
-        exclude: /node_modules/,
+        test: /\.ts(?:x?)$/u,
+        exclude: /node_modules/u,
         use: [
           {
             loader: "babel-loader",
@@ -51,17 +50,23 @@ const clientConfig = {
         ],
       },
       {
-        test: /\.css$/,
+        test: /\.css$/u,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
     ],
   },
   externals: ["module"],
   plugins: [
+    new webpack.NoEmitOnErrorsPlugin(),
     new CheckerPlugin(),
     new ForkTsCheckerWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: "[name].css",
+    }),
+
+    nodeExternals({
+      modulesFromFile: true,
+      whitelist: [/^@planv7/u],
     }),
     new webpack.EnvironmentPlugin(["NODE_ENV", "DEBUG", "JWT_PUBLIC_KEY"]),
   ],
