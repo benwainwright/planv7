@@ -1,5 +1,6 @@
 import { Container, interfaces } from "inversify";
 import "@testing-library/jest-dom";
+import "@testing-library/jest-dom/extend-expect";
 
 declare global {
   namespace jest {

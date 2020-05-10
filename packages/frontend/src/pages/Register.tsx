@@ -14,8 +14,34 @@ const useStyles = makeStyles(() => ({
 
 const Register: React.FC<RouteComponentProps> = () => {
   const [dirty, setDirty] = React.useState(false);
+  const [username, setUsername] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [verifyPassword, setVerifyPassword] = React.useState("");
 
   const classes = useStyles();
+
+  const handleClear = (): void => {
+    setUsername("");
+    setPassword("");
+    setVerifyPassword("");
+  };
+
+  const handleChange = (
+    setValue: React.Dispatch<React.SetStateAction<string>>,
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    setValue(event?.target.value);
+  };
+
+  React.useEffect(() => {
+    if (username || password || verifyPassword) {
+      setDirty(true);
+    }
+
+    if (!(username || password || verifyPassword)) {
+      setDirty(false);
+    }
+  });
 
   return (
     <React.Fragment>
@@ -25,28 +51,38 @@ const Register: React.FC<RouteComponentProps> = () => {
       <form noValidate autoComplete="off">
         <TextField
           id="username"
-          onChange={(): void => setDirty(true)}
+          onChange={handleChange.bind(undefined, setUsername)}
           fullWidth
           label="Username"
+          inputProps={{ "data-testid": "username" }}
+          value={username}
         />
 
         <TextField
           fullWidth
           id="password"
-          onChange={(): void => setDirty(true)}
+          onChange={handleChange.bind(undefined, setPassword)}
           label="Password"
+          inputProps={{ "data-testid": "password" }}
+          value={password}
         />
 
         <TextField
           fullWidth
           id="verifyPassword"
           label="Verify password"
-          onChange={(): void => setDirty(true)}
+          onChange={handleChange.bind(undefined, setVerifyPassword)}
+          inputProps={{ "data-testid": "verifyPassword" }}
+          value={verifyPassword}
         />
 
         <ButtonGroup className={classes.root}>
           <Button color="primary">Submit</Button>
-          {dirty && <Button id="clearButton">Clear</Button>}
+          {dirty && (
+            <Button id="clearButton" onClick={handleClear}>
+              Clear
+            </Button>
+          )}
         </ButtonGroup>
       </form>
     </React.Fragment>
