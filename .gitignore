@@ -5,3 +5,5 @@ coverage
 junit.xml
 dist
 .yarnCache
+jwtRS256.key
+jwtRS256.key.pub

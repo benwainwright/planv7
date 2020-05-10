@@ -190,6 +190,13 @@ module.exports = {
 
   overrides: [
     {
+      files: ["*.js"],
+      rules: {
+        "no-undef": "off",
+        "@typescript-eslint/no-var-requires": "off",
+      },
+    },
+    {
       files: ["*.tsx", "!*.spec.dom.tsx"],
       extends: ["plugin:react/recommended"],
       settings: {
