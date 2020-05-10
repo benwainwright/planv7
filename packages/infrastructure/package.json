@@ -25,6 +25,7 @@
     "@aws-cdk/core": "1.36.1",
     "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7",
     "@planv7/jest-common": "workspace:packages/jest-common",
+    "@types/source-map-support": "^0.5.1",
     "eslint": "^7.0.0",
     "source-map-support": "^0.5.16"
   },
