@@ -5,7 +5,7 @@ stages:
   - test
 
 variables:
-  YARN_CACHE_FOLDER: $CI_PROJECT_DIR/.yarn
+  YARN_CACHE_FOLDER: $CI_PROJECT_DIR/.yarn/cache
   CYPRESS_CACHE_FOLDER: $CI_PROJECT_DIR/cache/Cypress
 
 cache:
