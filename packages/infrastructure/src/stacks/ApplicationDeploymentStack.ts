@@ -73,7 +73,12 @@ chmod +x ./install
     const bucketName = `${props.applicationName}DeploymentBucket`;
 
     new s3.Bucket(this, bucketName, {
-      bucketName,
+      bucketName: bucketName
+        .split(/(?=[A-Z])/u)
+        .join("-")
+        .toLowerCase(),
+      encryption: s3.BucketEncryption.S3_MANAGED,
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
   }
 }
