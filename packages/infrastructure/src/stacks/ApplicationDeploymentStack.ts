@@ -1,13 +1,11 @@
 import * as cdk from "@aws-cdk/core";
+import * as codedeploy from "@aws-cdk/aws-codedeploy";
 import * as ec2 from "@aws-cdk/aws-ec2";
 
 interface ApplicationDeploymentStackProps {
   applicationName: string;
   codeDeployBucket: string;
 }
-
-const TAG_KEY = "Name";
-const TAG_VALUE = "Planv7";
 
 export default class ApplicationDeploymentStack extends cdk.Stack {
   public constructor(
@@ -44,6 +42,31 @@ chmod +x ./install
       }
     );
 
-    cdk.Tag.add(instance, TAG_KEY, TAG_VALUE);
+    const tagKeyName = "Name";
+    const tagKeyValue = props.applicationName;
+
+    const ec2InstanceTags = new codedeploy.InstanceTagSet({
+      tagKeyName: [tagKeyValue],
+    });
+    cdk.Tag.add(instance, tagKeyName, tagKeyValue);
+
+    const applicationName = `${props.applicationName}CodeDeployApplication`;
+
+    const application = new codedeploy.ServerApplication(
+      this,
+      applicationName,
+      {
+        applicationName,
+      }
+    );
+
+    new codedeploy.ServerDeploymentGroup(
+      this,
+      `${props.applicationName}DeploymentGroup`,
+      {
+        application,
+        ec2InstanceTags,
+      }
+    );
   }
 }

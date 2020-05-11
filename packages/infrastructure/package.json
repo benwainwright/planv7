@@ -22,6 +22,7 @@
     "typescript": "~3.7.2"
   },
   "dependencies": {
+    "@aws-cdk/aws-codedeploy": "^1.38.0",
     "@aws-cdk/aws-ec2": "^1.38.0",
     "@aws-cdk/core": "1.36.1",
     "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7",
