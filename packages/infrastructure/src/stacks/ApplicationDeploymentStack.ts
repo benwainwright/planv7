@@ -1,6 +1,7 @@
 import * as cdk from "@aws-cdk/core";
 import * as codedeploy from "@aws-cdk/aws-codedeploy";
 import * as ec2 from "@aws-cdk/aws-ec2";
+import * as s3 from "@aws-cdk/aws-s3";
 
 interface ApplicationDeploymentStackProps {
   applicationName: string;
@@ -68,5 +69,11 @@ chmod +x ./install
         ec2InstanceTags,
       }
     );
+
+    const bucketName = `${props.applicationName}DeploymentBucket`;
+
+    new s3.Bucket(this, bucketName, {
+      bucketName,
+    });
   }
 }

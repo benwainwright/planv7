@@ -343,7 +343,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-cdk/aws-s3@npm:1.38.0":
+"@aws-cdk/aws-s3@npm:1.38.0, @aws-cdk/aws-s3@npm:^1.38.0":
   version: 1.38.0
   resolution: "@aws-cdk/aws-s3@npm:1.38.0"
   dependencies:
@@ -7361,6 +7361,7 @@ fsevents@^2.1.2:
     "@aws-cdk/assert": 1.36.1
     "@aws-cdk/aws-codedeploy": ^1.38.0
     "@aws-cdk/aws-ec2": ^1.38.0
+    "@aws-cdk/aws-s3": ^1.38.0
     "@aws-cdk/core": 1.36.1
     "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7"
     "@planv7/jest-common": "workspace:packages/jest-common"
