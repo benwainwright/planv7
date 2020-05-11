@@ -21,6 +21,10 @@ const clientConfig = {
     vendor: ["@babel/polyfill", "react"],
   },
 
+  performance: {
+    hints: false,
+  },
+
   output: {
     path: path.resolve(__dirname, "../dist/assets/"),
     publicPath: "/assets",
