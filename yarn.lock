@@ -1295,6 +1295,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@planv7/types@workspace:packages/types":
+  version: 0.0.0-use.local
+  resolution: "@planv7/types@workspace:packages/types"
+  languageName: unknown
+  linkType: soft
+
 "@reach/router@npm:^1.3.3":
   version: 1.3.3
   resolution: "@reach/router@npm:1.3.3"
