@@ -1,8 +1,15 @@
+/* eslint-disable unicorn/no-process-exit */
 /* eslint-disable no-console */
 import axios from "axios";
 
 const HTTP_OK = 200;
+const TIMEOUT = 30;
 const ONE_SECOND = 1000;
+
+setTimeout(() => {
+  console.log(`Timed out after ${TIMEOUT} seconds`);
+  process.exit(1);
+}, ONE_SECOND * TIMEOUT);
 
 // eslint-disable-next-line @typescript-eslint/no-magic-numbers
 const url = process.argv[2];
@@ -12,7 +19,6 @@ setInterval(async () => {
     const response = await axios.get(url);
     if (response.status === HTTP_OK) {
       console.log("200 status code received!");
-      // eslint-disable-next-line unicorn/no-process-exit
       process.exit();
     } else {
       console.log("Not ready...");
