@@ -8,6 +8,7 @@
     "jest-junit": "^10.0.0"
   },
   "scripts": {
+    "run:app": "USE_MONGO_MEMORY_SERVER=yes ASSETS_DIR=$PWD/../frontend/dist/assets yarn workspace @planv7/backend start",
     "lint": "eslint '**/*.{ts,tsx,js,jsx,d.ts}'",
     "lint:fix": "eslint --fix '**/*.{ts,tsx,js,jsx,d.ts}'"
   },

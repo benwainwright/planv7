@@ -50,9 +50,9 @@ build:
       - packages/backend/dist
       - packages/frontend/dist
 
-deploy:
-  stage: deploy
-  script:
-    - yarn workspace @planv7/infrastructure cdk deploy --require-approval never
+# deploy:
+#   stage: deploy
+#   script:
+#     - yarn workspace @planv7/infrastructure cdk deploy --require-approval never
 
  
