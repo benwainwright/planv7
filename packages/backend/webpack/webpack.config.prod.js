@@ -17,7 +17,7 @@ const clientConfig = {
     tls: "mock",
   },
   entry: {
-    app: ["./src/start.ts"],
+    app: [path.resolve(__dirname, "../src/start.ts")],
     vendor: ["@babel/polyfill", "react"],
   },
 
