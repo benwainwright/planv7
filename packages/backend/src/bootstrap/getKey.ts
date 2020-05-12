@@ -7,10 +7,6 @@ const getKey = async (
   logger: Logger
 ): Promise<string> => {
   return new Promise((resolve, reject): void => {
-    if (process.env.NODE_ENV === "production") {
-      throw new Error(`Please define the ${pathEnvVar} environment variable`);
-    }
-
     if (process.env[pathEnvVar]) {
       readFile(
         process.env[pathEnvVar] || "",
@@ -25,6 +21,11 @@ const getKey = async (
       );
       return;
     }
+
+    if (process.env.NODE_ENV === "production") {
+      throw new Error(`Please define the ${pathEnvVar} environment variable`);
+    }
+
     logger.warning(
       `${pathEnvVar} is not set in environment; using test key - NOT TO BE USED FOR PRODUCTION PURPOSES`
     );
