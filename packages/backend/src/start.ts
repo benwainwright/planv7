@@ -9,8 +9,6 @@ import initialiseLogger from "./bootstrap/initialiseLogger";
 import loadMiddleware from "./bootstrap/loadMiddleware";
 import loadRoutes from "./bootstrap/loadRoutes";
 
-const SERVER_PORT = 80;
-
 (async (): Promise<void> => {
   try {
     const container = new Container();
@@ -45,8 +43,8 @@ const SERVER_PORT = 80;
       logger.info(`Loading routes`);
       await loadRoutes(koaApp, logger);
 
-      koaApp.listen(SERVER_PORT, () => {
-        logger.info(`Listening on port ${SERVER_PORT}`);
+      koaApp.listen(constants.SERVER_PORT, () => {
+        logger.info(`Listening on port ${constants.SERVER_PORT}`);
       });
     } catch (error) {
       logger.error(error.message);
