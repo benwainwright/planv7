@@ -12,9 +12,7 @@
   "scripts": {
     "wait": "ts-node src/cypress/wait.ts http://localhost/app",
     "run:app": "USE_MONGO_MEMORY_SERVER=yes ASSETS_DIR=$PWD/../frontend/dist/assets yarn workspace @planv7/backend start",
-    "foo": "echo foo &",
-    "cypress:run": "yarn wait && cypress run",
-    "test:cypress": "run-p run:app cypress:run",
+    "test:cypress": "yarn wait && cypress run",
     "lint": "eslint '**/*.{ts,tsx,js,jsx,d.ts}'",
     "lint:fix": "eslint --fix '**/*.{ts,tsx,js,jsx,d.ts}'"
   },
