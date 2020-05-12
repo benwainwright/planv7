@@ -7,7 +7,7 @@
     "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7",
     "@planv7/framework": "workspace:packages/framework",
     "@planv7/frontend": "workspace:packages/frontend",
-    "@planv7/jest-common": "workspace:packages/jest-common",
+    "@planv7/testing": "workspace:packages/testing",
     "@reach/router": "^1.3.3",
     "cache-loader": "^4.1.0",
     "eslint": "^6.8.0",

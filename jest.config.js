@@ -1,10 +1,11 @@
-const jestCommon = require("@planv7/jest-common");
+const testing = require("@planv7/testing");
 
 module.exports = {
-  ...jestCommon.rootConfig,
+  ...testing.rootConfig,
   projects: [
-    ...jestCommon.getProjects("application"),
-    ...jestCommon.getProjects("framework"),
-    ...jestCommon.getProjects("backend"),
+    ...testing.getProjects("application"),
+    ...testing.getProjects("framework"),
+    ...testing.getProjects("backend"),
+    ...testing.getProjects("frontend"),
   ],
 };

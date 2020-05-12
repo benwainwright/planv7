@@ -4,7 +4,7 @@
     "@fluffy-spoon/substitute": "^1.133.0",
     "@planv7/domain": "workspace:packages/domain",
     "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7",
-    "@planv7/jest-common": "workspace:packages/jest-common",
+    "@planv7/testing": "workspace:packages/testing",
     "@types/deep-equal": "^1.0.1",
     "@types/jest": "^25.2.1",
     "axios": "^0.19.2",

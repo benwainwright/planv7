@@ -3,7 +3,7 @@
   "dependencies": {
     "@material-ui/icons": "^4.9.1",
     "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7",
-    "@planv7/jest-common": "workspace:packages/jest-common",
+    "@planv7/testing": "workspace:packages/testing",
     "@reach/router": "^1.3.3",
     "@testing-library/jest-dom": "^5.7.0",
     "@testing-library/react": "^10.0.4",

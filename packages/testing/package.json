@@ -1,5 +1,5 @@
 {
-  "name": "@planv7/jest-common",
+  "name": "@planv7/testing",
   "dependencies": {
     "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7",
     "eslint": "^7.0.0",

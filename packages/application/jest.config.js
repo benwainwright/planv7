@@ -1,5 +1,5 @@
-const jestCommon = require("@planv7/jest-common");
+const testing = require("@planv7/testing");
 
 const path = require("path");
 
-module.exports = jestCommon.getPackageConfig(path.basename(__dirname));
+module.exports = testing.getPackageConfig(path.basename(__dirname));

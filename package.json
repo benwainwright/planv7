@@ -6,7 +6,7 @@
     "packages/*"
   ],
   "dependencies": {
-    "@planv7/jest-common": "workspace:packages/jest-common",
+    "@planv7/testing": "workspace:packages/testing",
     "jest": "^25.0.0",
     "ts-jest": "^25.5.0",
     "typescript": "^3.8.3"

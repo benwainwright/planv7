@@ -2,7 +2,7 @@
   "name": "@planv7/framework",
   "dependencies": {
     "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7",
-    "@planv7/jest-common": "workspace:packages/jest-common",
+    "@planv7/testing": "workspace:packages/testing",
     "@types/bcryptjs": "^2.4.2",
     "@types/jest": "^25.2.1",
     "@types/jsonwebtoken": "^8.3.9",
