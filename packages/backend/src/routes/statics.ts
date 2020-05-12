@@ -18,8 +18,10 @@ const statics = async (): Promise<Koa.Middleware> => {
 
     return koaWebpack({ config, hotClient });
   } else {
+    const assetsDir = process.env.ASSETS_DIR || "./dist/assets";
+
     // eslint-disable-next-line new-cap
-    return mount("/assets", KoaStatic("./dist/assets/"));
+    return mount("/assets", KoaStatic(assetsDir));
   }
 };
 
