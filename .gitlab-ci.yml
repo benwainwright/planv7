@@ -2,9 +2,9 @@ image: node:14-stretch
 
 stages:
   - Install
-  - Prepare
-  - End to end
-  - deploy
+  - Build and test
+  - Integration test
+  - Deploy
 
 variables:
   YARN_CACHE_FOLDER: $CI_PROJECT_DIR/.yarn/cache
@@ -27,7 +27,7 @@ install:
     - yarn install
 
 unit-tests:
-  stage: Prepare 
+  stage: Build and test
   script:
     - yarn lint
     - yarn test
@@ -42,7 +42,7 @@ unit-tests:
       junit: junit.xml
 
 build:
-  stage: Prepare
+  stage: Build and test
   script:
     - yarn build:prod
 
@@ -52,7 +52,7 @@ build:
       - packages/frontend/dist
 
 cypress:
-  stage: End to end
+  stage: Integration test
   script:
     - cd packages/testing
     - yarn run:app & yarn test:cypress
