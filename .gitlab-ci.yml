@@ -52,6 +52,7 @@ Build:
       - packages/frontend/dist
 
 Cypress:
+  image: cypress/base:14
   stage: Integration test
   script:
     - cd packages/testing
