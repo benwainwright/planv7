@@ -36,7 +36,7 @@
     "xmldom": "^0.3.0"
   },
   "scripts": {
-    "start:dev": "USE_MONGO_MEMORY_SERVER=true node dist/server.js",
+    "start": "node dist/server.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint '**/*.{ts,tsx,js,jsx,d.ts}'",

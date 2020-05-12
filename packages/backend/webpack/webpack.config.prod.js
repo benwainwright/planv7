@@ -3,8 +3,6 @@ const nodeExternals = require("webpack-node-externals");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { CheckerPlugin } = require("awesome-typescript-loader");
-const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const webpack = require("webpack");
 const path = require("path");
 
@@ -18,7 +16,6 @@ const clientConfig = {
   },
   entry: {
     app: [path.resolve(__dirname, "../src/start.ts")],
-    vendor: ["@babel/polyfill", "react"],
   },
 
   performance: {
@@ -26,17 +23,16 @@ const clientConfig = {
   },
 
   output: {
-    path: path.resolve(__dirname, "../dist/assets/"),
+    path: path.resolve(__dirname, "../dist"),
     publicPath: "/assets",
     pathinfo: false,
-    filename: "[name].min.js",
+    filename: "server.js",
   },
   devtool: "source-map",
   optimization: {
+    minimize: false,
     noEmitOnErrors: true,
-    splitChunks: {
-      chunks: "all",
-    },
+    splitChunks: false,
   },
   module: {
     rules: [
@@ -64,9 +60,10 @@ const clientConfig = {
   },
 
   externals: [
-    "cross-spawn",
-    "mongodb-memory-server-core",
-    "pnpapi",
+    {
+      "cross-spawn": "global['cross-spawn']",
+      "mongodb-memory-server": "global['mongodb-memory-server']",
+    },
     nodeExternals({
       modulesFromFile: true,
       whitelist: [/^@planv7/u],
@@ -75,8 +72,6 @@ const clientConfig = {
   plugins: [
     new BundleAnalyzerPlugin({ openAnalyzer: false, analyzerMode: "static" }),
     new webpack.NoEmitOnErrorsPlugin(),
-    new CheckerPlugin(),
-    new ForkTsCheckerWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: "[name].css",
     }),
