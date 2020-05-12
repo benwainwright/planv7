@@ -25,6 +25,9 @@ Yarn install:
 
 Unit tests:
   stage: Build and test
+  cache:
+    policy: pull
+
   script:
     - yarn lint
     - yarn test
@@ -40,6 +43,8 @@ Unit tests:
 
 Build:
   stage: Build and test
+  cache:
+    policy: pull
   script:
     - yarn build:prod
 
@@ -57,6 +62,9 @@ Cypress:
   artifacts:
     reports:
       junit: packages/testing/test-results.xml
+    paths:
+      - packages/testing/videos
+      - packages/testing/screenshots
 
 # deploy:
 #   stage: Deploy
