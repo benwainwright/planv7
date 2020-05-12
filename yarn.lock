@@ -1539,6 +1539,33 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@planv7/infrastructure@workspace:packages/infrastructure":
+  version: 0.0.0-use.local
+  resolution: "@planv7/infrastructure@workspace:packages/infrastructure"
+  dependencies:
+    "@aws-cdk/assert": 1.36.1
+    "@aws-cdk/aws-codedeploy": ^1.38.0
+    "@aws-cdk/aws-ec2": ^1.38.0
+    "@aws-cdk/aws-s3": ^1.38.0
+    "@aws-cdk/core": 1.36.1
+    "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7"
+    "@planv7/jest-common": "workspace:packages/jest-common"
+    "@types/eslint": 6.8.0
+    "@types/jest": ^25.2.1
+    "@types/node": 10.17.5
+    "@types/source-map-support": ^0.5.1
+    aws-cdk: 1.36.1
+    eslint: ^7.0.0
+    jest: ^25.5.0
+    source-map-support: ^0.5.16
+    ts-jest: ^25.3.1
+    ts-node: ^8.1.0
+    typescript: ~3.7.2
+  bin:
+    infrastructure: bin/infrastructure.js
+  languageName: unknown
+  linkType: soft
+
 "@planv7/jest-common@workspace:packages/jest-common":
   version: 0.0.0-use.local
   resolution: "@planv7/jest-common@workspace:packages/jest-common"
@@ -7353,33 +7380,6 @@ fsevents@^2.1.2:
   checksum: 3/17c53fc42cbe7f7f471d2bc41b97a0cde4b79a74d5ff59997d3f75210566fa278e17596da526d43de2bd07e222706240ce50e60097e54f2cde2e64cbbb372638
   languageName: node
   linkType: hard
-
-"infrastructure@workspace:packages/infrastructure":
-  version: 0.0.0-use.local
-  resolution: "infrastructure@workspace:packages/infrastructure"
-  dependencies:
-    "@aws-cdk/assert": 1.36.1
-    "@aws-cdk/aws-codedeploy": ^1.38.0
-    "@aws-cdk/aws-ec2": ^1.38.0
-    "@aws-cdk/aws-s3": ^1.38.0
-    "@aws-cdk/core": 1.36.1
-    "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7"
-    "@planv7/jest-common": "workspace:packages/jest-common"
-    "@types/eslint": 6.8.0
-    "@types/jest": ^25.2.1
-    "@types/node": 10.17.5
-    "@types/source-map-support": ^0.5.1
-    aws-cdk: 1.36.1
-    eslint: ^7.0.0
-    jest: ^25.5.0
-    source-map-support: ^0.5.16
-    ts-jest: ^25.3.1
-    ts-node: ^8.1.0
-    typescript: ~3.7.2
-  bin:
-    infrastructure: bin/infrastructure.js
-  languageName: unknown
-  linkType: soft
 
 "inherits@npm:2, inherits@npm:2.0.4, inherits@npm:^2.0.1, inherits@npm:^2.0.3, inherits@npm:^2.0.4, inherits@npm:~2.0.1, inherits@npm:~2.0.3":
   version: 2.0.4

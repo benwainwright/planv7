@@ -12,10 +12,11 @@
     "typescript": "^3.8.3"
   },
   "scripts": {
-    "start:dev": "webpack --env=dev",
+    "lint": "yarn workspaces foreach --parallel run lint",
     "test": "jest",
+    "start:dev": "webpack --env=dev",
     "build:prod": "yarn workspaces foreach --parallel run build:prod",
-    "lint": "yarn workspaces foreach --parallel run lint"
+    "deploy:stack": "yarn workspace @planv7/infrastructure deploy"
   },
   "config": {
     "mongoDbMemoryServer": {

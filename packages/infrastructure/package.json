@@ -1,5 +1,5 @@
 {
-  "name": "infrastructure",
+  "name": "@planv7/infrastructure",
   "version": "0.1.0",
   "bin": "bin/infrastructure.js",
   "scripts": {
