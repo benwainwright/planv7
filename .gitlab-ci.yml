@@ -21,12 +21,12 @@ cache:
 before_script:
   - yarn install
 
-install:
+Yarn install:
   stage: Install
   script:
     - yarn install
 
-unit-tests:
+Unit tests:
   stage: Build and test
   script:
     - yarn lint
@@ -41,7 +41,7 @@ unit-tests:
     reports:
       junit: junit.xml
 
-build:
+Build:
   stage: Build and test
   script:
     - yarn build:prod
@@ -51,7 +51,7 @@ build:
       - packages/backend/dist
       - packages/frontend/dist
 
-cypress:
+Cypress:
   stage: Integration test
   script:
     - cd packages/testing
