@@ -22,6 +22,8 @@ Yarn install:
   stage: Install
   script:
     - yarn install
+  cache:
+    policy: push
 
 Unit tests:
   stage: Build and test
