@@ -1572,6 +1572,7 @@ __metadata:
   dependencies:
     "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7"
     "@types/eslint": 6.8.0
+    cyprus: ^1.0.0
     eslint: ^7.0.0
     inversify: ^5.0.1
     jest-junit: ^10.0.0
@@ -4753,6 +4754,15 @@ __metadata:
   version: 1.0.1
   resolution: "cyclist@npm:1.0.1"
   checksum: 3/74bc0a48c37bed8a430f103d0a880902768b7e3bcc0f9e098c4bd9630438c6b053b88e33c127e41316bb2da8d642a937015961a6cd563641ad2a5798dfecadd9
+  languageName: node
+  linkType: hard
+
+"cyprus@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "cyprus@npm:1.0.0"
+  dependencies:
+    jopa: 2.0.0
+  checksum: 3/01055a7a381aabc6aebda67073c552dd67800d067e2760ebaff76a88be09a87e1fe693f38d46791e9608f362e067b467a74737602127df1a937ac7e7e964018c
   languageName: node
   linkType: hard
 
@@ -8487,6 +8497,13 @@ fsevents@^2.1.2:
   version: 0.15.0
   resolution: "jmespath@npm:0.15.0"
   checksum: 3/b3edb0b9773571d72dc1aa2d5590fa0f82419a0a04d5a0d09aee93219f41d046ea9cf3c36931fc48d9430348ca575530beab5968923544136cc8ddcd49ff7a47
+  languageName: node
+  linkType: hard
+
+"jopa@npm:2.0.0":
+  version: 2.0.0
+  resolution: "jopa@npm:2.0.0"
+  checksum: 3/fea4c129ed52e3c3ff3ff9f4be05c60e929b73cc15445931253d71474bf0a80fa8f25d9fd16f7db5791f9746f9c2c46d04e2e4cf94961aece4877462a82f7501
   languageName: node
   linkType: hard
 
