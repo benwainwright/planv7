@@ -1,4 +1,5 @@
 import * as constants from "../constants";
+import { Logger } from "@planv7/application";
 import { MongoClient } from "mongodb";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import connectToDatabase from "./connectToDatabase";
@@ -33,7 +34,9 @@ describe("Connect to database", () => {
     mockConnect.mockResolvedValue(mockExtended<MongoClient>());
     MongoClient.connect = mockConnect;
 
-    await connectToDatabase();
+    const logger = mockExtended<Logger>();
+
+    await connectToDatabase(logger);
 
     expect(mockConnect).toHaveBeenCalledWith("foobar", expect.anything());
   });
@@ -45,8 +48,9 @@ describe("Connect to database", () => {
     const mockConnect = jest.fn();
     mockConnect.mockResolvedValue(mockExtended<MongoClient>());
     MongoClient.connect = mockConnect;
+    const logger = mockExtended<Logger>();
 
-    await connectToDatabase();
+    await connectToDatabase(logger);
 
     expect(mockConnect).toHaveBeenCalledWith("foobar2", expect.anything());
   });
@@ -58,7 +62,8 @@ describe("Connect to database", () => {
     mockConnect.mockResolvedValue(mockExtended<MongoClient>());
     MongoClient.connect = mockConnect;
 
-    await connectToDatabase();
+    const logger = mockExtended<Logger>();
+    await connectToDatabase(logger);
 
     expect(mockConnect).toHaveBeenCalledWith(
       constants.MONGO_URL,
@@ -74,7 +79,8 @@ describe("Connect to database", () => {
     mockConnect.mockResolvedValue(mockClient);
     MongoClient.connect = mockConnect;
 
-    await connectToDatabase();
+    const logger = mockExtended<Logger>();
+    await connectToDatabase(logger);
 
     expect(mockClient.db).toHaveBeenCalledWith("foobar");
   });
@@ -85,7 +91,8 @@ describe("Connect to database", () => {
     mockConnect.mockResolvedValue(mockClient);
     MongoClient.connect = mockConnect;
 
-    await connectToDatabase();
+    const logger = mockExtended<Logger>();
+    await connectToDatabase(logger);
 
     expect(mockClient.db).toHaveBeenCalledWith(constants.MONGO_DB_NAME);
   });

@@ -1,8 +1,8 @@
 const merge = require("webpack-merge");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-  .BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CheckerPlugin } = require("awesome-typescript-loader");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
 const nodeExternals = require("webpack-node-externals");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const webpack = require("webpack");
@@ -63,8 +63,7 @@ const clientConfig = {
   },
   externals: [
     nodeExternals({
-      modulesFromFile: true,
-      whitelist: [/^@planv7/u],
+      importType: "umd",
     }),
   ],
   plugins: [
