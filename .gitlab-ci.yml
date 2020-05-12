@@ -1,9 +1,9 @@
 image: node:14-stretch
 
 stages:
-  - install
-  - prepare
-  - e2e
+  - Install
+  - Prepare
+  - End to end
   - deploy
 
 variables:
@@ -22,12 +22,12 @@ before_script:
   - yarn install
 
 install:
-  stage: install
+  stage: Install
   script:
     - yarn install
 
 unit-tests:
-  stage: prepare 
+  stage: Prepare 
   script:
     - yarn lint
     - yarn test
@@ -42,7 +42,7 @@ unit-tests:
       junit: junit.xml
 
 build:
-  stage: prepare
+  stage: Prepare
   script:
     - yarn build:prod
 
@@ -52,7 +52,7 @@ build:
       - packages/frontend/dist
 
 cypress:
-  stage: e2e
+  stage: End to end
   script:
     - cd packages/testing
     - yarn run:app & yarn test:cypress
@@ -61,7 +61,7 @@ cypress:
       junit: packages/testing/test-results.xml
 
 # deploy:
-#   stage: deploy
+#   stage: Deploy
 #   script:
 #     - yarn workspace @planv7/infrastructure cdk deploy --require-approval never
 

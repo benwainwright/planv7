@@ -4,6 +4,7 @@
   "supportFile": "src/cypress/support/index.ts",
   "fixturesFolder":"src/cypress/fixtures",
   "baseUrl": "http://localhost",
-  "reporter": "junit"
-
+  "reporter": "junit",
+  "screenshotsFolder":"screenshots",
+  "videosFolder":"videos"
 }
