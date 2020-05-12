@@ -1,6 +1,6 @@
 const path = require("path");
 
-const MONOREPO_ROOT = path.join(__dirname, "../..");
+const MONOREPO_ROOT = path.join(__dirname, "../../../..");
 
 const packageDir = (package) => path.join(MONOREPO_ROOT, "/packages/", package);
 

@@ -4,7 +4,7 @@ const path = require("path");
 
 const getProjects = (package) => [getDom(package), getNode(package)];
 
-const setupFile = path.join(__dirname, "setup.ts");
+const setupFile = path.join(__dirname, "src", "jest", "setup.ts");
 
 const globalSettings = {
   setupFilesAfterEnv: [setupFile],
