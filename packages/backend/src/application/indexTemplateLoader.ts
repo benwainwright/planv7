@@ -70,7 +70,8 @@ const generateIndexTemplate = (
 };
 
 const indexTemplateLoader = async (): Promise<() => string> => {
-  const assetsDir = path.join(process.cwd(), "dist", "assets");
+  const assetsDir =
+    process.env.ASSETS_DIR || path.join(process.cwd(), "dist", "assets");
   const assets = await loadAssets(assetsDir);
   const scriptFiles = getScriptFiles(assets);
 

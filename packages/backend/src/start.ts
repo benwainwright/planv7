@@ -12,33 +12,49 @@ import loadRoutes from "./bootstrap/loadRoutes";
 const SERVER_PORT = 80;
 
 (async (): Promise<void> => {
-  const container = new Container();
-  const logger = initialiseLogger(container);
+  try {
+    const container = new Container();
+    const logger = initialiseLogger(container);
+    try {
+      logger.info(`Starting ${constants.SERVER_NAME}...`);
+      const koaApp = new Koa();
 
-  logger.info(`Starting ${constants.SERVER_NAME}...`);
-  const koaApp = new Koa();
+      logger.info(`Connecting to database`);
+      const database = await connectToDatabase(logger);
 
-  logger.info(`Connecting to database`);
-  const database = await connectToDatabase(logger);
+      logger.info(`Loading public key`);
+      const jwtPublicKey = await getKey(
+        "JWT_PUBLIC_KEY",
+        TEST_PUBLIC_KEY,
+        logger
+      );
 
-  const jwtPublicKey = await getKey("JWT_PUBLIC_KEY", TEST_PUBLIC_KEY, logger);
+      logger.info(`Loading private key`);
+      const jwtPrivateKey = await getKey(
+        "JWT_PRIVATE_KEY",
+        TEST_PRIVATE_KEY,
+        logger
+      );
 
-  const jwtPrivateKey = await getKey(
-    "JWT_PRIVATE_KEY",
-    TEST_PRIVATE_KEY,
-    logger
-  );
+      logger.info(`Binding service dependencies`);
+      await bindDependencies(container, database, jwtPublicKey, jwtPrivateKey);
 
-  logger.info(`Binding service dependencies`);
-  await bindDependencies(container, database, jwtPublicKey, jwtPrivateKey);
+      logger.info(`Loading middleware`);
+      loadMiddleware(koaApp);
 
-  logger.info(`Loading middleware`);
-  loadMiddleware(koaApp);
+      logger.info(`Loading routes`);
+      await loadRoutes(koaApp, logger);
 
-  logger.info(`Loading routes`);
-  await loadRoutes(koaApp);
-
-  koaApp.listen(SERVER_PORT, () => {
-    logger.info(`Listening on port ${SERVER_PORT}`);
-  });
+      koaApp.listen(SERVER_PORT, () => {
+        logger.info(`Listening on port ${SERVER_PORT}`);
+      });
+    } catch (error) {
+      logger.error(error);
+    }
+  } catch (error) {
+    // If we get here, there was an error during logger
+    // initialisation
+    // eslint-disable-next-line no-console
+    console.log(error);
+  }
 })();
