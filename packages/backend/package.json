@@ -45,6 +45,11 @@
     "lint:fix": "eslint --fix '**/*.{ts,tsx,js,jsx,d.ts}'",
     "build:prod": "NODE_ENV=production webpack --env=prod"
   },
+  "config": {
+    "mongodbMemoryServer": {
+      "version": "latest"
+    }
+  },
   "eslintConfig": {
     "extends": [
       "@planv7/eslint-config-planv7"
