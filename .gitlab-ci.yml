@@ -18,9 +18,6 @@ cache:
     - node_modules/
     - yarn.lock
 
-before_script:
-  - yarn install
-
 Yarn install:
   stage: Install
   script:
