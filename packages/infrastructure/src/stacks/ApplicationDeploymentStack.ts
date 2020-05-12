@@ -38,6 +38,9 @@ chmod +x ./install
         instanceType,
         machineImage,
         vpc,
+        vpcSubnets: {
+          subnetType: ec2.SubnetType.PUBLIC,
+        },
         userData: ec2.UserData.custom(userData),
         instanceName: `${props.applicationName}Instance`,
       }
