@@ -1,7 +1,5 @@
-module.exports = {
-  roots: ['<rootDir>/test'],
-  testMatch: ['**/*.test.ts'],
-  transform: {
-    '^.+\\.tsx?$': 'ts-jest'
-  }
-};
+// Const testing = require("@planv7/testing/jest");
+
+// const path = require("path");
+
+// module.exports = testing.getPackageConfig(path.basename(__dirname));
