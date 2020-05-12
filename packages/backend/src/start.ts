@@ -19,7 +19,7 @@ const SERVER_PORT = 80;
   const koaApp = new Koa();
 
   logger.info(`Connecting to database`);
-  const database = await connectToDatabase();
+  const database = await connectToDatabase(logger);
 
   const jwtPublicKey = await getKey("JWT_PUBLIC_KEY", TEST_PUBLIC_KEY, logger);
 

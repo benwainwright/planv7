@@ -8,7 +8,9 @@ const path = require("path");
 
 const clientConfig = {
   mode: "production",
+  target: "node",
   node: {
+    process: false,
     fs: "empty",
     dns: "mock",
     net: "mock",
@@ -60,10 +62,6 @@ const clientConfig = {
   },
 
   externals: [
-    {
-      "cross-spawn": "global['cross-spawn']",
-      "mongodb-memory-server": "global['mongodb-memory-server']",
-    },
     nodeExternals({
       modulesFromFile: true,
       whitelist: [/^@planv7/u],
