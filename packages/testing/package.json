@@ -2,7 +2,7 @@
   "name": "@planv7/testing",
   "dependencies": {
     "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7",
-    "cyprus": "^1.0.0",
+    "cypress": "^4.5.0",
     "eslint": "^7.0.0",
     "inversify": "^5.0.1",
     "jest-junit": "^10.0.0"
