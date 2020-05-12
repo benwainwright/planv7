@@ -3,6 +3,7 @@ image: node:14-stretch
 stages:
   - install
   - prepare
+  - e2e
   - deploy
 
 variables:
@@ -49,6 +50,11 @@ build:
     paths:
       - packages/backend/dist
       - packages/frontend/dist
+
+cypress:
+  stage: e2e
+  script:
+    -yarn workspace @planv7/testing test:cypress
 
 # deploy:
 #   stage: deploy
