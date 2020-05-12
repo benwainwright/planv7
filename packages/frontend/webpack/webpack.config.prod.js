@@ -1,10 +1,8 @@
 const merge = require("webpack-merge");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { CheckerPlugin } = require("awesome-typescript-loader");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 const nodeExternals = require("webpack-node-externals");
-const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const webpack = require("webpack");
 const path = require("path");
 
@@ -69,8 +67,6 @@ const clientConfig = {
   plugins: [
     new BundleAnalyzerPlugin({ openAnalyzer: false, analyzerMode: "static" }),
     new webpack.NoEmitOnErrorsPlugin(),
-    new CheckerPlugin(),
-    new ForkTsCheckerWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: "[name].css",
     }),
