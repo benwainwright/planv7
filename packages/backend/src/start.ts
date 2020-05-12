@@ -49,7 +49,7 @@ const SERVER_PORT = 80;
         logger.info(`Listening on port ${SERVER_PORT}`);
       });
     } catch (error) {
-      logger.error(error);
+      logger.error(error.message);
     }
   } catch (error) {
     // If we get here, there was an error during logger

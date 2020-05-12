@@ -5,10 +5,15 @@
     "cypress": "^4.5.0",
     "eslint": "^7.0.0",
     "inversify": "^5.0.1",
-    "jest-junit": "^10.0.0"
+    "jest-junit": "^10.0.0",
+    "npm-run-all": "^4.1.5",
+    "ts-node": "^8.10.1"
   },
   "scripts": {
+    "wait": "ts-node src/cypress/wait.ts http://localhost/app",
     "run:app": "USE_MONGO_MEMORY_SERVER=yes ASSETS_DIR=$PWD/../frontend/dist/assets yarn workspace @planv7/backend start",
+    "cypress:run": "yarn wait && cypress run",
+    "test:cypress": "run-p run:app cypress:run",
     "lint": "eslint '**/*.{ts,tsx,js,jsx,d.ts}'",
     "lint:fix": "eslint --fix '**/*.{ts,tsx,js,jsx,d.ts}'"
   },

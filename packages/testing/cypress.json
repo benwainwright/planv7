@@ -2,5 +2,8 @@
   "integrationFolder": "src/cypress/integration",
   "pluginsFile": "src/cypress/plugins/index.ts",
   "supportFile": "src/cypress/support/index.ts",
-  "fixturesFolder":"src/cypress/fixtures"
+  "fixturesFolder":"src/cypress/fixtures",
+  "baseUrl": "http://localhost",
+  "reporter": "junit"
+
 }

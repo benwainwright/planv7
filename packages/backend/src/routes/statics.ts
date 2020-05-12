@@ -20,7 +20,6 @@ const statics = async (): Promise<Koa.Middleware> => {
   } else {
     const assetsDir = process.env.ASSETS_DIR || "./dist/assets";
 
-    console.log(assetsDir);
     // eslint-disable-next-line new-cap
     return mount("/assets", KoaStatic(assetsDir));
   }
