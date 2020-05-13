@@ -148,9 +148,12 @@ describe("Websocket connection", () => {
     const logger = mockExtended<Logger>();
     const mockCommand = mockExtended<Serialisable>();
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    /* eslint-disable @typescript-eslint/ban-ts-comment */
+    /* eslint-disable @typescript-eslint/ban-ts-ignore */
     // @ts-ignore
     mockCommand.toString = jest.fn();
+    /* eslint-enable @typescript-eslint/ban-ts-comment */
+    /* eslint-enable @typescript-eslint/ban-ts-ignore */
     // eslint-disable-next-line no-extra-parens
     (mockCommand.toString as jest.Mock).mockReturnValue("string");
 

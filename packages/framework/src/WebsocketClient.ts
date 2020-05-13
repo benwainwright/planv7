@@ -82,7 +82,7 @@ export default class WebsocketClient implements Dispatch {
         this.logger.warning(messageObject.message.toString());
       } else {
         this.logger.info(
-          `Event received from server: ${messageObject.toString()}`
+          `Event received from server: ${String(messageObject)}`
         );
         this.events.emitEvent(messageObject);
       }
