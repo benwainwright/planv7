@@ -7,6 +7,7 @@ const DEFAULT_SSH_PORT = 22;
 
 interface ApplicationDeploymentStackProps {
   applicationName: string;
+  keyName: string;
   codeDeployBucket: string;
 }
 
@@ -45,6 +46,7 @@ chmod +x ./install
         },
         userData: ec2.UserData.custom(userData),
         instanceName: `${props.applicationName}Instance`,
+        keyName: props.keyName,
       }
     );
 
