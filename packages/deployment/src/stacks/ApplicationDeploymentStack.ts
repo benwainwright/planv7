@@ -30,14 +30,18 @@ export default class ApplicationDeploymentStack extends cdk.Stack {
       ec2.InstanceSize.MICRO
     );
 
-    const userData = `#!/bin/bash
-exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
-yum -y update
-yum install -y ruby gcc-c++ make nodejs
-cd /home/ec2-user
-curl -O https://${props.codeDeployBucket}.s3.amazonaws.com/latest/install
-chmod +x ./install
-./install auto`;
+    const userData = ec2.UserData.forLinux({
+      shebang: "#!/bin/bash",
+    });
+
+    userData.addCommands(
+      "exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1",
+      "yum -y update",
+      "yum install -y ruby gcc-c++ make nodejs",
+      `curl -O https://${props.codeDeployBucket}.s3.amazonaws.com/latest/install`,
+      `chmod +x ./install`,
+      `./install auto`
+    );
 
     const instance = new ec2.Instance(
       this,
@@ -49,7 +53,7 @@ chmod +x ./install
         vpcSubnets: {
           subnetType: ec2.SubnetType.PUBLIC,
         },
-        userData: ec2.UserData.custom(userData),
+        userData,
         instanceName: `${props.applicationName}Instance`,
         keyName: props.keyName,
       }
