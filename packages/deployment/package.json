@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "bin": "bin/infrastructure.js",
   "scripts": {
+    "deploy:app": "ts-node src/deploy-revision.ts",
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
