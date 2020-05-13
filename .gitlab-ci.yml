@@ -71,4 +71,5 @@ Deploy:
   stage: Deploy
   script:
     - yarn workspace @planv7/deployment cdk deploy --require-approval never
-    - yarn workspace @planv7/deployment push
+    - yarn workspace @planv7/deployment deploy:app
+
