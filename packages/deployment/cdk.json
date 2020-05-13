@@ -1,5 +1,5 @@
 {
-  "app": "npx ts-node bin/infrastructure.ts",
+  "app": "npx ts-node cdk/infrastructure.ts",
   "versionReporting": false,
   "json": true,
   "context": {
