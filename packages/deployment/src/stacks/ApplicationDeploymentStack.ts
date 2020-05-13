@@ -1,6 +1,7 @@
 import * as cdk from "@aws-cdk/core";
 import * as codedeploy from "@aws-cdk/aws-codedeploy";
 import * as ec2 from "@aws-cdk/aws-ec2";
+import * as iam from "@aws-cdk/aws-iam";
 import * as s3 from "@aws-cdk/aws-s3";
 
 const DEFAULT_SSH_PORT = 22;
@@ -55,6 +56,18 @@ chmod +x ./install
 
     instance.connections.allowFromAnyIpv4(ec2.Port.tcp(DEFAULT_SSH_PORT));
 
+    const codeBuildDeployPolicy = new iam.PolicyStatement({
+      effect: iam.Effect.ALLOW,
+      sid: `${props.applicationName}CodeBuildDeployPolicy`,
+    });
+
+    codeBuildDeployPolicy.addActions("s3:Get*", "s3:List*");
+    codeBuildDeployPolicy.addResources(
+      `arn:aws:s3:::${props.codeDeployBucket}/*`
+    );
+
+    instance.addToRolePolicy(codeBuildDeployPolicy);
+
     const tagKeyName = "Name";
     const tagKeyValue = props.applicationName;
 
@@ -88,10 +101,12 @@ chmod +x ./install
       .join("-")
       .toLowerCase();
 
-    new s3.Bucket(this, bucketId, {
+    const deployBucket = new s3.Bucket(this, bucketId, {
       bucketName: this.codeDeployDeployBucket,
       encryption: s3.BucketEncryption.S3_MANAGED,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
+
+    deployBucket.grantRead(instance);
   }
 }
