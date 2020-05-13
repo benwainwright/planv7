@@ -32,7 +32,7 @@ export default class ApplicationDeploymentStack extends cdk.Stack {
 
     const userData = `#!/bin/bash
 yum -y update
-yum install -y ruby
+yum install -y ruby gcc-c++ make nodejs
 cd /home/ec2-user
 curl -O https://${props.codeDeployBucket}.s3.amazonaws.com/latest/install
 chmod +x ./install
