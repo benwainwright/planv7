@@ -1496,6 +1496,7 @@ __metadata:
     eslint-plugin-import: ^2.20.2
     eslint-plugin-promise: ^4.2.1
     eslint-plugin-react: ^7.19.0
+    eslint-plugin-react-hooks: ^4.0.1
     eslint-plugin-sonarjs: ^0.5.0
     eslint-plugin-spellcheck: ^0.0.14
     eslint-plugin-unicorn: ^19.0.1
@@ -6013,6 +6014,15 @@ __metadata:
   version: 4.2.1
   resolution: "eslint-plugin-promise@npm:4.2.1"
   checksum: 3/8c233a0b5f5646e08709e999aa75973481ee46c45255ec4b4d1577915f68d79ae52f6f84e361af5b761971294bdb38ec86021515fa4cff178f57c989226dd671
+  languageName: node
+  linkType: hard
+
+"eslint-plugin-react-hooks@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "eslint-plugin-react-hooks@npm:4.0.1"
+  peerDependencies:
+    eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
+  checksum: 3/4a173c88f22f3be2052cc158850a6f50d3eac0e2db2503f48cbdff5b279a099632ab8f4b4494ab34c31238364ce9fe4944fe7a2bdca3ac62f5d3e82dfbb467bf
   languageName: node
   linkType: hard
 

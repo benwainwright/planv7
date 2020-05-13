@@ -204,7 +204,8 @@ module.exports = {
     },
     {
       files: ["*.tsx", "!*.spec.dom.tsx"],
-      extends: ["plugin:react/recommended"],
+      plugins: ["react-hooks", "react"],
+      extends: ["plugin:react/recommended", "plugin:react-hooks/recommended"],
       settings: {
         react: {
           version: "detect",

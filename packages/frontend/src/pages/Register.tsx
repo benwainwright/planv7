@@ -41,7 +41,7 @@ const Register: React.FC<RouteComponentProps> = () => {
     if (!(username || password || verifyPassword)) {
       setDirty(false);
     }
-  });
+  }, [username, password, verifyPassword]);
 
   return (
     <React.Fragment>
