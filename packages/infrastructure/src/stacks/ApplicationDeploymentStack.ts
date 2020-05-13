@@ -3,6 +3,8 @@ import * as codedeploy from "@aws-cdk/aws-codedeploy";
 import * as ec2 from "@aws-cdk/aws-ec2";
 import * as s3 from "@aws-cdk/aws-s3";
 
+const DEFAULT_SSH_PORT = 22;
+
 interface ApplicationDeploymentStackProps {
   applicationName: string;
   codeDeployBucket: string;
@@ -46,7 +48,7 @@ chmod +x ./install
       }
     );
 
-    instance.connections.allowFromAnyIpv4(ec2.Port.tcp(22));
+    instance.connections.allowFromAnyIpv4(ec2.Port.tcp(DEFAULT_SSH_PORT));
 
     const tagKeyName = "Name";
     const tagKeyValue = props.applicationName;
