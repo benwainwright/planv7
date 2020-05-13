@@ -12,6 +12,7 @@ variables:
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
+  policy: pull
   paths:
     - .yarn
     - cache/Cypress
@@ -20,6 +21,9 @@ cache:
     - yarn.lock
 
 Yarn install:
+  cache:
+    policy: pull-push
+    key: ${CI_COMMIT_REF_SLUG}
   stage: Install
   script:
     - yarn install
@@ -71,7 +75,6 @@ Deploy:
   image: python:latest
   stage: Deploy
   script:
-    - pip install awscli
     - yarn workspace @planv7/deployment cdk deploy --require-approval never
     - yarn workspace @planv7/deployment deploy:app
 
