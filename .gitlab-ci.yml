@@ -61,6 +61,8 @@ Build:
 Cypress:
   image: cypress/base:14.0.0
   stage: Integration test
+  dependencies:
+    - Build
   script:
     - cd packages/testing
     - yarn run:app & yarn test:cypress
@@ -72,6 +74,8 @@ Cypress:
       - packages/testing/screenshots
 
 Deploy:
+  dependencies:
+    - Build
   image: python:latest
   stage: Deploy
   script:
