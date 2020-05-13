@@ -59,7 +59,7 @@ chmod +x ./install
     const tagKeyValue = props.applicationName;
 
     const ec2InstanceTags = new codedeploy.InstanceTagSet({
-      tagKeyName: [tagKeyValue],
+      [tagKeyName]: [tagKeyValue],
     });
     cdk.Tag.add(instance, tagKeyName, tagKeyValue);
 
