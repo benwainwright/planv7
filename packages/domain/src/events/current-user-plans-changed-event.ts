@@ -13,7 +13,7 @@ export class CurrentUserPlansChangedEvent extends DomainEvent {
 
   public constructor(outcome: CommandOutcome, plans?: Plan[]) {
     super(outcome);
-    this.plans = plans || [];
+    this.plans = plans ?? [];
   }
 
   public getPlans(): Plan[] {

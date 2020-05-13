@@ -64,7 +64,7 @@ export default class UpdatePlanHandler extends HandlerBase<UpdatePlanCommand> {
       );
     }
 
-    this.planRepository.updateExisting(
+    await this.planRepository.updateExisting(
       new Plan(
         user.getName(),
         command.getSlug(),

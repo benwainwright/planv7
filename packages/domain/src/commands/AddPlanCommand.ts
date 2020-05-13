@@ -16,9 +16,9 @@ export default class AddPlanCommand extends Command {
     hoursPerWeek?: number
   ) {
     super();
-    this.title = title || "";
-    this.description = description || "";
-    this.hoursPerWeek = hoursPerWeek || 0;
+    this.title = title ?? "";
+    this.description = description ?? "";
+    this.hoursPerWeek = hoursPerWeek ?? 0;
   }
 
   public identifier(): string {

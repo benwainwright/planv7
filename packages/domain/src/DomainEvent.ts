@@ -9,7 +9,7 @@ export default abstract class DomainEvent implements Serialisable {
   private outcome: CommandOutcome;
 
   public constructor(outcome?: CommandOutcome) {
-    this.outcome = outcome || CommandOutcome.SUCCESS;
+    this.outcome = outcome ?? CommandOutcome.SUCCESS;
   }
 
   public getOutcome(): CommandOutcome {

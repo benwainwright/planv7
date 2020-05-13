@@ -24,12 +24,12 @@ export default class EventEmitterWrapper {
   }
 
   public emitEvent<T extends Serialisable>(event: T): void {
-    this.logger.verbose(`Emitting event ${event.toString()}`);
+    this.logger.verbose(`Emitting event ${String(event)}`);
     this.events.emit(APP_EVENT_NAME, event);
   }
 
   public emitError<T extends Error>(error: T): void {
-    this.logger.verbose(`Emitting error ${error.toString()}`);
+    this.logger.verbose(`Emitting error ${String(error)}`);
     this.events.emit(APP_ERROR_NAME, error);
   }
 

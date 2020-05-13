@@ -22,7 +22,7 @@ export default class Plan implements Serialisable {
     this.title = title;
     this.description = description;
     this.hoursPerWeek = hoursPerWeek;
-    this.deadlines = deadlines || [];
+    this.deadlines = deadlines ?? [];
   }
 
   public getUser(): string {

@@ -15,7 +15,7 @@ export default class User implements Serialisable {
     this.password = password;
     this.name = name;
     this.email = email;
-    this.admin = admin || false;
+    this.admin = admin ?? false;
   }
 
   public getName(): string {

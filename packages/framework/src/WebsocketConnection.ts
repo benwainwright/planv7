@@ -52,7 +52,7 @@ export default class WebsocketConnection {
   }
 
   public onAppEvent(event: DomainEvent): void {
-    this.logger.verbose(`Sending event ${event.toString()}`);
+    this.logger.verbose(`Sending event ${String(event)}`);
     const eventString = this.serialiser.serialise<DomainEvent>(event);
     this.socket.send(eventString);
   }

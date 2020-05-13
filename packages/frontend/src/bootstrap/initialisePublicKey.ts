@@ -5,7 +5,7 @@ const initialisePublicKey = (): string => {
     throw new Error(`Must specify JWT_PUBLIC_KEY for production build`);
   }
 
-  return process.env.JWT_PUBLIC_KEY || TEST_PUBLIC_KEY;
+  return process.env.JWT_PUBLIC_KEY ?? TEST_PUBLIC_KEY;
 };
 
 export default initialisePublicKey;

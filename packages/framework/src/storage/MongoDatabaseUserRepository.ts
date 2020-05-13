@@ -22,19 +22,22 @@ export default class MongoDatabaseUserRepository implements Repository<User> {
   }
 
   public async getUniqueSlug(identifier: string): Promise<string> {
-    return identifier;
+    return Promise.resolve(identifier);
   }
 
   public async saveNew(user: User): Promise<void> {
     return new Promise((resolve, reject): void => {
-      genSalt(SALT_ROUNDS, (error: Error, salt: string): void => {
+      genSalt(SALT_ROUNDS, (error: Error | undefined, salt: string): void => {
         if (error) {
           reject(error);
         } else {
           getHash(
             user.getPassword(),
             salt,
-            async (hashError: Error, hash: string): Promise<void> => {
+            async (
+              hashError: Error | undefined,
+              hash: string
+            ): Promise<void> => {
               if (!hashError) {
                 await this.collection.insertOne({
                   name: user.getName(),
@@ -52,22 +55,21 @@ export default class MongoDatabaseUserRepository implements Repository<User> {
     });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  /* eslint-disable @typescript-eslint/no-unused-vars */
+  /* eslint-disable @typescript-eslint/require-await */
   public async deleteExisting(user: User): Promise<void> {
     throw new Error("Not yet implemented");
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public async updateExisting(user: User): Promise<void> {
     throw new Error("Not yet implemented");
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  public getByField<V>(name: string, value: V): Promise<User> {
+  public async getByField<V>(name: string, value: V): Promise<User> {
     throw new Error("Method not implemented.");
   }
 
-  public getAll(): Promise<User[]> {
+  public async getAll(): Promise<User[]> {
     throw new Error("Method not implemented.");
   }
 }

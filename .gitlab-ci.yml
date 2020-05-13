@@ -24,11 +24,15 @@ Yarn install:
   script:
     - yarn install
 
+Lint:
+  stage: Build and test
+  script:
+    - yarn lint
+
 Unit tests:
   stage: Build and test
 
   script:
-    - yarn lint
     - yarn test
     - mkdir public
     - cp -r coverage/lcov-report/* public/

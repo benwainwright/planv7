@@ -9,7 +9,7 @@ const initialiseLogger = (container: Container): Logger => {
       ? format.combine(format.timestamp(), format.colorize())
       : format.combine(format.simple());
 
-  const loggingConfig = new WinstonConfig(process.env.APP_LOG_LEVEL || "info", [
+  const loggingConfig = new WinstonConfig(process.env.APP_LOG_LEVEL ?? "info", [
     new transports.Console({
       format: loggingFormat,
     }),

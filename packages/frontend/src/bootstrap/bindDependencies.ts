@@ -19,10 +19,7 @@ import {
 
 import { Container } from "inversify";
 
-const bindDependencies = async (
-  container: Container,
-  publicKey: string
-): Promise<void> => {
+const bindDependencies = (container: Container, publicKey: string): void => {
   container
     .bind<CurrentLoginSession & LoginSessionDestroyer>(APP.currentLoginSession)
     .to(JwtClientLoginSession)

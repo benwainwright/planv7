@@ -27,11 +27,11 @@ export default class UpdatePlanCommand extends Command {
     deadlines?: Deadline[]
   ) {
     super();
-    this.slug = slug || "";
-    this.title = title || "";
-    this.description = description || "";
-    this.hoursPerWeek = hoursPerWeek || 0;
-    this.deadlines = deadlines || [];
+    this.slug = slug ?? "";
+    this.title = title ?? "";
+    this.description = description ?? "";
+    this.hoursPerWeek = hoursPerWeek ?? 0;
+    this.deadlines = deadlines ?? [];
   }
 
   public identifier(): string {

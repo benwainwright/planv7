@@ -32,7 +32,7 @@ describe("Handler", (): void => {
 
       const handler = new MockHandler2();
       const command = new MockCommand1();
-      handler.tryHandle(command);
+      await handler.tryHandle(command);
 
       expect(executed).toEqual(false);
 

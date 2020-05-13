@@ -16,7 +16,7 @@ const handleChange = (
   setValue: React.Dispatch<React.SetStateAction<string>>,
   event: React.ChangeEvent<HTMLInputElement>
 ): void => {
-  setValue(event?.target.value);
+  setValue(event.target.value);
 };
 
 const Register: React.FC<RouteComponentProps> = () => {
@@ -78,11 +78,13 @@ const Register: React.FC<RouteComponentProps> = () => {
 
         <ButtonGroup className={classes.root}>
           <Button color="primary">Submit</Button>
-          {dirty && (
-            <Button id="clearButton" onClick={handleClear}>
-              Clear
-            </Button>
-          )}
+          {
+            /* eslint-disable @typescript-eslint/no-unnecessary-condition */ dirty && (
+              <Button id="clearButton" onClick={handleClear}>
+                Clear
+              </Button>
+            )
+          }
         </ButtonGroup>
       </form>
     </React.Fragment>

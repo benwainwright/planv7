@@ -76,7 +76,7 @@ export default class AuthorisingDispatcher implements Dispatch {
             ? JSON.stringify(error.response.data)
             : error.response.data;
         const receivedError = this.serialiser.unSerialise(data);
-        if (receivedError && receivedError instanceof Error) {
+        if (receivedError instanceof Error) {
           this.events.emitError(receivedError);
         }
       }

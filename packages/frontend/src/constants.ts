@@ -9,8 +9,8 @@ export const DEFAULT_SERVER_PORT = 1800;
 export const DEFAULT_SERVER_HOST = "localhost";
 
 export const API_URL = `http://${
-  process.env.SERVER_ADDRESS || DEFAULT_SERVER_HOST
-}:${process.env.SERVER_PORT || DEFAULT_SERVER_PORT}${API_ROUTE_PATH}`;
+  process.env.SERVER_ADDRESS ?? DEFAULT_SERVER_HOST
+}:${process.env.SERVER_PORT ?? DEFAULT_SERVER_PORT}${API_ROUTE_PATH}`;
 
 export const MONGO_URL = `mongodb://localhost:27017`;
 

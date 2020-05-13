@@ -6,4 +6,6 @@ export default interface Serialisable {
    * can't rely on constructor.name
    */
   identifier: () => string;
+
+  toString: () => string;
 }

@@ -46,9 +46,9 @@ describe("The slug generator", () => {
     }
   );
 
-  afterEach(() => {
-    server?.stop();
-    client?.close();
+  afterEach(async () => {
+    await server.stop();
+    await client.close();
   });
 
   it("returns the title if the slug doesn't exist", async () => {

@@ -16,7 +16,7 @@ export default class LocalStorageClientStorage<T> implements ClientStorage<T> {
   }
 
   public get(): T {
-    const data = localStorage.getItem(this.name) || "";
+    const data = localStorage.getItem(this.name) ?? "";
     return JSON.parse(data) as T;
   }
 }

@@ -42,22 +42,20 @@ const mapPlanToObject = (plan: Plan): any => ({
   title: plan.getTitle(),
   description: plan.getDescription(),
   hoursPerWeek: plan.getHoursPerWeek(),
-  deadlines: plan.getDeadlines()
-    ? plan.getDeadlines().map((deadline: Deadline): {
-        name: string;
-        link: string;
-        ratio: number;
-        due: number;
-      } => {
-        const link = deadline.getLink();
-        return {
-          name: deadline.getName(),
-          link: link ? link.toString() : "",
-          ratio: deadline.getRatio(),
-          due: deadline.getDue().getTime() / THOUSAND_MILLISECONDS_IN_SECOND,
-        };
-      })
-    : [],
+  deadlines: plan.getDeadlines().map((deadline: Deadline): {
+    name: string;
+    link: string;
+    ratio: number;
+    due: number;
+  } => {
+    const link = deadline.getLink();
+    return {
+      name: deadline.getName(),
+      link: link ? link.toString() : "",
+      ratio: deadline.getRatio(),
+      due: deadline.getDue().getTime() / THOUSAND_MILLISECONDS_IN_SECOND,
+    };
+  }),
 });
 
 @injectable()

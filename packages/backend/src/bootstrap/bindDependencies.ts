@@ -23,12 +23,12 @@ import {
 import { Container } from "inversify";
 import { Db } from "mongodb";
 
-const bindDependencies = async (
+const bindDependencies = (
   container: Container,
   database: Db,
   jwtPublicKey: string,
   jwtPrivateKey: string
-): Promise<void> => {
+): void => {
   container.bind<string>(FRAMEWORK.jwtPublicKey).toConstantValue(jwtPublicKey);
 
   container

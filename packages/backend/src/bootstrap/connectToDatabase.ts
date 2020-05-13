@@ -9,7 +9,7 @@ const getUrl = async (logger: Logger): Promise<string> => {
     const server = new MongoMemoryServer();
     return server.getConnectionString();
   }
-  return process.env.MONGO_URL || constants.MONGO_URL;
+  return process.env.MONGO_URL ?? constants.MONGO_URL;
 };
 
 const connectToDatabase = async (logger: Logger): Promise<Db> => {
@@ -19,7 +19,7 @@ const connectToDatabase = async (logger: Logger): Promise<Db> => {
     useNewUrlParser: true,
   });
   logger.info("Connection successful");
-  return mongoClient.db(process.env.MONGO_DB_NAME || constants.MONGO_DB_NAME);
+  return mongoClient.db(process.env.MONGO_DB_NAME ?? constants.MONGO_DB_NAME);
 };
 
 export default connectToDatabase;

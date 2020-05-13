@@ -13,9 +13,9 @@ export default class RegisterUserCommand extends Command {
   public constructor(name: string, email: string, password: string);
   public constructor(name?: string, email?: string, password?: string) {
     super();
-    this.name = name || "";
-    this.email = email || "";
-    this.password = password || "";
+    this.name = name ?? "";
+    this.email = email ?? "";
+    this.password = password ?? "";
   }
 
   public getEmail(): string {

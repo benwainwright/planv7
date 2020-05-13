@@ -9,8 +9,8 @@ export default class LoginCommand extends Command implements Serialisable {
   public constructor(username: string, password: string);
   public constructor(username?: string, password?: string) {
     super();
-    this.username = username || "";
-    this.password = password || "";
+    this.username = username ?? "";
+    this.password = password ?? "";
   }
 
   public getUsername(): string {

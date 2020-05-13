@@ -1,12 +1,8 @@
 import { Logger } from "@planv7/application";
 
-const getKey = async (
-  envVar: string,
-  defaultKey: string,
-  logger: Logger
-): Promise<string> => {
+const getKey = (envVar: string, defaultKey: string, logger: Logger): string => {
   if (process.env[envVar]) {
-    return process.env[envVar] || "";
+    return process.env[envVar] ?? "";
   }
 
   if (process.env.NODE_ENV === "production") {

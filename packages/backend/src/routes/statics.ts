@@ -8,7 +8,9 @@ import mount from "koa-mount";
 const statics = async (): Promise<Koa.Middleware> => {
   if (process.env.NODE_ENV !== "production") {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const config: Configuration = require("../../webpack/webpack.config.hmr");
+    const config: Configuration = await import(
+      "../../webpack/webpack.config.hmr"
+    );
 
     const hotClient = {
       host: "0.0.0.0",
@@ -18,7 +20,7 @@ const statics = async (): Promise<Koa.Middleware> => {
 
     return koaWebpack({ config, hotClient });
   } else {
-    const assetsDir = process.env.ASSETS_DIR || "./dist/assets";
+    const assetsDir = process.env.ASSETS_DIR ?? "./dist/assets";
 
     // eslint-disable-next-line new-cap
     return mount("/assets", KoaStatic(assetsDir));

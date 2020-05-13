@@ -14,7 +14,7 @@ export default class DeletePlanCommand extends Command {
 
   public constructor(slug?: string) {
     super();
-    this.slug = slug || "";
+    this.slug = slug ?? "";
   }
 
   public getSlug(): string {

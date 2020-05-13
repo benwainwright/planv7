@@ -78,11 +78,8 @@ export default class WebsocketClient implements Dispatch {
         message.data
       );
       if (messageObject instanceof Error) {
-        this.logger.info(
-          `Error received from server: ${messageObject.toString()}`
-        );
         this.events.emitError(messageObject);
-        this.logger.warning(messageObject.toString());
+        this.logger.warning(messageObject.message.toString());
       } else {
         this.logger.info(
           `Event received from server: ${messageObject.toString()}`

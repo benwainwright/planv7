@@ -11,8 +11,8 @@ const NavigationButton: React.FC<NavigationButtonProps> = (
 ): React.ReactElement => {
   return (
     <Button
-      onClick={(): void => {
-        navigate(props.to);
+      onClick={async (): Promise<void> => {
+        await navigate(props.to);
       }}
       color="inherit"
     >

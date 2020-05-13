@@ -59,13 +59,8 @@ describe("JwtLoginProvider", (): void => {
 
   afterEach(
     async (): Promise<void> => {
-      if (client) {
-        await client.close();
-      }
-
-      if (server) {
-        await server.stop();
-      }
+      await client.close();
+      await server.stop();
     }
   );
 

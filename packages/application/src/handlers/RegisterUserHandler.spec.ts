@@ -20,7 +20,9 @@ import {
 import RegisterUserHandler from "./RegisterUserHandler";
 
 describe("RegisterUserHandler", (): void => {
-  test("Calls the repository save method when passed a command", (): void => {
+  test("Calls the repository save method when passed a command", async (): Promise<
+    void
+  > => {
     const repository = Substitute.for<Repository<User>>();
     const logger = Substitute.for<Logger>();
     const loginProvider = Substitute.for<LoginProvider>();
@@ -34,11 +36,13 @@ describe("RegisterUserHandler", (): void => {
       new EventEmitterWrapper(logger)
     );
     const command = new RegisterUserCommand("foo", "bar", "password");
-    handler.tryHandle(command);
+    await handler.tryHandle(command);
     repository.received().saveNew(Arg.any());
   });
 
-  test("Passes a correctly constructed User to the repository", (): void => {
+  test("Passes a correctly constructed User to the repository", async (): Promise<
+    void
+  > => {
     const loginProvider = Substitute.for<LoginProvider>();
     loginProvider
       .login(Arg.all())
@@ -53,7 +57,7 @@ describe("RegisterUserHandler", (): void => {
     );
     const user = new User("name", "a@b.d", "password");
     const command = new RegisterUserCommand("name", "a@b.d", "password");
-    handler.tryHandle(command);
+    await handler.tryHandle(command);
 
     const userMatcher = (u: User): boolean => {
       return u.getEmail() === user.getEmail() && u.getName() === user.getName();

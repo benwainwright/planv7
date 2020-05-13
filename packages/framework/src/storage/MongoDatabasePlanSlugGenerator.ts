@@ -22,7 +22,7 @@ export default class MongoDatabasePlanSlugGenerator
   }
 
   public async getUniqueSlug(thing: Plan): Promise<string> {
-    const title = thing.getTitle() || "item";
+    const title = thing.getTitle();
 
     const encodedTitle = encodeURIComponent(title.trim().replace(" ", "-"));
 

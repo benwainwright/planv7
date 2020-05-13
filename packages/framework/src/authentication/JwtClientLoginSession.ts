@@ -49,7 +49,7 @@ export default class JwtClientLoginSession extends JwtLoginSession
     return this.token;
   }
 
-  public async killSession(): Promise<void> {
+  public killSession(): void {
     this.token = "";
     this.currentUser = undefined;
     Cookies.delete(JWT_TOKEN_NAME);
@@ -89,10 +89,7 @@ export default class JwtClientLoginSession extends JwtLoginSession
   private load(): void {
     this.token = Cookies.get(document.cookie, JWT_TOKEN_NAME);
     if (this.token) {
-      this.currentUser = this.verifyAndDecodeToken(
-        this.token || "",
-        this.publicKey
-      );
+      this.currentUser = this.verifyAndDecodeToken(this.token, this.publicKey);
     }
   }
 

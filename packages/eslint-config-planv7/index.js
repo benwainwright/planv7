@@ -241,6 +241,7 @@ module.exports = {
         "filenames/match-exported": "off",
         "fp/no-let": "off",
         "max-classes-per-file": "off",
+        "@typescript-eslint/require-await": "off",
         "@typescript-eslint/no-magic-numbers": "off",
         "@typescript-eslint/naming-convention": [
           "error",
