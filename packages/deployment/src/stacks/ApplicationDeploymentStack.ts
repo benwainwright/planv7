@@ -3,6 +3,7 @@ import * as codedeploy from "@aws-cdk/aws-codedeploy";
 import * as ec2 from "@aws-cdk/aws-ec2";
 import * as iam from "@aws-cdk/aws-iam";
 import * as s3 from "@aws-cdk/aws-s3";
+import getUserdata, { RunTime } from "../getUserdata";
 
 const DEFAULT_SSH_PORT = 22;
 
