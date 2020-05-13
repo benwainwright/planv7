@@ -20,11 +20,13 @@ export const deployPush = async (
 
 export const deployCreate = async (
   appName: string,
+  region: string,
   groupName: string,
   s3Location: string
 ): Promise<execa.ExecaReturnValue<string>> => {
   const command = `aws deploy create-deployment \
                       --application-name ${appName} \
+                      --region ${region} \
                       --deployment-group-name ${groupName} \
                       --s3-location ${s3Location}`;
   return execa.command(command);

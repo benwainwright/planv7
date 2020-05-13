@@ -75,16 +75,11 @@ chmod +x ./install
 
     this.codeDeployDeployGroupName = `${props.applicationName}DeploymentGroup`;
 
-    const group = new codedeploy.ServerDeploymentGroup(
-      this,
-      this.codeDeployDeployGroupName,
-      {
-        application,
-        ec2InstanceTags,
-      }
-    );
-
-    group.deploymentGroupName = this.codeDeployDeployGroupName;
+    new codedeploy.ServerDeploymentGroup(this, this.codeDeployDeployGroupName, {
+      application,
+      ec2InstanceTags,
+      deploymentGroupName: this.codeDeployDeployGroupName,
+    });
 
     const bucketId = `${props.applicationName}DeploymentBucket`;
 

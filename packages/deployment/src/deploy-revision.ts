@@ -36,12 +36,18 @@ const frontendPath = path.join(__dirname, "../../../packages/frontend/dist");
   );
 
   const bucketRegex = /--s3-location (?<bucket>[\w=\-,.]*)/u;
-  console.log("Creating deployment");
-  await Aws.deployCreate(
-    infrastructure.codeDeployAppName,
-    infrastructure.codeDeployDeployGroupName,
-    bucketRegex.exec(stdout)?.groups?.bucket
-  );
-  console.log("Done");
+  const bucket = bucketRegex.exec(stdout)?.groups?.bucket;
+  if (bucket) {
+    console.log("Creating deployment");
+    await Aws.deployCreate(
+      infrastructure.codeDeployAppName,
+      appRegion,
+      infrastructure.codeDeployDeployGroupName,
+      bucket
+    );
+    console.log("Done");
+  } else {
+    throw new Error("Bucket not found in push output");
+  }
   // eslint-disable-next-line no-console
 })().catch((error: Error) => console.log(error));
