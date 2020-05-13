@@ -1484,11 +1484,13 @@ __metadata:
     "@planv7/testing": "workspace:packages/testing"
     "@types/eslint": 6.8.0
     "@types/jest": ^25.2.1
+    "@types/ncp": ^2.0.3
     "@types/node": 10.17.5
     "@types/source-map-support": ^0.5.1
     aws-cdk: 1.36.1
     eslint: ^7.0.0
     jest: ^25.5.0
+    ncp: ^2.0.0
     source-map-support: ^0.5.16
     ts-jest: ^25.3.1
     ts-node: ^8.1.0
@@ -2245,6 +2247,15 @@ __metadata:
     "@types/bson": "*"
     "@types/node": "*"
   checksum: 3/b789926b36876c48b50f8670fcfc298dec43e27f7b322ffde05cffcbd9e22451e6d7df3f0ef7e87f36c94df894880e6c54e9bf2eb688dcc636835caa16a7bc8e
+  languageName: node
+  linkType: hard
+
+"@types/ncp@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "@types/ncp@npm:2.0.3"
+  dependencies:
+    "@types/node": "*"
+  checksum: 3/192752eab912a8f321a6f16479812186007d1d9d3b4fbc190aa06fb8f5872c26686506ba13306da19673f867f24019959d9dd4456c9902801b5e6c22dc5fe861
   languageName: node
   linkType: hard
 
@@ -10491,6 +10502,15 @@ fsevents@^2.1.2:
   version: 1.4.0
   resolution: "natural-compare@npm:1.4.0"
   checksum: 3/2daf93d9bb516eddb06e2e80657a605af2e494d47c65d090ba43691aaffbc41f520840f1c9d3b7b641977af950217a4ab6ffb85bafcd5dfa8ba6fe4e68c43b53
+  languageName: node
+  linkType: hard
+
+"ncp@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "ncp@npm:2.0.0"
+  bin:
+    ncp: ./bin/ncp
+  checksum: 3/a751e4c94bc810b34b81c8cad288b90ac59fa83890e701483fd70f800d3c2228bea9eff84d1c034074cd1b393cec40696c04558a70b17476eba7acb06e20e71c
   languageName: node
   linkType: hard
 
