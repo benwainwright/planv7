@@ -53,7 +53,7 @@ Content-Disposition: attachment; filename="userdata.txt"`;
 #!/bin/bash
 exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
 yum -y update
-yum install -y ruby gcc-c++ make nodejs
+yum install -y ruby gcc-c++ make nodejs nginx
 curl -O https://${props.codeDeployBucket}.s3.amazonaws.com/latest/install
 chmod +x ./install
 ./install auto`;
