@@ -50,6 +50,9 @@
   "eslintConfig": {
     "extends": [
       "@planv7/eslint-config-planv7"
-    ]
+    ],
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
   }
 }

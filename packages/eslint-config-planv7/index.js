@@ -178,7 +178,6 @@ module.exports = {
         "@typescript-eslint/prefer-optional-chain": "error",
         "@typescript-eslint/prefer-for-of": "error",
 
-        // The following rules don't work; they cause eslint to crash
         // "@typescript-eslint/no-floating-promises": "error",
         // "@typescript-eslint/no-base-to-string": "error",
         // "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",

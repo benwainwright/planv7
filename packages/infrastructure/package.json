@@ -33,6 +33,9 @@
     "source-map-support": "^0.5.16"
   },
   "eslintConfig": {
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
     "extends": [
       "@planv7/eslint-config-planv7"
     ],

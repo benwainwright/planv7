@@ -27,6 +27,9 @@
     "lint:fix": "eslint --fix '**/*.{ts,tsx,js,jsx,d.ts}'"
   },
   "eslintConfig": {
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
     "extends": [
       "@planv7/eslint-config-planv7"
     ]
