@@ -1486,11 +1486,13 @@ __metadata:
     "@types/jest": ^25.2.1
     "@types/ncp": ^2.0.3
     "@types/node": 10.17.5
+    "@types/rimraf": ^3.0.0
     "@types/source-map-support": ^0.5.1
     aws-cdk: 1.36.1
     eslint: ^7.0.0
     jest: ^25.5.0
     ncp: ^2.0.0
+    rimraff: ^0.0.1-security
     source-map-support: ^0.5.16
     ts-jest: ^25.3.1
     ts-node: ^8.1.0
@@ -1941,6 +1943,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/events@npm:*":
+  version: 3.0.0
+  resolution: "@types/events@npm:3.0.0"
+  checksum: 3/1407d79d6d5291caa89f27ef0f180eb133bc5a12f11886bd68f9ef9cffb962a575571d1b4d02d30a7329fe9b85d29b7c10543ed6dc516ad20f9a1e89c1e9c9b8
+  languageName: node
+  linkType: hard
+
 "@types/execa@npm:2.0.0":
   version: 2.0.0
   resolution: "@types/execa@npm:2.0.0"
@@ -1995,6 +2004,17 @@ __metadata:
   dependencies:
     get-port: "*"
   checksum: 3/a182beeb3840eb4e4e485db689a982b9ff60e028bfdd0c02f176bb6bf8f4557c65b1e36298df00d76e03c1d9da147e4da2dffc34782ce7a662a0658ea4b095e4
+  languageName: node
+  linkType: hard
+
+"@types/glob@npm:*":
+  version: 7.1.1
+  resolution: "@types/glob@npm:7.1.1"
+  dependencies:
+    "@types/events": "*"
+    "@types/minimatch": "*"
+    "@types/node": "*"
+  checksum: 3/f74ae67cb205302da0d452e925529f817a253c4dce5d59ae6077d592238b921db750da143b8a5f8427a5011e202937d8a7b264f7d14b0ddc7f8137ca5e1af1b6
   languageName: node
   linkType: hard
 
@@ -2217,7 +2237,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/minimatch@npm:3.0.3":
+"@types/minimatch@npm:*, @types/minimatch@npm:3.0.3":
   version: 3.0.3
   resolution: "@types/minimatch@npm:3.0.3"
   checksum: 3/672ccdac197e8176eed1a9441d0caf8a29a90eb139b1cefdd4c9e71b1c48f5c749f5d101a2d85da15c6259214ebda95072835021407d60330a731a2672964b82
@@ -2364,6 +2384,16 @@ __metadata:
     "@types/prop-types": "*"
     csstype: ^2.2.0
   checksum: 3/40912bdb87db9663ee77b7a0980c07a7a2617ec60495631d6f9575f4abab41269fad522eb4d6d2109e119c06891d03ac65bb96ddb847fc35c8a5558bfb4ebae0
+  languageName: node
+  linkType: hard
+
+"@types/rimraf@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@types/rimraf@npm:3.0.0"
+  dependencies:
+    "@types/glob": "*"
+    "@types/node": "*"
+  checksum: 3/00a00a430f838ddafdbc17386f08d928b1ae7aeada84d112f4369a7a89b4d47c1bb6849688f1d6ee404a08338ab52a80c742f0c3040d63ccc2aaec04bd1009f5
   languageName: node
   linkType: hard
 
@@ -12545,6 +12575,13 @@ resolve@1.1.7:
   bin:
     rimraf: bin.js
   checksum: 3/f0de3e445581e64a8a077af476cc30708e659f5779ec2ca2a161556d0792aa318a685923798ae22055b4ecd02b9aff444ef619578f7af53cf8e0e248031e3dee
+  languageName: node
+  linkType: hard
+
+"rimraff@npm:^0.0.1-security":
+  version: 0.0.1-security
+  resolution: "rimraff@npm:0.0.1-security"
+  checksum: 3/a787047b8c7816f68f762d3a13b03e4889dda1f4f616bfd123106545eb4f9ec01c24fc38c8ac472fe910518a1d7d47056ea578396fd919ecc76039b0384de69f
   languageName: node
   linkType: hard
 
