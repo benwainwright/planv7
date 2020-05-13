@@ -68,8 +68,10 @@ Cypress:
       - packages/testing/screenshots
 
 Deploy:
+  image: python:latest
   stage: Deploy
   script:
+    - pip install awscli
     - yarn workspace @planv7/deployment cdk deploy --require-approval never
     - yarn workspace @planv7/deployment deploy:app
 
