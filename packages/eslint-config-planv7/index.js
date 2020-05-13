@@ -188,7 +188,7 @@ module.exports = {
         "@typescript-eslint/no-require-imports": "error",
         "@typescript-eslint/prefer-nullish-coalescing": "error",
         "@typescript-eslint/prefer-includes": "error",
-        "@typescript-eslint/prefer-readonly-parameter-types": "error",
+        "@typescript-eslint/prefer-readonly-parameter-types": "off",
         "@typescript-eslint/require-await": "error",
         "@typescript-eslint/prefer-reduce-type-parameter": "error",
       },
