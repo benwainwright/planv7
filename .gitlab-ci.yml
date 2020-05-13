@@ -76,7 +76,7 @@ Cypress:
 Deploy:
   dependencies:
     - Build
-  image: benwainwright/node14-with-yarn-and-aws-cli
+  image: python:latest
   stage: Deploy
   script:
     - yarn workspace @planv7/deployment cdk deploy --require-approval never

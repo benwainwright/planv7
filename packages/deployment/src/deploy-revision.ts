@@ -39,13 +39,13 @@ const frontendPath = path.join(__dirname, "../../../packages/frontend/dist");
   const bucket = bucketRegex.exec(stdout)?.groups?.bucket;
   if (bucket) {
     console.log("Creating deployment");
-    await Aws.deployCreate(
+    await Aws.deploy(
       infrastructure.codeDeployAppName,
       appRegion,
       infrastructure.codeDeployDeployGroupName,
       bucket
     );
-    console.log("Done");
+    console.log("Deploy was successful");
   } else {
     throw new Error("Bucket not found in push output");
   }
