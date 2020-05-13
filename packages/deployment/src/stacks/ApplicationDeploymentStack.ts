@@ -12,6 +12,9 @@ interface ApplicationDeploymentStackProps {
 }
 
 export default class ApplicationDeploymentStack extends cdk.Stack {
+  public readonly codeDeployAppName: string;
+  public readonly codeDeployDeployBucket: string;
+  public readonly codeDeployDeployGroupName: string;
   public constructor(
     context: cdk.Construct,
     props: ApplicationDeploymentStackProps & cdk.StackProps
@@ -60,32 +63,38 @@ chmod +x ./install
     });
     cdk.Tag.add(instance, tagKeyName, tagKeyValue);
 
-    const applicationName = `${props.applicationName}CodeDeployApplication`;
+    this.codeDeployAppName = `${props.applicationName}CodeDeployApplication`;
 
     const application = new codedeploy.ServerApplication(
       this,
-      applicationName,
+      this.codeDeployAppName,
       {
-        applicationName,
+        applicationName: this.codeDeployAppName,
       }
     );
 
-    new codedeploy.ServerDeploymentGroup(
+    this.codeDeployDeployGroupName = `${props.applicationName}DeploymentGroup`;
+
+    const group = new codedeploy.ServerDeploymentGroup(
       this,
-      `${props.applicationName}DeploymentGroup`,
+      this.codeDeployDeployGroupName,
       {
         application,
         ec2InstanceTags,
       }
     );
 
-    const bucketName = `${props.applicationName}DeploymentBucket`;
+    group.deploymentGroupName = this.codeDeployDeployGroupName;
 
-    new s3.Bucket(this, bucketName, {
-      bucketName: bucketName
-        .split(/(?=[A-Z])/u)
-        .join("-")
-        .toLowerCase(),
+    const bucketId = `${props.applicationName}DeploymentBucket`;
+
+    this.codeDeployDeployBucket = bucketId
+      .split(/(?=[A-Z])/u)
+      .join("-")
+      .toLowerCase();
+
+    new s3.Bucket(this, bucketId, {
+      bucketName: this.codeDeployDeployBucket,
       encryption: s3.BucketEncryption.S3_MANAGED,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     });

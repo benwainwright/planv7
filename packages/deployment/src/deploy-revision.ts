@@ -1,30 +1,15 @@
 /* eslint-disable no-console */
+import * as Aws from "./aws";
 import * as Filesystem from "./file-system";
 import * as execa from "execa";
 import * as path from "path";
 import infrastructure, { region as appRegion } from "../cdk/infrastructure";
+
 import { promises as fs } from "fs";
 
 const APPSPEC_NAME = "appspec.yml";
 const serverPath = path.join(__dirname, "../../../packages/backend/dist");
 const frontendPath = path.join(__dirname, "../../../packages/frontend/dist");
-
-const deployPush = async (
-  appName: string,
-  region: string,
-  description: string,
-  bucket: string,
-  revisionPath: string
-): Promise<execa.ExecaReturnValue<string>> => {
-  const command = `aws deploy push \
-                      --region ${region} \
-                      --application-name ${appName} \
-                      --description ${description} \
-                      --ignore-hidden-files \
-                      --s3-location s3://${bucket}/revision.zip \
-                      --source ${revisionPath}`;
-  return execa.command(command);
-};
 
 (async (): Promise<void> => {
   const revisonPath = path.join(__dirname, "../revision");
@@ -42,7 +27,7 @@ const deployPush = async (
   const { stdout: hash } = await execa.command("git rev-parse HEAD");
   console.log(`Pushing revision ${hash}`);
 
-  await deployPush(
+  const { stdout } = await Aws.deployPush(
     infrastructure.codeDeployAppName,
     appRegion,
     hash,
@@ -50,7 +35,13 @@ const deployPush = async (
     revisonPath
   );
 
-  console.log(`Done`);
-
+  const bucketRegex = /--s3-location (?<bucket>[\w=\-,.]*)/u;
+  console.log("Creating deployment");
+  await Aws.deployCreate(
+    infrastructure.codeDeployAppName,
+    infrastructure.codeDeployDeployGroupName,
+    bucketRegex.exec(stdout)?.groups?.bucket
+  );
+  console.log("Done");
   // eslint-disable-next-line no-console
 })().catch((error: Error) => console.log(error));
