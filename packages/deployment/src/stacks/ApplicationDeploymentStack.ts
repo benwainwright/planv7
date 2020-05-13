@@ -30,33 +30,12 @@ export default class ApplicationDeploymentStack extends cdk.Stack {
       ec2.InstanceSize.MICRO
     );
 
-    const runOnEveryBoot = `Content-Type: multipart/mixed; boundary="//"
-MIME-Version: 1.0
-
---//
-Content-Type: text/cloud-config; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment; filename="cloud-config.txt"
-
-#cloud-config
-cloud_final_modules:
-- [scripts-user, always]
-
---//
-Content-Type: text/x-shellscript; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment; filename="userdata.txt"`;
-
-    const userData = `${runOnEveryBoot}
-#!/bin/bash
-exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
-yum -y update
-yum install -y ruby gcc-c++ make nodejs nginx
-curl -O https://${props.codeDeployBucket}.s3.amazonaws.com/latest/install
-chmod +x ./install
-./install auto`;
+    const userData = getUserdata(
+      RunTime.EveryBoot,
+      "user-data.log",
+      ["ruby", "gcc-c++", "make", "nodejs", "nginx"],
+      props.codeDeployBucket
+    );
 
     const instance = new ec2.Instance(
       this,
