@@ -31,6 +31,7 @@ export default class ApplicationDeploymentStack extends cdk.Stack {
     );
 
     const userData = `#!/bin/bash
+exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
 yum -y update
 yum install -y ruby gcc-c++ make nodejs
 cd /home/ec2-user
