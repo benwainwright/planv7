@@ -46,6 +46,8 @@ chmod +x ./install
       }
     );
 
+    instance.connections.allowFromAnyIpv4(ec2.Port.tcp(22));
+
     const tagKeyName = "Name";
     const tagKeyValue = props.applicationName;
 
