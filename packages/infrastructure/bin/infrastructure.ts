@@ -12,7 +12,7 @@ new ApplicationDeploymentStack(app, {
   applicationName: "Planv7",
   codeDeployBucket: EU_WEST_2_LONDON_CODE_DEPLOY_RESOURCES_BUCKET,
   env: {
-    region: "es-east-1",
+    region: "us-east-1",
     account: "661272765443",
   },
 });
