@@ -5,6 +5,7 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack");
 const path = require("path");
+const constants = require("../src/constants");
 
 const clientConfig = {
   mode: "production",
@@ -28,7 +29,7 @@ const clientConfig = {
     path: path.resolve(__dirname, "../dist"),
     publicPath: "/assets",
     pathinfo: false,
-    filename: "server.js",
+    filename: `${constants.APP_NAME}-server`,
   },
   devtool: "source-map",
   optimization: {
@@ -73,6 +74,7 @@ const clientConfig = {
     new MiniCssExtractPlugin({
       filename: "[name].css",
     }),
+    new webpack.BannerPlugin({ banner: "#!/usr/bin/env node", raw: true }),
     new webpack.EnvironmentPlugin(["NODE_ENV"]),
   ],
 };
