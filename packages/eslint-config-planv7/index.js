@@ -165,7 +165,10 @@ module.exports = {
         ],
         "@typescript-eslint/ban-ts-comment": "error",
         "@typescript-eslint/array-type": ["error", { default: "array" }],
-        "@typescript-eslint/no-magic-numbers": ["error", { ignore: [0, 1] }],
+        "@typescript-eslint/no-magic-numbers": [
+          "error",
+          { ignore: [0, 1], ignoreEnums: true },
+        ],
         "@typescript-eslint/explicit-function-return-type": "error",
         "@typescript-eslint/no-explicit-any": "error",
         "@typescript-eslint/no-non-null-assertion": "error",
