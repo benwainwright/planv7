@@ -7,5 +7,6 @@ module.exports = {
     ...testing.getProjects("framework"),
     ...testing.getProjects("backend"),
     ...testing.getProjects("frontend"),
+    ...testing.getProjects("deployment"),
   ],
 };
