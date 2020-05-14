@@ -1,11 +1,10 @@
 import * as cdk from "@aws-cdk/core";
 import * as codedeploy from "@aws-cdk/aws-codedeploy";
+import * as constants from "../constants";
 import * as ec2 from "@aws-cdk/aws-ec2";
 import * as iam from "@aws-cdk/aws-iam";
 import * as s3 from "@aws-cdk/aws-s3";
 import getUserdata, { RunTime } from "../getUserdata";
-
-const DEFAULT_SSH_PORT = 22;
 
 interface ApplicationDeploymentStackProps {
   applicationName: string;
@@ -54,7 +53,15 @@ export default class ApplicationDeploymentStack extends cdk.Stack {
       }
     );
 
-    instance.connections.allowFromAnyIpv4(ec2.Port.tcp(DEFAULT_SSH_PORT));
+    instance.connections.allowFromAnyIpv4(
+      ec2.Port.tcp(constants.DefaultPorts.Ssh)
+    );
+    instance.connections.allowFromAnyIpv4(
+      ec2.Port.tcp(constants.DefaultPorts.Http)
+    );
+    instance.connections.allowFromAnyIpv4(
+      ec2.Port.tcp(constants.DefaultPorts.Https)
+    );
 
     const codeBuildDeployPolicy = new iam.PolicyStatement({
       effect: iam.Effect.ALLOW,
