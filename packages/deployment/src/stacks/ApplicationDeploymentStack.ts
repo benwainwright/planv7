@@ -4,7 +4,6 @@ import * as constants from "../constants";
 import * as ec2 from "@aws-cdk/aws-ec2";
 import * as iam from "@aws-cdk/aws-iam";
 import * as s3 from "@aws-cdk/aws-s3";
-import getUserdata, { RunTime } from "../getUserdata";
 
 interface ApplicationDeploymentStackProps {
   applicationName: string;
@@ -23,7 +22,10 @@ export default class ApplicationDeploymentStack extends cdk.Stack {
     super(context, `${props.applicationName}DeploymentStack`, props);
 
     const vpc = new ec2.Vpc(this, `${props.applicationName}Vpc`);
-    const machineImage = ec2.MachineImage.latestAmazonLinux();
+
+    const machineImage = ec2.MachineImage.latestAmazonLinux({
+      generation: ec2.AmazonLinuxGeneration.AMAZON_LINUX_2,
+    });
 
     const instanceType = ec2.InstanceType.of(
       ec2.InstanceClass.T3,
