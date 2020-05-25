@@ -63,6 +63,7 @@ Cypress:
   image: cypress/base:14.0.0
   stage: Integration test
   dependencies:
+    - Yarn install
     - Build
   script:
     - cd packages/testing
@@ -76,6 +77,7 @@ Cypress:
 
 Deploy:
   dependencies:
+    - Yarn install
     - Build
   image: benwainwright/node14-with-yarn-and-aws-cli:latest
   stage: Deploy
