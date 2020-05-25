@@ -56,6 +56,18 @@ chmod +x ./install
       }
     );
 
+    const publicKeyConfig = new secretsManager.Secret(
+      this,
+      `${props.applicationName}/JWT_PUBLIC_KEY`
+    );
+    publicKeyConfig.grantRead(instance);
+
+    const privateKeyConfig = new secretsManager.Secret(
+      this,
+      `${props.applicationName}/JWT_PRIVATE_KEY`
+    );
+    privateKeyConfig.grantRead(instance);
+
     instance.connections.allowFromAnyIpv4(
       ec2.Port.tcp(constants.DefaultPorts.Ssh)
     );
