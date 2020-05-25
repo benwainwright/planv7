@@ -4,6 +4,7 @@ import * as constants from "../constants";
 import * as ec2 from "@aws-cdk/aws-ec2";
 import * as iam from "@aws-cdk/aws-iam";
 import * as s3 from "@aws-cdk/aws-s3";
+import * as secretsManager from "@aws-cdk/aws-secretsmanager";
 
 interface ApplicationDeploymentStackProps {
   applicationName: string;

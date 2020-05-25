@@ -362,6 +362,42 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@aws-cdk/aws-sam@npm:1.41.0":
+  version: 1.41.0
+  resolution: "@aws-cdk/aws-sam@npm:1.41.0"
+  dependencies:
+    "@aws-cdk/core": 1.41.0
+    constructs: ^3.0.2
+  peerDependencies:
+    "@aws-cdk/core": 1.41.0
+    constructs: ^3.0.2
+  checksum: 3/a3abb572e7981008a33da9ff0c99970b5d0bd58c6e84da3afe24e028676d5f079317e4900ebe5a8a90585894392afa9f19a49c72e8603cdc079cecf5cdb0105d
+  languageName: node
+  linkType: hard
+
+"@aws-cdk/aws-secretsmanager@npm:^1.41.0":
+  version: 1.41.0
+  resolution: "@aws-cdk/aws-secretsmanager@npm:1.41.0"
+  dependencies:
+    "@aws-cdk/aws-ec2": 1.41.0
+    "@aws-cdk/aws-iam": 1.41.0
+    "@aws-cdk/aws-kms": 1.41.0
+    "@aws-cdk/aws-lambda": 1.41.0
+    "@aws-cdk/aws-sam": 1.41.0
+    "@aws-cdk/core": 1.41.0
+    constructs: ^3.0.2
+  peerDependencies:
+    "@aws-cdk/aws-ec2": 1.41.0
+    "@aws-cdk/aws-iam": 1.41.0
+    "@aws-cdk/aws-kms": 1.41.0
+    "@aws-cdk/aws-lambda": 1.41.0
+    "@aws-cdk/aws-sam": 1.41.0
+    "@aws-cdk/core": 1.41.0
+    constructs: ^3.0.2
+  checksum: 3/f2cc8e7b84ad4aa078424a719d6ba0b54d2f1a045b80e07e20185bd0438fbedcb6284bf5bc85d84028017168873e1cba4bdaa5ecbf35a5f181f2a61662502fcf
+  languageName: node
+  linkType: hard
+
 "@aws-cdk/aws-sns@npm:1.41.0":
   version: 1.41.0
   resolution: "@aws-cdk/aws-sns@npm:1.41.0"
@@ -1482,6 +1518,7 @@ __metadata:
     "@aws-cdk/aws-ec2": ^1.38.0
     "@aws-cdk/aws-iam": ^1.38.0
     "@aws-cdk/aws-s3": ^1.38.0
+    "@aws-cdk/aws-secretsmanager": ^1.41.0
     "@aws-cdk/core": ^1.38.0
     "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7"
     "@planv7/testing": "workspace:packages/testing"
