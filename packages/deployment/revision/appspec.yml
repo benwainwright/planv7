@@ -1,0 +1,32 @@
+version: 0.0
+os: linux 
+
+files:
+  - source: /repos
+    destination: /etc/yum.repos.d
+  - source: /planv7.rpm 
+    destination: /tmp/install
+
+permissions:
+  - object: /tmp/install
+    pattern: "*.rpm"
+    mode: 777
+    type:
+      - file
+
+hooks:
+  AfterInstall:
+    - location: scripts/install.sh
+      timeout: 300 
+
+  ApplicationStart:
+    - location: scripts/start.sh
+      timeout: 300
+
+  ApplicationStop:
+    - location: scripts/stop.sh
+      timeout: 300
+
+  
+
+
