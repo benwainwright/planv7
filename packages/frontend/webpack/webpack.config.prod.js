@@ -63,6 +63,10 @@ const clientConfig = {
     nodeExternals({
       importType: "umd",
     }),
+    {
+      react: "React",
+      "react-dom": "ReactDOM",
+    },
   ],
   plugins: [
     new BundleAnalyzerPlugin({ openAnalyzer: false, analyzerMode: "static" }),

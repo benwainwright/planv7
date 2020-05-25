@@ -61,12 +61,10 @@ const clientConfig = {
     ],
   },
 
-  externals: [
-    nodeExternals({
-      modulesFromFile: true,
-      whitelist: [/^@planv7/u],
-    }),
-  ],
+  externals: {
+    fsevents: true,
+    "koa-webpack": 'global["koa-webpack"]',
+  },
   plugins: [
     new BundleAnalyzerPlugin({ openAnalyzer: false, analyzerMode: "static" }),
     new webpack.NoEmitOnErrorsPlugin(),
@@ -75,6 +73,9 @@ const clientConfig = {
     }),
     new webpack.BannerPlugin({ banner: "#!/usr/bin/env node", raw: true }),
     new webpack.EnvironmentPlugin(["NODE_ENV"]),
+    new webpack.ProvidePlugin({
+      React: "react",
+    }),
   ],
 };
 

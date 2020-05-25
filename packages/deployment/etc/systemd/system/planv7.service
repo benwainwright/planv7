@@ -1,0 +1,8 @@
+[Unit]
+Description=Planv7 Application
+After=network.target network-online.target
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/planv7-server

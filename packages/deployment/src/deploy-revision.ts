@@ -9,6 +9,14 @@ const PACKAGES_DIR = path.join(__dirname, "..", "..", "..", "packages");
 const SERVER_PATH = path.join(PACKAGES_DIR, "backend", "dist", "planv7-server");
 const FRONTEND_PATH = path.join(PACKAGES_DIR, "frontend", "dist", "assets");
 const REVISION_DIR = path.join(__dirname, "..", "revision");
+const PLANV7_DOT_SERVICE = path.join(
+  __dirname,
+  "..",
+  "etc",
+  "systemd",
+  "system",
+  "planv7.service"
+);
 
 (async (): Promise<void> => {
   console.log("Packaging application");
@@ -18,6 +26,7 @@ const REVISION_DIR = path.join(__dirname, "..", "revision");
     {
       [SERVER_PATH]: "/usr/bin/planv7-server",
       [FRONTEND_PATH]: "/srv/planv7",
+      [PLANV7_DOT_SERVICE]: "/etc/systemd/system/planv7.service",
     },
     REVISION_DIR
   );

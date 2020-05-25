@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-amazon-linux-extras install epel
+curl -sL https://rpm.nodesource.com/setup_14.x | sudo -E bash -
 yum remove planv7* -y
 yum localinstall -y /tmp/install/planv7.rpm
