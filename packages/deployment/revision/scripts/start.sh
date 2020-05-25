@@ -1,1 +1,1 @@
-service mongod start
+systemctl start mongod

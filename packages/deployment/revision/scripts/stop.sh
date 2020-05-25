@@ -1,1 +1,1 @@
-service mongod stop
+systemctl stop mongod || true

@@ -7,7 +7,7 @@ files:
   - source: /planv7.rpm 
     destination: /tmp/install
 
-permissions:
+ermissions:
   - object: /tmp/install
     pattern: "*.rpm"
     mode: 777
