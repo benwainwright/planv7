@@ -1,5 +1,4 @@
 const merge = require("webpack-merge");
-const nodeExternals = require("webpack-node-externals");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
