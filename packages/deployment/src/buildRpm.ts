@@ -31,8 +31,6 @@ const buildRpm = async (
 
   const args = [...baseArgs, ...pathStrings];
 
-  console.log(args.join(" "));
-
   return execa.command(args.join(" "));
 };
 
