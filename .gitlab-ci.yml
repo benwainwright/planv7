@@ -10,31 +10,30 @@ variables:
   YARN_CACHE_FOLDER: $CI_PROJECT_DIR/.yarn/cache
   CYPRESS_CACHE_FOLDER: $CI_PROJECT_DIR/cache/Cypress
 
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  policy: pull
-  paths:
-    - .yarn
-    - cache/Cypress
-    - node_modules/
-    - packages/*/node_modules
-    - yarn.lock
-
 Yarn install:
-  cache:
-    policy: pull-push
-    key: ${CI_COMMIT_REF_SLUG}
   stage: Install
   script:
     - yarn install
+  artifacts:
+    paths:
+      - .yarn
+      - cache/Cypress
+      - node_modules/
+      - packages/*/node_modules
+      - yarn.lock
 
 Lint:
   stage: Build and test
+  dependencies:
+    - Yarn install
   script:
     - yarn lint
 
 Unit tests:
   stage: Build and test
+
+  dependencies:
+    - Yarn install
 
   script:
     - yarn test
@@ -50,6 +49,8 @@ Unit tests:
 
 Build:
   stage: Build and test
+  dependencies:
+    - Yarn install
   script:
     - yarn build:prod
 
