@@ -5,4 +5,4 @@ After=network.target network-online.target
 [Service]
 Type=simple
 Restart=always
-ExecStart=/usr/bin/planv7-server
+ExecStart=/bin/sh -c 'JWT_PUBLIC_KEY=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id planv7/JWT_PUBLIC_KEY) JWT_PRIVATE_KEY=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id planv7/JWT_PRIVATE_KEY) /usr/bin/planv7'
