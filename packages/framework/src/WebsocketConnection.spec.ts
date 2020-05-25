@@ -89,7 +89,7 @@ describe("Websocket connection", () => {
     const expected = new MockCommand();
     expected.foo = "bar";
 
-    mockCommandBus.execute(expected).returns();
+    mockCommandBus.execute(expected).returns(Promise.resolve());
 
     const logger = Substitute.for<Logger>();
 
