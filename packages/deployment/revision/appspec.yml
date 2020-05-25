@@ -17,14 +17,17 @@ permissions:
 hooks:
   AfterInstall:
     - location: scripts/install.sh
+      runas: root
       timeout: 300 
 
   ApplicationStart:
     - location: scripts/start.sh
+      runas: root
       timeout: 300
 
   ApplicationStop:
     - location: scripts/stop.sh
+      runas: root
       timeout: 300
 
   

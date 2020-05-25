@@ -6,7 +6,7 @@ import infrastructure, { region as appRegion } from "../cdk/infrastructure";
 import buildRpm from "./buildRpm";
 
 const PACKAGES_DIR = path.join(__dirname, "..", "..", "..", "packages");
-const SERVER_PATH = path.join(PACKAGES_DIR, "backend", "dist");
+const SERVER_PATH = path.join(PACKAGES_DIR, "backend", "dist", "planv7-server");
 const FRONTEND_PATH = path.join(PACKAGES_DIR, "frontend", "dist", "assets");
 const REVISION_DIR = path.join(__dirname, "..", "revision");
 const RPM_PATH = path.join(REVISION_DIR, "planv7.rpm");
