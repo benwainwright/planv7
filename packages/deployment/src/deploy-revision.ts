@@ -9,7 +9,6 @@ const PACKAGES_DIR = path.join(__dirname, "..", "..", "..", "packages");
 const SERVER_PATH = path.join(PACKAGES_DIR, "backend", "dist", "planv7-server");
 const FRONTEND_PATH = path.join(PACKAGES_DIR, "frontend", "dist", "assets");
 const REVISION_DIR = path.join(__dirname, "..", "revision");
-const RPM_PATH = path.join(REVISION_DIR, "planv7.rpm");
 
 (async (): Promise<void> => {
   console.log("Packaging application");
@@ -17,10 +16,10 @@ const RPM_PATH = path.join(REVISION_DIR, "planv7.rpm");
     "planv7",
     ["mongodb-org", "epel-release", "nodejs", "nginx"],
     {
-      [SERVER_PATH]: "/usr/bin",
+      [SERVER_PATH]: "/usr/bin/planv7-server",
       [FRONTEND_PATH]: "/srv/planv7",
     },
-    RPM_PATH
+    REVISION_DIR
   );
 
   const { stdout: hash } = await execa.command("git rev-parse HEAD");

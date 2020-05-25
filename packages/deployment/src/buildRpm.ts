@@ -1,4 +1,5 @@
 import * as execa from "execa";
+import * as path from "path";
 
 const buildRpm = async (
   name: string,
@@ -12,8 +13,8 @@ const buildRpm = async (
     "dir",
     "--name",
     name,
-    "--prefix",
-    outputDir,
+    "--package",
+    path.join(outputDir, `${name}.rpm`),
     "--output-type",
     "rpm",
     "--force",
@@ -25,7 +26,7 @@ const buildRpm = async (
   });
 
   const pathStrings = Object.keys(paths).map(
-    (path) => `${path}=${paths[path]}`
+    (pathString) => `${pathString}=${paths[pathString]}`
   );
 
   const args = [...baseArgs, ...pathStrings];
