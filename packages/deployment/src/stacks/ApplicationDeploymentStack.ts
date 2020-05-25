@@ -57,6 +57,16 @@ chmod +x ./install
       }
     );
 
+    instance.connections.allowFromAnyIpv4(
+      ec2.Port.tcp(constants.DefaultPorts.Ssh)
+    );
+    instance.connections.allowFromAnyIpv4(
+      ec2.Port.tcp(constants.DefaultPorts.Http)
+    );
+    instance.connections.allowFromAnyIpv4(
+      ec2.Port.tcp(constants.DefaultPorts.Https)
+    );
+
     const publicKeyConfig = new secretsManager.Secret(
       this,
       `${props.applicationName}/JWT_PUBLIC_KEY`
@@ -68,16 +78,6 @@ chmod +x ./install
       `${props.applicationName}/JWT_PRIVATE_KEY`
     );
     privateKeyConfig.grantRead(instance);
-
-    instance.connections.allowFromAnyIpv4(
-      ec2.Port.tcp(constants.DefaultPorts.Ssh)
-    );
-    instance.connections.allowFromAnyIpv4(
-      ec2.Port.tcp(constants.DefaultPorts.Http)
-    );
-    instance.connections.allowFromAnyIpv4(
-      ec2.Port.tcp(constants.DefaultPorts.Https)
-    );
 
     const codeBuildDeployPolicy = new iam.PolicyStatement({
       effect: iam.Effect.ALLOW,
