@@ -67,6 +67,13 @@ chmod +x ./install
       ec2.Port.tcp(constants.DefaultPorts.Https)
     );
 
+    const ip = new ec2.CfnEIP(this, `${props.applicationName}EIp`);
+
+    new ec2.CfnEIPAssociation(this, `${props.applicationName}EipAssociation`, {
+      eip: ip.ref,
+      instanceId: instance.instanceId,
+    });
+
     const publicKeyConfig = new secretsManager.Secret(
       this,
       `${props.applicationName}/JWT_PUBLIC_KEY`
