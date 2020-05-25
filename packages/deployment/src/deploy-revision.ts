@@ -1,38 +1,37 @@
 /* eslint-disable no-console */
 import * as Aws from "./aws";
-import * as Filesystem from "./file-system";
 import * as execa from "execa";
 import * as path from "path";
 import infrastructure, { region as appRegion } from "../cdk/infrastructure";
+import buildRpm from "./buildRpm";
 
-import { promises as fs } from "fs";
-
-const APPSPEC_NAME = "appspec.yml";
-const serverPath = path.join(__dirname, "../../../packages/backend/dist");
-const frontendPath = path.join(__dirname, "../../../packages/frontend/dist");
+const PACKAGES_DIR = path.join(__dirname, "..", "..", "..", "packages");
+const SERVER_PATH = path.join(PACKAGES_DIR, "backend", "dist");
+const FRONTEND_PATH = path.join(PACKAGES_DIR, "frontend", "dist", "assets");
+const REVISION_DIR = path.join(__dirname, "..", "revision");
+const RPM_PATH = path.join(REVISION_DIR, "planv7.rpm");
 
 (async (): Promise<void> => {
-  const revisonPath = path.join(__dirname, "../revision");
-  await Filesystem.forceDelete(revisonPath);
-  await fs.mkdir(revisonPath);
-
-  await Filesystem.copyToDirectory(serverPath, revisonPath);
-  await Filesystem.copyToDirectory(frontendPath, revisonPath);
-
-  await fs.copyFile(
-    path.join(__dirname, APPSPEC_NAME),
-    path.join(revisonPath, APPSPEC_NAME)
+  console.log("Packaging application");
+  await buildRpm(
+    "planv7",
+    ["mongodb-org", "epel-release", "nodejs", "nginx"],
+    {
+      [SERVER_PATH]: "/usr/bin",
+      [FRONTEND_PATH]: "/srv/planv7",
+    },
+    RPM_PATH
   );
 
   const { stdout: hash } = await execa.command("git rev-parse HEAD");
-  console.log(`Pushing revision ${hash}`);
+  console.log(`Pushing revision ${hash} to S3`);
 
   const { stdout } = await Aws.deployPush(
     infrastructure.codeDeployAppName,
     appRegion,
     hash,
     infrastructure.codeDeployDeployBucket,
-    revisonPath
+    REVISION_DIR
   );
 
   const bucketRegex = /--s3-location (?<bucket>[\w=\-,.]*)/u;
@@ -49,5 +48,8 @@ const frontendPath = path.join(__dirname, "../../../packages/frontend/dist");
   } else {
     throw new Error("Bucket not found in push output");
   }
+})().catch((error: Error) => {
   // eslint-disable-next-line no-console
-})().catch((error: Error) => console.log(error));
+  console.log(`Error: ${error.message}`);
+  process.exitCode = 1;
+});

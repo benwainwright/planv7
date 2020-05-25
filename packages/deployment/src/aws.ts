@@ -35,13 +35,16 @@ const pollForCompleteDeployment = async (
   deploymentId: string,
   region: string
 ): Promise<void> => {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     const interval = setInterval(async () => {
       const { stdout: response } = await getDeployStatus(deploymentId, region);
       const status = JSON.parse(response);
       if (status.deploymentInfo.status === "Succeeded") {
         clearInterval(interval);
         resolve();
+      } else if (status.deploymentInfo.status == "Failed") {
+        clearInterval(interval);
+        reject(new Error(status.deploymentInfo.errorInformation.message));
       } else {
         console.log(`Status: ${status.deploymentInfo.status}`);
       }

@@ -30,12 +30,13 @@ export default class ApplicationDeploymentStack extends cdk.Stack {
       ec2.InstanceSize.MICRO
     );
 
-    const userData = getUserdata(
-      RunTime.EveryBoot,
-      "user-data.log",
-      ["ruby", "gcc-c++", "make", "nodejs", "nginx"],
-      props.codeDeployBucket
-    );
+    const userData = `#!/bin/bash
+yum -y update
+yum install -y ruby
+cd /home/ec2-user
+curl -O https://${props.codeDeployBucket}.s3.amazonaws.com/latest/install
+chmod +x ./install
+./install auto`;
 
     const instance = new ec2.Instance(
       this,
