@@ -201,10 +201,31 @@ module.exports = {
       rules: {
         "no-undef": "off",
         "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            selector: "variable",
+            format: ["camelCase", "UPPER_CASE", "PascalCase"],
+            leadingUnderscore: "forbid",
+            trailingUnderscore: "forbid",
+          },
+          {
+            selector: "typeLike",
+            format: ["PascalCase"],
+            leadingUnderscore: "forbid",
+            trailingUnderscore: "forbid",
+          },
+          {
+            selector: "enumMember",
+            format: ["PascalCase"],
+            leadingUnderscore: "forbid",
+            trailingUnderscore: "forbid",
+          },
+        ],
       },
     },
     {
-      files: ["*.tsx", "!*.spec.dom.tsx"],
+      files: ["*.tsx"],
       plugins: ["react-hooks", "react"],
       extends: ["plugin:react/recommended", "plugin:react-hooks/recommended"],
       settings: {
@@ -240,6 +261,8 @@ module.exports = {
     {
       files: ["*.spec.ts", "*.spec.dom.ts", "*.spec.dom.tsx"],
       rules: {
+        "unicorn/consistent-function-scoping": "off",
+        "sonarjs/no-identical-functions": "off",
         "filenames/match-regex": "off",
         "filenames/match-exported": "off",
         "fp/no-let": "off",
@@ -250,7 +273,7 @@ module.exports = {
           "error",
           {
             selector: "variable",
-            format: ["camelCase", "UPPER_CASE"],
+            format: ["camelCase", "UPPER_CASE", "PascalCase"],
             leadingUnderscore: "forbid",
             trailingUnderscore: "forbid",
           },
