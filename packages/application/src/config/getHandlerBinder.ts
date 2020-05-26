@@ -5,6 +5,10 @@ import { Container } from "inversify";
 import Logger from "../ports/Logger";
 import TYPES from "../ports/TYPES";
 
+export interface Handlers {
+  [name: string]: new () => unknown;
+}
+
 /**
  * Try to resolve all the handlers first. If they can't be resolved
  * it's probably because a dependency isn't available in the current
@@ -12,7 +16,7 @@ import TYPES from "../ports/TYPES";
  */
 const getBindableHandlers = (
   container: Container,
-  handlers: (new () => unknown)[]
+  handlers: Handlers
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Map<string, any> => {
   const logger = container.get<Logger>(TYPES.logger);
@@ -41,7 +45,7 @@ const getBindableHandlers = (
 
 const getHandlerBinder = (
   container: Container,
-  handlers: (new () => unknown)[]
+  handlers: Handlers
 ): ((container: Container) => void) => {
   const toBind = getBindableHandlers(container, handlers);
   const logger = container.get<Logger>(TYPES.logger);

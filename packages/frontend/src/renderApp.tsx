@@ -3,6 +3,7 @@ import * as ReactDOM from "react-dom";
 
 import App from "./components/App";
 import { Container } from "inversify";
+import { InversifyProvider } from "./utils/inversify-provider";
 import Theme from "./components/Theme";
 import { ThemeProvider } from "@material-ui/core/styles";
 import bindDependencies from "./bootstrap/bindDependencies";
@@ -15,7 +16,9 @@ const renderApp = async (): Promise<void> => {
 
   ReactDOM.hydrate(
     <ThemeProvider theme={Theme}>
-      <App />
+      <InversifyProvider container={container}>
+        <App />
+      </InversifyProvider>
     </ThemeProvider>,
     document.querySelector("#root")
   );

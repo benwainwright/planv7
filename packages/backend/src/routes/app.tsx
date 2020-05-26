@@ -1,15 +1,18 @@
 import * as React from "react";
-import { App, Theme } from "@planv7/frontend";
+import { App, InversifyProvider, Theme } from "@planv7/frontend";
 import Koa, { Next } from "koa";
 import Router, { RouterContext } from "koa-router";
 import { ServerStyleSheets, ThemeProvider } from "@material-ui/core/styles";
+import { Container } from "inversify";
 import ReactDOMServer from "react-dom/server";
 import { ServerLocation } from "@reach/router";
 import indexTemplateLoader from "../application/indexTemplateLoader";
 
 const APP_BASE_URL = "app";
 
-const app = async (): Promise<
+const app = async (
+  container: Container
+): Promise<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   Koa.Middleware<any, Router.IRouterParamContext<any, {}>>
 > => {
@@ -22,9 +25,11 @@ const app = async (): Promise<
     const reactApp = ReactDOMServer.renderToString(
       sheets.collect(
         <ThemeProvider theme={Theme}>
-          <ServerLocation url={context.url}>
-            <App />
-          </ServerLocation>
+          <InversifyProvider container={container}>
+            <ServerLocation url={context.url}>
+              <App />
+            </ServerLocation>
+          </InversifyProvider>
         </ThemeProvider>
       )
     );

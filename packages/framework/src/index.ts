@@ -10,6 +10,7 @@ import MongoDatabaseUserRepository from "./storage/MongoDatabaseUserRepository";
 import ResponseAuthHeader from "./ResponseAuthHeader";
 import TYPES from "./TYPES";
 import WebsocketClient from "./WebsocketClient";
+import WebsocketConnection from "./WebsocketConnection";
 import WinstonConfig from "./WinstonConfig";
 import WinstonLogger from "./WinstonLogger";
 
@@ -24,6 +25,7 @@ export {
   JwtServerLoginSession,
   JwtClientLoginSession,
   WebsocketClient,
+  WebsocketConnection,
   WinstonConfig,
   WinstonLogger,
   MongoDatabasePlanSlugGenerator,

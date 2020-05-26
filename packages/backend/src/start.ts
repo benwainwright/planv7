@@ -32,7 +32,7 @@ import loadRoutes from "./bootstrap/loadRoutes";
     loadMiddleware(koaApp);
 
     logger.info(`Loading routes`);
-    await loadRoutes(koaApp, logger);
+    await loadRoutes(koaApp, container, logger);
 
     koaApp.listen(constants.SERVER_PORT, () => {
       logger.info(`Listening on port ${constants.SERVER_PORT}`);
