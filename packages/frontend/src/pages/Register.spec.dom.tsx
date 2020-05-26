@@ -27,8 +27,14 @@ describe("Register page", () => {
       act(() => {
         render(<Register />);
         editFieldByTestId("username", "foo");
+      });
+      act(() => {
         editFieldByTestId("password", "bar");
+      });
+      act(() => {
         editFieldByTestId("verifyPassword", "baz");
+      });
+      act(() => {
         editFieldByTestId("email", "baz@bar.com");
       });
 
