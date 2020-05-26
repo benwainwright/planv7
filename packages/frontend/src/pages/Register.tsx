@@ -1,11 +1,11 @@
 import * as React from "react";
-import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
 import {
   CommandBus,
-  RegisterUserCommand,
   TYPES as DOMAIN,
+  RegisterUserCommand,
 } from "@planv7/domain";
+import Button from "@material-ui/core/Button";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { RouteComponentProps } from "@reach/router";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
