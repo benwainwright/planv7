@@ -31,7 +31,8 @@ import loadRoutes from "./bootstrap/loadRoutes";
     bindDependencies(container, database, jwtPublicKey, jwtPrivateKey);
 
     logger.info(`Binding handlers`);
-    getHandlerBinder(container, HANDLERS);
+    const binder = getHandlerBinder(container, HANDLERS);
+    binder(container);
 
     logger.info(`Loading middleware`);
     await loadMiddleware(container, koaApp);

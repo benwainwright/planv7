@@ -1692,6 +1692,7 @@ __metadata:
     webpack: ^4.43.0
     webpack-cli: ^3.3.11
     webpack-merge: ^4.2.2
+    winston-transport-browserconsole: ^1.0.5
   languageName: unknown
   linkType: soft
 
@@ -15055,6 +15056,16 @@ typescript@~3.7.2:
   dependencies:
     string-width: ^1.0.2 || 2
   checksum: 3/4f850f84da84b7471d7b92f55e381e7ba286210470fe77a61e02464ef66d10e96057a0d137bc013fbbedb7363a26e79c0e8b21d99bb572467d3fee0465b8fd27
+  languageName: node
+  linkType: hard
+
+"winston-transport-browserconsole@npm:^1.0.5":
+  version: 1.0.5
+  resolution: "winston-transport-browserconsole@npm:1.0.5"
+  dependencies:
+    winston: ^3.2.1
+    winston-transport: ^4.3.0
+  checksum: 3/d5c1bbd8c6b2e03839082e2b54428d1f4519dd56c135e90a7cab54ba230e202a4be5a4e834fffddef9c5d20feee4536f1c2320e3bbba83d90437d285231fae67
   languageName: node
   linkType: hard
 

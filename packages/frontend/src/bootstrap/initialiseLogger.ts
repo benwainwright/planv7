@@ -1,12 +1,13 @@
 import { TYPES as APP, Logger } from "@planv7/application";
+import BrowserConsole from "winston-transport-browserconsole";
 import { WinstonConfig, WinstonLogger } from "@planv7/framework";
-import { format, transports } from "winston";
+import { format } from "winston";
 import { Container } from "inversify";
 
 const initialiseLogger = (container: Container): Logger => {
   const loggingConfig = new WinstonConfig(process.env.APP_LOG_LEVEL ?? "info", [
-    new transports.Console({
-      format: format.combine(format.timestamp(), format.colorize()),
+    new BrowserConsole({
+      format: format.simple(),
     }),
   ]);
 

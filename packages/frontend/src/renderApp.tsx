@@ -16,6 +16,7 @@ const renderApp = (): void => {
 
   const key = initialisePublicKey();
   const logger = initialiseLogger(container);
+  logger.info("Logger initialised");
   logger.info("Loading client application");
 
   logger.info("Binding dependencies");
