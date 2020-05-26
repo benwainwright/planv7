@@ -85,6 +85,10 @@ Cypress:
       - packages/testing/screenshots
 
 Deploy:
+  environment:
+    name: test
+    url: http://3.233.7.98/app
+
   dependencies:
     - Yarn install
     - Build
