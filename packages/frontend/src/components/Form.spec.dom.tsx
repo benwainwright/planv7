@@ -1,3 +1,4 @@
+import "@testing-library/jest-dom/extend-expect";
 import * as React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import Form from "./Form";
@@ -30,14 +31,17 @@ describe("The Form component", () => {
             <TextField
               label="Field One"
               inputProps={{ "data-testid": "one" }}
+              name="one"
             />
             <TextField
               label="Field Two"
               inputProps={{ "data-testid": "two" }}
+              name="two"
             />
             <TextField
               label="Field Three"
               inputProps={{ "data-testid": "three" }}
+              name="three"
             />
           </Form>
         );
@@ -91,6 +95,41 @@ describe("The Form component", () => {
       });
 
       expect(screen.queryByText("Clear")).toBeNull();
+    });
+
+    it("Must set all fields to empty when clicked", () => {
+      act(() => {
+        render(
+          <Form>
+            <TextField
+              label="Field One"
+              inputProps={{ "data-testid": "one" }}
+              name="one"
+            />
+            <TextField
+              label="Field Two"
+              inputProps={{ "data-testid": "two" }}
+              name="two"
+            />
+            <TextField
+              label="Field Three"
+              inputProps={{ "data-testid": "three" }}
+              name="three"
+            />
+          </Form>
+        );
+
+        editFieldByTestId("one", "foo");
+        editFieldByTestId("three", "bar");
+      });
+
+      act(() => {
+        fireEvent.click(screen.getByText("Clear"));
+      });
+
+      expect(screen.getByTestId("one")).toHaveValue("");
+      expect(screen.getByTestId("two")).toHaveValue("");
+      expect(screen.getByTestId("three")).toHaveValue("");
     });
   });
 });
