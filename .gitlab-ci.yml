@@ -11,6 +11,15 @@ variables:
   CYPRESS_CACHE_FOLDER: $CI_PROJECT_DIR/cache/Cypress
 
 Yarn install:
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    policy: pull-push
+    paths:
+      - .yarn	
+      - cache/Cypress	
+      - node_modules/	
+      - packages/*/node_modules	
+      - yarn.lock	
   stage: Install
   script:
     - yarn install

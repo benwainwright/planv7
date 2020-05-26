@@ -22,7 +22,7 @@ const PLANV7_DOT_SERVICE = path.join(
   console.log("Packaging application");
   await buildRpm(
     "planv7",
-    ["mongodb-org", "epel-release", "nodejs", "nginx"],
+    ["mongodb-org", "nodejs", "nginx", "jq"],
     {
       [SERVER_PATH]: "/usr/bin/planv7-server",
       [FRONTEND_PATH]: "/srv/planv7",
