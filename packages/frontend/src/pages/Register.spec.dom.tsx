@@ -49,33 +49,33 @@ describe("Register page", () => {
       expect(screen.queryByText("Clear")).not.toBeNull();
     });
 
-    /* It("Must dissapear if all fields change to empty", async () => { */
-    /*   await act(async () => { */
-    /*     render(<Register />); */
-    /*     const changeValue = { */
-    /*       target: { */
-    /*         value: "foobar", */
-    /*       }, */
-    /*     }; */
+    it("Must dissapear if all fields change to empty", async () => {
+      await act(async () => {
+        render(<Register />);
+        const changeValue = {
+          target: {
+            value: "foobar",
+          },
+        };
 
-    /*     fireEvent.change(screen.getByTestId("username"), changeValue); */
-    /*     fireEvent.change(screen.getByTestId("password"), changeValue); */
-    /*     fireEvent.change(screen.getByTestId("verifyPassword"), changeValue); */
-    /*   }); */
-    /*   await act(async () => { */
-    /*     const clearValue = { */
-    /*       taret: { */
-    /*         value: "", */
-    /*       }, */
-    /*     }; */
+        fireEvent.change(screen.getByTestId("username"), changeValue);
+        fireEvent.change(screen.getByTestId("password"), changeValue);
+        fireEvent.change(screen.getByTestId("verifyPassword"), changeValue);
+      });
+      await act(async () => {
+        const clearValue = {
+          target: {
+            value: "",
+          },
+        };
 
-    /*     fireEvent.change(screen.getByTestId("username"), clearValue); */
-    /*     fireEvent.change(screen.getByTestId("password"), clearValue); */
-    /*     fireEvent.change(screen.getByTestId("verifyPassword"), clearValue); */
-    /*   }); */
+        fireEvent.change(screen.getByTestId("username"), clearValue);
+        fireEvent.change(screen.getByTestId("password"), clearValue);
+        fireEvent.change(screen.getByTestId("verifyPassword"), clearValue);
+      });
 
-    /*   expect(screen.queryByText("Clear")).toBeNull(); */
-    /* }); */
+      expect(screen.queryByText("Clear")).toBeNull();
+    });
 
     it("Must set all fields to empty when clicked", () => {
       act(() => {
