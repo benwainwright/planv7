@@ -5,7 +5,8 @@ import { Container } from "inversify";
 import Logger from "../ports/Logger";
 import TYPES from "../ports/TYPES";
 
-export interface Handlers {
+export interface HandlerMap {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [name: string]: any;
 }
 
@@ -16,7 +17,7 @@ export interface Handlers {
  */
 const getBindableHandlers = (
   container: Container,
-  handlers: Handlers
+  handlers: HandlerMap
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Map<string, any> => {
   const logger = container.get<Logger>(TYPES.logger);
@@ -45,7 +46,7 @@ const getBindableHandlers = (
 
 const getHandlerBinder = (
   container: Container,
-  handlers: Handlers
+  handlers: HandlerMap
 ): ((container: Container) => void) => {
   const toBind = getBindableHandlers(container, handlers);
   const logger = container.get<Logger>(TYPES.logger);
