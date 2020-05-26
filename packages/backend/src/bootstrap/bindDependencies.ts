@@ -8,8 +8,8 @@ import {
   LoginProvider,
   Repository,
   Serialiser,
-  SlugGenerator,
   SimpleCommandBus,
+  SlugGenerator,
 } from "@planv7/application";
 
 import {
