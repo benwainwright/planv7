@@ -14,7 +14,7 @@ describe("The Form component", () => {
     it("Must be invisible if the page is clean before it has been edited", () => {
       act(() => {
         render(
-          <Form>
+          <Form onSubmit={jest.fn()}>
             <TextField label="Field One" />
             <TextField label="Field Two" />
             <TextField label="Field Three" />
@@ -27,7 +27,7 @@ describe("The Form component", () => {
     it("Must be visible if any fields have been edited", () => {
       act(() => {
         render(
-          <Form>
+          <Form onSubmit={jest.fn()}>
             <TextField
               label="Field One"
               inputProps={{ "data-testid": "one" }}
@@ -59,7 +59,7 @@ describe("The Form component", () => {
     it("Must dissapear if all the fields change to empty", () => {
       act(() => {
         render(
-          <Form>
+          <Form onSubmit={jest.fn()}>
             <TextField
               label="Field One"
               name="one"
@@ -103,7 +103,7 @@ describe("The Form component", () => {
     it("Must set all fields to empty when clicked", () => {
       act(() => {
         render(
-          <Form>
+          <Form onSubmit={jest.fn()}>
             <TextField
               label="Field One"
               inputProps={{ "data-testid": "one" }}

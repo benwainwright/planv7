@@ -2,6 +2,7 @@ import * as React from "react";
 import {
   CommandBus,
   TYPES as DOMAIN,
+  LoginCommand,
   RegisterUserCommand,
 } from "@planv7/domain";
 import Form, { FormData } from "../components/Form";
@@ -22,6 +23,8 @@ const Register: React.FC<RouteComponentProps> = () => {
     await commandBus.execute(
       new RegisterUserCommand(data[USERNAME], data[EMAIL], data[PASSWORD])
     );
+
+    await commandBus.execute(new LoginCommand(data[USERNAME], data[PASSWORD]));
   };
 
   return (

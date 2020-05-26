@@ -1,7 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import "@testing-library/jest-dom/extend-expect";
 import * as React from "react";
-import { TYPES as DOMAIN, RegisterUserCommand } from "@planv7/domain";
+import {
+  TYPES as DOMAIN,
+  LoginCommand,
+  RegisterUserCommand,
+} from "@planv7/domain";
 import { fireEvent, render, screen } from "@testing-library/react";
 import Register from "./Register";
 import { act } from "react-dom/test-utils";
@@ -44,6 +48,35 @@ describe("Register page", () => {
       expect(execute).toHaveBeenCalledWith(
         new RegisterUserCommand("foo", "baz@bar.com", "bar")
       );
+    });
+
+    it("Must send a login command to the commandbus", async () => {
+      const execute = jest.fn();
+      const commandBus = { execute };
+
+      when(useDependency as any)
+        .calledWith(DOMAIN.commandBus)
+        .mockReturnValue(commandBus);
+
+      act(() => {
+        render(<Register />);
+        editFieldByTestId("username", "foo");
+      });
+      act(() => {
+        editFieldByTestId("password", "bar");
+      });
+      act(() => {
+        editFieldByTestId("verifyPassword", "baz");
+      });
+      act(() => {
+        editFieldByTestId("email", "baz2@bar.com");
+      });
+
+      await act(async () => {
+        fireEvent.click(screen.getByText("Submit"));
+      });
+
+      expect(execute).toHaveBeenCalledWith(new LoginCommand("foo", "bar"));
     });
   });
 });
