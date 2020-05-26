@@ -9,10 +9,10 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import bindDependencies from "./bootstrap/bindDependencies";
 import initialisePublicKey from "./bootstrap/initialisePublicKey";
 
-const renderApp = async (): Promise<void> => {
+const renderApp = (): void => {
   const container = new Container();
   const key = initialisePublicKey();
-  await bindDependencies(container, key);
+  bindDependencies(container, key);
 
   ReactDOM.hydrate(
     <ThemeProvider theme={Theme}>
