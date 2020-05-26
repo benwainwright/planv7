@@ -79,7 +79,7 @@ const Register: React.FC<RouteComponentProps> = () => {
         <ButtonGroup className={classes.root}>
           <Button color="primary">Submit</Button>
           {
-            /* eslint-disable @typescript-eslint/no-unnecessary-condition */ dirty && (
+              /* eslint-disable @typescript-eslint/no-unnecessary-condition */ dirty && (
               <Button id="clearButton" onClick={handleClear}>
                 Clear
               </Button>
