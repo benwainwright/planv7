@@ -6,7 +6,7 @@ import Logger from "../ports/Logger";
 import TYPES from "../ports/TYPES";
 
 export interface Handlers {
-  [name: string]: new () => unknown;
+  [name: string]: any;
 }
 
 /**
