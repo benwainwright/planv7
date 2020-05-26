@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import "@testing-library/jest-dom/extend-expect";
 import * as React from "react";
-import { RegisterUserCommand, TYPES as DOMAIN } from "@planv7/domain";
+import { TYPES as DOMAIN, RegisterUserCommand } from "@planv7/domain";
 import { fireEvent, render, screen } from "@testing-library/react";
 import Register from "./Register";
 import { act } from "react-dom/test-utils";

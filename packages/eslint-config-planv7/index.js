@@ -235,6 +235,7 @@ module.exports = {
       },
       rules: {
         "react/prop-types": "off",
+        "@typescript-eslint/no-unnecessary-condition": "off",
         "@typescript-eslint/naming-convention": [
           "error",
           {
