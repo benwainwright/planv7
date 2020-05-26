@@ -148,7 +148,6 @@ describe("Data api route configuration", () => {
     socket1.send(JSON.stringify(mockCommand1));
     await socket1Promise;
     expect(socket1Events.length).toEqual(1);
-    console.log(socket1Events);
     expect(socket2Events.length).toEqual(0);
     socket2.send(JSON.stringify(mockCommand2));
     await socket2Promise;
