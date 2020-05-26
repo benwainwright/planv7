@@ -4,10 +4,12 @@ import {
   TYPES as APP,
   AuthenticatedEntityRepository,
   CurrentLoginSession,
+  EventEmitterWrapper,
   LoginProvider,
   Repository,
   Serialiser,
   SlugGenerator,
+  SimpleCommandBus,
 } from "@planv7/application";
 
 import {
@@ -29,6 +31,14 @@ const bindDependencies = (
   jwtPublicKey: string,
   jwtPrivateKey: string
 ): void => {
+  container
+    .bind<EventEmitterWrapper>(APP.eventEmitterWrapper)
+    .to(EventEmitterWrapper);
+
+  container
+    .bind<Domain.CommandBus>(Domain.TYPES.commandBus)
+    .to(SimpleCommandBus);
+
   container.bind<string>(FRAMEWORK.jwtPublicKey).toConstantValue(jwtPublicKey);
 
   container

@@ -2,7 +2,9 @@ import * as React from "react";
 import {
   TYPES as APP,
   EventEmitterWrapper,
+  HANDLERS,
   SimpleCommandBus,
+  getHandlerBinder,
 } from "@planv7/application";
 import { App, InversifyProvider, Theme } from "@planv7/frontend";
 import { CommandBus, TYPES as DOMAIN } from "@planv7/domain";
@@ -39,6 +41,9 @@ const app = async (
         .bind<CommandBus>(DOMAIN.commandBus)
         .to(SimpleCommandBus)
         .inSingletonScope();
+
+      const binder = getHandlerBinder(container, HANDLERS);
+      binder(container);
 
       const sheets = new ServerStyleSheets();
       const reactApp = ReactDOMServer.renderToString(

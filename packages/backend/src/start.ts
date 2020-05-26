@@ -1,5 +1,4 @@
 import * as constants from "./constants";
-import { HANDLERS, getHandlerBinder } from "@planv7/application";
 import { TEST_PRIVATE_KEY, TEST_PUBLIC_KEY } from "@planv7/framework";
 import AppContext from "./AppContext";
 import { Container } from "inversify";
@@ -29,10 +28,6 @@ import loadRoutes from "./bootstrap/loadRoutes";
 
     logger.info(`Binding service dependencies`);
     bindDependencies(container, database, jwtPublicKey, jwtPrivateKey);
-
-    logger.info(`Binding handlers`);
-    const binder = getHandlerBinder(container, HANDLERS);
-    binder(container);
 
     logger.info(`Loading middleware`);
     await loadMiddleware(container, koaApp);
