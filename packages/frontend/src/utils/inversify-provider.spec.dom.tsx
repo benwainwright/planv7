@@ -6,7 +6,6 @@ import { render } from "@testing-library/react";
 describe("ContainerContext", () => {
   it("Resolves dependency available when requested in children", () => {
     const container = new Container();
-
     const dependency = jest.fn();
     container.bind<Function>("foo").toConstantValue(dependency);
 
