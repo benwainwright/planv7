@@ -1,6 +1,7 @@
 import * as constants from "./constants";
 import { HANDLERS, getHandlerBinder } from "@planv7/application";
 import { TEST_PRIVATE_KEY, TEST_PUBLIC_KEY } from "@planv7/framework";
+import AppContext from "./AppContext";
 import { Container } from "inversify";
 import Koa from "koa";
 import bindDependencies from "./bootstrap/bindDependencies";
@@ -15,7 +16,7 @@ import loadRoutes from "./bootstrap/loadRoutes";
   const logger = initialiseLogger(container);
   try {
     logger.info(`Starting ${constants.SERVER_NAME}...`);
-    const koaApp = new Koa();
+    const koaApp = new Koa<Koa.DefaultState, AppContext>();
 
     logger.info(`Connecting to database`);
     const database = await connectToDatabase(logger);
@@ -33,7 +34,7 @@ import loadRoutes from "./bootstrap/loadRoutes";
     getHandlerBinder(container, HANDLERS);
 
     logger.info(`Loading middleware`);
-    loadMiddleware(koaApp);
+    await loadMiddleware(container, koaApp);
 
     logger.info(`Loading routes`);
     await loadRoutes(koaApp, container, logger);

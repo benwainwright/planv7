@@ -1,10 +1,11 @@
 import * as routes from "../routes";
+import AppContext from "../AppContext";
 import { Container } from "inversify";
 import Koa from "koa";
 import { Logger } from "@planv7/application";
 
 const loadRoutes = async (
-  koaApp: Koa,
+  koaApp: Koa<Koa.DefaultState, AppContext>,
   container: Container,
   logger: Logger
 ): Promise<void> => {

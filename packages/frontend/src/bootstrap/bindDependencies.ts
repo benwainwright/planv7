@@ -8,6 +8,7 @@ import {
   EventEmitterWrapper,
   LoginSessionDestroyer,
   Serialiser,
+  SimpleCommandBus,
 } from "@planv7/application";
 
 import {
@@ -54,6 +55,11 @@ const bindDependencies = (container: Container, publicKey: string): void => {
     .inSingletonScope();
 
   container.bind<string>(FRAMEWORK.jwtPublicKey).toConstantValue(publicKey);
+
+  container
+    .bind<Domain.CommandBus>(Domain.TYPES.commandBus)
+    .to(SimpleCommandBus)
+    .inSingletonScope();
 };
 
 export default bindDependencies;

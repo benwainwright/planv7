@@ -8,11 +8,12 @@ import { InversifyProvider } from "./utils/inversify-provider";
 import Theme from "./components/Theme";
 import { ThemeProvider } from "@material-ui/core/styles";
 import bindDependencies from "./bootstrap/bindDependencies";
+import initialiseLogger from "./bootstrap/initialiseLogger";
 import initialisePublicKey from "./bootstrap/initialisePublicKey";
-import initialiseLogger from "./bootstrap/initialiserLogger";
 
 const renderApp = (): void => {
   const container = new Container();
+
   const key = initialisePublicKey();
   const logger = initialiseLogger(container);
   logger.info("Loading client application");
@@ -21,7 +22,8 @@ const renderApp = (): void => {
   bindDependencies(container, key);
 
   logger.info("Binding handlers");
-  getHandlerBinder(container, HANDLERS);
+  const binder = getHandlerBinder(container, HANDLERS);
+  binder(container);
 
   ReactDOM.hydrate(
     <ThemeProvider theme={Theme}>
