@@ -1,8 +1,8 @@
 import { TYPES as APP, Logger } from "@planv7/application";
 import { Context, Next } from "koa";
-import { TYPES as FRAMEWORK, ResponseAuthHeader } from "@planv7/framework";
 import { Container } from "inversify";
 import { IncomingMessage } from "http";
+import { ResponseAuthHeader } from "@planv7/framework";
 import { Substitute } from "@fluffy-spoon/substitute";
 
 import prepareHttpRequest from "./prepareHttpRequest";
@@ -71,8 +71,8 @@ describe("Http middleware", () => {
     const container = new Container();
     const logger = Substitute.for<Logger>();
     container.bind<Logger>(APP.logger).toConstantValue(logger);
-    const context: any = {};
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const context: any = {};
     const next = jest.fn();
 
     const middleware = prepareHttpRequest(container);

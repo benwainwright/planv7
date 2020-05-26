@@ -1,9 +1,8 @@
-import { Middleware } from "koa";
-import { ResponseAuthHeader, TYPES as FRAMEWORK } from "@planv7/framework";
-import { Logger, TYPES as APP } from "@planv7/application";
-import { Context, Next, Request } from "koa";
-import { Container } from "inversify";
+import { TYPES as APP, Logger } from "@planv7/application";
+import { Context, Middleware, Next } from "koa";
 import { IncomingMessage, ServerResponse } from "http";
+import { Container } from "inversify";
+import { ResponseAuthHeader } from "@planv7/framework";
 
 const prepareHttpRequest = (parentContainer: Container): Middleware => {
   return async (context: Context, next: Next): Promise<void> => {
