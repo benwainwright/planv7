@@ -47,6 +47,9 @@ describe("The Form component", () => {
         );
 
         editFieldByTestId("one", "foo");
+      });
+
+      act(() => {
         editFieldByTestId("three", "bar");
       });
 
@@ -130,6 +133,54 @@ describe("The Form component", () => {
       expect(screen.getByTestId("one")).toHaveValue("");
       expect(screen.getByTestId("two")).toHaveValue("");
       expect(screen.getByTestId("three")).toHaveValue("");
+    });
+  });
+
+  describe("The submit button", () => {
+    it("It must call the onSubmit handler with TextField data", () => {
+      const onSubmit = jest.fn();
+
+      act(() => {
+        render(
+          <Form onSubmit={onSubmit}>
+            <TextField
+              label="Field One"
+              inputProps={{ "data-testid": "one" }}
+              name="one"
+            />
+            <TextField
+              label="Field Two"
+              inputProps={{ "data-testid": "two" }}
+              name="two"
+            />
+            <TextField
+              label="Field Three"
+              inputProps={{ "data-testid": "three" }}
+              name="three"
+            />
+          </Form>
+        );
+
+        editFieldByTestId("one", "foo");
+      });
+
+      act(() => {
+        editFieldByTestId("two", "bar");
+      });
+
+      act(() => {
+        editFieldByTestId("three", "baz");
+      });
+
+      act(() => {
+        fireEvent.click(screen.getByText("Submit"));
+      });
+
+      expect(onSubmit).toHaveBeenCalledWith({
+        one: "foo",
+        two: "bar",
+        three: "baz",
+      });
     });
   });
 });

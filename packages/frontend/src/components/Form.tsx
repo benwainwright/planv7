@@ -3,6 +3,7 @@ import Button from "@material-ui/core/Button";
 
 interface FormProps {
   children: React.ReactNode;
+  onSubmit: (data: FormData) => void;
 }
 
 interface FormData {
@@ -12,6 +13,10 @@ interface FormData {
 const Form: React.FC<FormProps> = (props) => {
   const [dirty, setDirty] = React.useState(false);
   const [data, setData] = React.useState<FormData>({});
+
+  const handleSubmit = (): void => {
+    props.onSubmit(data);
+  };
 
   const handleClear = (): void => {
     setData({});
@@ -28,9 +33,7 @@ const Form: React.FC<FormProps> = (props) => {
     setDirty(Boolean(valueFound));
   }, [data]);
 
-  const children = props.children ?? [];
-
-  const nodes = React.Children.map(children, (item: React.ReactNode) => {
+  const nodes = React.Children.map(props.children, (item: React.ReactNode) => {
     const elementItem = item as React.ReactElement;
     return elementItem.props.name
       ? React.cloneElement(elementItem, {
@@ -43,7 +46,7 @@ const Form: React.FC<FormProps> = (props) => {
   return (
     <React.Fragment>
       {nodes}
-      <Button>Submit</Button>
+      <Button onClick={handleSubmit}>Submit</Button>
       {dirty && <Button onClick={handleClear}>Clear</Button>}
     </React.Fragment>
   );
