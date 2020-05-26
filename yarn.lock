@@ -303,7 +303,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-cdk/aws-route53@npm:1.41.0":
+"@aws-cdk/aws-route53@npm:1.41.0, @aws-cdk/aws-route53@npm:^1.41.0":
   version: 1.41.0
   resolution: "@aws-cdk/aws-route53@npm:1.41.0"
   dependencies:
@@ -1524,6 +1524,7 @@ __metadata:
     "@aws-cdk/aws-codedeploy": ^1.41.0
     "@aws-cdk/aws-ec2": ^1.41.0
     "@aws-cdk/aws-iam": ^1.41.0
+    "@aws-cdk/aws-route53": ^1.41.0
     "@aws-cdk/aws-s3": ^1.41.0
     "@aws-cdk/aws-secretsmanager": ^1.41.0
     "@aws-cdk/core": ^1.41.0
@@ -1535,7 +1536,7 @@ __metadata:
     "@types/node": 10.17.5
     "@types/rimraf": ^3.0.0
     "@types/source-map-support": ^0.5.1
-    aws-cdk: 1.41.0
+    aws-cdk: ^1.41.0
     eslint: ^7.0.0
     jest: ^25.5.0
     ncp: ^2.0.0
@@ -3494,7 +3495,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aws-cdk@npm:1.41.0":
+"aws-cdk@npm:^1.41.0":
   version: 1.41.0
   resolution: "aws-cdk@npm:1.41.0"
   dependencies:

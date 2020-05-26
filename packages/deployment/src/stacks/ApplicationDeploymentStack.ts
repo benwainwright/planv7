@@ -3,6 +3,7 @@ import * as codedeploy from "@aws-cdk/aws-codedeploy";
 import * as constants from "../constants";
 import * as ec2 from "@aws-cdk/aws-ec2";
 import * as iam from "@aws-cdk/aws-iam";
+import * as route53 from "@aws-cdk/aws-route53";
 import * as s3 from "@aws-cdk/aws-s3";
 import * as secretsManager from "@aws-cdk/aws-secretsmanager";
 
@@ -72,6 +73,19 @@ chmod +x ./install
     new ec2.CfnEIPAssociation(this, `${props.applicationName}EipAssociation`, {
       eip: ip.ref,
       instanceId: instance.instanceId,
+    });
+
+    const hostedZone = new route53.HostedZone(
+      this,
+      `${props.applicationName}HostedZone`,
+      {
+        zoneName: `${props.applicationName.toLowerCase()}.benwainwright.me`,
+      }
+    );
+
+    new route53.ARecord(this, `${props.applicationName}ARecord`, {
+      zone: hostedZone,
+      target: route53.RecordTarget.fromIpAddresses(ip.ref),
     });
 
     const publicKeyConfig = new secretsManager.Secret(
