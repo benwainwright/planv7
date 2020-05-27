@@ -37,15 +37,11 @@ export default class SimpleCommandBus implements CommandBus {
 
     if (this.handlers) {
       for (const handler of this.handlers) {
-        if (this.logger) {
-          this.logger.verbose(`Trying ${handler.constructor.name}`);
-        }
+        this.logger?.verbose(`Trying ${handler.constructor.name}`);
         // eslint-disable-next-line no-await-in-loop
         await handler.tryHandle(command);
         if (!command.shouldContinueHandling()) {
-          if (this.logger) {
-            this.logger.verbose(`Command has been handled`);
-          }
+          this.logger?.verbose(`Command has been handled`);
           return;
         }
       }
