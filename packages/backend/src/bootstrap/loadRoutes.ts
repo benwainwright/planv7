@@ -1,8 +1,8 @@
 import * as routes from "../routes";
+import { HANDLERS, Logger } from "@planv7/application";
 import AppContext from "../AppContext";
 import { Container } from "inversify";
 import Koa from "koa";
-import { Logger } from "@planv7/application";
 
 const loadRoutes = async (
   koaApp: Koa<Koa.DefaultState, AppContext>,
@@ -14,6 +14,9 @@ const loadRoutes = async (
 
   logger.info("Loading statics route");
   koaApp.use(await routes.statics());
+
+  logger.info("Loading auth route");
+  koaApp.use(routes.auth(logger, HANDLERS));
 };
 
 export default loadRoutes;

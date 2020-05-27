@@ -264,6 +264,7 @@ module.exports = {
       rules: {
         "unicorn/consistent-function-scoping": "off",
         "sonarjs/no-identical-functions": "off",
+        "sonarjs/no-duplicate-string": "off",
         "filenames/match-regex": "off",
         "filenames/match-exported": "off",
         "fp/no-let": "off",
