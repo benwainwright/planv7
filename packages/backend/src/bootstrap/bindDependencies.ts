@@ -67,7 +67,7 @@ const bindDependencies = (
     .inRequestScope();
 
   container
-    .bind<Serialiser>(APP.serialiser)
+    .bind<Serialiser>(Serialiser)
     .toConstantValue(new Serialiser(Domain));
 
   container.bind<LoginProvider>(APP.loginProvider).to(JwtLoginProvider);

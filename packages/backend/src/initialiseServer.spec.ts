@@ -75,4 +75,11 @@ describe("Application server", () => {
       expect(parsed.documentElement.nodeName).toEqual("html");
     });
   });
+
+  describe("The auth route", () => {
+    it("Should return 403 when attempting to post without credentials", async () => {
+      const response = await request(runningServer).post("/auth");
+      expect(response.status).toEqual(403);
+    });
+  });
 });
