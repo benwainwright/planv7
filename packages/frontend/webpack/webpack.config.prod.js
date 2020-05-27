@@ -10,6 +10,9 @@ if (!process.env.JWT_PUBLIC_KEY) {
   throw new Error("Please set JWT_PUBLIC_KEY");
 }
 const clientConfig = {
+  resolve: {
+    extensions: [".ts", ".tsx", ".js"],
+  },
   mode: "production",
   node: {
     fs: "empty",

@@ -43,8 +43,6 @@ const initialiseServer = async (
     resolve(koaApp.listen(port));
   });
 
-  server.addListener;
-
   cleanupHandlers.forEach((handler) => server.addListener("close", handler));
 
   return server;
