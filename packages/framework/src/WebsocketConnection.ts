@@ -48,7 +48,6 @@ export default class WebsocketConnection {
     this.socket = socket;
 
     this.appEvents.onEvent<DomainEvent>(this.onAppEvent);
-    console.log("START");
     socket.on("message", this.onMessage);
   }
 
@@ -59,8 +58,6 @@ export default class WebsocketConnection {
   }
 
   public async onMessage(data: WebSocket.Data): Promise<void> {
-    console.log("message");
-    console.log(data);
     const command = this.serialiser.unSerialise<Command>(data as string);
     try {
       await this.commandBus.execute(command);
