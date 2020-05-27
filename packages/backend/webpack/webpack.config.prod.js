@@ -15,7 +15,7 @@ module.exports = {
     tls: "mock",
   },
   entry: {
-    app: [path.resolve(__dirname, "../src/start.ts")],
+    app: [path.resolve(__dirname, "../src/run.ts")],
   },
 
   performance: {
