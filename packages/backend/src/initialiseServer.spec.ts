@@ -1,7 +1,6 @@
+import { TYPES as APP, Logger } from "@planv7/application";
 import { Container } from "inversify";
 import { DOMParser } from "xmldom";
-import { TYPES as APP, Logger } from "@planv7/application";
-import { MongoMemoryServer } from "mongodb-memory-server";
 import { Server } from "http";
 import { Substitute } from "@fluffy-spoon/substitute";
 import initialiseServer from "./initialiseServer";
@@ -19,11 +18,7 @@ describe("Application server", () => {
 
     process.env.USE_MONGO_MEMORY_SERVER = "true";
 
-    runningServer = await initialiseServer(
-      container,
-      Substitute.for<Logger>(),
-      80
-    );
+    runningServer = await initialiseServer(container, Substitute.for<Logger>());
   });
 
   afterEach(
@@ -41,43 +36,43 @@ describe("Application server", () => {
     });
   });
 
-  // describe("Application home ('/app')", () => {
-  //   it("Should return a text/html content-type header", async () => {
-  //     const response = await request(runningServer).get("/app");
-  //     expect(response.header["content-type"]).toContain("text/html");
-  //   });
+  describe("Application home ('/app')", () => {
+    it("Should return a text/html content-type header", async () => {
+      const response = await request(runningServer).get("/app");
+      expect(response.header["content-type"]).toContain("text/html");
+    });
 
-  //   it("Should return a 200 response", async () => {
-  //     const response = await request(runningServer).get("/app");
-  //     expect(response.status).toEqual(200);
-  //   });
+    it("Should return a 200 response", async () => {
+      const response = await request(runningServer).get("/app");
+      expect(response.status).toEqual(200);
+    });
 
-  //   it("Should return an html string", async () => {
-  //     const response = await request(runningServer).get("/app");
-  //     const parser = new DOMParser();
-  //     const parsed = parser.parseFromString(response.text, "text/xml");
+    it("Should return an html string", async () => {
+      const response = await request(runningServer).get("/app");
+      const parser = new DOMParser();
+      const parsed = parser.parseFromString(response.text, "text/xml");
 
-  //     expect(parsed.documentElement.nodeName).toEqual("html");
-  //   });
-  // });
+      expect(parsed.documentElement.nodeName).toEqual("html");
+    });
+  });
 
-  // describe("The other route ('/app/other)", () => {
-  //   it("Should return a 200 response", async () => {
-  //     const response = await request(runningServer).get("/app/other");
-  //     expect(response.status).toEqual(200);
-  //   });
+  describe("The other route ('/app/other)", () => {
+    it("Should return a 200 response", async () => {
+      const response = await request(runningServer).get("/app/other");
+      expect(response.status).toEqual(200);
+    });
 
-  //   it("Should return a text/html content-type header", async () => {
-  //     const response = await request(runningServer).get("/app/other");
-  //     expect(response.header["content-type"]).toContain("text/html");
-  //   });
+    it("Should return a text/html content-type header", async () => {
+      const response = await request(runningServer).get("/app/other");
+      expect(response.header["content-type"]).toContain("text/html");
+    });
 
-  //   it("Should return an html string", async () => {
-  //     const response = await request(runningServer).get("/app/other");
-  //     const parser = new DOMParser();
-  //     const parsed = parser.parseFromString(response.text, "text/xml");
+    it("Should return an html string", async () => {
+      const response = await request(runningServer).get("/app/other");
+      const parser = new DOMParser();
+      const parsed = parser.parseFromString(response.text, "text/xml");
 
-  //     expect(parsed.documentElement.nodeName).toEqual("html");
-  //   });
-  // });
+      expect(parsed.documentElement.nodeName).toEqual("html");
+    });
+  });
 });
