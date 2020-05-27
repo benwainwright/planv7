@@ -78,7 +78,7 @@ const clientConfig = {
       filename: "[name].css",
     }),
 
-    new webpack.EnvironmentPlugin(["JWT_PUBLIC_KEY"]),
+    new webpack.EnvironmentPlugin(["JWT_PUBLIC_KEY", "SERVER_ADDRESS"]),
   ],
 };
 
