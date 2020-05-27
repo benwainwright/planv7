@@ -7,11 +7,9 @@ import initialiseServer from "./initialiseServer";
 const container = new Container();
 const logger = initialiseLogger(container);
 
-initialiseServer(container, logger)
-  .then((koaApp) => {
-    return koaApp.listen(constants.SERVER_PORT, () => {
-      logger.info(`Listening on port ${constants.SERVER_PORT}`);
-    });
+initialiseServer(container, logger, constants.SERVER_PORT)
+  .then(() => {
+    return logger.info(`Listening on port ${constants.SERVER_PORT}`);
   })
   .catch((error: Error) => {
     logger.error(error.message);
