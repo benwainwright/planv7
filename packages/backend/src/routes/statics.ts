@@ -6,11 +6,12 @@ import koaWebpack from "koa-webpack";
 import mount from "koa-mount";
 
 const statics = async (): Promise<Koa.Middleware> => {
-  if (process.env.NODE_ENV !== "production") {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const config: Configuration = await import(
-      "../../webpack/webpack.config.hmr"
-    );
+  if (process.env.HOT_RELOADING) {
+    /* eslint-disable @typescript-eslint/no-require-imports */
+    /* eslint-disable @typescript-eslint/no-var-requires */
+    const config: Configuration = require("../../webpack/webpack.config.hmr");
+    /* eslint-enable @typescript-eslint/no-var-requires */
+    /* eslint-enable @typescript-eslint/no-require-imports */
 
     const hotClient = {
       host: "0.0.0.0",

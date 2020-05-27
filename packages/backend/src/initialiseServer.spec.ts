@@ -1,6 +1,6 @@
 import { Container } from "inversify";
 import { DOMParser } from "xmldom";
-import { Logger } from "@planv7/application";
+import { TYPES as APP, Logger } from "@planv7/application";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { Server } from "http";
 import { Substitute } from "@fluffy-spoon/substitute";
@@ -14,6 +14,10 @@ describe("Application server", () => {
   beforeEach(async () => {
     server = new MongoMemoryServer();
     const container = new Container();
+
+    container
+      .bind<Logger>(APP.logger)
+      .toConstantValue(Substitute.for<Logger>());
 
     process.env.USE_MONGO_MEMORY_SERVER = "true";
 

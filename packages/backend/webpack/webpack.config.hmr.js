@@ -1,9 +1,11 @@
-const merge = require("webpack-merge");
 const { CheckerPlugin } = require("awesome-typescript-loader");
 const webpack = require("webpack");
 const path = require("path");
 
-const clientConfig = {
+module.exports = {
+  resolve: {
+    extensions: [".ts", ".tsx", ".js"],
+  },
   mode: "development",
   node: {
     fs: "empty",
@@ -60,7 +62,11 @@ const clientConfig = {
       },
     ],
   },
-  externals: ["module"],
+  externals: {
+    react: "React",
+    "react-dom": "ReactDOM",
+    module: true,
+  },
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
     new CheckerPlugin(),
@@ -72,5 +78,3 @@ const clientConfig = {
     ]),
   ],
 };
-
-module.exports = merge(require("./webpack.common.config"), clientConfig);
