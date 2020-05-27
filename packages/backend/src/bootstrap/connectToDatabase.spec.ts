@@ -36,7 +36,7 @@ describe("Connect to database", () => {
 
     const logger = mockExtended<Logger>();
 
-    await connectToDatabase(logger);
+    await connectToDatabase(logger, []);
 
     expect(mockConnect).toHaveBeenCalledWith("foobar", expect.anything());
   });
@@ -50,7 +50,7 @@ describe("Connect to database", () => {
     MongoClient.connect = mockConnect;
     const logger = mockExtended<Logger>();
 
-    await connectToDatabase(logger);
+    await connectToDatabase(logger, []);
 
     expect(mockConnect).toHaveBeenCalledWith("foobar2", expect.anything());
   });
@@ -63,7 +63,7 @@ describe("Connect to database", () => {
     MongoClient.connect = mockConnect;
 
     const logger = mockExtended<Logger>();
-    await connectToDatabase(logger);
+    await connectToDatabase(logger, []);
 
     expect(mockConnect).toHaveBeenCalledWith(
       constants.MONGO_URL,
@@ -80,7 +80,7 @@ describe("Connect to database", () => {
     MongoClient.connect = mockConnect;
 
     const logger = mockExtended<Logger>();
-    await connectToDatabase(logger);
+    await connectToDatabase(logger, []);
 
     expect(mockClient.db).toHaveBeenCalledWith("foobar");
   });
@@ -92,7 +92,7 @@ describe("Connect to database", () => {
     MongoClient.connect = mockConnect;
 
     const logger = mockExtended<Logger>();
-    await connectToDatabase(logger);
+    await connectToDatabase(logger, []);
 
     expect(mockClient.db).toHaveBeenCalledWith(constants.MONGO_DB_NAME);
   });
