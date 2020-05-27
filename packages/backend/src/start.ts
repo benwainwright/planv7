@@ -1,3 +1,4 @@
+import "source-map-support/register";
 import * as constants from "./constants";
 import { TEST_PRIVATE_KEY, TEST_PUBLIC_KEY } from "@planv7/framework";
 import AppContext from "./AppContext";
@@ -39,7 +40,7 @@ import loadRoutes from "./bootstrap/loadRoutes";
       logger.info(`Listening on port ${constants.SERVER_PORT}`);
     });
   } catch (error) {
-    logger.error(error.message);
+    logger.error(error);
   }
 })().catch((error: Error) => {
   // If we get here, there was an error during logger

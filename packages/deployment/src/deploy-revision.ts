@@ -6,7 +6,18 @@ import infrastructure, { region as appRegion } from "../cdk/infrastructure";
 import buildRpm from "./buildRpm";
 
 const PACKAGES_DIR = path.join(__dirname, "..", "..", "..", "packages");
-const SERVER_PATH = path.join(PACKAGES_DIR, "backend", "dist", "planv7-server");
+const SERVER_PATH = path.join(
+  PACKAGES_DIR,
+  "backend",
+  "dist",
+  "planv7-server.js"
+);
+const SOURCE_MAP_PATH = path.join(
+  PACKAGES_DIR,
+  "backend",
+  "dist",
+  "planv7-server.js.map"
+);
 const FRONTEND_PATH = path.join(PACKAGES_DIR, "frontend", "dist", "assets");
 const REVISION_DIR = path.join(__dirname, "..", "revision");
 const PLANV7_DOT_SERVICE = path.join(
@@ -25,6 +36,7 @@ const PLANV7_DOT_SERVICE = path.join(
     ["mongodb-org", "nodejs", "nginx", "jq"],
     {
       [SERVER_PATH]: "/usr/bin/planv7-server",
+      [SOURCE_MAP_PATH]: "/usr/bin/planv7-server.map",
       [FRONTEND_PATH]: "/srv/planv7",
       [PLANV7_DOT_SERVICE]: "/etc/systemd/system/planv7.service",
     },

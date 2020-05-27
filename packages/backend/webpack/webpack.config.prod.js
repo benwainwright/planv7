@@ -2,10 +2,11 @@ const merge = require("webpack-merge");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const webpack = require("webpack");
 const path = require("path");
 
-const clientConfig = {
+module.exports = {
   mode: "production",
   target: "node",
   node: {
@@ -23,15 +24,18 @@ const clientConfig = {
     hints: false,
   },
 
+  resolve: {
+    extensions: [".ts", ".tsx", ".js"],
+  },
+
   output: {
     path: path.resolve(__dirname, "../dist"),
     publicPath: "/assets",
     pathinfo: false,
-    filename: `planv7-server`,
+    filename: `planv7-server.js`,
   },
   devtool: "source-map",
   optimization: {
-    minimize: false,
     noEmitOnErrors: true,
     splitChunks: false,
   },
@@ -77,5 +81,3 @@ const clientConfig = {
     }),
   ],
 };
-
-module.exports = merge(require("./webpack.common.config"), clientConfig);

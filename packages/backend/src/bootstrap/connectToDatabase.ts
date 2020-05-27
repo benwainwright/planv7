@@ -18,6 +18,7 @@ const connectToDatabase = async (logger: Logger): Promise<Db> => {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   });
+  throw new Error("Foo");
   logger.info("Connection successful");
   return mongoClient.db(process.env.MONGO_DB_NAME ?? constants.MONGO_DB_NAME);
 };

@@ -1513,7 +1513,9 @@ __metadata:
     "@types/react": 16.9.34
     "@types/react-dom": 16.9.7
     "@types/react-router-dom": 5.1.5
+    "@types/source-map-support": 0.5.1
     "@types/supertest": 2.0.9
+    "@types/uglifyjs-webpack-plugin": 1.1.0
     "@types/webpack": 4.41.12
     "@types/webpack-bundle-analyzer": 2.13.3
     "@types/webpack-node-externals": 1.7.1
@@ -1537,11 +1539,13 @@ __metadata:
     react-dom: ^16.13.1
     react-router-dom: ^5.1.2
     source-map-loader: ^0.2.4
+    source-map-support: ^0.5.19
     start-server-webpack-plugin: ^2.2.5
     supertest: ^4.0.2
     ts-loader: ^7.0.3
     ts-node: ^8.10.1
     typescript: ^3.8.3
+    uglifyjs-webpack-plugin: ^2.2.0
     webpack: ^4.43.0
     webpack-bundle-analyzer: ^3.7.0
     webpack-cli: ^3.3.11
@@ -2491,7 +2495,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/source-map-support@npm:^0.5.1":
+"@types/source-map-support@npm:0.5.1, @types/source-map-support@npm:^0.5.1":
   version: 0.5.1
   resolution: "@types/source-map-support@npm:0.5.1"
   dependencies:
@@ -2575,6 +2579,15 @@ __metadata:
   dependencies:
     source-map: ^0.6.1
   checksum: 3/dbcb77cd980b9bb4b42a6f5d3e3cf9fa2f53292e49e042a1ab9eef68ce01859facbcf6cdbb83a672cf876026e18dce8b75ec6b9d56d5ea31d1466f8758988d6f
+  languageName: node
+  linkType: hard
+
+"@types/uglifyjs-webpack-plugin@npm:1.1.0":
+  version: 1.1.0
+  resolution: "@types/uglifyjs-webpack-plugin@npm:1.1.0"
+  dependencies:
+    "@types/webpack": "*"
+  checksum: 3/caf23ec28f358446a3120521748883eefd89ab183b7ca645af5bb033e7dcaabbf9a71db6d0adcae847e3d71d414086a755a49e5dc96d3a404b9365baf3e15aa5
   languageName: node
   linkType: hard
 
@@ -4681,7 +4694,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^2.18.0, commander@npm:^2.19.0, commander@npm:^2.20.0":
+"commander@npm:^2.18.0, commander@npm:^2.19.0, commander@npm:^2.20.0, commander@npm:~2.20.3":
   version: 2.20.3
   resolution: "commander@npm:2.20.3"
   checksum: 3/b73428e97de7624323f81ba13f8ed9271de487017432d18b4da3f07cfc528ad754bbd199004bd5d14e0ccd67d1fdfe0ec8dbbd4c438b401df3c4cc387bfd1daa
@@ -13034,6 +13047,13 @@ resolve@1.1.7:
   languageName: node
   linkType: hard
 
+"serialize-javascript@npm:^1.7.0":
+  version: 1.9.1
+  resolution: "serialize-javascript@npm:1.9.1"
+  checksum: 3/84293fb87b0884a0ad7b5a4497cf197e3013d928c5b5162a9e199b91ff5ee28b5eba02e636a69a1c3ae22ad5d512775b17ba0950f16181939f510841eb37b5e3
+  languageName: node
+  linkType: hard
+
 "serialize-javascript@npm:^2.1.2":
   version: 2.1.2
   resolution: "serialize-javascript@npm:2.1.2"
@@ -14447,6 +14467,36 @@ typescript@~3.7.2:
     core-js-bundle: ^3.6.4
     regenerator-runtime: ^0.13.3
   checksum: 3/6d009aa83e7f7c7733b6e100d529d70041011daa8c0f3d1e546b1f6fbd7e8203d192afb3986dad9f0202cc72f6e3fd65fb84a2df2fb976841577f4d5bf83c3bf
+  languageName: node
+  linkType: hard
+
+"uglify-js@npm:^3.6.0":
+  version: 3.9.3
+  resolution: "uglify-js@npm:3.9.3"
+  dependencies:
+    commander: ~2.20.3
+  bin:
+    uglifyjs: bin/uglifyjs
+  checksum: 3/7781fdb6377aa2968d68dad2fa51b55922719f8ab8554a89a4956b151d91357199b2ff6cbf2801a84ecdd04f63da2ec435e25527dfda7d346cc4f419e378c9e4
+  languageName: node
+  linkType: hard
+
+"uglifyjs-webpack-plugin@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "uglifyjs-webpack-plugin@npm:2.2.0"
+  dependencies:
+    cacache: ^12.0.2
+    find-cache-dir: ^2.1.0
+    is-wsl: ^1.1.0
+    schema-utils: ^1.0.0
+    serialize-javascript: ^1.7.0
+    source-map: ^0.6.1
+    uglify-js: ^3.6.0
+    webpack-sources: ^1.4.0
+    worker-farm: ^1.7.0
+  peerDependencies:
+    webpack: ^4.0.0
+  checksum: 3/39efff5c672e485f89708fc4add28c53c875f7d4f95668cc18c3d6433c066b9a150f7a6f758ec5bafd02a3db17f347370411592cb1208499553b5b391f58e93d
   languageName: node
   linkType: hard
 
