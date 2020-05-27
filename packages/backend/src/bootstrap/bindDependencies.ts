@@ -33,11 +33,13 @@ const bindDependencies = (
 ): void => {
   container
     .bind<EventEmitterWrapper>(APP.eventEmitterWrapper)
-    .to(EventEmitterWrapper);
+    .to(EventEmitterWrapper)
+    .inRequestScope();
 
   container
     .bind<Domain.CommandBus>(Domain.TYPES.commandBus)
-    .to(SimpleCommandBus);
+    .to(SimpleCommandBus)
+    .inRequestScope();
 
   container.bind<string>(FRAMEWORK.jwtPublicKey).toConstantValue(jwtPublicKey);
 
