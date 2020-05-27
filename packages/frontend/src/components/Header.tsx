@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import AppBar from "@material-ui/core/AppBar";
+import CurrentUserContext from "../utils/CurrentUserContext";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import NavigationButton from "./NavigationButton";
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Header: React.FC = (): React.ReactElement => {
   const classes = useStyles();
+  const currentUser = React.useContext(CurrentUserContext);
   return (
     <header>
       <AppBar className={classes.root} position="static">
@@ -42,8 +44,15 @@ const Header: React.FC = (): React.ReactElement => {
             Planner App
           </Typography>
           <NavigationButton to="/app">Home</NavigationButton>
-          <NavigationButton to="/app/register">Register</NavigationButton>
-          <NavigationButton to="/app/login">Login</NavigationButton>
+          {!currentUser && (
+            <NavigationButton to="/app/register">Register</NavigationButton>
+          )}
+          {!currentUser && (
+            <NavigationButton to="/app/login">Login</NavigationButton>
+          )}
+          {currentUser && (
+            <NavigationButton to="/app/logout">Logout</NavigationButton>
+          )}
         </Toolbar>
       </AppBar>
     </header>
