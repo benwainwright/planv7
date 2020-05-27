@@ -17,6 +17,9 @@ const loadRoutes = async (
 
   logger.info("Loading auth route");
   koaApp.use(routes.auth(logger, HANDLERS));
+
+  logger.info("Loading websocket api route");
+  routes.websocketApi(koaApp, logger, container, HANDLERS);
 };
 
 export default loadRoutes;

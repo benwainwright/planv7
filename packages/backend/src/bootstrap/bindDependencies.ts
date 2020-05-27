@@ -38,8 +38,7 @@ const bindDependencies = (
 
   container
     .bind<Domain.CommandBus>(Domain.TYPES.commandBus)
-    .to(SimpleCommandBus)
-    .inRequestScope();
+    .to(SimpleCommandBus);
 
   container.bind<string>(FRAMEWORK.jwtPublicKey).toConstantValue(jwtPublicKey);
 
