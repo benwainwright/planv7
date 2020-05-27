@@ -1,7 +1,5 @@
 import * as constants from "../constants";
 import { Db, MongoClient } from "mongodb";
-import AppContext from "../AppContext";
-import Koa from "koa";
 import { Logger } from "@planv7/application";
 import { MongoMemoryServer } from "mongodb-memory-server";
 
