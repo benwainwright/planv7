@@ -1,8 +1,6 @@
-const merge = require("webpack-merge");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const webpack = require("webpack");
 const path = require("path");
 

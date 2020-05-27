@@ -1,13 +1,6 @@
 import * as React from "react";
-import {
-  TYPES as APP,
-  EventEmitterWrapper,
-  HANDLERS,
-  SimpleCommandBus,
-  getHandlerBinder,
-} from "@planv7/application";
 import { App, InversifyProvider, Theme } from "@planv7/frontend";
-import { CommandBus, TYPES as DOMAIN } from "@planv7/domain";
+import { HANDLERS, getHandlerBinder } from "@planv7/application";
 import Koa, { Next } from "koa";
 import Router, { RouterContext } from "koa-router";
 import { ServerStyleSheets, ThemeProvider } from "@material-ui/core/styles";
