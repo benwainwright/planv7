@@ -32,16 +32,6 @@ const app = async (
   router.get(
     baseUrlRegex,
     async (context: AppContext & RouterContext, next: Next) => {
-      context.container
-        .bind<EventEmitterWrapper>(APP.eventEmitterWrapper)
-        .to(EventEmitterWrapper)
-        .inSingletonScope();
-
-      context.container
-        .bind<CommandBus>(DOMAIN.commandBus)
-        .to(SimpleCommandBus)
-        .inSingletonScope();
-
       const binder = getHandlerBinder(container, HANDLERS);
       binder(container);
 
