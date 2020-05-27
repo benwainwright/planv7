@@ -57,6 +57,10 @@ export default class WebsocketConnection {
     this.socket.send(eventString);
   }
 
+  public close(): void {
+    this.socket.close();
+  }
+
   public async onMessage(data: WebSocket.Data): Promise<void> {
     const command = this.serialiser.unSerialise<Command>(data as string);
     try {

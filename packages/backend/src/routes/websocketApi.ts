@@ -15,7 +15,8 @@ const websocketApi = (
   app: Koa<Koa.DefaultState, AppContext>,
   logger: Logger,
   container: Container,
-  handlers: {}
+  handlers: {},
+  cleanupHandlers: (() => void)[] = []
 ): void => {
   const socketApp = websockify(app);
 
@@ -50,6 +51,7 @@ const websocketApi = (
           WebsocketConnection
         );
         clients.push(connection);
+        cleanupHandlers.push(() => clients.forEach((client) => client.close()));
       } catch (error) {
         logger.error(error);
       }
