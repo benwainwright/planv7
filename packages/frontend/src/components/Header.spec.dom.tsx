@@ -1,9 +1,14 @@
 import "@testing-library/jest-dom/extend-expect";
 import * as React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { LogoutCommand, TYPES as DOMAIN } from "@planv7/domain";
 import CurrentUserContext from "../utils/CurrentUserContext";
 import Header from "./Header";
 import { act } from "react-dom/test-utils";
+import { useDependency } from "../utils/inversify-provider";
+import { when } from "jest-when";
+
+jest.mock("../utils/inversify-provider");
 
 const asMocked = <T extends unknown>(
   input: (() => T) | (new () => T)
@@ -56,5 +61,28 @@ describe("The header", () => {
       );
     });
     expect(screen.queryByText("Logout")).toBeNull();
+  });
+
+  describe("The logout link", () => {
+    it("Sends a logout command to the command bus", () => {
+      const execute = jest.fn();
+      const commandBus = { execute };
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      when(useDependency as any)
+        .calledWith(DOMAIN.commandBus)
+        .mockReturnValue(commandBus);
+
+      act(() => {
+        render(
+          <CurrentUserContext.Provider value={asMocked(jest.fn())}>
+            <Header />
+          </CurrentUserContext.Provider>
+        );
+        fireEvent.click(screen.getByText("Logout"));
+      });
+
+      expect(execute).toHaveBeenCalledWith(new LogoutCommand());
+    });
   });
 });
