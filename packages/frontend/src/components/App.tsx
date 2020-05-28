@@ -32,7 +32,7 @@ const App: React.FC = (): React.ReactElement => {
     if (cssStyles) {
       cssStyles.remove();
     }
-  }, []);
+  });
 
   return (
     <CurrentUserContext.Provider value={user}>
