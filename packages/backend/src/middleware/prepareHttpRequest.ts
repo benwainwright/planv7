@@ -1,11 +1,17 @@
+import * as Koa from "koa";
+import * as koaWebsocket from "koa-websocket";
 import { TYPES as APP, Logger } from "@planv7/application";
-import { Context, Middleware, Next } from "koa";
-import { IncomingMessage, ServerResponse } from "http";
 import { Container } from "inversify";
+import { IncomingMessage, ServerResponse } from "http";
 import { ResponseAuthHeader } from "@planv7/framework";
 
-const prepareHttpRequest = (parentContainer: Container): Middleware => {
-  return async (context: Context, next: Next): Promise<void> => {
+const prepareHttpRequest = (
+  parentContainer: Container
+): koaWebsocket.Middleware<Koa.DefaultState, Koa.DefaultContext> => {
+  return async (
+    context: koaWebsocket.MiddlewareContext<Koa.DefaultState>,
+    next: Koa.Next
+  ): Promise<void> => {
     const container = new Container();
 
     container.parent = parentContainer;
