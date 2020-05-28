@@ -1,7 +1,6 @@
 import * as Koa from "koa";
 import * as koaWebsocket from "koa-websocket";
 import { TYPES as APP, Logger } from "@planv7/application";
-import { Context, Next } from "koa";
 import { Container } from "inversify";
 import { IncomingMessage } from "http";
 import { ResponseAuthHeader } from "@planv7/framework";
@@ -14,14 +13,14 @@ describe("Http middleware", () => {
     const container = new Container();
     const logger = Substitute.for<Logger>();
     container.bind<Logger>(APP.logger).toConstantValue(logger);
-    const context = {} as Context;
+    const context = {} as Koa.Context;
     const next = jest.fn();
 
     const middleware = prepareHttpRequest(container);
 
     middleware(
       context as koaWebsocket.MiddlewareContext<Koa.DefaultState>,
-      next as Next
+      next as Koa.Next
     );
 
     expect(context.container).toBeInstanceOf(Container);
@@ -36,7 +35,7 @@ describe("Http middleware", () => {
 
     const context = {
       req: {},
-    } as Context;
+    } as Koa.Context;
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const next = async (): Promise<any> => {
@@ -49,7 +48,7 @@ describe("Http middleware", () => {
 
     middleware(
       context as koaWebsocket.MiddlewareContext<Koa.DefaultState>,
-      next as Next
+      next as Koa.Next
     );
 
     expect(() => container.get(IncomingMessage)).toThrowError();
@@ -57,7 +56,7 @@ describe("Http middleware", () => {
 
   it("Binds a new response auth header to the child container", (done) => {
     const container = new Container();
-    const context = {} as Context;
+    const context = {} as Koa.Context;
     const logger = Substitute.for<Logger>();
     container.bind<Logger>(APP.logger).toConstantValue(logger);
 
@@ -72,7 +71,7 @@ describe("Http middleware", () => {
 
     middleware(
       context as koaWebsocket.MiddlewareContext<Koa.DefaultState>,
-      next as Next
+      next as Koa.Next
     );
 
     expect(() => container.get(ResponseAuthHeader)).toThrowError();
@@ -90,7 +89,7 @@ describe("Http middleware", () => {
 
     middleware(
       context as koaWebsocket.MiddlewareContext<Koa.DefaultState>,
-      next as Next
+      next as Koa.Next
     );
 
     expect(next).toBeCalled();
