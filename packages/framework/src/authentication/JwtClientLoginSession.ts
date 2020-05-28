@@ -43,7 +43,7 @@ export default class JwtClientLoginSession extends JwtLoginSession
 
   public getToken(): string {
     if (!this.token) {
-      this.load();
+      this.loadUserFromToken();
     }
 
     return this.token;
@@ -66,7 +66,7 @@ export default class JwtClientLoginSession extends JwtLoginSession
 
   public getCurrentUser(): User | undefined {
     if (!this.currentUser) {
-      this.load();
+      this.loadUserFromToken();
     }
 
     if (this.token) {
@@ -83,10 +83,16 @@ export default class JwtClientLoginSession extends JwtLoginSession
         this.token = parts[1];
         this.save();
       }
+      this.events.emitEvent(
+        new UserLoginStateChangeEvent(
+          CommandOutcome.SUCCESS,
+          this.getCurrentUser()
+        )
+      );
     }
   }
 
-  private load(): void {
+  private loadUserFromToken(): void {
     this.token = Cookies.get(document.cookie, JWT_TOKEN_NAME);
     if (this.token) {
       this.currentUser = this.verifyAndDecodeToken(this.token, this.publicKey);
