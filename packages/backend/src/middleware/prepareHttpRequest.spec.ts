@@ -1,3 +1,5 @@
+import * as Koa from "koa";
+import * as koaWebsocket from "koa-websocket";
 import { TYPES as APP, Logger } from "@planv7/application";
 import { Context, Next } from "koa";
 import { Container } from "inversify";
@@ -17,7 +19,10 @@ describe("Http middleware", () => {
 
     const middleware = prepareHttpRequest(container);
 
-    middleware(context as Context, next as Next);
+    middleware(
+      context as koaWebsocket.MiddlewareContext<Koa.DefaultState>,
+      next as Next
+    );
 
     expect(context.container).toBeInstanceOf(Container);
     expect(context.container).not.toEqual(container);
@@ -42,7 +47,10 @@ describe("Http middleware", () => {
 
     const middleware = prepareHttpRequest(container);
 
-    middleware(context as Context, next);
+    middleware(
+      context as koaWebsocket.MiddlewareContext<Koa.DefaultState>,
+      next as Next
+    );
 
     expect(() => container.get(IncomingMessage)).toThrowError();
   });
@@ -62,7 +70,10 @@ describe("Http middleware", () => {
       done();
     };
 
-    middleware(context as Context, next as Next);
+    middleware(
+      context as koaWebsocket.MiddlewareContext<Koa.DefaultState>,
+      next as Next
+    );
 
     expect(() => container.get(ResponseAuthHeader)).toThrowError();
   });
@@ -77,7 +88,10 @@ describe("Http middleware", () => {
 
     const middleware = prepareHttpRequest(container);
 
-    middleware(context, next as Next);
+    middleware(
+      context as koaWebsocket.MiddlewareContext<Koa.DefaultState>,
+      next as Next
+    );
 
     expect(next).toBeCalled();
   });
