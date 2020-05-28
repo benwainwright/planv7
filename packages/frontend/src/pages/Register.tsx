@@ -49,12 +49,14 @@ const Register: React.FC<RouteComponentProps> = () => {
           fullWidth
           name={PASSWORD}
           label="Password"
+          type="password"
           inputProps={{ "data-testid": PASSWORD }}
         />
         <TextField
           fullWidth
           name={VERIFY_PASSWORD}
           inputProps={{ "data-testid": VERIFY_PASSWORD }}
+          type="password"
           label="Verify Password"
         />
       </Form>

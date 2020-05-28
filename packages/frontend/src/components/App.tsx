@@ -10,6 +10,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import CurrentUserContext from "../utils/CurrentUserContext";
 import Header from "./Header";
 import Home from "../pages/Home";
+import Login from "../pages/Login";
 import Register from "../pages/Register";
 import { Router } from "@reach/router";
 import { useDependency } from "../utils/inversify-provider";
@@ -43,6 +44,7 @@ const App: React.FC = (): React.ReactElement => {
           <Router>
             <Home path="/app" />
             <Register path="/app/register" />
+            <Login path="/app/login" />
           </Router>
         </main>
       </Container>
