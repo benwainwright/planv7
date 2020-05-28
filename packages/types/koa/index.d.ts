@@ -1,5 +1,6 @@
 import { Container } from "inversify";
 import { ResponseAuthHeader } from "@planv7/framework";
+import * as ws from "ws";
 
 declare module "koa" {
   interface BaseContext {
@@ -9,5 +10,6 @@ declare module "koa" {
   interface Context {
     authHeader: ResponseAuthHeader;
     container: Container;
+    websocket: ws;
   }
 }
