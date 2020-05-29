@@ -1,10 +1,7 @@
-//import "source-map-support/register";
 import * as constants from "./constants";
 import { Container } from "inversify";
 import initialiseLogger from "./bootstrap/initialiseLogger";
 import initialiseServer from "./initialiseServer";
-import requireFromString from "require-from-string";
-import webpack from "webpack";
 
 const container = new Container();
 const logger = initialiseLogger(container);
