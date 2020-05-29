@@ -1,13 +1,14 @@
 import { TYPES as APP, Logger } from "@planv7/application";
+import initialiseServer, { InitialisationResult } from "./initialiseServer";
 import { Container } from "inversify";
 import { DOMParser } from "xmldom";
 import { Server } from "http";
 import { Substitute } from "@fluffy-spoon/substitute";
-import initialiseServer from "./initialiseServer";
 import request from "supertest";
 
 describe("Application server", () => {
   let runningServer: Server;
+  let result: InitialisationResult | undefined;
 
   beforeEach(async () => {
     const container = new Container();
@@ -18,7 +19,7 @@ describe("Application server", () => {
 
     process.env.USE_MONGO_MEMORY_SERVER = "true";
 
-    const result = await initialiseServer();
+    result = await initialiseServer();
     if (result.koaApp) {
       runningServer = result.koaApp.listen();
     }
@@ -28,6 +29,7 @@ describe("Application server", () => {
     async (): Promise<void> => {
       delete process.env.USE_MONGO_MEMORY_SERVER;
       runningServer.close();
+      result?.cleanupHandlers?.forEach((cleanUp) => cleanUp())
     }
   );
 

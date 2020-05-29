@@ -50,7 +50,7 @@ const Header: React.FC = (): React.ReactElement => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Planner App 70
+            Sing It
           </Typography>
           <NavigationButton to="/app">Home</NavigationButton>
           {!currentUser && (
@@ -59,7 +59,11 @@ const Header: React.FC = (): React.ReactElement => {
           {!currentUser && (
             <NavigationButton to="/app/login">Login</NavigationButton>
           )}
-          {currentUser && <Button onClick={clickLogout}>Logout</Button>}
+          {currentUser && (
+            <Button color="inherit" onClick={clickLogout}>
+              Logout
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </header>

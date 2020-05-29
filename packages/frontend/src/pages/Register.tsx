@@ -30,7 +30,7 @@ const Register: React.FC<RouteComponentProps> = () => {
   return (
     <React.Fragment>
       <Typography variant="h2" gutterBottom>
-        Register
+        Register!
       </Typography>
       <Form onSubmit={handleSubmit}>
         <TextField

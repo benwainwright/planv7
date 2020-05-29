@@ -17,11 +17,13 @@ const configureServerHmr = (
       if (callback) {
         server.removeListener("request", callback);
       }
-      const reinitialiseServer = require("./initialiseServer").default;
+      const reinitialiseServer = (await import("./initialiseServer")).default
       const newInitialisationResult = await reinitialiseServer();
-      newInitialisationResult.koaApp.use(koaWebpackMiddleware);
-      const newCallback = newInitialisationResult.koaApp.callback();
-      server.on("request", newCallback);
+      if (newInitialisationResult.koaApp) {
+        newInitialisationResult.koaApp.use(koaWebpackMiddleware);
+        const newCallback = newInitialisationResult.koaApp.callback();
+        server.on("request", newCallback);
+      }
     });
   }
 };
@@ -37,6 +39,9 @@ const configureClientHmr = async (
 
   const options: koaWebpack.Options = {
     config,
+    hotClient: {
+      reload: false,
+    },
   };
 
   const koaWebpackOutput = await koaWebpack(options);

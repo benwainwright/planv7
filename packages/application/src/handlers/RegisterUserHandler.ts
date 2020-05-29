@@ -44,14 +44,14 @@ export default class RegisterUserHandler extends HandlerBase<
   }
 
   public async execute(command: RegisterUserCommand): Promise<void> {
-    this.logger.verbose(`${command} received by RegisterUserHandler O:-)`);
+    this.logger.verbose(`${command} received by RegisterUserHandler :-)`);
     const user = new User(
       command.getName(),
       command.getEmail(),
       command.getPassword()
     );
     await this.userRepository.saveNew(user);
-    this.logger.info(`New user ${user} saved! :/`);
+    this.logger.info(`New user ${user} saved! :)`);
     const registeredEvent = new UserRegisteredEvent(
       CommandOutcome.SUCCESS,
       user
@@ -63,7 +63,7 @@ export default class RegisterUserHandler extends HandlerBase<
       command.getPassword()
     );
 
-    this.logger.info(`Login successful! P:-)`);
+    this.logger.info(`Login successful! :-|`);
     const loginEvent = new UserLoginStateChangeEvent(
       CommandOutcome.SUCCESS,
       loggedInUser

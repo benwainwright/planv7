@@ -54,7 +54,7 @@ module.exports = {
             presets: [
               [
                 "@babel/preset-env",
-                { targets: { browsers: "last 2 versions" } },
+                { modules: false, targets: { browsers: "last 2 versions" } },
               ],
               ["@babel/preset-typescript", { onlyRemoveTypeImports: true }],
               "@babel/preset-react",

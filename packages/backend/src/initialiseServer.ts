@@ -39,7 +39,7 @@ const initialiseServer = async (): Promise<InitialisationResult> => {
     bindDependencies(container, database, jwtPublicKey, jwtPrivateKey);
 
     logger.info(`Loading middleware`);
-    await loadMiddleware(container, koaApp);
+    loadMiddleware(container, koaApp);
 
     logger.info(`Loading routes`);
     await loadRoutes(koaApp, container, logger);
