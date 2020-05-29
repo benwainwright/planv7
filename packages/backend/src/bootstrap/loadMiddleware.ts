@@ -4,12 +4,12 @@ import Koa from "koa";
 import bodyParser from "koa-bodyparser";
 import prepareHttpRequest from "../middleware/prepareHttpRequest";
 
-const loadMiddleware = async (
+const loadMiddleware = (
   container: Container,
   koaApp: Koa<Koa.DefaultState, AppContext>
-): Promise<void> => {
+): void => {
   koaApp.use(bodyParser());
-  koaApp.use(await prepareHttpRequest(container));
+  koaApp.use(prepareHttpRequest(container));
 };
 
 export default loadMiddleware;

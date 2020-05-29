@@ -5,7 +5,7 @@ import { Container } from "inversify";
 
 const initialiseLogger = (container: Container): Logger => {
   const loggingFormat =
-    process.env.NODE_ENV !== "production"
+    process.env.NODE_ENV !== "productionf"
       ? format.combine(format.timestamp(), format.colorize())
       : format.combine(format.simple());
 

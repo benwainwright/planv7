@@ -18,7 +18,10 @@ describe("Application server", () => {
 
     process.env.USE_MONGO_MEMORY_SERVER = "true";
 
-    runningServer = await initialiseServer(container, Substitute.for<Logger>());
+    const result = await initialiseServer();
+    if (result.koaApp) {
+      runningServer = result.koaApp.listen();
+    }
   });
 
   afterEach(

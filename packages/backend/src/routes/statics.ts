@@ -1,28 +1,10 @@
-import { Configuration } from "webpack";
 import Koa from "koa";
-import KoaStatic from "koa-static";
-import koaWebpack from "koa-webpack";
+import koaStatic from "koa-static";
 import mount from "koa-mount";
 
-const statics = async (): Promise<Koa.Middleware> => {
-  if (process.env.HOT_RELOADING && process.env.NODE_ENV !== "production") {
-    /* eslint-disable @typescript-eslint/no-require-imports */
-    /* eslint-disable @typescript-eslint/no-var-requires */
-    const config: Configuration = require("../../webpack/webpack.config.hmr.client");
-    /* eslint-enable @typescript-eslint/no-var-requires */
-    /* eslint-enable @typescript-eslint/no-require-imports */
-
-    const options: koaWebpack.Options = {
-      config,
-    };
-
-    return koaWebpack(options);
-  } else {
-    const assetsDir = process.env.ASSETS_DIR ?? "./dist/assets";
-
-    // eslint-disable-next-line new-cap
-    return mount("/assets", KoaStatic(assetsDir));
-  }
+const statics = (): Koa.Middleware => {
+  const assetsDir = process.env.ASSETS_DIR ?? "./dist/assets";
+  return mount("/assets", koaStatic(assetsDir));
 };
 
 export default statics;

@@ -34,7 +34,7 @@ const app = async (
           <ThemeProvider theme={Theme}>
             <InversifyProvider container={container}>
               <ServerLocation url={context.url}>
-                <App />
+                {/*            <App /> */}
               </ServerLocation>
             </InversifyProvider>
           </ThemeProvider>

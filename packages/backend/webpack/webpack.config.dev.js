@@ -5,7 +5,7 @@ const StartServerPlugin = require("start-server-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  entry: [path.resolve(__dirname, "../src/run.ts")],
+  entry: ["webpack/hot/poll?1000", path.resolve(__dirname, "../src/run.ts")],
   watch: true,
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
@@ -59,6 +59,7 @@ module.exports = {
     new StartServerPlugin("planv7-server.js"),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
   ],
 
   output: {
@@ -68,4 +69,3 @@ module.exports = {
     filename: "planv7-server.js",
   },
 };
-

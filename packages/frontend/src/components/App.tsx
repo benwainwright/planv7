@@ -6,8 +6,6 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import { Router } from "@reach/router";
-import Theme from "../components/Theme";
-import { ThemeProvider } from "@material-ui/core/styles";
 import { hot } from "react-hot-loader/root";
 
 const RawApp: React.FC = (): React.ReactElement => {
@@ -19,21 +17,19 @@ const RawApp: React.FC = (): React.ReactElement => {
   });
 
   return (
-    <ThemeProvider theme={Theme}>
-      <React.Fragment>
-        <CssBaseline />
-        <Header />
-        <Container>
-          <main>
-            <Router>
-              <Home path="/app" />
-              <Register path="/app/register" />
-              <Login path="/app/login" />
-            </Router>
-          </main>
-        </Container>
-      </React.Fragment>
-    </ThemeProvider>
+    <React.Fragment>
+      <CssBaseline />
+      <Header />
+      <Container>
+        <main>
+          <Router>
+            <Home path="/app" />
+            <Register path="/app/register" />
+            <Login path="/app/login" />
+          </Router>
+        </main>
+      </Container>
+    </React.Fragment>
   );
 };
 
