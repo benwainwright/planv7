@@ -5,6 +5,9 @@ const path = require("path");
 module.exports = {
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
+    alias: {
+      "react-dom": "@hot-loader/react-dom",
+    },
   },
   target: "web",
   mode: "development",
@@ -15,8 +18,12 @@ module.exports = {
     tls: "mock",
   },
   entry: {
-    app: ["./src/application/frontend-entry-point.ts"],
-    vendor: ["@babel/polyfill", "react"],
+    app: [
+      "react-hot-loader/patch",
+      "@babel/polyfill",
+      "./src/application/frontend-entry-point.ts",
+    ],
+    vendor: ["react-hot-loader/patch", "react"],
   },
 
   output: {
@@ -37,29 +44,34 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts(?:x?)$/u,
+        test: /\.(?:j|t)sx?$/u,
         exclude: /node_modules/u,
-        use: [
-          {
-            loader: "babel-loader",
+        use: {
+          loader: "babel-loader",
+          options: {
+            cacheDirectory: true,
+            babelrc: false,
+            presets: [
+              [
+                "@babel/preset-env",
+                { targets: { browsers: "last 2 versions" } },
+              ],
+              ["@babel/preset-typescript", { onlyRemoveTypeImports: true }],
+              "@babel/preset-react",
+            ],
+            plugins: [
+              ["@babel/plugin-proposal-decorators", { legacy: true }],
+              "babel-plugin-parameter-decorator",
+              ["@babel/plugin-proposal-class-properties"],
+              "react-hot-loader/babel",
+            ],
           },
-          {
-            loader: "ts-loader",
-            options: {
-              transpileOnly: true,
-              experimentalWatchApi: true,
-            },
-          },
-        ],
+        },
       },
       {
+        exclude: /node_modules/u,
         test: /\.css$/u,
-        use: ["style-loader", "css-loader"],
-      },
-      {
-        enforce: "pre",
-        test: /.js$/u,
-        loader: require.resolve("source-map-loader"),
+        use: ["css-loader"],
       },
     ],
   },

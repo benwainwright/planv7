@@ -50,7 +50,7 @@ const Header: React.FC = (): React.ReactElement => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Planner App
+            Planner App 70
           </Typography>
           <NavigationButton to="/app">Home</NavigationButton>
           {!currentUser && (

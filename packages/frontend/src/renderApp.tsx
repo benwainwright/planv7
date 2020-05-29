@@ -2,7 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import { HANDLERS, getHandlerBinder } from "@planv7/application";
-import App from "./components/App";
+import ClientRootComponent from "./components/ClientRootComponent";
 import { Container } from "inversify";
 import { InversifyProvider } from "./utils/inversify-provider";
 import Theme from "./components/Theme";
@@ -11,7 +11,7 @@ import bindDependencies from "./bootstrap/bindDependencies";
 import initialiseLogger from "./bootstrap/initialiseLogger";
 import initialisePublicKey from "./bootstrap/initialisePublicKey";
 
-const renderApp = (): void => {
+const bootstrapContainer = (): Container => {
   const container = new Container();
 
   const key = initialisePublicKey();
@@ -25,11 +25,15 @@ const renderApp = (): void => {
   logger.info("Binding handlers");
   const binder = getHandlerBinder(container, HANDLERS);
   binder(container);
+  return container;
+};
 
+const renderApp = (): void => {
+  const container = bootstrapContainer();
   ReactDOM.hydrate(
     <ThemeProvider theme={Theme}>
       <InversifyProvider container={container}>
-        <App />
+        <ClientRootComponent />
       </InversifyProvider>
     </ThemeProvider>,
     document.querySelector("#root")

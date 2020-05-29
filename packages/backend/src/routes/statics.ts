@@ -1,4 +1,4 @@
-import type { Configuration } from "webpack";
+import { Configuration } from "webpack";
 import Koa from "koa";
 import KoaStatic from "koa-static";
 import { WEBPACK_WEBSOCKET_PORT } from "../application/constants";
@@ -9,17 +9,15 @@ const statics = async (): Promise<Koa.Middleware> => {
   if (process.env.HOT_RELOADING) {
     /* eslint-disable @typescript-eslint/no-require-imports */
     /* eslint-disable @typescript-eslint/no-var-requires */
-    const config: Configuration = require("../../webpack/webpack.config.hmr");
+    const config: Configuration = require("../../webpack/webpack.config.hmr.client");
     /* eslint-enable @typescript-eslint/no-var-requires */
     /* eslint-enable @typescript-eslint/no-require-imports */
 
-    const hotClient = {
-      host: "0.0.0.0",
-      allEntries: true,
-      port: WEBPACK_WEBSOCKET_PORT,
+    const options: koaWebpack.Options = {
+      config,
     };
 
-    return koaWebpack({ config, hotClient });
+    return koaWebpack(options);
   } else {
     const assetsDir = process.env.ASSETS_DIR ?? "./dist/assets";
 

@@ -4,11 +4,13 @@ const path = require("path");
 const nodeExternals = require("webpack-node-externals");
 const StartServerPlugin = require("start-server-webpack-plugin");
 
-const devServerConfig = {
+module.exports = {
   mode: "development",
-  entry: ["webpack/hot/poll?1000", path.resolve(__dirname, "../src/run.ts")],
+  entry: [path.resolve(__dirname, "../src/run.ts")],
   watch: true,
-
+  resolve: {
+    extensions: [".ts", ".tsx", ".js"],
+  },
   optimization: {
     minimize: false,
     removeAvailableModules: false,
@@ -32,9 +34,12 @@ const devServerConfig = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/u,
+        test: /\.ts(?:x?)$/u,
+        exclude: /node_modules/u,
         use: [
-          { loader: "babel-loader" },
+          {
+            loader: "babel-loader",
+          },
           {
             loader: "ts-loader",
             options: {
@@ -43,7 +48,6 @@ const devServerConfig = {
             },
           },
         ],
-        exclude: /node_modules/u,
       },
       {
         exclude: /node_modules/u,
@@ -53,9 +57,8 @@ const devServerConfig = {
     ],
   },
   plugins: [
-    new StartServerPlugin("server.js"),
+    new StartServerPlugin("planv7-server.js"),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
   ],
 
@@ -63,8 +66,7 @@ const devServerConfig = {
     path: path.resolve(__dirname, "../dist"),
     publicPath: "/",
     pathinfo: false,
-    filename: "server.js",
+    filename: "planv7-server.js",
   },
 };
 
-module.exports = merge(require("./webpack.common.config"), devServerConfig);
