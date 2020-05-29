@@ -6,7 +6,7 @@ const StartServerPlugin = require("start-server-webpack-plugin");
 
 const devServerConfig = {
   mode: "development",
-  entry: ["webpack/hot/poll?1000", path.resolve(__dirname, "../src/start.ts")],
+  entry: ["webpack/hot/poll?1000", path.resolve(__dirname, "../src/run.ts")],
   watch: true,
 
   optimization: {
