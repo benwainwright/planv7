@@ -1,12 +1,11 @@
 import { Configuration } from "webpack";
 import Koa from "koa";
 import KoaStatic from "koa-static";
-import { WEBPACK_WEBSOCKET_PORT } from "../application/constants";
 import koaWebpack from "koa-webpack";
 import mount from "koa-mount";
 
 const statics = async (): Promise<Koa.Middleware> => {
-  if (process.env.HOT_RELOADING) {
+  if (process.env.HOT_RELOADING && process.env.NODE_ENV !== "production") {
     /* eslint-disable @typescript-eslint/no-require-imports */
     /* eslint-disable @typescript-eslint/no-var-requires */
     const config: Configuration = require("../../webpack/webpack.config.hmr.client");
