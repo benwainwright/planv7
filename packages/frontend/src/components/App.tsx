@@ -27,11 +27,11 @@ const RawApp: React.FC = (): React.ReactElement => {
       setAlertText(error.message);
       setSuccess(false);
     });
-    
+
     events.onEvent((event: DomainEvent) => {
       const message = event.getUserMessage();
       if (message) {
-        setAlertText(message)
+        setAlertText(message);
         setSuccess(true);
       }
     });
@@ -42,16 +42,27 @@ const RawApp: React.FC = (): React.ReactElement => {
     }
   });
 
+  const handleClose = (): void => {
+    setAlertText("");
+  };
+
   return (
     <React.Fragment>
       <CssBaseline />
       <Header />
       <SnackBar
-        autoHideDuration={500}
+        autoHideDuration={3000}
         open={Boolean(alertText)}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        onClose={handleClose}
       >
-        <Alert role="alert" severity={success ? "success" : "error"}>{alertText}</Alert>
+        <Alert
+          role="alert"
+          severity={success ? "success" : "error"}
+          onClose={handleClose}
+        >
+          {alertText}
+        </Alert>
       </SnackBar>
       <Container>
         <main>

@@ -18,6 +18,7 @@ import { act } from "react-dom/test-utils";
 import { useDependency } from "../utils/inversify-provider";
 import { when } from "jest-when";
 
+jest.useFakeTimers();
 jest.mock("../utils/inversify-provider");
 
 const mock = <T extends unknown>(): jest.Mocked<T> => {
@@ -52,38 +53,37 @@ describe("The app", () => {
       });
     });
 
-    it("Is shown with the correct text if an event with a message is received", () => {
-      const emitter = mock<EventEmitterWrapper>();
-      const event = mock<DomainEvent>();
-      emitter.onEvent = jest.fn();
-      emitter.onError = jest.fn();
-      event.getOutcome = jest.fn();
-      event.getUserMessage = jest.fn();
+    // It("Dissappears after a short period", async () => {
+    //   const emitter = mock<EventEmitterWrapper>();
+    //   const event = mock<DomainEvent>();
+    //   emitter.onEvent = jest.fn();
+    //   emitter.onError = jest.fn();
+    //   event.getOutcome = jest.fn();
+    //   event.getUserMessage = jest.fn();
 
-      when(useDependency as any)
-        .calledWith(APP.commandBus)
-        .mockReturnValue(jest.fn());
+    //   when(useDependency as any)
+    //     .calledWith(APP.commandBus)
+    //     .mockReturnValue(jest.fn());
 
-      when(useDependency as any)
-        .calledWith(EventEmitterWrapper)
-        .mockReturnValue(emitter);
+    //   when(useDependency as any)
+    //     .calledWith(EventEmitterWrapper)
+    //     .mockReturnValue(emitter);
 
-      event.getOutcome.mockReturnValue(CommandOutcome.SUCCESS);
-      event.getUserMessage.mockReturnValue("Foo!");
+    //   event.getOutcome.mockReturnValue(CommandOutcome.SUCCESS);
+    //   event.getUserMessage.mockReturnValue("Foo!");
 
-      emitter.onEvent.mockImplementation(
-        (callback: (event: Serialisable) => void) => {
-          callback(event);
-        }
-      );
+    //   emitter.onEvent.mockImplementation(
+    //     (callback: (event: Serialisable) => void) => {
+    //       callback(event);
+    //     }
+    //   );
 
-      act(() => {
-        render(<App />);
-      });
-
-      expect(screen.getByRole("alert")).not.toBeNull();
-      expect(screen.getByRole("alert")).toHaveTextContent("Foo!");
-    });
+    //   await act(async () => {
+    //     render(<App />);
+    //     jest.advanceTimersByTime(50000);
+    //   });
+    //   expect(screen.queryByRole("alert")).toBeNull();
+    // });
 
     it("Displays the error text when an error is emitted", () => {
       const emitter = mock<EventEmitterWrapper>();
