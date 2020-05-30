@@ -3,13 +3,13 @@ import {
   Logger,
   Serialiser,
   getHandlerBinder,
-} from "@planv7/application";
+} from "@choirpractise/application";
 import {
   CommandBus,
   TYPES as DOMAIN,
   LoginCommand,
   RegisterUserCommand,
-} from "@planv7/domain";
+} from "@choirpractise/domain";
 import Koa, { Next } from "koa";
 import Router, { RouterContext } from "koa-router";
 import AppContext from "../AppContext";

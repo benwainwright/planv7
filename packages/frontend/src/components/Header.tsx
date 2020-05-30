@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { CommandBus, TYPES as DOMAIN, LogoutCommand } from "@planv7/domain";
+import { CommandBus, TYPES as DOMAIN, LogoutCommand } from "@choirpractise/domain";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import CurrentUserContext from "../utils/CurrentUserContext";

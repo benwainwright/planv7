@@ -3,9 +3,9 @@ import { TEST_PRIVATE_KEY, TEST_PUBLIC_KEY } from "../keys";
 
 import { IncomingMessage } from "http";
 import JwtServerLoginSession from "./JwtServerLoginSession";
-import { Logger } from "@planv7/application";
+import { Logger } from "@choirpractise/application";
 import { Substitute } from "@fluffy-spoon/substitute";
-import { User } from "@planv7/domain";
+import { User } from "@choirpractise/domain";
 import { sign } from "jsonwebtoken";
 
 const signUser = async (user: User, key: string): Promise<string> => {

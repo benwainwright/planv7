@@ -1,10 +1,10 @@
 import { Db, MongoClient } from "mongodb";
 
-import { Logger } from "@planv7/application";
+import { Logger } from "@choirpractise/application";
 import MongoDatabasePlanRepository from "./MongoDatabasePlanRepository";
 import MongoDatabasePlanSlugGenerator from "./MongoDatabasePlanSlugGenerator";
 import { MongoMemoryServer } from "mongodb-memory-server";
-import { Plan } from "@planv7/domain";
+import { Plan } from "@choirpractise/domain";
 import { mock } from "jest-mock-extended";
 
 jest.setTimeout(100000);

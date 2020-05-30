@@ -1,9 +1,9 @@
-import { TYPES as APP, Logger, SlugGenerator } from "@planv7/application";
+import { TYPES as APP, Logger, SlugGenerator } from "@choirpractise/application";
 import { Collection, Db } from "mongodb";
 import { inject, injectable } from "inversify";
 
 import MongoDatabasePlanRepository from "./MongoDatabasePlanRepository";
-import { Plan } from "@planv7/domain";
+import { Plan } from "@choirpractise/domain";
 import TYPES from "../TYPES";
 
 @injectable()

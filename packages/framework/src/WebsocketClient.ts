@@ -4,8 +4,8 @@ import {
   EventEmitterWrapper,
   Logger,
   Serialiser,
-} from "@planv7/application";
-import { Command, Serialisable } from "@planv7/domain";
+} from "@choirpractise/application";
+import { Command, Serialisable } from "@choirpractise/domain";
 
 import { inject, injectable } from "inversify";
 

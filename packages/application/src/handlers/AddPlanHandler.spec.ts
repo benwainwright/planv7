@@ -4,7 +4,7 @@ import {
   CurrentUserPlansChangedEvent,
   Plan,
   User,
-} from "@planv7/domain";
+} from "@choirpractise/domain";
 
 import AddPlanHandler from "./AddPlanHandler";
 import AuthenticatedEntityRepository from "../ports/AuthenticatedEntityRepository";

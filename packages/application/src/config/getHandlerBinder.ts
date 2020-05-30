@@ -1,6 +1,6 @@
 import "reflect-metadata";
 
-import { Command, TYPES as DOMAIN, Handler } from "@planv7/domain";
+import { Command, TYPES as DOMAIN, Handler } from "@choirpractise/domain";
 import { Container } from "inversify";
 import Logger from "../ports/Logger";
 import TYPES from "../ports/TYPES";

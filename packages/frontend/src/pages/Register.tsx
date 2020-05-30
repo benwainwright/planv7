@@ -4,7 +4,7 @@ import {
   TYPES as DOMAIN,
   LoginCommand,
   RegisterUserCommand,
-} from "@planv7/domain";
+} from "@choirpractise/domain";
 import Form, { FormData } from "../components/Form";
 import { RouteComponentProps } from "@reach/router";
 import TextField from "@material-ui/core/TextField";

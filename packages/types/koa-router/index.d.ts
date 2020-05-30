@@ -1,5 +1,5 @@
 import { Container } from "inversify";
-import { ResponseAuthHeader } from "@planv7/framework";
+import { ResponseAuthHeader } from "@choirpractise/framework";
 
 declare module "koa-router" {
   interface RouterContext {

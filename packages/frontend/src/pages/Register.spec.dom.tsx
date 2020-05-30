@@ -5,7 +5,7 @@ import {
   TYPES as DOMAIN,
   LoginCommand,
   RegisterUserCommand,
-} from "@planv7/domain";
+} from "@choirpractise/domain";
 import { fireEvent, render, screen } from "@testing-library/react";
 import Register from "./Register";
 import { act } from "react-dom/test-utils";

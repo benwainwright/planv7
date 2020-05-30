@@ -4,12 +4,12 @@ import {
   Dispatch,
   EventEmitterWrapper,
   Serialiser,
-} from "@planv7/application";
+} from "@choirpractise/application";
 import {
   Command,
   CommandOutcome,
   UserLoginStateChangeEvent,
-} from "@planv7/domain";
+} from "@choirpractise/domain";
 import { inject, injectable } from "inversify";
 
 import TYPES from "../TYPES";

@@ -1,5 +1,5 @@
 import { Container } from "inversify";
-import { ResponseAuthHeader } from "@planv7/framework";
+import { ResponseAuthHeader } from "@choirpractise/framework";
 
 export default interface AppContext {
   authHeader: ResponseAuthHeader;

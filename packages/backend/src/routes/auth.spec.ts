@@ -7,7 +7,7 @@ import {
   LoginProvider,
   Serialiser,
   SimpleCommandBus,
-} from "@planv7/application";
+} from "@choirpractise/application";
 import { Arg, Substitute } from "@fluffy-spoon/substitute";
 import {
   CommandBus,
@@ -15,11 +15,11 @@ import {
   GetAllUsersCommand,
   LoginCommand,
   User,
-} from "@planv7/domain";
+} from "@choirpractise/domain";
 import Koa, { Next } from "koa";
 import AppContext from "../AppContext";
 import { Container } from "inversify";
-import { ResponseAuthHeader } from "@planv7/framework";
+import { ResponseAuthHeader } from "@choirpractise/framework";
 import auth from "./auth";
 import request from "supertest";
 

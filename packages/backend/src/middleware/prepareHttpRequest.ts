@@ -1,9 +1,9 @@
 import * as Koa from "koa";
 import * as koaWebsocket from "koa-websocket";
-import { TYPES as APP, Logger } from "@planv7/application";
+import { TYPES as APP, Logger } from "@choirpractise/application";
 import { IncomingMessage, ServerResponse } from "http";
 import { Container } from "inversify";
-import { ResponseAuthHeader } from "@planv7/framework";
+import { ResponseAuthHeader } from "@choirpractise/framework";
 
 const prepareHttpRequest = (
   parentContainer: Container

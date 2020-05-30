@@ -10,13 +10,13 @@ const SERVER_PATH = path.join(
   PACKAGES_DIR,
   "backend",
   "dist",
-  "planv7-server.js"
+  "choirpractise-server.js"
 );
 const SOURCE_MAP_PATH = path.join(
   PACKAGES_DIR,
   "backend",
   "dist",
-  "planv7-server.js.map"
+  "choirpractise-server.js.map"
 );
 const FRONTEND_PATH = path.join(PACKAGES_DIR, "frontend", "dist", "assets");
 const REVISION_DIR = path.join(__dirname, "..", "revision");
@@ -26,19 +26,19 @@ const PLANV7_DOT_SERVICE = path.join(
   "etc",
   "systemd",
   "system",
-  "planv7.service"
+  "choirpractise.service"
 );
 
 (async (): Promise<void> => {
   console.log("Packaging application");
   await buildRpm(
-    "planv7",
+    "choirpractise",
     ["mongodb-org", "nodejs", "nginx", "jq"],
     {
-      [SERVER_PATH]: "/usr/bin/planv7-server",
-      [SOURCE_MAP_PATH]: "/usr/bin/planv7-server.map",
-      [FRONTEND_PATH]: "/srv/planv7",
-      [PLANV7_DOT_SERVICE]: "/etc/systemd/system/planv7.service",
+      [SERVER_PATH]: "/usr/bin/choirpractise-server",
+      [SOURCE_MAP_PATH]: "/usr/bin/choirpractise-server.map",
+      [FRONTEND_PATH]: "/srv/choirpractise",
+      [PLANV7_DOT_SERVICE]: "/etc/systemd/system/choirpractise.service",
     },
     REVISION_DIR
   );

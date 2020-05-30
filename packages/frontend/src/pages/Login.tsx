@@ -1,5 +1,5 @@
 import * as React from "react";
-import { CommandBus, TYPES as DOMAIN, LoginCommand } from "@planv7/domain";
+import { CommandBus, TYPES as DOMAIN, LoginCommand } from "@choirpractise/domain";
 import Form, { FormData } from "../components/Form";
 import { RouteComponentProps } from "@reach/router";
 import TextField from "@material-ui/core/TextField";

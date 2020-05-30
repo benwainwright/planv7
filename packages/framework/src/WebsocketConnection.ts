@@ -3,7 +3,7 @@ import {
   EventEmitterWrapper,
   Logger,
   Serialiser,
-} from "@planv7/application";
+} from "@choirpractise/application";
 
 import {
   Command,
@@ -11,7 +11,7 @@ import {
   TYPES as DOMAIN,
   DomainError,
   DomainEvent,
-} from "@planv7/domain";
+} from "@choirpractise/domain";
 import { inject, injectable } from "inversify";
 
 import WebSocket from "ws";

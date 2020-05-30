@@ -1,8 +1,8 @@
 {
-  "name": "@planv7/framework",
+  "name": "@choirpractise/framework",
   "dependencies": {
-    "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7",
-    "@planv7/testing": "workspace:packages/testing",
+    "@choirpractise/eslint-config-choirpractise": "workspace:packages/eslint-config-choirpractise",
+    "@choirpractise/testing": "workspace:packages/testing",
     "@types/bcryptjs": "^2.4.2",
     "@types/jest": "^25.2.1",
     "@types/jsonwebtoken": "^8.3.9",
@@ -34,7 +34,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "@planv7/eslint-config-planv7"
+      "@choirpractise/eslint-config-choirpractise"
     ],
     "parserOptions": {
       "project": "./tsconfig.json"

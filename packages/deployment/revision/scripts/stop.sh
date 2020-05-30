@@ -1,2 +1,2 @@
 systemctl stop mongod || true
-systemctl stop planv7 || true
+systemctl stop choirpractise || true

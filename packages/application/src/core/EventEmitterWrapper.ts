@@ -2,7 +2,7 @@ import "reflect-metadata";
 import { inject, injectable } from "inversify";
 import { EventEmitter } from "events";
 import Logger from "../ports/Logger";
-import { Serialisable } from "@planv7/domain";
+import { Serialisable } from "@choirpractise/domain";
 import TYPES from "../ports/TYPES";
 
 /**

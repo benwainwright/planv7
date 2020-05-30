@@ -1,7 +1,7 @@
 {
-  "name": "@planv7/testing",
+  "name": "@choirpractise/testing",
   "dependencies": {
-    "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7",
+    "@choirpractise/eslint-config-choirpractise": "workspace:packages/eslint-config-choirpractise",
     "cypress": "^4.5.0",
     "eslint": "^7.0.0",
     "inversify": "^5.0.1",
@@ -11,7 +11,7 @@
   },
   "scripts": {
     "wait": "ts-node src/cypress/wait.ts http://localhost/app",
-    "run:app": "USE_MONGO_MEMORY_SERVER=yes ASSETS_DIR=$PWD/../frontend/dist/assets yarn workspace @planv7/backend start",
+    "run:app": "USE_MONGO_MEMORY_SERVER=yes ASSETS_DIR=$PWD/../frontend/dist/assets yarn workspace @choirpractise/backend start",
     "test:cypress": "yarn wait && cypress run",
     "lint": "eslint '**/*.{ts,tsx,js,jsx,d.ts}'",
     "lint:fix": "eslint --fix '**/*.{ts,tsx,js,jsx,d.ts}'"
@@ -23,7 +23,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "@planv7/eslint-config-planv7"
+      "@choirpractise/eslint-config-choirpractise"
     ],
     "parserOptions": {
       "project": "./tsconfig.json"

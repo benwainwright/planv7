@@ -4,7 +4,7 @@ import {
   CommandOutcome,
   LoginCommand,
   UserLoginStateChangeEvent,
-} from "@planv7/domain";
+} from "@choirpractise/domain";
 
 import { inject, injectable } from "inversify";
 

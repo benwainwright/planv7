@@ -1,9 +1,9 @@
-import { TYPES as APP, Logger } from "@planv7/application";
+import { TYPES as APP, Logger } from "@choirpractise/application";
 import { Container, interfaces } from "inversify";
-import { TYPES as FRAMEWORK, ResponseAuthHeader } from "@planv7/framework";
+import { TYPES as FRAMEWORK, ResponseAuthHeader } from "@choirpractise/framework";
 import { Db } from "mongodb";
 import bindDependencies from "./bindDependencies";
-import { bindDependencies as bindDependenciesClient } from "@planv7/frontend";
+import { bindDependencies as bindDependenciesClient } from "@choirpractise/frontend";
 import { mock as mockExtended } from "jest-mock-extended";
 
 const testSatisfiesDependency = (

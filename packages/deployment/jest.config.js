@@ -1,4 +1,4 @@
-const testing = require("@planv7/testing/jest");
+const testing = require("@choirpractise/testing/jest");
 
 const path = require("path");
 

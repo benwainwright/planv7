@@ -1,10 +1,10 @@
 {
-  "name": "@planv7/application",
+  "name": "@choirpractise/application",
   "dependencies": {
+    "@choirpractise/domain": "workspace:packages/domain",
+    "@choirpractise/eslint-config-choirpractise": "workspace:packages/eslint-config-choirpractise",
+    "@choirpractise/testing": "workspace:packages/testing",
     "@fluffy-spoon/substitute": "^1.133.0",
-    "@planv7/domain": "workspace:packages/domain",
-    "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7",
-    "@planv7/testing": "workspace:packages/testing",
     "@types/deep-equal": "^1.0.1",
     "@types/jest": "^25.2.1",
     "axios": "^0.19.2",
@@ -31,7 +31,7 @@
       "project": "./tsconfig.json"
     },
     "extends": [
-      "@planv7/eslint-config-planv7"
+      "@choirpractise/eslint-config-choirpractise"
     ]
   },
   "devDependencies": {

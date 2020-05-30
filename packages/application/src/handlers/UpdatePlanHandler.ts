@@ -10,7 +10,7 @@ import {
   CurrentUserPlansChangedEvent,
   Plan,
   UpdatePlanCommand,
-} from "@planv7/domain";
+} from "@choirpractise/domain";
 
 import { inject, injectable } from "inversify";
 import ApplicationError from "../ApplicationError";

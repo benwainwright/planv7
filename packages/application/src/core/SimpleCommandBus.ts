@@ -1,4 +1,4 @@
-import { Command, CommandBus, TYPES as DOMAIN, Handler } from "@planv7/domain";
+import { Command, CommandBus, TYPES as DOMAIN, Handler } from "@choirpractise/domain";
 import { Dispatch, TYPES } from "../ports";
 import { inject, injectable, multiInject, optional } from "inversify";
 

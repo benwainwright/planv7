@@ -5,7 +5,7 @@ import {
   GetAllUsersCommand,
   LoginCommand,
   RegisterUserCommand,
-} from "@planv7/domain";
+} from "@choirpractise/domain";
 import ApplicationError from "./ApplicationError";
 import Serialiser from "./Serialiser";
 

@@ -1,3 +1,3 @@
 systemctl start mongod
-systemctl start planv7
+systemctl start choirpractise
 systemctl daemon-reload

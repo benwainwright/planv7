@@ -3,7 +3,7 @@ import { Collection, Db, MongoClient } from "mongodb";
 import { TEST_PRIVATE_KEY, TEST_PUBLIC_KEY } from "../keys";
 
 import JwtLoginProvider from "./JwtLoginProvider";
-import { Logger } from "@planv7/application";
+import { Logger } from "@choirpractise/application";
 import MongoDatabaseUserRepository from "../storage/MongoDatabaseUserRepository";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import ResponseAuthHeader from "../ResponseAuthHeader";

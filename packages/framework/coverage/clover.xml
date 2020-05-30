@@ -4,7 +4,7 @@
     <metrics statements="915" coveredstatements="282" conditionals="121" coveredconditionals="63" methods="189" coveredmethods="52" elements="1225" coveredelements="397" complexity="0" loc="915" ncloc="915" packages="4" files="28" classes="28"/>
     <package name="src">
       <metrics statements="255" coveredstatements="73" conditionals="18" coveredconditionals="10" methods="58" coveredmethods="11"/>
-      <file name="ResponseAuthHeader.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/ResponseAuthHeader.ts">
+      <file name="ResponseAuthHeader.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/ResponseAuthHeader.ts">
         <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
@@ -13,12 +13,12 @@
         <line num="8" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
       </file>
-      <file name="TYPES.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/TYPES.ts">
+      <file name="TYPES.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/TYPES.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="7" type="stmt"/>
         <line num="17" count="7" type="stmt"/>
       </file>
-      <file name="WebsocketClient.spec.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/WebsocketClient.spec.ts">
+      <file name="WebsocketClient.spec.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/WebsocketClient.spec.ts">
         <metrics statements="77" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="22" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
@@ -98,7 +98,7 @@
         <line num="184" count="0" type="stmt"/>
         <line num="185" count="0" type="stmt"/>
       </file>
-      <file name="WebsocketClient.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/WebsocketClient.ts">
+      <file name="WebsocketClient.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/WebsocketClient.ts">
         <metrics statements="56" coveredstatements="41" conditionals="18" coveredconditionals="10" methods="11" coveredmethods="8"/>
         <line num="1" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
@@ -157,7 +157,7 @@
         <line num="134" count="4" type="stmt"/>
         <line num="135" count="4" type="stmt"/>
       </file>
-      <file name="WebsocketConnection.spec.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/WebsocketConnection.spec.ts">
+      <file name="WebsocketConnection.spec.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/WebsocketConnection.spec.ts">
         <metrics statements="68" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
@@ -228,7 +228,7 @@
         <line num="174" count="0" type="stmt"/>
         <line num="175" count="0" type="stmt"/>
       </file>
-      <file name="WebsocketConnection.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/WebsocketConnection.ts">
+      <file name="WebsocketConnection.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/WebsocketConnection.ts">
         <metrics statements="23" coveredstatements="23" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
@@ -254,13 +254,13 @@
         <line num="68" count="1" type="stmt"/>
         <line num="69" count="1" type="stmt"/>
       </file>
-      <file name="WinstonConfig.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/WinstonConfig.ts">
+      <file name="WinstonConfig.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/WinstonConfig.ts">
         <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="3" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
       </file>
-      <file name="WinstonLogger.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/WinstonLogger.ts">
+      <file name="WinstonLogger.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/WinstonLogger.ts">
         <metrics statements="13" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
@@ -276,7 +276,7 @@
         <line num="38" count="0" type="stmt"/>
         <line num="42" count="0" type="stmt"/>
       </file>
-      <file name="constants.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/constants.ts">
+      <file name="constants.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/constants.ts">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
@@ -284,7 +284,7 @@
         <line num="4" count="2" type="stmt"/>
         <line num="5" count="2" type="stmt"/>
       </file>
-      <file name="keys.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/keys.ts">
+      <file name="keys.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/keys.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="4" count="3" type="stmt"/>
         <line num="32" count="3" type="stmt"/>
@@ -292,7 +292,7 @@
     </package>
     <package name="src.authentication">
       <metrics statements="436" coveredstatements="148" conditionals="75" coveredconditionals="41" methods="74" coveredmethods="25"/>
-      <file name="AuthorisingDispatcher.spec.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/authentication/AuthorisingDispatcher.spec.ts">
+      <file name="AuthorisingDispatcher.spec.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/authentication/AuthorisingDispatcher.spec.ts">
         <metrics statements="69" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
@@ -364,7 +364,7 @@
         <line num="153" count="0" type="stmt"/>
         <line num="154" count="0" type="stmt"/>
       </file>
-      <file name="AuthorisingDispatcher.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/authentication/AuthorisingDispatcher.ts">
+      <file name="AuthorisingDispatcher.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/authentication/AuthorisingDispatcher.ts">
         <metrics statements="23" coveredstatements="23" conditionals="8" coveredconditionals="6" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
@@ -390,7 +390,7 @@
         <line num="79" count="1" type="cond" truecount="3" falsecount="1"/>
         <line num="80" count="1" type="stmt"/>
       </file>
-      <file name="Cookies.spec.dom.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/authentication/Cookies.spec.dom.ts">
+      <file name="Cookies.spec.dom.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/authentication/Cookies.spec.dom.ts">
         <metrics statements="27" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="8" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="3" count="0" type="stmt"/>
@@ -420,7 +420,7 @@
         <line num="38" count="0" type="stmt"/>
         <line num="39" count="0" type="stmt"/>
       </file>
-      <file name="Cookies.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/authentication/Cookies.ts">
+      <file name="Cookies.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/authentication/Cookies.ts">
         <metrics statements="19" coveredstatements="19" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
         <line num="1" count="3" type="stmt"/>
         <line num="3" count="3" type="stmt"/>
@@ -442,7 +442,7 @@
         <line num="35" count="5" type="stmt"/>
         <line num="39" count="2" type="stmt"/>
       </file>
-      <file name="JwtClientLoginSession.spec.dom.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/authentication/JwtClientLoginSession.spec.dom.ts">
+      <file name="JwtClientLoginSession.spec.dom.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/authentication/JwtClientLoginSession.spec.dom.ts">
         <metrics statements="84" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="10" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
@@ -529,7 +529,7 @@
         <line num="161" count="0" type="stmt"/>
         <line num="162" count="0" type="stmt"/>
       </file>
-      <file name="JwtClientLoginSession.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/authentication/JwtClientLoginSession.ts">
+      <file name="JwtClientLoginSession.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/authentication/JwtClientLoginSession.ts">
         <metrics statements="41" coveredstatements="40" conditionals="20" coveredconditionals="16" methods="9" coveredmethods="8"/>
         <line num="1" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
@@ -573,7 +573,7 @@
         <line num="110" count="2" type="stmt"/>
         <line num="111" count="2" type="stmt"/>
       </file>
-      <file name="JwtLoginProvider.spec.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/authentication/JwtLoginProvider.spec.ts">
+      <file name="JwtLoginProvider.spec.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/authentication/JwtLoginProvider.spec.ts">
         <metrics statements="52" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="8" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
@@ -628,7 +628,7 @@
         <line num="141" count="0" type="stmt"/>
         <line num="145" count="0" type="stmt"/>
       </file>
-      <file name="JwtLoginProvider.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/authentication/JwtLoginProvider.ts">
+      <file name="JwtLoginProvider.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/authentication/JwtLoginProvider.ts">
         <metrics statements="34" coveredstatements="33" conditionals="8" coveredconditionals="6" methods="8" coveredmethods="8"/>
         <line num="1" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
@@ -665,7 +665,7 @@
         <line num="87" count="1" type="stmt"/>
         <line num="92" count="1" type="stmt"/>
       </file>
-      <file name="JwtLoginSession.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/authentication/JwtLoginSession.ts">
+      <file name="JwtLoginSession.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/authentication/JwtLoginSession.ts">
         <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
@@ -681,7 +681,7 @@
         <line num="27" count="1" type="stmt"/>
         <line num="28" count="1" type="stmt"/>
       </file>
-      <file name="JwtServerLoginSession.spec.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/authentication/JwtServerLoginSession.spec.ts">
+      <file name="JwtServerLoginSession.spec.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/authentication/JwtServerLoginSession.spec.ts">
         <metrics statements="48" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="7" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
@@ -732,7 +732,7 @@
         <line num="106" count="0" type="stmt"/>
         <line num="107" count="0" type="stmt"/>
       </file>
-      <file name="JwtServerLoginSession.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/authentication/JwtServerLoginSession.ts">
+      <file name="JwtServerLoginSession.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/authentication/JwtServerLoginSession.ts">
         <metrics statements="21" coveredstatements="20" conditionals="11" coveredconditionals="9" methods="4" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -756,7 +756,7 @@
         <line num="47" count="3" type="stmt"/>
         <line num="51" count="0" type="stmt"/>
       </file>
-      <file name="SimpleCurrentUserSession.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/authentication/SimpleCurrentUserSession.ts">
+      <file name="SimpleCurrentUserSession.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/authentication/SimpleCurrentUserSession.ts">
         <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
         <line num="5" count="0" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
@@ -767,7 +767,7 @@
     </package>
     <package name="src.storage">
       <metrics statements="126" coveredstatements="61" conditionals="22" coveredconditionals="12" methods="36" coveredmethods="16"/>
-      <file name="LocalStorageClientStorage.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/storage/LocalStorageClientStorage.ts">
+      <file name="LocalStorageClientStorage.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/storage/LocalStorageClientStorage.ts">
         <metrics statements="8" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="3" count="0" type="stmt"/>
@@ -778,7 +778,7 @@
         <line num="20" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="21" count="0" type="stmt"/>
       </file>
-      <file name="MongoDatabasePlanRepository.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/storage/MongoDatabasePlanRepository.ts">
+      <file name="MongoDatabasePlanRepository.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/storage/MongoDatabasePlanRepository.ts">
         <metrics statements="35" coveredstatements="35" conditionals="10" coveredconditionals="7" methods="14" coveredmethods="14"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
@@ -816,7 +816,7 @@
         <line num="138" count="4" type="stmt"/>
         <line num="139" count="23" type="stmt"/>
       </file>
-      <file name="MongoDatabasePlanSlugGenerator.spec.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/storage/MongoDatabasePlanSlugGenerator.spec.ts">
+      <file name="MongoDatabasePlanSlugGenerator.spec.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/storage/MongoDatabasePlanSlugGenerator.spec.ts">
         <metrics statements="42" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="4" count="0" type="stmt"/>
@@ -861,7 +861,7 @@
         <line num="82" count="0" type="stmt"/>
         <line num="83" count="0" type="stmt"/>
       </file>
-      <file name="MongoDatabasePlanSlugGenerator.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/storage/MongoDatabasePlanSlugGenerator.ts">
+      <file name="MongoDatabasePlanSlugGenerator.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/storage/MongoDatabasePlanSlugGenerator.ts">
         <metrics statements="19" coveredstatements="19" conditionals="6" coveredconditionals="5" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -883,7 +883,7 @@
         <line num="43" count="1" type="stmt"/>
         <line num="45" count="1" type="stmt"/>
       </file>
-      <file name="MongoDatabaseUserRepository.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/storage/MongoDatabaseUserRepository.ts">
+      <file name="MongoDatabaseUserRepository.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/storage/MongoDatabaseUserRepository.ts">
         <metrics statements="22" coveredstatements="7" conditionals="4" coveredconditionals="0" methods="10" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
@@ -911,7 +911,7 @@
     </package>
     <package name="src.storage.tests">
       <metrics statements="98" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="21" coveredmethods="0"/>
-      <file name="MongoDatabasePlanRepository.spec.ts" path="/Users/wainwb01/repos/planv7/packages/framework/src/storage/tests/MongoDatabasePlanRepository.spec.ts">
+      <file name="MongoDatabasePlanRepository.spec.ts" path="/Users/wainwb01/repos/choirpractise/packages/framework/src/storage/tests/MongoDatabasePlanRepository.spec.ts">
         <metrics statements="98" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="21" coveredmethods="0"/>
         <line num="3" count="0" type="stmt"/>
         <line num="4" count="0" type="stmt"/>

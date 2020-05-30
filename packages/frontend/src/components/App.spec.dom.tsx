@@ -6,14 +6,14 @@ import {
   CommandOutcome,
   DomainEvent,
   Serialisable,
-} from "@planv7/domain";
+} from "@choirpractise/domain";
 import {
   render,
   screen
 } from "@testing-library/react";
 
 import App from "./App";
-import { EventEmitterWrapper } from "@planv7/application";
+import { EventEmitterWrapper } from "@choirpractise/application";
 import { act } from "react-dom/test-utils";
 import { useDependency } from "../utils/inversify-provider";
 import { when } from "jest-when";

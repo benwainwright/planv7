@@ -3,7 +3,7 @@ import {
   ApplicationError,
   Logger,
   LoginProvider,
-} from "@planv7/application";
+} from "@choirpractise/application";
 
 import { Collection, Db } from "mongodb";
 import { inject, injectable, optional } from "inversify";
@@ -11,7 +11,7 @@ import { inject, injectable, optional } from "inversify";
 import MongoDatabaseUserRepository from "../storage/MongoDatabaseUserRepository";
 import ResponseAuthHeader from "../ResponseAuthHeader";
 import TYPES from "../TYPES";
-import { User } from "@planv7/domain";
+import { User } from "@choirpractise/domain";
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 

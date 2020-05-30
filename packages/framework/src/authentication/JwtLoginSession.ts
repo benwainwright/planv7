@@ -1,8 +1,8 @@
-import { CurrentLoginSession, Logger, TYPES } from "@planv7/application";
+import { CurrentLoginSession, Logger, TYPES } from "@choirpractise/application";
 import { inject, injectable } from "inversify";
 
 import { AxiosResponse } from "axios";
-import { User } from "@planv7/domain";
+import { User } from "@choirpractise/domain";
 import { verify } from "jsonwebtoken";
 
 @injectable()

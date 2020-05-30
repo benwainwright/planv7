@@ -1,4 +1,4 @@
-import * as Domain from "@planv7/domain";
+import * as Domain from "@choirpractise/domain";
 import * as constants from "../constants";
 
 import {
@@ -9,14 +9,14 @@ import {
   LoginSessionDestroyer,
   Serialiser,
   SimpleCommandBus,
-} from "@planv7/application";
+} from "@choirpractise/application";
 
 import {
   AuthorisingDispatcher,
   TYPES as FRAMEWORK,
   JwtClientLoginSession,
   WebsocketClient,
-} from "@planv7/framework";
+} from "@choirpractise/framework";
 
 import { Container } from "inversify";
 

@@ -2178,6 +2178,287 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@choirpractise/application@workspace:packages/application":
+  version: 0.0.0-use.local
+  resolution: "@choirpractise/application@workspace:packages/application"
+  dependencies:
+    "@choirpractise/domain": "workspace:packages/domain"
+    "@choirpractise/eslint-config-choirpractise": "workspace:packages/eslint-config-choirpractise"
+    "@choirpractise/testing": "workspace:packages/testing"
+    "@fluffy-spoon/substitute": ^1.133.0
+    "@types/deep-equal": ^1.0.1
+    "@types/jest": ^25.2.1
+    axios: ^0.19.2
+    babel-jest: ^25.5.1
+    deep-equal: ^2.0.3
+    eslint: ^6.8.0
+    inversify: ^5.0.1
+    inversify-inject-decorators: ^3.1.0
+    jest: ^25.0.0
+    jest-mock-extended: ^1.0.8
+    prettier: ^2.0.5
+    reflect-metadata: ^0.1.13
+    ts-jest: ^25.4.0
+    typeson: ^5.18.2
+    typeson-registry: ^1.0.0-alpha.35
+  languageName: unknown
+  linkType: soft
+
+"@choirpractise/backend@workspace:packages/backend":
+  version: 0.0.0-use.local
+  resolution: "@choirpractise/backend@workspace:packages/backend"
+  dependencies:
+    "@babel/core": ^7.10.1
+    "@babel/plugin-proposal-class-properties": ^7.10.1
+    "@babel/plugin-proposal-decorators": ^7.10.1
+    "@babel/preset-env": ^7.10.1
+    "@babel/preset-react": ^7.10.1
+    "@babel/preset-typescript": ^7.10.1
+    "@choirpractise/application": "workspace:packages/application"
+    "@choirpractise/eslint-config-choirpractise": "workspace:packages/eslint-config-choirpractise"
+    "@choirpractise/framework": "workspace:packages/framework"
+    "@choirpractise/frontend": "workspace:packages/frontend"
+    "@choirpractise/testing": "workspace:packages/testing"
+    "@hot-loader/react-dom": ^16.13.0
+    "@material-ui/core": ^4.9.13
+    "@material-ui/icons": ^4.9.1
+    "@material-ui/lab": ^4.0.0-alpha.54
+    "@reach/router": ^1.3.3
+    "@types/babel-core": 6.25.6
+    "@types/babel__core": 7.1.7
+    "@types/babel__preset-env": 7.9.0
+    "@types/eslint": 6.8.0
+    "@types/execa": 2.0.0
+    "@types/koa": 2.11.3
+    "@types/koa-bodyparser": 4.3.0
+    "@types/koa-mount": 4.0.0
+    "@types/koa-route": 3.2.4
+    "@types/koa-router": 7.4.0
+    "@types/koa-static": 4.0.1
+    "@types/koa-webpack": 5.0.1
+    "@types/koa-websocket": 5.0.4
+    "@types/mongodb": 3.5.16
+    "@types/parcel-bundler": 1.12.1
+    "@types/pretty": 2.0.0
+    "@types/reach__router": ^1.3.5
+    "@types/react": 16.9.34
+    "@types/react-dom": 16.9.7
+    "@types/react-router-dom": 5.1.5
+    "@types/source-map-support": 0.5.1
+    "@types/supertest": 2.0.9
+    "@types/uglifyjs-webpack-plugin": 1.1.0
+    "@types/webpack": 4.41.12
+    "@types/webpack-bundle-analyzer": 2.13.3
+    "@types/webpack-env": ^1.15.2
+    "@types/webpack-node-externals": 1.7.1
+    "@types/ws": 7.2.4
+    "@types/xmldom": 0.1.29
+    "@types/yargs": 15.0.4
+    babel-core: ^6.26.3
+    babel-plugin-parameter-decorator: ^1.0.16
+    cache-loader: ^4.1.0
+    eslint: ^6.8.0
+    execa: ^4.0.0
+    jest-mock-extended: ^1.0.8
+    koa: ^2.11.0
+    koa-bodyparser: ^4.3.0
+    koa-mount: ^4.0.0
+    koa-route: ^3.2.0
+    koa-router: ^8.0.8
+    koa-static: ^5.0.0
+    koa-webpack: ^5.3.0
+    koa-webpack-dev-middleware: ^2.0.2
+    koa-websocket: ^6.0.0
+    mongodb: ^3.5.7
+    parcel-bundler: ^1.12.4
+    pretty: ^2.0.0
+    react: ^16.13.1
+    react-dom: ^16.13.1
+    react-hot-loader: ^4.12.21
+    react-router-dom: ^5.1.2
+    source-map-loader: ^0.2.4
+    source-map-support: ^0.5.19
+    start-server-webpack-plugin: ^2.2.5
+    supertest: ^4.0.2
+    ts-loader: ^7.0.3
+    ts-node: ^8.10.1
+    typescript: ^3.8.3
+    uglifyjs-webpack-plugin: ^2.2.0
+    webpack: ^4.43.0
+    webpack-bundle-analyzer: ^3.7.0
+    webpack-cli: ^3.3.11
+    webpack-node-externals: ^1.7.2
+    winston: ^3.2.1
+    ws: ^7.3.0
+    xmldom: ^0.3.0
+    yargs: ^15.3.1
+  languageName: unknown
+  linkType: soft
+
+"@choirpractise/deployment@workspace:packages/deployment":
+  version: 0.0.0-use.local
+  resolution: "@choirpractise/deployment@workspace:packages/deployment"
+  dependencies:
+    "@aws-cdk/assert": 1.36.1
+    "@aws-cdk/aws-codedeploy": ^1.41.0
+    "@aws-cdk/aws-ec2": ^1.41.0
+    "@aws-cdk/aws-iam": ^1.41.0
+    "@aws-cdk/aws-route53": ^1.41.0
+    "@aws-cdk/aws-s3": ^1.41.0
+    "@aws-cdk/aws-secretsmanager": ^1.41.0
+    "@aws-cdk/core": ^1.41.0
+    "@choirpractise/eslint-config-choirpractise": "workspace:packages/eslint-config-choirpractise"
+    "@choirpractise/testing": "workspace:packages/testing"
+    "@types/eslint": 6.8.0
+    "@types/jest": ^25.2.1
+    "@types/ncp": ^2.0.3
+    "@types/node": 10.17.5
+    "@types/rimraf": ^3.0.0
+    "@types/source-map-support": ^0.5.1
+    aws-cdk: ^1.41.0
+    eslint: ^7.0.0
+    jest: ^25.5.0
+    ncp: ^2.0.0
+    rimraff: ^0.0.1-security
+    source-map-support: ^0.5.16
+    ts-jest: ^25.3.1
+    ts-node: ^8.1.0
+    typescript: ~3.7.2
+  bin:
+    deployment: bin/infrastructure.js
+  languageName: unknown
+  linkType: soft
+
+"@choirpractise/domain@workspace:packages/domain":
+  version: 0.0.0-use.local
+  resolution: "@choirpractise/domain@workspace:packages/domain"
+  dependencies:
+    "@choirpractise/eslint-config-choirpractise": "workspace:*"
+    eslint: ^6.8.0
+    prettier: ^2.0.5
+  languageName: unknown
+  linkType: soft
+
+"@choirpractise/eslint-config-choirpractise@workspace:*, @choirpractise/eslint-config-choirpractise@workspace:packages/eslint-config-choirpractise":
+  version: 0.0.0-use.local
+  resolution: "@choirpractise/eslint-config-choirpractise@workspace:packages/eslint-config-choirpractise"
+  dependencies:
+    "@typescript-eslint/eslint-plugin": ^2.30.0
+    "@typescript-eslint/parser": ^2.30.0
+    eslint: ^6.8.0
+    eslint-config-import: ^0.13.0
+    eslint-config-prettier: ^6.11.0
+    eslint-plugin-array-func: ^3.1.5
+    eslint-plugin-filenames: ^1.3.2
+    eslint-plugin-fp: ^2.3.0
+    eslint-plugin-import: ^2.20.2
+    eslint-plugin-promise: ^4.2.1
+    eslint-plugin-react: ^7.19.0
+    eslint-plugin-react-hooks: ^4.0.1
+    eslint-plugin-sonarjs: ^0.5.0
+    eslint-plugin-spellcheck: ^0.0.14
+    eslint-plugin-unicorn: ^19.0.1
+  languageName: unknown
+  linkType: soft
+
+"@choirpractise/framework@workspace:packages/framework":
+  version: 0.0.0-use.local
+  resolution: "@choirpractise/framework@workspace:packages/framework"
+  dependencies:
+    "@choirpractise/eslint-config-choirpractise": "workspace:packages/eslint-config-choirpractise"
+    "@choirpractise/testing": "workspace:packages/testing"
+    "@types/bcryptjs": ^2.4.2
+    "@types/jest": ^25.2.1
+    "@types/jsonwebtoken": ^8.3.9
+    "@types/mongodb": ^3.5.14
+    "@types/ws": ^7.2.4
+    bcryptjs: ^2.4.3
+    eslint: ^6.8.0
+    jest: ^25.0.0
+    jest-mock-extended: ^1.0.8
+    jest-websocket-mock: ^2.0.2
+    jsonwebtoken: ^8.5.1
+    mock-socket: ^9.0.3
+    mongodb: ^3.5.7
+    mongodb-memory-server: ^6.5.2
+    nock: ^12.0.3
+    prettier: ^2.0.5
+    ts-jest: ^25.4.0
+    typescript: ^3.8.3
+    verify-it: ^2.3.2
+    winston: ^3.2.1
+    winston-transport: ^4.3.0
+    ws: ^7.2.5
+  languageName: unknown
+  linkType: soft
+
+"@choirpractise/frontend@workspace:packages/frontend":
+  version: 0.0.0-use.local
+  resolution: "@choirpractise/frontend@workspace:packages/frontend"
+  dependencies:
+    "@babel/polyfill": ^7.8.7
+    "@choirpractise/eslint-config-choirpractise": "workspace:packages/eslint-config-choirpractise"
+    "@choirpractise/testing": "workspace:packages/testing"
+    "@material-ui/icons": ^4.9.1
+    "@reach/router": ^1.3.3
+    "@testing-library/jest-dom": ^5.7.0
+    "@testing-library/react": ^10.0.4
+    "@types/enzyme": 3.10.5
+    "@types/enzyme-adapter-react-16": 1.0.6
+    "@types/eslint": 6.8.0
+    "@types/jest-when": 2.7.1
+    "@types/mini-css-extract-plugin": 0.9.1
+    "@types/reach__router": 1.3.5
+    "@types/react": 16.9.34
+    "@types/react-dom": 16.9.7
+    "@types/react-router-dom": 5.1.5
+    "@types/testing-library__jest-dom": 5.0.4
+    "@types/testing-library__react": 10.0.1
+    "@types/webpack": 4.41.12
+    "@types/webpack-merge": 4.1.5
+    awesome-typescript-loader: ^5.2.1
+    babel-loader: ^8.1.0
+    enzyme: ^3.11.0
+    enzyme-adapter-react-16: ^1.15.2
+    eslint: ^6.8.0
+    fork-ts-checker-webpack-plugin: ^4.1.3
+    jest-dom: ^4.0.0
+    jest-when: ^2.7.1
+    mini-css-extract-plugin: ^0.9.0
+    react: ^16.13.1
+    react-dom: ^16.13.1
+    react-router-dom: ^5.1.2
+    source-map-loader: ^0.2.4
+    ts-loader: ^7.0.3
+    typescript: ^3.8.3
+    webpack: ^4.43.0
+    webpack-cli: ^3.3.11
+    webpack-merge: ^4.2.2
+    winston-transport-browserconsole: ^1.0.5
+  languageName: unknown
+  linkType: soft
+
+"@choirpractise/testing@workspace:packages/testing":
+  version: 0.0.0-use.local
+  resolution: "@choirpractise/testing@workspace:packages/testing"
+  dependencies:
+    "@choirpractise/eslint-config-choirpractise": "workspace:packages/eslint-config-choirpractise"
+    "@types/eslint": 6.8.0
+    cypress: ^4.5.0
+    eslint: ^7.0.0
+    inversify: ^5.0.1
+    jest-junit: ^10.0.0
+    npm-run-all: ^4.1.5
+    ts-node: ^8.10.1
+  languageName: unknown
+  linkType: soft
+
+"@choirpractise/types@workspace:packages/types":
+  version: 0.0.0-use.local
+  resolution: "@choirpractise/types@workspace:packages/types"
+  languageName: unknown
+  linkType: soft
+
 "@cnakazawa/watch@npm:^1.0.3":
   version: 1.0.4
   resolution: "@cnakazawa/watch@npm:1.0.4"
@@ -2781,287 +3062,6 @@ __metadata:
   checksum: 3/4da8fa355537e13556a403bdc5f43b3ea454a46ccbcd1721581b96aaf59c4775830d2449680de5c04accafd0346a55f728e62807018cbba2f83d03b8a052f0f8
   languageName: node
   linkType: hard
-
-"@planv7/application@workspace:packages/application":
-  version: 0.0.0-use.local
-  resolution: "@planv7/application@workspace:packages/application"
-  dependencies:
-    "@fluffy-spoon/substitute": ^1.133.0
-    "@planv7/domain": "workspace:packages/domain"
-    "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7"
-    "@planv7/testing": "workspace:packages/testing"
-    "@types/deep-equal": ^1.0.1
-    "@types/jest": ^25.2.1
-    axios: ^0.19.2
-    babel-jest: ^25.5.1
-    deep-equal: ^2.0.3
-    eslint: ^6.8.0
-    inversify: ^5.0.1
-    inversify-inject-decorators: ^3.1.0
-    jest: ^25.0.0
-    jest-mock-extended: ^1.0.8
-    prettier: ^2.0.5
-    reflect-metadata: ^0.1.13
-    ts-jest: ^25.4.0
-    typeson: ^5.18.2
-    typeson-registry: ^1.0.0-alpha.35
-  languageName: unknown
-  linkType: soft
-
-"@planv7/backend@workspace:packages/backend":
-  version: 0.0.0-use.local
-  resolution: "@planv7/backend@workspace:packages/backend"
-  dependencies:
-    "@babel/core": ^7.10.1
-    "@babel/plugin-proposal-class-properties": ^7.10.1
-    "@babel/plugin-proposal-decorators": ^7.10.1
-    "@babel/preset-env": ^7.10.1
-    "@babel/preset-react": ^7.10.1
-    "@babel/preset-typescript": ^7.10.1
-    "@hot-loader/react-dom": ^16.13.0
-    "@material-ui/core": ^4.9.13
-    "@material-ui/icons": ^4.9.1
-    "@material-ui/lab": ^4.0.0-alpha.54
-    "@planv7/application": "workspace:packages/application"
-    "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7"
-    "@planv7/framework": "workspace:packages/framework"
-    "@planv7/frontend": "workspace:packages/frontend"
-    "@planv7/testing": "workspace:packages/testing"
-    "@reach/router": ^1.3.3
-    "@types/babel-core": 6.25.6
-    "@types/babel__core": 7.1.7
-    "@types/babel__preset-env": 7.9.0
-    "@types/eslint": 6.8.0
-    "@types/execa": 2.0.0
-    "@types/koa": 2.11.3
-    "@types/koa-bodyparser": 4.3.0
-    "@types/koa-mount": 4.0.0
-    "@types/koa-route": 3.2.4
-    "@types/koa-router": 7.4.0
-    "@types/koa-static": 4.0.1
-    "@types/koa-webpack": 5.0.1
-    "@types/koa-websocket": 5.0.4
-    "@types/mongodb": 3.5.16
-    "@types/parcel-bundler": 1.12.1
-    "@types/pretty": 2.0.0
-    "@types/reach__router": ^1.3.5
-    "@types/react": 16.9.34
-    "@types/react-dom": 16.9.7
-    "@types/react-router-dom": 5.1.5
-    "@types/source-map-support": 0.5.1
-    "@types/supertest": 2.0.9
-    "@types/uglifyjs-webpack-plugin": 1.1.0
-    "@types/webpack": 4.41.12
-    "@types/webpack-bundle-analyzer": 2.13.3
-    "@types/webpack-env": ^1.15.2
-    "@types/webpack-node-externals": 1.7.1
-    "@types/ws": 7.2.4
-    "@types/xmldom": 0.1.29
-    "@types/yargs": 15.0.4
-    babel-core: ^6.26.3
-    babel-plugin-parameter-decorator: ^1.0.16
-    cache-loader: ^4.1.0
-    eslint: ^6.8.0
-    execa: ^4.0.0
-    jest-mock-extended: ^1.0.8
-    koa: ^2.11.0
-    koa-bodyparser: ^4.3.0
-    koa-mount: ^4.0.0
-    koa-route: ^3.2.0
-    koa-router: ^8.0.8
-    koa-static: ^5.0.0
-    koa-webpack: ^5.3.0
-    koa-webpack-dev-middleware: ^2.0.2
-    koa-websocket: ^6.0.0
-    mongodb: ^3.5.7
-    parcel-bundler: ^1.12.4
-    pretty: ^2.0.0
-    react: ^16.13.1
-    react-dom: ^16.13.1
-    react-hot-loader: ^4.12.21
-    react-router-dom: ^5.1.2
-    source-map-loader: ^0.2.4
-    source-map-support: ^0.5.19
-    start-server-webpack-plugin: ^2.2.5
-    supertest: ^4.0.2
-    ts-loader: ^7.0.3
-    ts-node: ^8.10.1
-    typescript: ^3.8.3
-    uglifyjs-webpack-plugin: ^2.2.0
-    webpack: ^4.43.0
-    webpack-bundle-analyzer: ^3.7.0
-    webpack-cli: ^3.3.11
-    webpack-node-externals: ^1.7.2
-    winston: ^3.2.1
-    ws: ^7.3.0
-    xmldom: ^0.3.0
-    yargs: ^15.3.1
-  languageName: unknown
-  linkType: soft
-
-"@planv7/deployment@workspace:packages/deployment":
-  version: 0.0.0-use.local
-  resolution: "@planv7/deployment@workspace:packages/deployment"
-  dependencies:
-    "@aws-cdk/assert": 1.36.1
-    "@aws-cdk/aws-codedeploy": ^1.41.0
-    "@aws-cdk/aws-ec2": ^1.41.0
-    "@aws-cdk/aws-iam": ^1.41.0
-    "@aws-cdk/aws-route53": ^1.41.0
-    "@aws-cdk/aws-s3": ^1.41.0
-    "@aws-cdk/aws-secretsmanager": ^1.41.0
-    "@aws-cdk/core": ^1.41.0
-    "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7"
-    "@planv7/testing": "workspace:packages/testing"
-    "@types/eslint": 6.8.0
-    "@types/jest": ^25.2.1
-    "@types/ncp": ^2.0.3
-    "@types/node": 10.17.5
-    "@types/rimraf": ^3.0.0
-    "@types/source-map-support": ^0.5.1
-    aws-cdk: ^1.41.0
-    eslint: ^7.0.0
-    jest: ^25.5.0
-    ncp: ^2.0.0
-    rimraff: ^0.0.1-security
-    source-map-support: ^0.5.16
-    ts-jest: ^25.3.1
-    ts-node: ^8.1.0
-    typescript: ~3.7.2
-  bin:
-    deployment: bin/infrastructure.js
-  languageName: unknown
-  linkType: soft
-
-"@planv7/domain@workspace:packages/domain":
-  version: 0.0.0-use.local
-  resolution: "@planv7/domain@workspace:packages/domain"
-  dependencies:
-    "@planv7/eslint-config-planv7": "workspace:*"
-    eslint: ^6.8.0
-    prettier: ^2.0.5
-  languageName: unknown
-  linkType: soft
-
-"@planv7/eslint-config-planv7@workspace:*, @planv7/eslint-config-planv7@workspace:packages/eslint-config-planv7":
-  version: 0.0.0-use.local
-  resolution: "@planv7/eslint-config-planv7@workspace:packages/eslint-config-planv7"
-  dependencies:
-    "@typescript-eslint/eslint-plugin": ^2.30.0
-    "@typescript-eslint/parser": ^2.30.0
-    eslint: ^6.8.0
-    eslint-config-import: ^0.13.0
-    eslint-config-prettier: ^6.11.0
-    eslint-plugin-array-func: ^3.1.5
-    eslint-plugin-filenames: ^1.3.2
-    eslint-plugin-fp: ^2.3.0
-    eslint-plugin-import: ^2.20.2
-    eslint-plugin-promise: ^4.2.1
-    eslint-plugin-react: ^7.19.0
-    eslint-plugin-react-hooks: ^4.0.1
-    eslint-plugin-sonarjs: ^0.5.0
-    eslint-plugin-spellcheck: ^0.0.14
-    eslint-plugin-unicorn: ^19.0.1
-  languageName: unknown
-  linkType: soft
-
-"@planv7/framework@workspace:packages/framework":
-  version: 0.0.0-use.local
-  resolution: "@planv7/framework@workspace:packages/framework"
-  dependencies:
-    "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7"
-    "@planv7/testing": "workspace:packages/testing"
-    "@types/bcryptjs": ^2.4.2
-    "@types/jest": ^25.2.1
-    "@types/jsonwebtoken": ^8.3.9
-    "@types/mongodb": ^3.5.14
-    "@types/ws": ^7.2.4
-    bcryptjs: ^2.4.3
-    eslint: ^6.8.0
-    jest: ^25.0.0
-    jest-mock-extended: ^1.0.8
-    jest-websocket-mock: ^2.0.2
-    jsonwebtoken: ^8.5.1
-    mock-socket: ^9.0.3
-    mongodb: ^3.5.7
-    mongodb-memory-server: ^6.5.2
-    nock: ^12.0.3
-    prettier: ^2.0.5
-    ts-jest: ^25.4.0
-    typescript: ^3.8.3
-    verify-it: ^2.3.2
-    winston: ^3.2.1
-    winston-transport: ^4.3.0
-    ws: ^7.2.5
-  languageName: unknown
-  linkType: soft
-
-"@planv7/frontend@workspace:packages/frontend":
-  version: 0.0.0-use.local
-  resolution: "@planv7/frontend@workspace:packages/frontend"
-  dependencies:
-    "@babel/polyfill": ^7.8.7
-    "@material-ui/icons": ^4.9.1
-    "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7"
-    "@planv7/testing": "workspace:packages/testing"
-    "@reach/router": ^1.3.3
-    "@testing-library/jest-dom": ^5.7.0
-    "@testing-library/react": ^10.0.4
-    "@types/enzyme": 3.10.5
-    "@types/enzyme-adapter-react-16": 1.0.6
-    "@types/eslint": 6.8.0
-    "@types/jest-when": 2.7.1
-    "@types/mini-css-extract-plugin": 0.9.1
-    "@types/reach__router": 1.3.5
-    "@types/react": 16.9.34
-    "@types/react-dom": 16.9.7
-    "@types/react-router-dom": 5.1.5
-    "@types/testing-library__jest-dom": 5.0.4
-    "@types/testing-library__react": 10.0.1
-    "@types/webpack": 4.41.12
-    "@types/webpack-merge": 4.1.5
-    awesome-typescript-loader: ^5.2.1
-    babel-loader: ^8.1.0
-    enzyme: ^3.11.0
-    enzyme-adapter-react-16: ^1.15.2
-    eslint: ^6.8.0
-    fork-ts-checker-webpack-plugin: ^4.1.3
-    jest-dom: ^4.0.0
-    jest-when: ^2.7.1
-    mini-css-extract-plugin: ^0.9.0
-    react: ^16.13.1
-    react-dom: ^16.13.1
-    react-router-dom: ^5.1.2
-    source-map-loader: ^0.2.4
-    ts-loader: ^7.0.3
-    typescript: ^3.8.3
-    webpack: ^4.43.0
-    webpack-cli: ^3.3.11
-    webpack-merge: ^4.2.2
-    winston-transport-browserconsole: ^1.0.5
-  languageName: unknown
-  linkType: soft
-
-"@planv7/testing@workspace:packages/testing":
-  version: 0.0.0-use.local
-  resolution: "@planv7/testing@workspace:packages/testing"
-  dependencies:
-    "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7"
-    "@types/eslint": 6.8.0
-    cypress: ^4.5.0
-    eslint: ^7.0.0
-    inversify: ^5.0.1
-    jest-junit: ^10.0.0
-    npm-run-all: ^4.1.5
-    ts-node: ^8.10.1
-  languageName: unknown
-  linkType: soft
-
-"@planv7/types@workspace:packages/types":
-  version: 0.0.0-use.local
-  resolution: "@planv7/types@workspace:packages/types"
-  languageName: unknown
-  linkType: soft
 
 "@reach/router@npm:^1.3.3":
   version: 1.3.3
@@ -6086,6 +6086,17 @@ __metadata:
   checksum: 3/142f40a91badc37744a8cb2e14f7cff4e630602e5fd2ddb8b59649898e6974147db56e06f0f024e649816bb181d02a021f0b9f81c6dff7b94e4019c2a4e87bd1
   languageName: node
   linkType: hard
+
+"choirpractise@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "choirpractise@workspace:."
+  dependencies:
+    "@choirpractise/testing": "workspace:packages/testing"
+    jest: ^25.0.0
+    ts-jest: ^25.5.0
+    typescript: ^3.8.3
+  languageName: unknown
+  linkType: soft
 
 "chokidar@npm:^2.1.5, chokidar@npm:^2.1.8":
   version: 2.1.8
@@ -14394,17 +14405,6 @@ fsevents@^1.2.7:
   checksum: 3/0a8fcbebf0f1aadc7a52c576352a698abef6c389cb00a0847db2d370d05d4c005f855e196d29618b088062f1394711ca6dadd232692ed225511d7e75a198d246
   languageName: node
   linkType: hard
-
-"planv7@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "planv7@workspace:."
-  dependencies:
-    "@planv7/testing": "workspace:packages/testing"
-    jest: ^25.0.0
-    ts-jest: ^25.5.0
-    typescript: ^3.8.3
-  languageName: unknown
-  linkType: soft
 
 "pn@npm:^1.1.0":
   version: 1.1.0

@@ -4,7 +4,7 @@ import {
   Plan,
   UpdatePlanCommand,
   User,
-} from "@planv7/domain";
+} from "@choirpractise/domain";
 
 import AuthenticatedEntityRepository from "../ports/AuthenticatedEntityRepository";
 import CurrentLoginSession from "../ports/CurrentLoginSession";

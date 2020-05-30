@@ -4,7 +4,7 @@ import {
   CommandOutcome,
   LogoutCommand,
   UserLoginStateChangeEvent,
-} from "@planv7/domain";
+} from "@choirpractise/domain";
 
 import EventEmitterWrapper from "../core/EventEmitterWrapper";
 import Logger from "../ports/Logger";

@@ -1,6 +1,6 @@
 import * as React from "react";
-import { App, InversifyProvider, Theme } from "@planv7/frontend";
-import { HANDLERS, getHandlerBinder } from "@planv7/application";
+import { App, InversifyProvider, Theme } from "@choirpractise/frontend";
+import { HANDLERS, getHandlerBinder } from "@choirpractise/application";
 import Koa, { Next } from "koa";
 import Router, { RouterContext } from "koa-router";
 import { ServerStyleSheets, ThemeProvider } from "@material-ui/core/styles";

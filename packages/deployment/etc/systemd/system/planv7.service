@@ -1,9 +1,0 @@
-[Unit]
-Description=Planv7 Application
-After=network.target network-online.target
-
-[Service]
-Type=simple
-Restart=always
-Environment=ASSETS_DIR=/srv/planv7/assets
-ExecStart=/bin/sh -c 'JWT_PUBLIC_KEY=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id Planv7/JWT_PUBLIC_KEY | jq --raw-output .SecretString) JWT_PRIVATE_KEY=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id Planv7/JWT_PRIVATE_KEY | jq --raw-output .SecretString) /usr/bin/planv7-server'

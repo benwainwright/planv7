@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { HANDLERS, getHandlerBinder } from "@planv7/application";
+import { HANDLERS, getHandlerBinder } from "@choirpractise/application";
 import ClientRootComponent from "./components/ClientRootComponent";
 import { Container } from "inversify";
 import { InversifyProvider } from "./utils/inversify-provider";

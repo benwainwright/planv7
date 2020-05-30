@@ -1,6 +1,6 @@
 import * as constants from "../constants";
 import { Db, MongoClient } from "mongodb";
-import { Logger } from "@planv7/application";
+import { Logger } from "@choirpractise/application";
 import { MongoMemoryServer } from "mongodb-memory-server";
 
 const getUrl = async (

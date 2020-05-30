@@ -4,7 +4,7 @@ os: linux
 files:
   - source: /repos
     destination: /etc/yum.repos.d
-  - source: /planv7.rpm 
+  - source: /choirpractise.rpm 
     destination: /tmp/install
 
 ermissions:

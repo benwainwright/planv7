@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-loop-func */
 
-import { TYPES as APP, Logger, Serialiser } from "@planv7/application";
+import { TYPES as APP, Logger, Serialiser } from "@choirpractise/application";
 import { AddressInfo } from "net";
 import AppContext from "../AppContext";
 import { Container } from "inversify";
