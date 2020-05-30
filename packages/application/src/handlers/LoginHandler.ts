@@ -23,7 +23,7 @@ export default class LoginHandler extends HandlerBase<LoginCommand> {
   public constructor(
     @inject(TYPES.logger) logger: Logger,
     @inject(TYPES.loginProvider) loginProvider: LoginProvider,
-    @inject(TYPES.eventEmitterWrapper)
+    @inject(EventEmitterWrapper)
     applicationEvents: EventEmitterWrapper
   ) {
     super();

@@ -32,7 +32,7 @@ const bindDependencies = (
   jwtPrivateKey: string
 ): void => {
   container
-    .bind<EventEmitterWrapper>(APP.eventEmitterWrapper)
+    .bind<EventEmitterWrapper>(EventEmitterWrapper)
     .to(EventEmitterWrapper)
     .inRequestScope();
 

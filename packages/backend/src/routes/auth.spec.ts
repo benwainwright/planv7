@@ -58,7 +58,7 @@ describe("Authorisation endpoint", () => {
       context.container = new Container();
 
       context.container
-        .bind<EventEmitterWrapper>(APP.eventEmitterWrapper)
+        .bind<EventEmitterWrapper>(EventEmitterWrapper)
         .to(EventEmitterWrapper)
         .inSingletonScope();
 
@@ -113,7 +113,7 @@ describe("Authorisation endpoint", () => {
       context.container = new Container();
 
       context.container
-        .bind<EventEmitterWrapper>(APP.eventEmitterWrapper)
+        .bind<EventEmitterWrapper>(EventEmitterWrapper)
         .to(EventEmitterWrapper)
         .inSingletonScope();
 
@@ -170,7 +170,7 @@ describe("Authorisation endpoint", () => {
     app.use(async (context: AppContext, next: Next) => {
       context.container = new Container();
       context.container
-        .bind<EventEmitterWrapper>(APP.eventEmitterWrapper)
+        .bind<EventEmitterWrapper>(EventEmitterWrapper)
         .to(EventEmitterWrapper)
         .inSingletonScope();
 
@@ -231,7 +231,7 @@ describe("Authorisation endpoint", () => {
       context.container = new Container();
 
       context.container
-        .bind<EventEmitterWrapper>(APP.eventEmitterWrapper)
+        .bind<EventEmitterWrapper>(EventEmitterWrapper)
         .to(EventEmitterWrapper)
         .inSingletonScope();
 
@@ -290,7 +290,7 @@ describe("Authorisation endpoint", () => {
       context.container = new Container();
 
       context.container
-        .bind<EventEmitterWrapper>(APP.eventEmitterWrapper)
+        .bind<EventEmitterWrapper>(EventEmitterWrapper)
         .to(EventEmitterWrapper)
         .inSingletonScope();
 
@@ -345,7 +345,7 @@ describe("Authorisation endpoint", () => {
       context.container = new Container();
 
       context.container
-        .bind<EventEmitterWrapper>(APP.eventEmitterWrapper)
+        .bind<EventEmitterWrapper>(EventEmitterWrapper)
         .to(EventEmitterWrapper)
         .inSingletonScope();
 

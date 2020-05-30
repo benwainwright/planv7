@@ -26,7 +26,7 @@ export default class AddPlanHandler extends HandlerBase<AddPlanCommand> {
     planRepository: AuthenticatedEntityRepository<Plan>,
     @inject(TYPES.currentLoginSession) session: CurrentLoginSession,
     @inject(TYPES.logger) logger: Logger,
-    @inject(TYPES.eventEmitterWrapper)
+    @inject(EventEmitterWrapper)
     applicationEvents: EventEmitterWrapper,
     @inject(TYPES.slugGenerator)
     slugGenerator: SlugGenerator<Plan>

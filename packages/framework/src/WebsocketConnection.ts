@@ -33,7 +33,7 @@ export default class WebsocketConnection {
     @inject(Serialiser)
     serialiser: Serialiser,
 
-    @inject(APP.eventEmitterWrapper)
+    @inject(EventEmitterWrapper)
     events: EventEmitterWrapper,
 
     @inject(APP.logger)

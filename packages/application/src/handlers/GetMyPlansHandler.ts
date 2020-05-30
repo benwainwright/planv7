@@ -26,7 +26,7 @@ export default class GetMyPlansHandler extends HandlerBase<GetMyPlansCommand> {
     planRepository: AuthenticatedEntityRepository<Plan>,
     @inject(TYPES.currentLoginSession) session: CurrentLoginSession,
     @inject(TYPES.logger) logger: Logger,
-    @inject(TYPES.eventEmitterWrapper)
+    @inject(EventEmitterWrapper)
     applicationEvents: EventEmitterWrapper
   ) {
     super();

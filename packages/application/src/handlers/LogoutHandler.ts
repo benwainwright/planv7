@@ -25,7 +25,7 @@ export default class LogoutHandler extends HandlerBase<LogoutCommand> {
     @inject(TYPES.logger) logger: Logger,
     @inject(TYPES.loginSessionDestroyer)
     sessionDestroyer: LoginSessionDestroyer,
-    @inject(TYPES.eventEmitterWrapper)
+    @inject(EventEmitterWrapper)
     applicationEvents: EventEmitterWrapper
   ) {
     super();

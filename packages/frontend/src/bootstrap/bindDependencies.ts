@@ -35,7 +35,7 @@ const bindDependencies = (container: Container, publicKey: string): void => {
     .toConstantValue(new Serialiser(Domain));
 
   container
-    .bind<EventEmitterWrapper>(APP.eventEmitterWrapper)
+    .bind<EventEmitterWrapper>(EventEmitterWrapper)
     .to(EventEmitterWrapper)
     .inSingletonScope();
 

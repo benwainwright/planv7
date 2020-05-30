@@ -15,7 +15,7 @@ setConfig({ logLevel: "debug" });
 
 const ClientRootComponent: React.FC = () => {
   const session = useDependency<CurrentLoginSession>(APP.currentLoginSession);
-  const events = useDependency<EventEmitterWrapper>(APP.eventEmitterWrapper);
+  const events = useDependency<EventEmitterWrapper>(EventEmitterWrapper);
   const [user, setUser] = React.useState<User | undefined>(
     session.getCurrentUser()
   );

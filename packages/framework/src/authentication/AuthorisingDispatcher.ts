@@ -36,7 +36,7 @@ export default class AuthorisingDispatcher implements Dispatch {
     @inject(TYPES.authEndpoint)
     endpoint: string,
 
-    @inject(APP.eventEmitterWrapper)
+    @inject(EventEmitterWrapper)
     events: EventEmitterWrapper
   ) {
     this.webSocketClient = webSocketClient;

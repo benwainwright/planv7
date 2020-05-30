@@ -29,7 +29,7 @@ export default class UpdatePlanHandler extends HandlerBase<UpdatePlanCommand> {
     planRepository: AuthenticatedEntityRepository<Plan>,
     @inject(TYPES.currentLoginSession) session: CurrentLoginSession,
     @inject(TYPES.logger) logger: Logger,
-    @inject(TYPES.eventEmitterWrapper)
+    @inject(EventEmitterWrapper)
     applicationEvents: EventEmitterWrapper
   ) {
     super();

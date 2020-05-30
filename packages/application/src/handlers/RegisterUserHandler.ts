@@ -28,7 +28,7 @@ export default class RegisterUserHandler extends HandlerBase<
     @inject(TYPES.userRepository) userRepository: Repository<User>,
     @inject(TYPES.loginProvider) loginProvider: LoginProvider,
     @inject(TYPES.logger) logger: Logger,
-    @inject(TYPES.eventEmitterWrapper)
+    @inject(EventEmitterWrapper)
     applicationEvents: EventEmitterWrapper
   ) {
     super();

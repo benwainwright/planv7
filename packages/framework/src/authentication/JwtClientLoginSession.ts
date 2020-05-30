@@ -28,7 +28,7 @@ export default class JwtClientLoginSession extends JwtLoginSession
   private readonly socketClient: WebsocketClient;
 
   public constructor(
-    @inject(APP.eventEmitterWrapper) events: EventEmitterWrapper,
+    @inject(EventEmitterWrapper) events: EventEmitterWrapper,
     @inject(TYPES.jwtPublicKey)
     publicKey: string,
     @inject(APP.logger) logger: Logger,

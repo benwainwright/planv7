@@ -1,6 +1,5 @@
 export const TYPES = {
   currentLoginSession: Symbol.for("CurrentLoginSession"),
-  eventEmitterWrapper: Symbol.for("EventEmitterWrapper"),
   userRepository: Symbol.for("UserRepository"),
   slugGenerator: Symbol.for("SlugGenerator"),
   planRepository: Symbol.for("PlanRepository"),

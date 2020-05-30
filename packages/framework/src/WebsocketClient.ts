@@ -28,7 +28,7 @@ export default class WebsocketClient implements Dispatch {
     @inject(TYPES.appWebsocketUrl)
     url: string,
 
-    @inject(APP.eventEmitterWrapper)
+    @inject(EventEmitterWrapper)
     events: EventEmitterWrapper,
 
     @inject(Serialiser)
