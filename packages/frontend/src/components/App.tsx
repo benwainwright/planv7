@@ -26,7 +26,7 @@ const RawApp: React.FC = (): React.ReactElement => {
     <React.Fragment>
       <CssBaseline />
       <Header />
-      <SnackBar open={true} anchorOrigin={{vertical: "top", horizontal: "right"}}>
+      <SnackBar open={true} anchorOrigin={{vertical: "top", horizontal: "center"}}>
         <Alert severity="success">Success!</Alert>
       </SnackBar>
       <Container>
