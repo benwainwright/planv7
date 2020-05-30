@@ -30,7 +30,7 @@
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
     "typeRoots": [
-      "../../node_modules/@types", "../../node_modules/@planv7/types"
+      "../../node_modules/@types", "../../node_modules/@choirpractise/types"
     ]
   },
   "exclude":["cdk.out"]

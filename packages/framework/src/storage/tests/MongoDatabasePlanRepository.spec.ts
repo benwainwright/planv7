@@ -1,9 +1,9 @@
 /* eslint-disable sonarjs/no-duplicate-string */
 
 import { Db, MongoClient } from "mongodb";
-import { Deadline, Plan, User } from "@planv7/domain";
+import { Deadline, Plan, User } from "@choirpractise/domain";
 
-import { Logger } from "@planv7/application";
+import { Logger } from "@choirpractise/application";
 import MongoDatabasePlanRepository from "../MongoDatabasePlanRepository";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { Substitute } from "@fluffy-spoon/substitute";

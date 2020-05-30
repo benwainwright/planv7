@@ -1,7 +1,7 @@
 import { Logger as Winston, createLogger } from "winston";
 import { inject, injectable } from "inversify";
 
-import { Logger } from "@planv7/application";
+import { Logger } from "@choirpractise/application";
 import WinstonConfig from "./WinstonConfig";
 
 @injectable()

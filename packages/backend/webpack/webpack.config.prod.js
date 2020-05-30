@@ -30,7 +30,7 @@ module.exports = {
     path: path.resolve(__dirname, "../dist"),
     publicPath: "/assets",
     pathinfo: false,
-    filename: `planv7-server.js`,
+    filename: `choirpractise-server.js`,
   },
   devtool: "source-map",
   optimization: {

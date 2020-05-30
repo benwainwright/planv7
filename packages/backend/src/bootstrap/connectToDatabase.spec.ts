@@ -1,5 +1,5 @@
 import * as constants from "../constants";
-import { Logger } from "@planv7/application";
+import { Logger } from "@choirpractise/application";
 import { MongoClient } from "mongodb";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import connectToDatabase from "./connectToDatabase";

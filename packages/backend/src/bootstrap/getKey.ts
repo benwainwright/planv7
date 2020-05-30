@@ -1,4 +1,4 @@
-import { Logger } from "@planv7/application";
+import { Logger } from "@choirpractise/application";
 
 const getKey = (envVar: string, defaultKey: string, logger: Logger): string => {
   if (process.env[envVar]) {

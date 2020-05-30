@@ -2,8 +2,8 @@ import {
   CommandOutcome,
   User,
   UserLoginStateChangeEvent,
-} from "@planv7/domain";
-import { EventEmitterWrapper, Logger } from "@planv7/application";
+} from "@choirpractise/domain";
+import { EventEmitterWrapper, Logger } from "@choirpractise/application";
 import { JWT_TOKEN_NAME, USER_COOKIE_NAME } from "../constants";
 import { TEST_PRIVATE_KEY, TEST_PUBLIC_KEY } from "../keys";
 

@@ -95,6 +95,6 @@ Deploy:
   image: benwainwright/node14-with-yarn-and-aws-cli:latest
   stage: Deploy
   script:
-    - yarn workspace @planv7/deployment cdk deploy --require-approval never
-    - yarn workspace @planv7/deployment deploy:app
+    - yarn workspace @choirpractise/deployment cdk deploy --require-approval never
+    - yarn workspace @choirpractise/deployment deploy:app
 

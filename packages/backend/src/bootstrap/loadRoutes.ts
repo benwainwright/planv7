@@ -1,5 +1,5 @@
 import * as routes from "../routes";
-import { HANDLERS, Logger } from "@planv7/application";
+import { HANDLERS, Logger } from "@choirpractise/application";
 import AppContext from "../AppContext";
 import { Container } from "inversify";
 import Koa from "koa";

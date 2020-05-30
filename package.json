@@ -1,12 +1,12 @@
 {
-  "name": "planv7",
+  "name": "choirpractise",
   "private": true,
   "main": "index.js",
   "workspaces": [
     "packages/*"
   ],
   "dependencies": {
-    "@planv7/testing": "workspace:packages/testing",
+    "@choirpractise/testing": "workspace:packages/testing",
     "jest": "^25.0.0",
     "ts-jest": "^25.5.0",
     "typescript": "^3.8.3"
@@ -16,7 +16,7 @@
     "test": "APP_LOG_LEVEL=none jest --silent",
     "start:dev": "webpack --env=dev",
     "build:prod": "yarn workspaces foreach --parallel run build:prod",
-    "deploy:stack": "yarn workspace @planv7/infrastructure deploy"
+    "deploy:stack": "yarn workspace @choirpractise/infrastructure deploy"
   },
   "config": {
     "mongoDbMemoryServer": {

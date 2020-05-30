@@ -2,7 +2,7 @@ import {
   CommandOutcome,
   LogoutCommand,
   UserLoginStateChangeEvent,
-} from "@planv7/domain";
+} from "@choirpractise/domain";
 
 import {
   EventEmitterWrapper,

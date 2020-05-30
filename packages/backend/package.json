@@ -1,5 +1,5 @@
 {
-  "name": "@planv7/backend",
+  "name": "@choirpractise/backend",
   "dependencies": {
     "@babel/core": "^7.10.1",
     "@babel/plugin-proposal-class-properties": "^7.10.1",
@@ -7,15 +7,15 @@
     "@babel/preset-env": "^7.10.1",
     "@babel/preset-react": "^7.10.1",
     "@babel/preset-typescript": "^7.10.1",
+    "@choirpractise/application": "workspace:packages/application",
+    "@choirpractise/eslint-config-choirpractise": "workspace:packages/eslint-config-choirpractise",
+    "@choirpractise/framework": "workspace:packages/framework",
+    "@choirpractise/frontend": "workspace:packages/frontend",
+    "@choirpractise/testing": "workspace:packages/testing",
     "@hot-loader/react-dom": "^16.13.0",
     "@material-ui/core": "^4.9.13",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.54",
-    "@planv7/application": "workspace:packages/application",
-    "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7",
-    "@planv7/framework": "workspace:packages/framework",
-    "@planv7/frontend": "workspace:packages/frontend",
-    "@planv7/testing": "workspace:packages/testing",
     "@reach/router": "^1.3.3",
     "@types/webpack-env": "^1.15.2",
     "@types/yargs": "^15.0.4",
@@ -56,7 +56,7 @@
     "yargs": "^15.3.1"
   },
   "scripts": {
-    "start": "node dist/planv7-server",
+    "start": "node dist/choirpractise-server",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint '**/*.{ts,tsx,js,jsx,d.ts}'",
@@ -71,7 +71,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "@planv7/eslint-config-planv7"
+      "@choirpractise/eslint-config-choirpractise"
     ],
     "parserOptions": {
       "project": "./tsconfig.json"

@@ -11,9 +11,9 @@ const app = new cdk.App();
 export const region = "us-east-1";
 
 const infrastructure = new ApplicationDeploymentStack(app, {
-  applicationName: "Planv7",
+  applicationName: "choirpractise",
   codeDeployBucket: EU_WEST_2_LONDON_CODE_DEPLOY_RESOURCES_BUCKET,
-  keyName: "Planv7",
+  keyName: "choirpractise",
   env: {
     region,
     account: "661272765443",

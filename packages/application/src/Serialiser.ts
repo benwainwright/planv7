@@ -1,6 +1,6 @@
 import "reflect-metadata";
 
-import { Serialisable } from "@planv7/domain";
+import { Serialisable } from "@choirpractise/domain";
 import Typeson from "typeson";
 import date from "typeson-registry/types/date";
 import error from "typeson-registry/types/error";

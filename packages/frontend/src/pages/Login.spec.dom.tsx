@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/extend-expect";
 import * as React from "react";
-import { TYPES as DOMAIN, LoginCommand } from "@planv7/domain";
+import { TYPES as DOMAIN, LoginCommand } from "@choirpractise/domain";
 import { fireEvent, render, screen } from "@testing-library/react";
 import Login from "./Login";
 import { act } from "react-dom/test-utils";

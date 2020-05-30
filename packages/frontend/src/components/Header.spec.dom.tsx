@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/extend-expect";
 import * as React from "react";
-import { TYPES as DOMAIN, LogoutCommand } from "@planv7/domain";
+import { TYPES as DOMAIN, LogoutCommand } from "@choirpractise/domain";
 import { fireEvent, render, screen } from "@testing-library/react";
 import CurrentUserContext from "../utils/CurrentUserContext";
 import Header from "./Header";

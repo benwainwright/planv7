@@ -1,4 +1,4 @@
-import { TYPES as APP, Logger } from "@planv7/application";
+import { TYPES as APP, Logger } from "@choirpractise/application";
 import initialiseServer, { InitialisationResult } from "./initialiseServer";
 import { Container } from "inversify";
 import { DOMParser } from "xmldom";

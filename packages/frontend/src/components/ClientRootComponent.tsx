@@ -3,8 +3,8 @@ import {
   TYPES as APP,
   CurrentLoginSession,
   EventEmitterWrapper,
-} from "@planv7/application";
-import { User, UserLoginStateChangeEvent } from "@planv7/domain";
+} from "@choirpractise/application";
+import { User, UserLoginStateChangeEvent } from "@choirpractise/domain";
 
 import App from "../components/App";
 import CurrentUserContext from "../utils/CurrentUserContext";

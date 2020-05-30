@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { Command, Handler } from "@planv7/domain";
+import { Command, Handler } from "@choirpractise/domain";
 import { injectable } from "inversify";
 
 @injectable()

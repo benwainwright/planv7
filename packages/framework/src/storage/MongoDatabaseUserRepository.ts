@@ -4,9 +4,9 @@ import { Collection, Db } from "mongodb";
 import { genSalt, hash as getHash } from "bcryptjs";
 import { inject, injectable } from "inversify";
 
-import { Repository } from "@planv7/application";
+import { Repository } from "@choirpractise/application";
 import TYPES from "../TYPES";
-import { User } from "@planv7/domain";
+import { User } from "@choirpractise/domain";
 
 const SALT_ROUNDS = 10;
 

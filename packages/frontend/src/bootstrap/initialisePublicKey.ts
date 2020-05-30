@@ -1,4 +1,4 @@
-import { TEST_PUBLIC_KEY } from "@planv7/framework";
+import { TEST_PUBLIC_KEY } from "@choirpractise/framework";
 
 const initialisePublicKey = (): string => {
   if (!process.env.JWT_PUBLIC_KEY && process.env.NODE_ENV === "production") {

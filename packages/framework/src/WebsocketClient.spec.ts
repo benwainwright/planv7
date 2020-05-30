@@ -1,5 +1,5 @@
-import { Command, DomainEvent, Serialisable } from "@planv7/domain";
-import { EventEmitterWrapper, Logger, Serialiser } from "@planv7/application";
+import { Command, DomainEvent, Serialisable } from "@choirpractise/domain";
+import { EventEmitterWrapper, Logger, Serialiser } from "@choirpractise/application";
 
 import { Substitute } from "@fluffy-spoon/substitute";
 import WS from "jest-websocket-mock";

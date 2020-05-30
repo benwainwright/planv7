@@ -1,3 +1,3 @@
-import { renderApp } from "@planv7/frontend";
+import { renderApp } from "@choirpractise/frontend";
 
 renderApp();

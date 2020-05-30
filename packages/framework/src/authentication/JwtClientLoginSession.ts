@@ -3,13 +3,13 @@ import {
   EventEmitterWrapper,
   Logger,
   LoginSessionDestroyer,
-} from "@planv7/application";
+} from "@choirpractise/application";
 import { COOKIE_EXPIRY, JWT_TOKEN_NAME } from "../constants";
 import {
   CommandOutcome,
   User,
   UserLoginStateChangeEvent,
-} from "@planv7/domain";
+} from "@choirpractise/domain";
 import { inject, injectable } from "inversify";
 
 import { AxiosResponse } from "axios";

@@ -8,7 +8,7 @@ import {
   User,
   UserLoginStateChangeEvent,
   UserRegisteredEvent,
-} from "@planv7/domain";
+} from "@choirpractise/domain";
 
 import {
   EventEmitterWrapper,

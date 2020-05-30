@@ -1,5 +1,5 @@
-import { TYPES as APP, Logger } from "@planv7/application";
-import { WinstonConfig, WinstonLogger } from "@planv7/framework";
+import { TYPES as APP, Logger } from "@choirpractise/application";
+import { WinstonConfig, WinstonLogger } from "@choirpractise/framework";
 import BrowserConsole from "winston-transport-browserconsole";
 import { Container } from "inversify";
 import { format } from "winston";

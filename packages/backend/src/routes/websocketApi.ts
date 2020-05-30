@@ -1,10 +1,10 @@
-import { Logger, getHandlerBinder } from "@planv7/application";
+import { Logger, getHandlerBinder } from "@choirpractise/application";
 import AppContext from "../AppContext";
 import { Container } from "inversify";
 import { IncomingMessage } from "http";
 import Koa from "koa";
 import WebSocket from "ws";
-import { WebsocketConnection } from "@planv7/framework";
+import { WebsocketConnection } from "@choirpractise/framework";
 import route from "koa-route";
 import websockify from "koa-websocket";
 

@@ -1,4 +1,4 @@
-import { Serialisable } from "@planv7/domain";
+import { Serialisable } from "@choirpractise/domain";
 
 export default class ApplicationError extends Error implements Serialisable {
   public constructor(message: string) {

@@ -3,9 +3,9 @@ import {
   TYPES as APP,
   AuthenticatedEntityRepository,
   Logger,
-} from "@planv7/application";
+} from "@choirpractise/application";
 import { Collection, Db } from "mongodb";
-import { Deadline, Plan, User } from "@planv7/domain";
+import { Deadline, Plan, User } from "@choirpractise/domain";
 import { inject, injectable } from "inversify";
 
 import TYPES from "../TYPES";

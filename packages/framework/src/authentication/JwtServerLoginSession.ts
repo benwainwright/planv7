@@ -1,6 +1,6 @@
 import "reflect-metadata";
 
-import { TYPES as APP, Logger } from "@planv7/application";
+import { TYPES as APP, Logger } from "@choirpractise/application";
 import { inject, injectable, optional } from "inversify";
 
 import { AxiosResponse } from "axios";
@@ -9,7 +9,7 @@ import { IncomingMessage } from "http";
 import { JWT_TOKEN_NAME } from "../constants";
 import JwtLoginSession from "./JwtLoginSession";
 import TYPES from "../TYPES";
-import { User } from "@planv7/domain";
+import { User } from "@choirpractise/domain";
 
 @injectable()
 export default class JwtServerLoginSession extends JwtLoginSession {

@@ -27,7 +27,7 @@ module.exports = {
     "pnpapi",
     nodeExternals({
       modulesFromFile: true,
-      whitelist: ["webpack/hot/poll?1000", /^@planv7/u],
+      whitelist: ["webpack/hot/poll?1000", /^@choirpractise/u],
     }),
   ],
   module: {
@@ -56,7 +56,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new StartServerPlugin("planv7-server.js"),
+    new StartServerPlugin("choirpractise-server.js"),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
@@ -66,6 +66,6 @@ module.exports = {
     path: path.resolve(__dirname, "../dist"),
     publicPath: "/",
     pathinfo: false,
-    filename: "planv7-server.js",
+    filename: "choirpractise-server.js",
   },
 };

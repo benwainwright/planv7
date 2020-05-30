@@ -1,4 +1,4 @@
-import * as Domain from "@planv7/domain";
+import * as Domain from "@choirpractise/domain";
 
 import {
   TYPES as APP,
@@ -10,7 +10,7 @@ import {
   Serialiser,
   SimpleCommandBus,
   SlugGenerator,
-} from "@planv7/application";
+} from "@choirpractise/application";
 
 import {
   TYPES as FRAMEWORK,
@@ -20,7 +20,7 @@ import {
   MongoDatabasePlanSlugGenerator,
   MongoDatabaseUserRepository,
   ResponseAuthHeader,
-} from "@planv7/framework";
+} from "@choirpractise/framework";
 
 import { Container } from "inversify";
 import { Db } from "mongodb";

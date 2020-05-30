@@ -1,4 +1,4 @@
-import { Command } from "@planv7/domain";
+import { Command } from "@choirpractise/domain";
 import HandlerBase from "./HandlerBase";
 
 describe("Handler", (): void => {

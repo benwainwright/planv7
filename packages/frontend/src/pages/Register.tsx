@@ -4,7 +4,7 @@ import {
   TYPES as DOMAIN,
   LoginCommand,
   RegisterUserCommand,
-} from "@planv7/domain";
+} from "@choirpractise/domain";
 import Form, { FormData } from "../components/Form";
 import CurrentUserContext from "../utils/CurrentUserContext";
 import Redirect from "../utils/Redirect";

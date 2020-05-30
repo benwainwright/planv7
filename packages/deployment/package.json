@@ -1,5 +1,5 @@
 {
-  "name": "@planv7/deployment",
+  "name": "@choirpractise/deployment",
   "version": "0.1.0",
   "bin": "bin/infrastructure.js",
   "scripts": {
@@ -31,8 +31,8 @@
     "@aws-cdk/aws-s3": "^1.41.0",
     "@aws-cdk/aws-secretsmanager": "^1.41.0",
     "@aws-cdk/core": "^1.41.0",
-    "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7",
-    "@planv7/testing": "workspace:packages/testing",
+    "@choirpractise/eslint-config-choirpractise": "workspace:packages/eslint-config-choirpractise",
+    "@choirpractise/testing": "workspace:packages/testing",
     "@types/rimraf": "^3.0.0",
     "@types/source-map-support": "^0.5.1",
     "eslint": "^7.0.0",
@@ -45,7 +45,7 @@
       "project": "./tsconfig.json"
     },
     "extends": [
-      "@planv7/eslint-config-planv7"
+      "@choirpractise/eslint-config-choirpractise"
     ],
     "rules": {
       "no-new": "off"

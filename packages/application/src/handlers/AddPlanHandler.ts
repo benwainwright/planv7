@@ -3,7 +3,7 @@ import {
   CommandOutcome,
   CurrentUserPlansChangedEvent,
   Plan,
-} from "@planv7/domain";
+} from "@choirpractise/domain";
 
 import { EventEmitterWrapper, Logger, SlugGenerator } from "../ports";
 import { inject, injectable } from "inversify";

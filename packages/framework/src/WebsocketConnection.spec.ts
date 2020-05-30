@@ -6,8 +6,8 @@ import {
   DomainError,
   DomainEvent,
   Serialisable,
-} from "@planv7/domain";
-import { EventEmitterWrapper, Logger, Serialiser } from "@planv7/application";
+} from "@choirpractise/domain";
+import { EventEmitterWrapper, Logger, Serialiser } from "@choirpractise/application";
 
 import { Container } from "inversify";
 import WebSocket from "ws";

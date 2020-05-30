@@ -1,9 +1,9 @@
 import * as constants from "./constants";
-import { TEST_PRIVATE_KEY, TEST_PUBLIC_KEY } from "@planv7/framework";
+import { TEST_PRIVATE_KEY, TEST_PUBLIC_KEY } from "@choirpractise/framework";
 import AppContext from "./AppContext";
 import { Container } from "inversify";
 import Koa from "koa";
-import { Logger } from "@planv7/application";
+import { Logger } from "@choirpractise/application";
 import bindDependencies from "./bootstrap/bindDependencies";
 import connectToDatabase from "./bootstrap/connectToDatabase";
 import getKey from "./bootstrap/getKey";
