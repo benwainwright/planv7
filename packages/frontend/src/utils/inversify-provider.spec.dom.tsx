@@ -1,8 +1,7 @@
 import { InversifyProvider, useDependency } from "./inversify-provider";
-import React, { ReactElement, useContext } from "react";
+import React, { ReactElement } from "react";
 import { Container } from "inversify";
 import { render } from "@testing-library/react";
-import { when } from "jest-when";
 
 describe("ContainerContext", () => {
   it("Resolves dependency available when requested in children", () => {
