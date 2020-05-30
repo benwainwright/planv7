@@ -51,6 +51,7 @@ const RawApp: React.FC = (): React.ReactElement => {
       <CssBaseline />
       <Header />
       <SnackBar
+        className="alert"
         autoHideDuration={3000}
         open={Boolean(alertText)}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}

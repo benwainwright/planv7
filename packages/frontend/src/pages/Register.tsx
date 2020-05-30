@@ -39,18 +39,21 @@ const Register: React.FC<RouteComponentProps> = () => {
         <TextField
           fullWidth
           name={USERNAME}
+          id={USERNAME}
           label="Username"
           inputProps={{ "data-testid": USERNAME }}
         />
         <TextField
           fullWidth
           name={EMAIL}
+          id={EMAIL}
           label="Email"
           inputProps={{ "data-testid": EMAIL }}
         />
         <TextField
           fullWidth
           name={PASSWORD}
+          id={PASSWORD}
           label="Password"
           type="password"
           inputProps={{ "data-testid": PASSWORD }}
@@ -58,6 +61,7 @@ const Register: React.FC<RouteComponentProps> = () => {
         <TextField
           fullWidth
           name={VERIFY_PASSWORD}
+          id={VERIFY_PASSWORD}
           inputProps={{ "data-testid": VERIFY_PASSWORD }}
           type="password"
           label="Verify Password"

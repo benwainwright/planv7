@@ -39,7 +39,7 @@ const Header: React.FC = (): React.ReactElement => {
   };
 
   return (
-    <header>
+    <header className="appBar">
       <AppBar className={classes.root} position="static">
         <Toolbar>
           <IconButton

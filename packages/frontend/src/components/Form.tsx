@@ -22,7 +22,8 @@ const Form: React.FC<FormProps> = (props) => {
   const [dirty, setDirty] = React.useState(false);
   const [data, setData] = React.useState<FormData>({});
 
-  const handleSubmit = (): void => {
+  const handleSubmit = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void => {
+    event.preventDefault();
     props.onSubmit(data);
   };
 
@@ -56,7 +57,7 @@ const Form: React.FC<FormProps> = (props) => {
     <form noValidate autoComplete="off">
       {nodes}
       <ButtonGroup className={classes.root}>
-        <Button onClick={handleSubmit}>Submit</Button>
+        <Button type="submit" onClick={handleSubmit}>Submit</Button>
         {dirty && <Button onClick={handleClear}>Clear</Button>}
       </ButtonGroup>
     </form>

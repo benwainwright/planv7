@@ -28,6 +28,7 @@ const Login: React.FC<RouteComponentProps> = () => {
         <TextField
           fullWidth
           name={USERNAME}
+          id={USERNAME}
           label="Username"
           type="password"
           inputProps={{ "data-testid": USERNAME }}
@@ -35,6 +36,7 @@ const Login: React.FC<RouteComponentProps> = () => {
         <TextField
           fullWidth
           name={PASSWORD}
+          id={PASSWORD}
           label="Password"
           type="password"
           inputProps={{ "data-testid": PASSWORD }}
