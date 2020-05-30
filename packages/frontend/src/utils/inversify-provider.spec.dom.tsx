@@ -1,7 +1,8 @@
 import { InversifyProvider, useDependency } from "./inversify-provider";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useContext } from "react";
 import { Container } from "inversify";
 import { render } from "@testing-library/react";
+import { when } from "jest-when";
 
 describe("ContainerContext", () => {
   it("Resolves dependency available when requested in children", () => {
@@ -22,6 +23,18 @@ describe("ContainerContext", () => {
     );
 
     expect(dependency).toHaveBeenCalled();
+  });
+
+  it("Throws an error message telling you what you tried to get when not configured with a container", () => {
+
+    const MockElement = (): ReactElement => {
+      useDependency<Function>("foo");
+      return <></>;
+    };
+
+    expect(() => {
+      render(<MockElement />)
+    }).toThrowError("Tried to get service 'foo' but a container hasn't been configured");
   });
 
   it("Resolves dependency available when requested in grandchildren", () => {

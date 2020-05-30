@@ -7,7 +7,7 @@ export interface InversifyContainerContextProps {
   container?: Container;
 }
 
-const InversifyContainerContext: React.Context<InversifyContainerContextProps> = React.createContext<
+export const InversifyContainerContext: React.Context<InversifyContainerContextProps> = React.createContext<
   InversifyContainerContextProps
 >({ container: undefined });
 
@@ -24,7 +24,7 @@ export const useDependency = <T extends unknown>(
 ): T => {
   const { container } = useContext(InversifyContainerContext);
   if (!container) {
-    throw new Error("Context not configured with inversify container");
+    throw new Error(`Tried to get service '${String(identifier)}' but a container hasn't been configured`);
   }
   return container.get<T>(identifier);
 };
