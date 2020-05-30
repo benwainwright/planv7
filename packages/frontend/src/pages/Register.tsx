@@ -6,6 +6,8 @@ import {
   RegisterUserCommand,
 } from "@planv7/domain";
 import Form, { FormData } from "../components/Form";
+import CurrentUserContext from "../utils/CurrentUserContext";
+import Redirect from "../utils/Redirect";
 import { RouteComponentProps } from "@reach/router";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
@@ -17,6 +19,7 @@ const PASSWORD = "password";
 const VERIFY_PASSWORD = "verifyPassword";
 
 const Register: React.FC<RouteComponentProps> = () => {
+  const currentUser = React.useContext(CurrentUserContext);
   const commandBus = useDependency<CommandBus>(DOMAIN.commandBus);
 
   const handleSubmit = async (data: FormData): Promise<void> => {
@@ -27,7 +30,7 @@ const Register: React.FC<RouteComponentProps> = () => {
     await commandBus.execute(new LoginCommand(data[USERNAME], data[PASSWORD]));
   };
 
-  return (
+  const registerForm =  (
     <React.Fragment>
       <Typography variant="h2" gutterBottom>
         Register!
@@ -62,6 +65,8 @@ const Register: React.FC<RouteComponentProps> = () => {
       </Form>
     </React.Fragment>
   );
+
+  return currentUser ? <Redirect to="/app" /> : registerForm;
 };
 
 export default Register;
