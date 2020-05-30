@@ -10,6 +10,7 @@
     "@hot-loader/react-dom": "^16.13.0",
     "@material-ui/core": "^4.9.13",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.54",
     "@planv7/application": "workspace:packages/application",
     "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7",
     "@planv7/framework": "workspace:packages/framework",

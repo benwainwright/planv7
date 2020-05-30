@@ -14,6 +14,7 @@ import { useDependency } from "../utils/inversify-provider";
 
 const RIGHT_MARGIN_SPACING = 2;
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -49,7 +50,7 @@ const Header: React.FC = (): React.ReactElement => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h1" className={classes.title}>
             Sing It
           </Typography>
           <NavigationButton to="/app">Home</NavigationButton>

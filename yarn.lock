@@ -2617,6 +2617,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@material-ui/lab@npm:^4.0.0-alpha.54":
+  version: 4.0.0-alpha.54
+  resolution: "@material-ui/lab@npm:4.0.0-alpha.54"
+  dependencies:
+    "@babel/runtime": ^7.4.4
+    "@material-ui/utils": ^4.9.6
+    clsx: ^1.0.4
+    prop-types: ^15.7.2
+    react-is: ^16.8.0
+  peerDependencies:
+    "@material-ui/core": ^4.9.10
+    "@types/react": ^16.8.6
+    react: ^16.8.0
+    react-dom: ^16.8.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 3/6758737d755dab1be0a18f334e7563872a28810e554637afbb2b65679256629262b59d914d753702650ae30bf3a5a07583dc0603ad3cad8f29660b3dcc6ad18f
+  languageName: node
+  linkType: hard
+
 "@material-ui/styles@npm:^4.10.0":
   version: 4.10.0
   resolution: "@material-ui/styles@npm:4.10.0"
@@ -2800,6 +2821,7 @@ __metadata:
     "@hot-loader/react-dom": ^16.13.0
     "@material-ui/core": ^4.9.13
     "@material-ui/icons": ^4.9.1
+    "@material-ui/lab": ^4.0.0-alpha.54
     "@planv7/application": "workspace:packages/application"
     "@planv7/eslint-config-planv7": "workspace:packages/eslint-config-planv7"
     "@planv7/framework": "workspace:packages/framework"

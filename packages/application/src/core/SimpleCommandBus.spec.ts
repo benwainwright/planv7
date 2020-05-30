@@ -103,7 +103,7 @@ describe("SimpleCommandBus", (): void => {
       }
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      protected async execute(command: MockCommand1): Promise<void> {
+      protected async execute(_command: MockCommand1): Promise<void> {
         // Noop
       }
     }

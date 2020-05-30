@@ -2,11 +2,11 @@ import { createMuiTheme } from "@material-ui/core/styles";
 
 const Theme = createMuiTheme({
   typography: {
-    fontSize: 16,
-    h2: {
-      marginTop: "2rem",
-    },
-  },
+    fontSize: 20,
+    h1: {
+      fontSize: "2em"
+    }
+  }
 });
 
 export default Theme;
