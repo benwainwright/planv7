@@ -6,6 +6,7 @@ import LoginCommand from "./LoginCommand";
 import LogoutCommand from "./LogoutCommand";
 import RegisterUserCommand from "./RegisterUserCommand";
 import UpdatePlanCommand from "./UpdatePlanCommand";
+import UploadFileCommand from "./UploadFileCommand";
 
 export {
   LogoutCommand,
@@ -14,6 +15,7 @@ export {
   DeletePlanCommand,
   GetMyPlansCommand,
   RegisterUserCommand,
+  UploadFileCommand,
   LoginCommand,
   AddPlanCommand,
 };
