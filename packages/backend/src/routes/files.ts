@@ -15,13 +15,20 @@ const files = async (): Promise<Koa.Middleware<any, any>> => {
   router.post(
     baseUrlRegex,
     async (context: AppContext & RouterContext, next: Next) => {
-      await s3.getSignedUrlPromise("putObject", {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        Bucket: process.env.FILES_BUCKET,
+      if (!context.request.body.path) {
+        context.response.status = 400;
+        context.response.body = "Missing 'path' parameter";
+      } else {
+        const url = await s3.getSignedUrlPromise("putObject", {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          Bucket: process.env.FILES_BUCKET,
 
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        Key: context.request.body.path,
-      });
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          Key: context.request.body.path,
+        });
+        context.response.status = 200;
+        context.response.body = JSON.stringify({ url });
+      }
       await next();
     }
   );

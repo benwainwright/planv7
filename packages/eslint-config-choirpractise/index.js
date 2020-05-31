@@ -103,7 +103,7 @@ module.exports = {
     complexity: "error",
     "no-await-in-loop": "error",
     "no-console": "error",
-    "require-atomic-updates": "error",
+    "require-atomic-updates": "off",
     "array-callback-return": "error",
     // No-extra-parans keeps giving me false positives
     "no-extra-parens": "off",
