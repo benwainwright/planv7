@@ -5208,7 +5208,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bindings@npm:^1.5.0":
+"bindings@npm:^1.3.0, bindings@npm:^1.5.0":
   version: 1.5.0
   resolution: "bindings@npm:1.5.0"
   dependencies:
@@ -5849,6 +5849,7 @@ __metadata:
   resolution: "choirpractise@workspace:."
   dependencies:
     "@choirpractise/testing": "workspace:packages/testing"
+    esprint: ^0.7.0
     jest: ^25.0.0
     ts-jest: ^25.5.0
     typescript: ^3.8.3
@@ -7293,6 +7294,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dnode-protocol@npm:~0.2.2":
+  version: 0.2.2
+  resolution: "dnode-protocol@npm:0.2.2"
+  dependencies:
+    jsonify: ~0.0.0
+    traverse: ~0.6.3
+  checksum: 3/f735eb028695bac3c5a5fc5b80ebbdfab0c82bda692b89403452689c94545f1c1f91ef439d27a85cd0541410c3e19cfc8e814d42d8b8789c5ad45c37532e2d9a
+  languageName: node
+  linkType: hard
+
+"dnode-weak-napi@npm:1.2.2":
+  version: 1.2.2
+  resolution: "dnode-weak-napi@npm:1.2.2"
+  dependencies:
+    dnode-protocol: ~0.2.2
+    jsonify: ~0.0.0
+    weak-napi: ^1.0.3
+  dependenciesMeta:
+    weak-napi:
+      optional: true
+  checksum: 3/a330c6961a11dec3b43c563c056437ee15ad876459e217bec49d6255ad6144744a3d24b258ea22d35890a6d764a64b304c3b9782699d4e3e92021a3d44762ffc
+  languageName: node
+  linkType: hard
+
 "doctrine@npm:1.5.0":
   version: 1.5.0
   resolution: "doctrine@npm:1.5.0"
@@ -8292,6 +8317,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"esprint@npm:^0.7.0":
+  version: 0.7.0
+  resolution: "esprint@npm:0.7.0"
+  dependencies:
+    dnode-weak-napi: 1.2.2
+    fb-watchman: ^2.0.0
+    glob: ^7.1.4
+    sane: ^4.1.0
+    worker-farm: ^1.7.0
+    yargs: ^14.0.0
+  peerDependencies:
+    eslint: ">=3"
+  bin:
+    esprint: build/cli.js
+  checksum: 3/da4644101b6356f6fcb4f52eb6e873c17041bd3bf8c2a503c5364b684d1925294d5985c1a010654af1bd6a8a8dbbba7b2862fd3f43bce0fb9f3ad28361b4143b
+  languageName: node
+  linkType: hard
+
 "esquery@npm:^1.0.1, esquery@npm:^1.2.0":
   version: 1.3.1
   resolution: "esquery@npm:1.3.1"
@@ -9198,6 +9241,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"get-symbol-from-current-process-h@npm:^1.0.1":
+  version: 1.0.2
+  resolution: "get-symbol-from-current-process-h@npm:1.0.2"
+  checksum: 3/6fe90a87893e28ddd071765ff631ced40ab80fd6ee564459867e59db0fc7e61afb93888a0185d7c7174c0171f72c30ff13504260192d7c56e42b43a2fdbcf6db
+  languageName: node
+  linkType: hard
+
 "get-uri@npm:^2.0.0":
   version: 2.0.4
   resolution: "get-uri@npm:2.0.4"
@@ -9209,6 +9259,15 @@ fsevents@^1.2.7:
     ftp: ~0.3.10
     readable-stream: 2
   checksum: 3/c795b18ff9941598624329f68513287c3296fe680fd7cadd04f82cf9e52dc86b970e39a7873a654e3fea2e5820d6e099a720498c184380b869806b66bd674a91
+  languageName: node
+  linkType: hard
+
+"get-uv-event-loop-napi-h@npm:^1.0.5":
+  version: 1.0.6
+  resolution: "get-uv-event-loop-napi-h@npm:1.0.6"
+  dependencies:
+    get-symbol-from-current-process-h: ^1.0.1
+  checksum: 3/992c488eb33ac6c3ea97af5fc88f99c491fdfab59f8c4fdb30c7fc368a4a81fb94053417eb55c5e01ff52ae9e0dee51ce5e972f3cd834f55511fbc547e37b4de
   languageName: node
   linkType: hard
 
@@ -11509,6 +11568,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"jsonify@npm:~0.0.0":
+  version: 0.0.0
+  resolution: "jsonify@npm:0.0.0"
+  checksum: 3/53630f54108a55e062534503bf4a236165082ff75d2872a08ce8625b476dcf5ad8c990b012b9c740f93c61f20227161eb58dd41a16a0894699cc47d697d6d7c7
+  languageName: node
+  linkType: hard
+
 "jsonschema@npm:^1.2.5":
   version: 1.2.6
   resolution: "jsonschema@npm:1.2.6"
@@ -13103,7 +13169,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"node-addon-api@npm:^1.7.1":
+"node-addon-api@npm:^1.1.0, node-addon-api@npm:^1.7.1":
   version: 1.7.1
   resolution: "node-addon-api@npm:1.7.1"
   dependencies:
@@ -15928,7 +15994,7 @@ resolve@1.1.7:
   languageName: node
   linkType: hard
 
-"sane@npm:^4.0.3":
+"sane@npm:^4.0.3, sane@npm:^4.1.0":
   version: 4.1.0
   resolution: "sane@npm:4.1.0"
   dependencies:
@@ -16117,6 +16183,16 @@ resolve@1.1.7:
     is-plain-object: ^2.0.3
     split-string: ^3.0.1
   checksum: 3/a97a99a00cc5ed3034ccd690ff4dde167e4182ec4ef2fd5277637a6e388839292559301408b91405534b44e76450bdd443ac95427fde40e9a1a62102c1262bd1
+  languageName: node
+  linkType: hard
+
+"setimmediate-napi@npm:^1.0.3":
+  version: 1.0.6
+  resolution: "setimmediate-napi@npm:1.0.6"
+  dependencies:
+    get-symbol-from-current-process-h: ^1.0.1
+    get-uv-event-loop-napi-h: ^1.0.5
+  checksum: 3/faacaa355af164d7f1c8f567210c88b90f237c508bdf28235d62111a660452da05c726a2fc01f6219b0e8d5a64219e4c7a92d51ad0d72dbb491f5a41e43fecaf
   languageName: node
   linkType: hard
 
@@ -17374,6 +17450,13 @@ resolve@1.1.7:
   languageName: node
   linkType: hard
 
+"traverse@npm:~0.6.3":
+  version: 0.6.6
+  resolution: "traverse@npm:0.6.6"
+  checksum: 3/f2bfaae69246bc1b630ad51d44be0a2a953be1650f754c299e5a05e4f00e4b493aa6c37a98410f9c2c902a21bef7f1ab10a9cdb9b9e8ee8813e1a9e95074dafd
+  languageName: node
+  linkType: hard
+
 "trim-right@npm:^1.0.1":
   version: 1.0.1
   resolution: "trim-right@npm:1.0.1"
@@ -18136,6 +18219,18 @@ typescript@~3.7.2:
   dependencies:
     defaults: ^1.0.3
   checksum: 3/abf8ba432dd19a95af63895de6af932900a9451e175745551aeca0fd2d46604bc72ff80aa83adc3f67fb8389191329340e2864aefcf20655ffe91f0dbee5d953
+  languageName: node
+  linkType: hard
+
+"weak-napi@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "weak-napi@npm:1.0.3"
+  dependencies:
+    bindings: ^1.3.0
+    node-addon-api: ^1.1.0
+    node-gyp: latest
+    setimmediate-napi: ^1.0.3
+  checksum: 3/0ce6d38a23740bdd28d4ff2170068bce268c135cac5f67bc0561f37de8de0c4f240834352a792a350a7d7745154724086ae877642d1a05a0c7fe4538e5c41597
   languageName: node
   linkType: hard
 

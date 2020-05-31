@@ -7,12 +7,13 @@
   ],
   "dependencies": {
     "@choirpractise/testing": "workspace:packages/testing",
+    "esprint": "^0.7.0",
     "jest": "^25.0.0",
     "ts-jest": "^25.5.0",
     "typescript": "^3.8.3"
   },
   "scripts": {
-    "lint": "yarn workspaces foreach --parallel run lint",
+    "lint": "esprint",
     "test": "APP_LOG_LEVEL=none jest --silent",
     "start:dev": "webpack --env=dev",
     "build:prod": "yarn workspaces foreach --parallel run build:prod",
