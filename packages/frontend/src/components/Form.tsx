@@ -22,7 +22,7 @@ const Form: React.FC<FormProps> = (props) => {
   const [dirty, setDirty] = React.useState(false);
   const [data, setData] = React.useState<FormData>({});
 
-  const handleSubmit = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void => {
+  const handleSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
     event.preventDefault();
     props.onSubmit(data);
   };
