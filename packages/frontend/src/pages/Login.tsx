@@ -22,7 +22,7 @@ const Login: React.FC<RouteComponentProps> = () => {
   const loginForm = (
     <React.Fragment>
       <Typography variant="h2" gutterBottom>
-        Register
+        Login
       </Typography>
       <Form onSubmit={handleSubmit}>
         <TextField
@@ -30,7 +30,6 @@ const Login: React.FC<RouteComponentProps> = () => {
           name={USERNAME}
           id={USERNAME}
           label="Username"
-          type="password"
           inputProps={{ "data-testid": USERNAME }}
         />
         <TextField
