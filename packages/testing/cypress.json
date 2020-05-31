@@ -1,9 +1,9 @@
 {
   "integrationFolder": "src/cypress/integration",
-  "pluginsFile": false, 
+  "pluginsFile": false,
   "supportFile": "src/cypress/support/index.ts",
   "fixturesFolder":"src/cypress/fixtures",
-  "baseUrl": "http://localhost",
+  "baseUrl": "http://choirpractise.benwainwright.me",
   "reporter": "junit",
   "screenshotsFolder":"screenshots",
   "videosFolder":"videos"
