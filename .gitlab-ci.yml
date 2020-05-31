@@ -15,11 +15,11 @@ Yarn install:
     key: ${CI_COMMIT_REF_SLUG}
     policy: pull-push
     paths:
-      - .yarn	
-      - cache/Cypress	
-      - node_modules/	
-      - packages/*/node_modules	
-      - yarn.lock	
+      - .yarn
+      - cache/Cypress
+      - node_modules/
+      - packages/*/node_modules
+      - yarn.lock
   stage: Install
   script:
     - yarn install
@@ -78,6 +78,7 @@ Cypress:
     - cd packages/testing
     - yarn run:app & yarn test:cypress
   artifacts:
+    when: always
     reports:
       junit: packages/testing/test-results.xml
     paths:

@@ -53,6 +53,11 @@ class MyCommandWithNesting extends Command {
 }
 
 describe("serialiseCommand", (): void => {
+
+  it("Can pass file objects through the serialiser", () => {
+
+  });
+
   it("Creates a string which results in an identical command when unserialized", (): void => {
     const inputRegisterUsers = new RegisterUserCommand("foo", "a@.com", "bash");
     const serialiser = new Serialiser(Commands);

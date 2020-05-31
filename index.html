@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      window.addEventListener("load", () => {
+        var selector = document.querySelector("input");
+
+        selector.addEventListener("change", (event) => {
+          var file = selector.files[0];
+          var reader = new FileReader();
+          reader.readAsBinaryString(file);
+          reader.addEventListener("loadend", () => {
+            console.log(reader.result);
+          });
+        })
+      })
+
+
+
+    </script>
+  </head>
+  <body>
+    <input id="selector" type="file" />
+  </body>
+</html>
