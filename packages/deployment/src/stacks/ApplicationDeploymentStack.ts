@@ -6,6 +6,7 @@ import * as iam from "@aws-cdk/aws-iam";
 import * as route53 from "@aws-cdk/aws-route53";
 import * as s3 from "@aws-cdk/aws-s3";
 import * as secretsManager from "@aws-cdk/aws-secretsmanager";
+import Casing from "../utils/Casing";
 
 interface ApplicationDeploymentStackProps {
   applicationName: string;
@@ -144,19 +145,22 @@ chmod +x ./install
       deploymentGroupName: this.codeDeployDeployGroupName,
     });
 
-    const bucketId = `${props.applicationName}DeploymentBucket`;
+    const deploymentBucketId = `${props.applicationName}DeploymentBucket`;
+    this.codeDeployDeployBucket = Casing.snakeCase(deploymentBucketId);
 
-    this.codeDeployDeployBucket = bucketId
-      .split(/(?=[A-Z])/u)
-      .join("-")
-      .toLowerCase();
-
-    const deployBucket = new s3.Bucket(this, bucketId, {
+    const deployBucket = new s3.Bucket(this, deploymentBucketId, {
       bucketName: this.codeDeployDeployBucket,
       encryption: s3.BucketEncryption.S3_MANAGED,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
 
+    const filesBucketId = `${props.applicationName}FilesBucket`;
+    const filesBucket = new s3.Bucket(this, filesBucketId, {
+      bucketName: Casing.snakeCase(filesBucketId),
+      encryption: s3.BucketEncryption.S3_MANAGED,
+      removalPolicy: cdk.RemovalPolicy.RETAIN
+    })
+    filesBucket.grantReadWrite(instance);
     deployBucket.grantRead(instance);
   }
 }
