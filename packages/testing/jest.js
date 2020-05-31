@@ -8,7 +8,18 @@ const setupFile = path.join(__dirname, "src", "jest", "setup.ts");
 
 const globalSettings = {
   setupFilesAfterEnv: [setupFile],
-  reporters: ["default", ["jest-junit", { outputName: "junit.xml" }]],
+  reporters: [
+    "default",
+    [
+      "jest-junit",
+      {
+        outputName: "junit.xml",
+        classNameTemplate: "{classname}",
+        titleTemplate: "{title}",
+
+      },
+    ],
+  ],
   collectCoverage: true,
 };
 
