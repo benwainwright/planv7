@@ -20,7 +20,7 @@ describe("The files endpoint", () => {
     asMock(AWS.S3).mockReturnValue(mockS3 as any);
     mockS3.getSignedUrlPromise = jest.fn();
 
-    app.use(await files());
+    app.use(files());
     const server = app.listen();
     await request(server).post("/files").send({ path: "foo/bar/baz.zip" });
 
@@ -42,7 +42,7 @@ describe("The files endpoint", () => {
     asMock(AWS.S3).mockReturnValue(mockS3 as any);
     mockS3.getSignedUrlPromise = jest.fn();
 
-    app.use(await files());
+    app.use(files());
     const server = app.listen();
     const response = await request(server).post("/files").send({});
     expect(response.status).toEqual(400);
@@ -61,7 +61,7 @@ describe("The files endpoint", () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (mockS3.getSignedUrlPromise as any).mockResolvedValue("fooUrl");
 
-    app.use(await files());
+    app.use(files());
     const server = app.listen();
     const response = await request(server)
       .post("/files")
