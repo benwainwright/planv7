@@ -1,10 +1,31 @@
 import { FileStore } from "@choirpractise/application";
+import axios from "axios";
 
 export default class S3FileStore implements FileStore {
-  /* eslint-disable @typescript-eslint/no-unused-vars */
-  /* eslint-disable @typescript-eslint/require-await */
-  public async saveFile(file: File, path: string): Promise<void> {
-    throw new Error("Not yet implemented");
+  private readonly endpoint: string;
 
+  public constructor(endpoint: string) {
+    this.endpoint = endpoint;
+  }
+
+  public async saveFile(file: File, path: string): Promise<void> {
+    const response = await axios({
+      method: "POST",
+      url: this.endpoint,
+      data: { path },
+    });
+
+    const { url } = JSON.parse(response.data);
+    const data = new FormData();
+    data.append("file", file);
+
+    await axios({
+      method: "POST",
+      url,
+      data,
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
   }
 }
