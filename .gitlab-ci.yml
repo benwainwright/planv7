@@ -77,8 +77,7 @@ Cypress:
   script:
     - echo "127.0.0.1 $SERVER_ADDRESS" >> /etc/hosts
     - cd packages/testing
-    - cat /etc/hosts
-    - yarn run:app & yarn test:cypress
+    - APP_LOG_LEVEL=verbose yarn run:app & yarn test:cypress
   artifacts:
     when: always
     reports:
