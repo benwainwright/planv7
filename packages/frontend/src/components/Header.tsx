@@ -51,7 +51,7 @@ const Header: React.FC = (): React.ReactElement => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h1" className={classes.title}>
-            Sing It
+            Choir Practise
           </Typography>
           <NavigationButton to="/app">Home</NavigationButton>
           {!currentUser && (
