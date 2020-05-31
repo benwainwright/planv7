@@ -61,7 +61,7 @@ Build:
   dependencies:
     - Yarn install
   script:
-    - yarn build:prod
+    - APP_LOG_LEVEL=verbose yarn build:prod
 
   artifacts:
     paths:
@@ -83,6 +83,7 @@ Cypress:
     reports:
       junit: packages/testing/test-results.xml
     paths:
+      - packages/testing/cypress.log
       - packages/testing/videos
       - packages/testing/screenshots
 
