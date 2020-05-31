@@ -6,7 +6,7 @@ import AppContext from "../AppContext";
 const FILES_BASE_URL = "files";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const files = async (): Promise<Koa.Middleware<any, any>> => {
+const files = (): Koa.Middleware<any, any> => {
   const baseUrlRegex = new RegExp(`\\/${FILES_BASE_URL}($|\\/.*)`, "u");
   const router = new Router<Koa.DefaultState, AppContext & RouterContext>();
 
