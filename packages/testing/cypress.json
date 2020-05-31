@@ -3,7 +3,7 @@
   "pluginsFile": false,
   "supportFile": "src/cypress/support/index.ts",
   "fixturesFolder":"src/cypress/fixtures",
-  "baseUrl": "http://choirpractise.benwainwright.me",
+  "baseUrl": "http://localhost",
   "reporter": "junit",
   "screenshotsFolder":"screenshots",
   "videosFolder":"videos"
