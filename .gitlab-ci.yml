@@ -78,6 +78,7 @@ Cypress:
     - echo "127.0.0.1 $SERVER_ADDRESS" >> /etc/hosts
     - cd packages/testing
     - yarn run:app & yarn test:cypress
+    - echo /etc/hosts
   artifacts:
     when: always
     reports:
