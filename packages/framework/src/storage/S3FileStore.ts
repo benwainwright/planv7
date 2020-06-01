@@ -13,8 +13,6 @@ export default class S3FileStore implements FileStore {
     this.endpoint = endpoint;
   }
 
-
-
   public async saveFile(file: File, path: string): Promise<void> {
     const contentType = !file.type ? "text/plain" : file.type;
     const response = await axios({
