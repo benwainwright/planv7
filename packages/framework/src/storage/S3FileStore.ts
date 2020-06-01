@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { inject, injectable } from "inversify";
 import { FileStore } from "@choirpractise/application";
 import TYPES from "../TYPES";
