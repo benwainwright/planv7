@@ -1,7 +1,7 @@
 import * as React from "react";
-import { RouteComponentProps } from "@reach/router";
+import { ProtectedRouterComponentProps } from "../components/ProtectedRouter";
 
-const Home: React.FC<RouteComponentProps> = (): React.ReactElement => (
+const Home: React.FC<ProtectedRouterComponentProps> = (): React.ReactElement => (
   <React.Fragment>
     <h1>Welcome!</h1>
     <p>Lorum ipsum</p>

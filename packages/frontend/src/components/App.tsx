@@ -8,8 +8,9 @@ import Files from "../pages/Files";
 import Header from "./Header";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
+import NotFound from "../pages/NotFound";
+import ProtectedRouter from "./ProtectedRouter";
 import Register from "../pages/Register";
-import { Router } from "@reach/router";
 import SnackBar from "@material-ui/core/Snackbar";
 import { hot } from "react-hot-loader/root";
 import { useDependency } from "../utils/inversify-provider";
@@ -68,12 +69,13 @@ const RawApp: React.FC = (): React.ReactElement => {
       </SnackBar>
       <Container>
         <main>
-          <Router>
-            <Home path="/app" />
+          <ProtectedRouter>
+            <Home public path="/app" />
+            <Register public path="/app/register" />
+            <Login public path="/app/login" />
             <Files path="/app/files" />
-            <Register path="/app/register" />
-            <Login path="/app/login" />
-          </Router>
+            <NotFound public default path="/not-found" />
+          </ProtectedRouter>
         </main>
       </Container>
     </React.Fragment>

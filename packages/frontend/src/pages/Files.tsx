@@ -5,12 +5,12 @@ import {
   UploadFileCommand,
 } from "@choirpractise/domain";
 import Button from "@material-ui/core/Button";
-import { RouteComponentProps } from "@reach/router";
+import { ProtectedRouterComponentProps } from "../components/ProtectedRouter";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { useDependency } from "../utils/inversify-provider";
 
-const Files: React.FC<RouteComponentProps> = (): React.ReactElement => {
+const Files: React.FC<ProtectedRouterComponentProps> = (): React.ReactElement => {
   const [file, setFile] = React.useState<File | undefined>(undefined);
   const [path, setPath] = React.useState("");
 
