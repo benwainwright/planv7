@@ -2,15 +2,11 @@ import * as React from "react";
 import { RouteComponentProps, Router } from "@reach/router";
 import CurrentUserContext from "../utils/CurrentUserContext";
 
-interface ProtectedRouterProps {
-  readonly children: React.ReactNode;
-}
-
 export interface ProtectedRouterComponentProps extends RouteComponentProps {
   public?: boolean;
 }
 
-const ProtectedRouter: React.FC<ProtectedRouterProps> = (props) => {
+const ProtectedRouter: React.FC = (props) => {
   const currentUser = React.useContext(CurrentUserContext);
 
   const theDefault = React.Children.toArray(props.children).find(
