@@ -7,6 +7,7 @@ import * as route53 from "@aws-cdk/aws-route53";
 import * as s3 from "@aws-cdk/aws-s3";
 import * as secretsManager from "@aws-cdk/aws-secretsmanager";
 import Casing from "../utils/Casing";
+import { Aws } from "@aws-cdk/core";
 
 interface ApplicationDeploymentStackProps {
   applicationName: string;
@@ -158,8 +159,14 @@ chmod +x ./install
     const filesBucket = new s3.Bucket(this, filesBucketId, {
       bucketName: Casing.snakeCase(filesBucketId),
       encryption: s3.BucketEncryption.S3_MANAGED,
-      removalPolicy: cdk.RemovalPolicy.RETAIN
-    })
+      removalPolicy: cdk.RemovalPolicy.RETAIN,
+    });
+
+    filesBucket.addCorsRule({
+      allowedMethods: [s3.HttpMethods.PUT, s3.HttpMethods.GET],
+      allowedOrigins: ["*"],
+    });
+
     filesBucket.grantReadWrite(instance);
     deployBucket.grantRead(instance);
   }
