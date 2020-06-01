@@ -4,6 +4,7 @@ import {
   TYPES as DOMAIN,
   UploadFileCommand,
 } from "@choirpractise/domain";
+import Button from "@material-ui/core/Button";
 import { RouteComponentProps } from "@reach/router";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
@@ -41,7 +42,7 @@ const Files: React.FC<RouteComponentProps> = (): React.ReactElement => {
         id="path"
         label="path"
       />
-      <button onClick={doUpload}>Upload</button>
+      <Button onClick={doUpload}>Upload</Button>
     </React.Fragment>
   );
 };

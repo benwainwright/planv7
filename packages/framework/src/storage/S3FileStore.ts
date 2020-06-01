@@ -1,4 +1,5 @@
 import "reflect-metadata";
+import * as nodePath from "path";
 import { inject, injectable } from "inversify";
 import { FileStore } from "@choirpractise/application";
 import TYPES from "../TYPES";
@@ -12,12 +13,14 @@ export default class S3FileStore implements FileStore {
     this.endpoint = endpoint;
   }
 
+
+
   public async saveFile(file: File, path: string): Promise<void> {
     const contentType = !file.type ? "text/plain" : file.type;
     const response = await axios({
       method: "POST",
       url: this.endpoint,
-      data: { path, contentType },
+      data: { path: nodePath.join(path, file.name), contentType },
     });
 
     await axios({

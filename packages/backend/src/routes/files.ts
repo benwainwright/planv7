@@ -23,14 +23,15 @@ const files = (): Koa.Middleware<any, any> => {
         context.response.status = 400;
         context.response.body = "Missing 'contentType' parameter";
       } else {
-        const url = await s3.getSignedUrlPromise("putObject", {
+        const options = {
           /* eslint-disable @typescript-eslint/naming-convention */
           Bucket: process.env.FILES_BUCKET,
           ContentType: context.request.body.contentType,
           Key: context.request.body.path,
           Expires: constants.PRESIGNED_URL_EXPIRY,
           /* eslint-enable @typescript-eslint/naming-convention */
-        });
+        }
+        const url = await s3.getSignedUrlPromise("putObject", options);
         context.response.status = 200;
         context.response.body = JSON.stringify({ url });
       }

@@ -19,7 +19,7 @@ describe("S3FileStore", () => {
       .calledWith({
         method: "POST",
         url: `${endpoint}/files`,
-        data: { path: "foo/bar", contentType: "text/plain" },
+        data: { path: "foo/bar/foo.zip", contentType: "text/plain" },
       })
       .mockImplementation(async () =>
         Promise.resolve({ data: { url: "http://foo/bar" } })
@@ -30,7 +30,7 @@ describe("S3FileStore", () => {
     expect(axios).toHaveBeenCalledWith({
       method: "POST",
       url: `${endpoint}/files`,
-      data: { path: "foo/bar", contentType: "text/plain" },
+      data: { path: "foo/bar/foo.zip", contentType: "text/plain" },
     });
   });
 
@@ -47,7 +47,7 @@ describe("S3FileStore", () => {
       .calledWith({
         method: "POST",
         url: `${endpoint}/files`,
-        data: { path: "foo/bar", contentType: "text/plain" },
+        data: { path: "foo/bar/foo.zip", contentType: "text/plain" },
       })
       .mockImplementation(async () =>
         Promise.resolve({ data: { url: "http://foo/bar" } })
