@@ -9,25 +9,30 @@ describe("S3FileStore", () => {
     const endpoint = "http://localhost";
 
     const file = new File([], "foo.zip");
+    Object.defineProperty(file, "type", { get: () => "text/plain" });
     const formData = new FormData();
     formData.append("file", file);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    when(axios as any).calledWith({
-      method: "POST",
-      url: `${endpoint}/files`,
-      data: { path: "foo/bar" },
-    }).mockImplementation(async () => Promise.resolve({data: '{"url": "http://foo/bar"}'}))
+    when(axios as any)
+      .calledWith({
+        method: "POST",
+        url: `${endpoint}/files`,
+        data: { path: "foo/bar", "contentType": "text/plain" },
+      })
+      .mockImplementation(async () =>
+        Promise.resolve({ data: { url: "http://foo/bar" } })
+      );
 
     const store = new S3FileStore(`${endpoint}/files`);
     await store.saveFile(file, "foo/bar");
 
     expect(axios).toHaveBeenCalledWith({
-      method: "POST",
+      method: "PUT",
       url: "http://foo/bar",
-      data: formData,
+      data: file,
       headers: {
-        "content-type": "multipart/form-data",
+        "content-type": "text/plain",
       },
     });
   });

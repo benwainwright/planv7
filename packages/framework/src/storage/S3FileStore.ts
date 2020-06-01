@@ -13,22 +13,19 @@ export default class S3FileStore implements FileStore {
   }
 
   public async saveFile(file: File, path: string): Promise<void> {
+    console.log(file.type)
     const response = await axios({
       method: "POST",
       url: this.endpoint,
-      data: { path },
+      data: { path, contentType: file.type },
     });
 
-    const { url } = JSON.parse(response.data);
-    const data = new FormData();
-    data.append("file", file);
-
     await axios({
-      method: "POST",
-      url,
-      data,
+      method: "PUT",
+      url: response.data.url,
+      data: file,
       headers: {
-        "content-type": "multipart/form-data",
+        "content-type": file.type,
       },
     });
   }
