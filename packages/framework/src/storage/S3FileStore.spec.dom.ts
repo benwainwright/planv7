@@ -5,6 +5,35 @@ import { when } from "jest-when";
 jest.mock("axios");
 
 describe("S3FileStore", () => {
+  it("Defaults the content type to text/plain if it doesn't exist", async () => {
+    const endpoint = "http://localhost";
+
+    const file = new File([], "foo.zip");
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const store = new S3FileStore(`${endpoint}/files`);
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    when(axios as any)
+      .calledWith({
+        method: "POST",
+        url: `${endpoint}/files`,
+        data: { path: "foo/bar", contentType: "text/plain" },
+      })
+      .mockImplementation(async () =>
+        Promise.resolve({ data: { url: "http://foo/bar" } })
+      );
+    await store.saveFile(file, "foo/bar");
+
+
+    expect(axios).toHaveBeenCalledWith({
+      method: "POST",
+      url: `${endpoint}/files`,
+      data: { path: "foo/bar", contentType: "text/plain" },
+    });
+  });
+
   it("Attempts to upload a file to the URL provided by the files endpoint", async () => {
     const endpoint = "http://localhost";
 
@@ -18,7 +47,7 @@ describe("S3FileStore", () => {
       .calledWith({
         method: "POST",
         url: `${endpoint}/files`,
-        data: { path: "foo/bar", "contentType": "text/plain" },
+        data: { path: "foo/bar", contentType: "text/plain" },
       })
       .mockImplementation(async () =>
         Promise.resolve({ data: { url: "http://foo/bar" } })
