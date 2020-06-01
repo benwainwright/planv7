@@ -1,4 +1,5 @@
 import * as AWS from "aws-sdk";
+import * as constants from "../constants";
 import Koa, { Next } from "koa";
 import Router, { RouterContext } from "koa-router";
 import AppContext from "../AppContext";
@@ -18,13 +19,17 @@ const files = (): Koa.Middleware<any, any> => {
       if (!context.request.body.path) {
         context.response.status = 400;
         context.response.body = "Missing 'path' parameter";
+      } else if (!context.request.body.contentType) {
+        context.response.status = 400;
+        context.response.body = "Missing 'contentType' parameter";
       } else {
         const url = await s3.getSignedUrlPromise("putObject", {
-          // eslint-disable-next-line @typescript-eslint/naming-convention
+          /* eslint-disable @typescript-eslint/naming-convention */
           Bucket: process.env.FILES_BUCKET,
-
-          // eslint-disable-next-line @typescript-eslint/naming-convention
+          ContentType: context.request.body.contentType,
           Key: context.request.body.path,
+          Expires: constants.PRESIGNED_URL_EXPIRY,
+          /* eslint-enable @typescript-eslint/naming-convention */
         });
         context.response.status = 200;
         context.response.body = JSON.stringify({ url });
