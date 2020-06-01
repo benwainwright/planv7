@@ -6,6 +6,7 @@ import {
   CurrentLoginSession,
   Dispatch,
   EventEmitterWrapper,
+  FileStore,
   LoginSessionDestroyer,
   Serialiser,
   SimpleCommandBus,
@@ -15,6 +16,7 @@ import {
   AuthorisingDispatcher,
   TYPES as FRAMEWORK,
   JwtClientLoginSession,
+  S3FileStore,
   WebsocketClient,
 } from "@choirpractise/framework";
 
@@ -29,6 +31,12 @@ const bindDependencies = (container: Container, publicKey: string): void => {
   container
     .bind<LoginSessionDestroyer>(APP.loginSessionDestroyer)
     .toService(APP.currentLoginSession);
+
+  container
+    .bind<string>(FRAMEWORK.filesEndpoint)
+    .toConstantValue(constants.FILES_ENDPOINT);
+
+  container.bind<FileStore>(APP.fileStore).to(S3FileStore);
 
   container
     .bind<Serialiser>(Serialiser)

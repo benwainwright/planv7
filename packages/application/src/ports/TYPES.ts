@@ -7,6 +7,7 @@ export const TYPES = {
   logger: Symbol.for("Logger"),
   dispatch: Symbol.for("Dispatch"),
   loginSessionDestroyer: Symbol.for("LoginSessionDestroyer"),
+  fileStore: Symbol.for("FileStore"),
 };
 
 export default TYPES;

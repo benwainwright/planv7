@@ -8,6 +8,7 @@ import MongoDatabasePlanRepository from "./storage/MongoDatabasePlanRepository";
 import MongoDatabasePlanSlugGenerator from "./storage/MongoDatabasePlanSlugGenerator";
 import MongoDatabaseUserRepository from "./storage/MongoDatabaseUserRepository";
 import ResponseAuthHeader from "./ResponseAuthHeader";
+import S3FileStore from "./storage/S3FileStore";
 import TYPES from "./TYPES";
 import WebsocketClient from "./WebsocketClient";
 import WebsocketConnection from "./WebsocketConnection";
@@ -19,6 +20,7 @@ export {
   TEST_PRIVATE_KEY,
   TEST_PUBLIC_KEY,
   ClientStorage,
+  S3FileStore,
   AuthorisingDispatcher,
   ResponseAuthHeader,
   JwtLoginProvider,
