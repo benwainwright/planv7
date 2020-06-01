@@ -1,14 +1,14 @@
-  /* eslint-disable @typescript-eslint/require-await */
-  /* eslint-disable @typescript-eslint/no-explicit-any */
-  /* eslint-disable @typescript-eslint/no-unused-vars */
+import { inject, injectable } from "inversify";
 import FileStore from "../ports/FileStore";
 import HandlerBase from "../core/HandlerBase";
+import TYPES from "../ports/TYPES";
 import { UploadFileCommand } from "@choirpractise/domain";
 
+@injectable()
 export default class UploadFileHandler extends HandlerBase<UploadFileCommand> {
-  private readonly fileStore: FileStore
+  private readonly fileStore: FileStore;
 
-  public constructor(fileStore: FileStore) {
+  public constructor(@inject(TYPES.fileStore) fileStore: FileStore) {
     super();
     this.fileStore = fileStore;
   }
@@ -17,7 +17,9 @@ export default class UploadFileHandler extends HandlerBase<UploadFileCommand> {
     return new UploadFileCommand();
   }
 
-  protected async execute(command: any): Promise<void> {
-    throw new Error("Method not implemented.");
+  protected async execute(command: UploadFileCommand): Promise<void> {
+    if (command.file && command.path) {
+      await this.fileStore.saveFile(command.file, command.path);
+    }
   }
 }
