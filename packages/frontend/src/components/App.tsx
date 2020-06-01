@@ -4,6 +4,7 @@ import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { DomainEvent } from "@choirpractise/domain";
 import { EventEmitterWrapper } from "@choirpractise/application";
+import Files from "../pages/Files";
 import Header from "./Header";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
@@ -69,6 +70,7 @@ const RawApp: React.FC = (): React.ReactElement => {
         <main>
           <Router>
             <Home path="/app" />
+            <Files path="/app/files" />
             <Register path="/app/register" />
             <Login path="/app/login" />
           </Router>

@@ -54,6 +54,7 @@ const Header: React.FC = (): React.ReactElement => {
             Choir Practise
           </Typography>
           <NavigationButton to="/app">Home</NavigationButton>
+          <NavigationButton to="/app/files">Files</NavigationButton>
           {!currentUser && (
             <NavigationButton to="/app/register">Register</NavigationButton>
           )}
