@@ -4,7 +4,7 @@ import {
   mutateGrandChildren,
 } from "../../utils/children";
 import CurrentUserContext from "../../utils/CurrentUserContext";
-import ProtectedRouterNavigationButtons from "./ProtectedRouterNavigationButtons";
+import Header from "../Header";
 import NavigationButton from "../NavigationButton";
 import { RouteComponentProps } from "@reach/router";
 import Routes from "./Routes";
@@ -61,24 +61,27 @@ const ProtectedRouter: React.FC = (props) => {
   const routesElement = findGrandChildOfType(Routes, childrenWithSecuredRoutes);
 
   const securedChildren = mutateGrandChildren(
-    ProtectedRouterNavigationButtons,
+    Header,
     childrenWithSecuredRoutes,
-    (children: React.ReactNode) =>
-      React.Children.toArray(
+    () => {
+      const array = React.Children.toArray(
         (routesElement as React.ReactElement).props.children
-      )
-        .filter(
-          (node: React.ReactNode) => (node as React.ReactElement).props.title &&
+      );
+      const filtered = array.filter(
+        (node: React.ReactNode) =>
+          (node as React.ReactElement).props.title &&
           allow(node as React.ReactElement, Boolean(currentUser))
-        )
-        .map((child: React.ReactNode) => {
-          const route = child as React.ReactElement;
-          return (
-            <NavigationButton key={route.props.title} to={route.props.path}>
-              {route.props.title}
-            </NavigationButton>
-          );
-        })
+      );
+
+      return filtered.map((child: React.ReactNode) => {
+        const route = child as React.ReactElement;
+        return (
+          <NavigationButton key={route.props.title} to={route.props.path}>
+            {route.props.title}
+          </NavigationButton>
+        );
+      });
+    }
   );
 
   return <React.Fragment>{securedChildren}</React.Fragment>;

@@ -23,16 +23,33 @@ export const mutateGrandChildren = (
         })
   );
 
-  return map && map.length === 1 ? map[0] : map
+  return map && map.length === 1 ? map[0] : map;
 };
 
 export const findGrandChildOfType = (
   type: React.ElementType,
   children: React.ReactNode
-): React.ReactNode =>
-  React.Children.toArray(children)
-    .filter((node: React.ReactNode) => React.isValidElement(node))
-    .find(
-      (node: React.ReactNode) =>
-        (node as React.ReactElement).type === React.createElement(type).type
-    );
+): React.ReactNode => {
+  const array = React.Children.toArray(children);
+  const filtered = array.filter((node: React.ReactNode) =>
+    React.isValidElement(node)
+  );
+
+  return filtered.reduce((found: React.ReactNode, current: React.ReactNode) => {
+    const element = current as React.ReactElement;
+    if (found) {
+      return found;
+    }
+
+    if (element.type === React.createElement(type).type) {
+      return current;
+    }
+
+    const foundInChildren = findGrandChildOfType(type, element.props.children);
+    if (foundInChildren) {
+      return foundInChildren;
+    }
+
+    return found;
+  }, undefined);
+};

@@ -17,35 +17,14 @@ const asMocked = <T extends unknown>(
 };
 
 describe("The header", () => {
-  it("Shows the login and register links if there is no user", () => {
-    act(() => {
-      render(
-        <CurrentUserContext.Provider value={undefined}>
-          <Header />
-        </CurrentUserContext.Provider>
-      );
-    });
-    expect(screen.queryByText("Register")).not.toBeNull();
-    expect(screen.queryByText("Login")).not.toBeNull();
-  });
-
-  it("Does not show the login and register link if there is a user", () => {
-    act(() => {
-      render(
-        <CurrentUserContext.Provider value={asMocked(jest.fn())}>
-          <Header />
-        </CurrentUserContext.Provider>
-      );
-    });
-    expect(screen.queryByText("Register")).toBeNull();
-    expect(screen.queryByText("Login")).toBeNull();
-  });
 
   it("Shows the logout link if there is a user", () => {
     act(() => {
       render(
         <CurrentUserContext.Provider value={asMocked(jest.fn())}>
-          <Header />
+          <Header title="Foobar">
+            <div>Placeholder</div>
+          </Header>
         </CurrentUserContext.Provider>
       );
     });
@@ -56,7 +35,9 @@ describe("The header", () => {
     act(() => {
       render(
         <CurrentUserContext.Provider value={undefined}>
-          <Header />
+          <Header title="Foobar">
+            <div>Placeholder</div>
+          </Header>
         </CurrentUserContext.Provider>
       );
     });
@@ -76,7 +57,9 @@ describe("The header", () => {
       act(() => {
         render(
           <CurrentUserContext.Provider value={asMocked(jest.fn())}>
-            <Header />
+            <Header title="Foobar">
+              <div>Placeholder</div>
+            </Header>
           </CurrentUserContext.Provider>
         );
         fireEvent.click(screen.getByText("Logout"));

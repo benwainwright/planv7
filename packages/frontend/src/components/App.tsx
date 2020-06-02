@@ -1,6 +1,10 @@
 import * as React from "react";
 import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
-import { ProtectedRouter, Routes } from "./ProtectedRouter";
+import {
+  ProtectedRouter,
+  ProtectedRouterNavigationButtons,
+  Routes,
+} from "./ProtectedRouter";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { DomainEvent } from "@choirpractise/domain";
@@ -51,7 +55,9 @@ const RawApp: React.FC = (): React.ReactElement => {
   return (
     <ProtectedRouter>
       <CssBaseline />
-      <Header />
+      <Header title="Choirpractise">
+        <div>Placeholder</div>
+      </Header>
       <SnackBar
         className="alert"
         autoHideDuration={3000}

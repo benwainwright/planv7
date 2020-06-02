@@ -1,19 +1,22 @@
 import * as React from "react";
 
-import { CommandBus, TYPES as DOMAIN, LogoutCommand } from "@choirpractise/domain";
+import {
+  CommandBus,
+  TYPES as DOMAIN,
+  LogoutCommand,
+} from "@choirpractise/domain";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import CurrentUserContext from "../utils/CurrentUserContext";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import NavigationButton from "./NavigationButton";
+
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { useDependency } from "../utils/inversify-provider";
 
 const RIGHT_MARGIN_SPACING = 2;
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,7 +32,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header: React.FC = (): React.ReactElement => {
+interface HeaderProps {
+  children: React.ReactNode;
+  title: string;
+}
+
+const Header: React.FC<HeaderProps> = (props): React.ReactElement => {
   const classes = useStyles();
   const currentUser = React.useContext(CurrentUserContext);
   const commandBus = useDependency<CommandBus>(DOMAIN.commandBus);
@@ -51,16 +59,9 @@ const Header: React.FC = (): React.ReactElement => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h1" className={classes.title}>
-            Choir Practise
+            {props.title}
           </Typography>
-          <NavigationButton to="/app">Home</NavigationButton>
-          <NavigationButton to="/app/files">Files</NavigationButton>
-          {!currentUser && (
-            <NavigationButton to="/app/register">Register</NavigationButton>
-          )}
-          {!currentUser && (
-            <NavigationButton to="/app/login">Login</NavigationButton>
-          )}
+          {props.children}
           {currentUser && (
             <Button color="inherit" onClick={clickLogout}>
               Logout

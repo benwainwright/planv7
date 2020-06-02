@@ -5,16 +5,27 @@ import ProtectedRouter, {
   ProtectedRouterPageComponentProps
 } from "./ProtectedRouter";
 import { render, screen } from "@testing-library/react";
+import { TYPES as DOMAIN, User } from "@choirpractise/domain";
 import CurrentUserContext from "../../utils/CurrentUserContext";
-import ProtectedRouterNavigationButtons from "./ProtectedRouterNavigationButtons"
+import Header from "../Header";
 import Routes from "./Routes";
-import { User } from "@choirpractise/domain";
 import { act } from "react-dom/test-utils";
 import { navigate } from "@reach/router";
+import { useDependency } from "../../utils/inversify-provider";
+import { when } from "jest-when";
+
+jest.mock("../../utils/inversify-provider");
 
 describe("The protected router", () => {
 
   it("Renders links to public and onlyPublic routes in the menu when there is no user", () => {
+
+      const execute = jest.fn();
+      const commandBus = { execute };
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      when(useDependency as any)
+        .calledWith(DOMAIN.commandBus)
+        .mockReturnValue(commandBus);
 
     const MockPublicComponent: React.FC<ProtectedRouterPageComponentProps> = () => (
       <React.Fragment>
@@ -44,9 +55,9 @@ describe("The protected router", () => {
       render(
         <CurrentUserContext.Provider value={undefined}>
           <ProtectedRouter>
-            <section>
-              <ProtectedRouterNavigationButtons />
-            </section>
+            <Header title="Title">
+              <div>Placeholder</div>
+            </Header>
             <Routes>
               <MockPublicComponent title="Home" public path="/" />
               <MockPublicComponent2 title="Foo" public path="/foo" />
@@ -63,6 +74,13 @@ describe("The protected router", () => {
   })
 
   it("Doesn't render links to private routes in the menu when there is no user", () => {
+
+      const execute = jest.fn();
+      const commandBus = { execute };
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      when(useDependency as any)
+        .calledWith(DOMAIN.commandBus)
+        .mockReturnValue(commandBus);
     const MockPublicComponent: React.FC<ProtectedRouterPageComponentProps> = () => (
       <React.Fragment>
         <div>FooElement</div>
@@ -85,9 +103,9 @@ describe("The protected router", () => {
       render(
         <CurrentUserContext.Provider value={undefined}>
           <ProtectedRouter>
-            <section>
-              <ProtectedRouterNavigationButtons />
-            </section>
+            <Header title="Foobar">
+              <div>Placeholder</div>
+            </Header>
             <Routes>
               <MockPublicComponent title="Home" public path="/" />
               <MockPublicComponent2 title="Foo" path="/foo" />
@@ -102,6 +120,14 @@ describe("The protected router", () => {
   })
 
   it("Doesn't render links to private routes in the menu when there is no user", () => {
+
+      const execute = jest.fn();
+      const commandBus = { execute };
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      when(useDependency as any)
+        .calledWith(DOMAIN.commandBus)
+        .mockReturnValue(commandBus);
+
     const MockPublicComponent: React.FC<ProtectedRouterPageComponentProps> = () => (
       <React.Fragment>
         <div>FooElement</div>
@@ -124,9 +150,9 @@ describe("The protected router", () => {
       render(
         <CurrentUserContext.Provider value={undefined}>
           <ProtectedRouter>
-            <section>
-              <ProtectedRouterNavigationButtons />
-            </section>
+            <Header title="Foobar">
+              <div>Placeholder</div>
+            </Header>
             <Routes>
               <MockPublicComponent title="Home" public path="/" />
               <MockPublicComponent2 title="Foo" path="/foo" />
@@ -141,6 +167,13 @@ describe("The protected router", () => {
   })
 
   it("Doesn't render links to onlyPublic routes in the menu when there is a user", () => {
+
+      const execute = jest.fn();
+      const commandBus = { execute };
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      when(useDependency as any)
+        .calledWith(DOMAIN.commandBus)
+        .mockReturnValue(commandBus);
     const MockPublicComponent: React.FC<ProtectedRouterPageComponentProps> = () => (
       <React.Fragment>
         <div>FooElement</div>
@@ -163,9 +196,9 @@ describe("The protected router", () => {
       render(
         <CurrentUserContext.Provider value={jest.fn() as unknown as User}>
           <ProtectedRouter>
-            <section>
-              <ProtectedRouterNavigationButtons />
-            </section>
+            <Header title="foobar">
+              <div>Placeholder</div>
+            </Header>
             <Routes>
               <MockPublicComponent title="Home" public path="/" />
               <MockPublicComponent2 title="Foo" onlyPublic path="/foo" />
@@ -182,6 +215,7 @@ describe("The protected router", () => {
 
 
   it("Renders the route when it is public and there is no user", () => {
+
     const MockPublicComponent: React.FC<ProtectedRouterPageComponentProps> = () => (
       <React.Fragment>
         <div>Foo</div>
