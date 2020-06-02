@@ -47,7 +47,6 @@ const secureRoutes = (
 const ProtectedRouter: React.FC = (props) => {
   const currentUser = React.useContext(CurrentUserContext);
 
-
   const processedChildren = mutateGrandChildren(
     Routes,
     props.children,
