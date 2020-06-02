@@ -1,12 +1,17 @@
 import * as React from "react";
-import CurrentUserContext from "../utils/CurrentUserContext";
+import CurrentUserContext from "../../utils/CurrentUserContext";
 import { RouteComponentProps } from "@reach/router";
 import Routes from "./Routes";
-import { mutateGrandChildren } from "../utils/children";
+import { mutateGrandChildren } from "../../utils/children";
+
 
 export interface ProtectedRouterComponentProps extends RouteComponentProps {
   public?: boolean;
   onlyPublic?: boolean;
+}
+
+export interface ProtectedRouterPageComponentProps extends ProtectedRouterComponentProps {
+  title: string;
 }
 
 const allow = (route: React.ReactElement, loggedIn: boolean): boolean =>

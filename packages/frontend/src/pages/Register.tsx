@@ -6,7 +6,7 @@ import {
   RegisterUserCommand,
 } from "@choirpractise/domain";
 import Form, { FormData } from "../components/Form";
-import { ProtectedRouterComponentProps } from "../components/ProtectedRouter";
+import { ProtectedRouterPageComponentProps } from "../components/ProtectedRouter/ProtectedRouter";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { useDependency } from "../utils/inversify-provider";
@@ -16,7 +16,7 @@ const EMAIL = "email";
 const PASSWORD = "password";
 const VERIFY_PASSWORD = "verifyPassword";
 
-const Register: React.FC<ProtectedRouterComponentProps> = () => {
+const Register: React.FC<ProtectedRouterPageComponentProps> = () => {
   const commandBus = useDependency<CommandBus>(DOMAIN.commandBus);
 
   const handleSubmit = async (data: FormData): Promise<void> => {

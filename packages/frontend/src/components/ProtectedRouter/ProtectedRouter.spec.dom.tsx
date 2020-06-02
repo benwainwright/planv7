@@ -4,24 +4,31 @@ import ProtectedRouter, {
   ProtectedRouterComponentProps,
 } from "./ProtectedRouter";
 import { render, screen } from "@testing-library/react";
-import CurrentUserContext from "../utils/CurrentUserContext";
+import CurrentUserContext from "../../utils/CurrentUserContext";
+import ProtectedRouterNavigationButtons from "./ProtectedRouterNavigationButtons"
 import Routes from "./Routes";
-import ProtectedRouterNavigationButtons from "./ProtectedRouterNavigationButtons";
 import { User } from "@choirpractise/domain";
 import { act } from "react-dom/test-utils";
 import { navigate } from "@reach/router";
+import { ProtectedRouterPageComponentProps } from '.';
 
 describe("The protected router", () => {
 
+  it("Renders links to public routes in the menu when there is no user", () => {
 
-  it("Renders the route when it is public and there is no user", () => {
-    const MockPublicComponent: React.FC<ProtectedRouterComponentProps> = () => (
+    const MockPublicComponent: React.FC<ProtectedRouterPageComponentProps> = () => (
       <React.Fragment>
         <div>Foo</div>
       </React.Fragment>
     );
 
-    const MockPublicComponent2: React.FC<ProtectedRouterComponentProps> = () => (
+    const MockPublicComponent2: React.FC<ProtectedRouterPageComponentProps> = () => (
+      <React.Fragment>
+        <div>Bar</div>
+      </React.Fragment>
+    );
+
+    const MockPublicComponent3: React.FC<ProtectedRouterComponentProps> = () => (
       <React.Fragment>
         <div>Bar</div>
       </React.Fragment>
@@ -32,9 +39,44 @@ describe("The protected router", () => {
         <CurrentUserContext.Provider value={undefined}>
           <ProtectedRouter>
             <Routes>
-              <MockPublicComponent public path="/" />
-              <MockPublicComponent2 public path="/foo" />
-              <MockPublicComponent default public path="/baz" />
+              <MockPublicComponent title="Home" public path="/" />
+              <MockPublicComponent2 title="Foo" public path="/foo" />
+              <MockPublicComponent3 default public path="/baz" />
+            </Routes>
+          </ProtectedRouter>
+        </CurrentUserContext.Provider>
+      );
+    });
+    expect(screen.queryByText("Foo")).not.toBeNull();
+  })
+
+  it("Renders the route when it is public and there is no user", () => {
+    const MockPublicComponent: React.FC<ProtectedRouterPageComponentProps> = () => (
+      <React.Fragment>
+        <div>Foo</div>
+      </React.Fragment>
+    );
+
+    const MockPublicComponent2: React.FC<ProtectedRouterPageComponentProps> = () => (
+      <React.Fragment>
+        <div>Bar</div>
+      </React.Fragment>
+    );
+
+    const MockPublicComponent3: React.FC<ProtectedRouterComponentProps> = () => (
+      <React.Fragment>
+        <div>Bar</div>
+      </React.Fragment>
+    );
+
+    act(() => {
+      render(
+        <CurrentUserContext.Provider value={undefined}>
+          <ProtectedRouter>
+            <Routes>
+              <MockPublicComponent title="Home" public path="/" />
+              <MockPublicComponent2 title="Foo" public path="/foo" />
+              <MockPublicComponent3 default public path="/baz" />
             </Routes>
           </ProtectedRouter>
         </CurrentUserContext.Provider>
@@ -45,13 +87,19 @@ describe("The protected router", () => {
   });
 
   it("Renders the route when it is public and there is no user and you have navigated to it", async () => {
-    const MockPublicComponent: React.FC<ProtectedRouterComponentProps> = () => (
+    const MockPublicComponent: React.FC<ProtectedRouterPageComponentProps> = () => (
       <React.Fragment>
         <div>Foo</div>
       </React.Fragment>
     );
 
-    const MockPublicComponent2: React.FC<ProtectedRouterComponentProps> = () => (
+    const MockPublicComponent2: React.FC<ProtectedRouterPageComponentProps> = () => (
+      <React.Fragment>
+        <div>Bar</div>
+      </React.Fragment>
+    );
+
+    const MockPublicComponent3: React.FC<ProtectedRouterComponentProps> = () => (
       <React.Fragment>
         <div>Bar</div>
       </React.Fragment>
@@ -62,9 +110,9 @@ describe("The protected router", () => {
         <CurrentUserContext.Provider value={undefined}>
           <ProtectedRouter>
             <Routes>
-              <MockPublicComponent public path="/" />
-              <MockPublicComponent2 public path="/foo" />
-              <MockPublicComponent default public path="/baz" />
+              <MockPublicComponent title="Home" public path="/" />
+              <MockPublicComponent2 title="Foo" public path="/foo" />
+              <MockPublicComponent3 default public path="/baz" />
             </Routes>
           </ProtectedRouter>
         </CurrentUserContext.Provider>
@@ -82,13 +130,13 @@ describe("The protected router", () => {
       </React.Fragment>
     );
 
-    const MockPublicComponent: React.FC<ProtectedRouterComponentProps> = () => (
+    const MockPublicComponent: React.FC<ProtectedRouterPageComponentProps> = () => (
       <React.Fragment>
         <div>Foo</div>
       </React.Fragment>
     );
 
-    const MockPublicComponent2: React.FC<ProtectedRouterComponentProps> = () => (
+    const MockPublicComponent2: React.FC<ProtectedRouterPageComponentProps> = () => (
       <CurrentUserContext.Provider value={undefined}>
         <React.Fragment>
           <div>Private</div>
@@ -101,8 +149,8 @@ describe("The protected router", () => {
         <CurrentUserContext.Provider value={undefined}>
           <ProtectedRouter>
             <Routes>
-              <MockPublicComponent public path="/" />
-              <MockPublicComponent2 path="/foo" />
+              <MockPublicComponent title="Home"public path="/" />
+              <MockPublicComponent2 title="Foo" path="/foo" />
               <RedirectComponent public default />
             </Routes>
           </ProtectedRouter>
@@ -122,13 +170,13 @@ describe("The protected router", () => {
       </React.Fragment>
     );
 
-    const MockPublicComponent: React.FC<ProtectedRouterComponentProps> = () => (
+    const MockPublicComponent: React.FC<ProtectedRouterPageComponentProps> = () => (
       <React.Fragment>
         <div>Foo</div>
       </React.Fragment>
     );
 
-    const MockPublicComponent2: React.FC<ProtectedRouterComponentProps> = () => (
+    const MockPublicComponent2: React.FC<ProtectedRouterPageComponentProps> = () => (
       <CurrentUserContext.Provider value={undefined}>
         <React.Fragment>
           <div>Private</div>
@@ -141,8 +189,8 @@ describe("The protected router", () => {
         <CurrentUserContext.Provider value={jest.fn() as unknown as User}>
           <ProtectedRouter>
             <Routes>
-              <MockPublicComponent public path="/" />
-              <MockPublicComponent2 path="/foo" />
+              <MockPublicComponent public title="Home" path="/" />
+              <MockPublicComponent2 title="Foo" path="/foo" />
               <RedirectComponent public default />
             </Routes>
           </ProtectedRouter>
@@ -163,13 +211,13 @@ describe("The protected router", () => {
       </React.Fragment>
     );
 
-    const MockPublicComponent: React.FC<ProtectedRouterComponentProps> = () => (
+    const MockPublicComponent: React.FC<ProtectedRouterPageComponentProps> = () => (
       <React.Fragment>
         <div>Foo</div>
       </React.Fragment>
     );
 
-    const MockPublicComponent2: React.FC<ProtectedRouterComponentProps> = () => (
+    const MockPublicComponent2: React.FC<ProtectedRouterPageComponentProps> = () => (
         <React.Fragment>
           <div>Private</div>
         </React.Fragment>
@@ -180,8 +228,8 @@ describe("The protected router", () => {
         <CurrentUserContext.Provider value={jest.fn() as unknown as User}>
           <ProtectedRouter>
             <Routes>
-              <MockPublicComponent public path="/" />
-              <MockPublicComponent2 onlyPublic path="/foo" />
+              <MockPublicComponent title="Home" public path="/" />
+              <MockPublicComponent2 title="Foo" onlyPublic path="/foo" />
               <RedirectComponent public default />
             </Routes>
           </ProtectedRouter>
@@ -201,13 +249,13 @@ describe("The protected router", () => {
       </React.Fragment>
     );
 
-    const MockPublicComponent: React.FC<ProtectedRouterComponentProps> = () => (
+    const MockPublicComponent: React.FC<ProtectedRouterPageComponentProps> = () => (
       <React.Fragment>
         <div>Foo</div>
       </React.Fragment>
     );
 
-    const MockPublicComponent2: React.FC<ProtectedRouterComponentProps> = () => (
+    const MockPublicComponent2: React.FC<ProtectedRouterPageComponentProps> = () => (
         <React.Fragment>
           <div>Private</div>
         </React.Fragment>
@@ -218,8 +266,8 @@ describe("The protected router", () => {
         <CurrentUserContext.Provider value={undefined}>
           <ProtectedRouter>
             <Routes>
-              <MockPublicComponent public path="/" />
-              <MockPublicComponent2 onlyPublic path="/foo" />
+              <MockPublicComponent public title="Home" path="/" />
+              <MockPublicComponent2 title="Foo" onlyPublic path="/foo" />
               <RedirectComponent public default />
             </Routes>
           </ProtectedRouter>
@@ -234,13 +282,13 @@ describe("The protected router", () => {
 
 
   it("Throws an error if there is no default route", async () => {
-    const MockPublicComponent: React.FC<ProtectedRouterComponentProps> = () => (
+    const MockPublicComponent: React.FC<ProtectedRouterPageComponentProps> = () => (
       <React.Fragment>
         <div>Foo</div>
       </React.Fragment>
     );
 
-    const MockPublicComponent2: React.FC<ProtectedRouterComponentProps> = () => (
+    const MockPublicComponent2: React.FC<ProtectedRouterPageComponentProps> = () => (
       <React.Fragment>
         <div>Bar</div>
       </React.Fragment>
@@ -262,8 +310,8 @@ describe("The protected router", () => {
           <CurrentUserContext.Provider value={undefined}>
             <ProtectedRouter>
               <Routes>
-                <MockPublicComponent public path="/" />
-                <MockPublicComponent2 public path="/foo" />
+                <MockPublicComponent public title="Home" path="/" />
+                <MockPublicComponent2 public title="Foo" path="/foo" />
               </Routes>
             </ProtectedRouter>
           </CurrentUserContext.Provider>
@@ -278,13 +326,13 @@ describe("The protected router", () => {
   });
 
   it("Throws an error if the default route is not public", async () => {
-    const MockPublicComponent: React.FC<ProtectedRouterComponentProps> = () => (
+    const MockPublicComponent: React.FC<ProtectedRouterPageComponentProps> = () => (
       <React.Fragment>
         <div>Foo</div>
       </React.Fragment>
     );
 
-    const MockPublicComponent2: React.FC<ProtectedRouterComponentProps> = () => (
+    const MockPublicComponent2: React.FC<ProtectedRouterPageComponentProps> = () => (
       <React.Fragment>
         <div>Bar</div>
       </React.Fragment>
@@ -303,8 +351,8 @@ describe("The protected router", () => {
           <CurrentUserContext.Provider value={undefined}>
             <ProtectedRouter>
               <Routes>
-                <MockPublicComponent public path="/" />
-                <MockPublicComponent2 default path="/foo" />
+                <MockPublicComponent title="Home" public path="/" />
+                <MockPublicComponent2 title="Foo" default path="/foo" />
               </Routes>
             </ProtectedRouter>
           </CurrentUserContext.Provider>
