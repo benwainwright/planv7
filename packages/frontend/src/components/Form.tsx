@@ -13,6 +13,12 @@ export interface FormData {
   [name: string]: string;
 }
 
+const useStyles = makeStyles(() => ({
+  root: {
+    marginTop: "1rem",
+  },
+}));
+
 const Form: React.FC<FormProps> = (props) => {
   const [dirty, setDirty] = React.useState(false);
   const [data, setData] = React.useState<FormData>({});

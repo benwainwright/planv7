@@ -5,6 +5,8 @@ import {
   UploadFileCommand,
 } from "@choirpractise/domain";
 import Button from "@material-ui/core/Button";
+import Form from "../components/Form";
+import Input from "../components/form-controls/Input";
 import { ProtectedRouterPageComponentProps } from "../components/ProtectedRouter";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
@@ -31,19 +33,24 @@ const Files: React.FC<ProtectedRouterPageComponentProps> = (): React.ReactElemen
   };
 
   return (
-    <React.Fragment>
+    <Form onSubmit={() => {}}>
       <Typography variant="h2">Files</Typography>
-
-      <input onChange={onFileChange} type="file" title="fileUpload" />
       <TextField
         value={path}
         onChange={onPathChange}
         name="path"
         id="path"
-        label="path"
+        label="Path"
       />
+      <Input
+        onChange={onFileChange}
+        type="file"
+        name="fileUpload"
+        label="File Upload"
+      />
+
       <Button onClick={doUpload}>Upload</Button>
-    </React.Fragment>
+    </Form>
   );
 };
 

@@ -21,7 +21,7 @@ describe("The files page", () => {
 
     const file = new File([], "foo.zip");
     act(() => {
-      render(<Files />);
+      render(<Files title="Files" />);
       fireEvent.change(screen.getByTitle("fileUpload"), {
         target: { files: [file] },
       });
