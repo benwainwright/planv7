@@ -13,6 +13,13 @@ const Theme = createMuiTheme({
     }
   },
   overrides: {
+
+    MuiAppBar: {
+      root: {
+        flexGrow: 1,
+        marginBottom: "2rem",
+      },
+    },
     MuiContainer: {
       root: {
         width: "80%"
