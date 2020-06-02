@@ -18,7 +18,7 @@ describe("The protected router", () => {
 
     const MockPublicComponent: React.FC<ProtectedRouterPageComponentProps> = () => (
       <React.Fragment>
-        <div>Foo</div>
+        <div>FooElement</div>
       </React.Fragment>
     );
 
@@ -50,7 +50,8 @@ describe("The protected router", () => {
         </CurrentUserContext.Provider>
       );
     });
-
+    expect(screen.queryByText("Home")).not.toBeNull();
+    expect(screen.queryByText("Foo")).not.toBeNull();
   })
 
   it("Renders the route when it is public and there is no user", () => {

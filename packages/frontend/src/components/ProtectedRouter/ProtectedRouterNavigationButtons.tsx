@@ -1,7 +1,11 @@
 import * as React from "react";
 
-const ProtectedRouterNavigationButtons: React.FC = () => (
-  <React.Fragment></React.Fragment>
+interface ProtectedRouterNavigationButtonsProps {
+  children?: React.ReactNode;
+}
+
+const ProtectedRouterNavigationButtons: React.FC<ProtectedRouterNavigationButtonsProps> = (props) => (
+  <React.Fragment>{props.children}</React.Fragment>
 );
 
 export default ProtectedRouterNavigationButtons;

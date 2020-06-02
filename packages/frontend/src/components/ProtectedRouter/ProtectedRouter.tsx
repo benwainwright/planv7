@@ -1,9 +1,14 @@
 import * as React from "react";
-import { RouteComponentProps } from "@reach/router";
+import {
+  findGrandChildOfType,
+  mutateGrandChildren,
+} from "../../utils/children";
 import CurrentUserContext from "../../utils/CurrentUserContext";
+import ProtectedRouterNavigationButtons from "./ProtectedRouterNavigationButtons";
+import NavigationButton from "../NavigationButton";
+import { RouteComponentProps } from "@reach/router";
 import Routes from "./Routes";
 import { User } from "@choirpractise/domain";
-import { mutateGrandChildren } from "../../utils/children";
 
 export interface ProtectedRouterComponentProps extends RouteComponentProps {
   public?: boolean;
@@ -47,14 +52,35 @@ const secureRoutes = (
 const ProtectedRouter: React.FC = (props) => {
   const currentUser = React.useContext(CurrentUserContext);
 
-  const processedChildren = mutateGrandChildren(
+  const childrenWithSecuredRoutes = mutateGrandChildren(
     Routes,
     props.children,
-    (children: React.ReactNode) =>
-      secureRoutes(children, currentUser)
+    (children: React.ReactNode) => secureRoutes(children, currentUser)
   );
 
-  return <React.Fragment>{processedChildren}</React.Fragment>;
+  const routesElement = findGrandChildOfType(Routes, childrenWithSecuredRoutes);
+
+  const securedChildren = mutateGrandChildren(
+    ProtectedRouterNavigationButtons,
+    childrenWithSecuredRoutes,
+    (children: React.ReactNode) =>
+      React.Children.toArray(
+        (routesElement as React.ReactElement).props.children
+      )
+        .filter(
+          (node: React.ReactNode) => (node as React.ReactElement).props.title
+        )
+        .map((child: React.ReactNode) => {
+          const route = child as React.ReactElement;
+          return (
+            <NavigationButton key={route.props.title} to={route.props.path}>
+              {route.props.title}
+            </NavigationButton>
+          );
+        })
+  );
+
+  return <React.Fragment>{securedChildren}</React.Fragment>;
 };
 
 export default ProtectedRouter;
