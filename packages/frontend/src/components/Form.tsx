@@ -1,4 +1,5 @@
 import * as React from "react";
+import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { makeStyles } from "@material-ui/core/styles";
@@ -22,7 +23,9 @@ const Form: React.FC<FormProps> = (props) => {
   const [dirty, setDirty] = React.useState(false);
   const [data, setData] = React.useState<FormData>({});
 
-  const handleSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+  const handleSubmit = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
     event.preventDefault();
     props.onSubmit(data);
   };
@@ -55,11 +58,15 @@ const Form: React.FC<FormProps> = (props) => {
   const classes = useStyles();
   return (
     <form noValidate autoComplete="off">
-      {nodes}
-      <ButtonGroup className={classes.root}>
-        <Button type="submit" onClick={handleSubmit}>Submit</Button>
-        {dirty && <Button onClick={handleClear}>Clear</Button>}
-      </ButtonGroup>
+      <Box flexDirection="column">
+        {nodes}
+        <ButtonGroup className={classes.root}>
+          <Button type="submit" onClick={handleSubmit}>
+            Submit
+          </Button>
+          {dirty && <Button onClick={handleClear}>Clear</Button>}
+        </ButtonGroup>
+      </Box>
     </form>
   );
 };

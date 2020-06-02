@@ -13,7 +13,16 @@ const Theme = createMuiTheme({
     }
   },
   overrides: {
-    MuiTextField: {
+    MuiContainer: {
+      root: {
+        width: "80%"
+      }
+    },
+    MuiFormControl: {
+      root: {
+        display: "flex",
+        minWidth: "30rem"
+      }
     }
   }
 });
