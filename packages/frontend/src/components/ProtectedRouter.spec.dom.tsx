@@ -190,8 +190,8 @@ describe("The protected router", () => {
       await navigate("/foo");
     });
 
-    expect(screen.queryByText("Private")).not.toBeNull();
-    expect(screen.queryByText("Redirected")).toBeNull();
+    expect(screen.queryByText("Private")).toBeNull();
+    expect(screen.queryByText("Redirected")).not.toBeNull();
   })
 
   it("Renders the component if the route is onlyPublic, there is no user and you try to navigate to it", async () => {

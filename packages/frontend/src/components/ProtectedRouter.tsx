@@ -10,7 +10,9 @@ export interface ProtectedRouterComponentProps extends RouteComponentProps {
 }
 
 const allow = (route: React.ReactElement, loggedIn: boolean): boolean =>
-  route.props.public || (route.props.onlyPublic && !loggedIn) || (!route.props.public && loggedIn)
+  route.props.public ||
+  (route.props.onlyPublic && !loggedIn) ||
+  (!route.props.onlyPublic && loggedIn);
 
 const ProtectedRouter: React.FC = (props) => {
   const currentUser = React.useContext(CurrentUserContext);
