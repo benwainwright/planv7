@@ -1,32 +1,12 @@
 import * as React from "react";
-import { RouteComponentProps, Router } from "@reach/router";
 import CurrentUserContext from "../utils/CurrentUserContext";
+import { RouteComponentProps } from "@reach/router";
 import Routes from "./Routes";
+import { mutateGrandChildren } from "../utils/children";
 
 export interface ProtectedRouterComponentProps extends RouteComponentProps {
   public?: boolean;
 }
-
-const mutateGrandChildren = (
-  type: React.ElementType,
-  children: React.ReactNode,
-  mappingFunction: (children: React.ReactNode) => React.ReactNode
-): React.ReactNode =>
-  React.Children.map(children, (child: React.ReactNode) =>
-    !React.isValidElement(child)
-      ? child
-      : React.cloneElement(child, {
-          ...child.props,
-          children:
-            (child as React.ReactElement).type === React.createElement(type).type
-              ? mappingFunction(child.props.children)
-              : mutateGrandChildren(
-                  type,
-                  child.props.children,
-                  mappingFunction
-                ),
-        })
-  );
 
 const ProtectedRouter: React.FC = (props) => {
   const currentUser = React.useContext(CurrentUserContext);
