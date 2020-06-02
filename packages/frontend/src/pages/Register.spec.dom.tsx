@@ -14,8 +14,8 @@ import { when } from "jest-when";
 
 jest.mock("../utils/inversify-provider");
 
-const editFieldByTestId = (testId: string, value: string): void => {
-  fireEvent.change(screen.getByTestId(testId), { target: { value } });
+const editFieldByLabelText = (labelText: string, value: string): void => {
+  fireEvent.change(screen.getByLabelText(labelText), { target: { value } });
 };
 
 describe("Register page", () => {
@@ -29,17 +29,17 @@ describe("Register page", () => {
         .mockReturnValue(commandBus);
 
       act(() => {
-        render(<Register />);
-        editFieldByTestId("username", "foo");
+        render(<Register title="Register" />);
+        editFieldByLabelText("Username", "foo");
       });
       act(() => {
-        editFieldByTestId("password", "bar");
+        editFieldByLabelText("Password", "bar");
       });
       act(() => {
-        editFieldByTestId("verifyPassword", "baz");
+        editFieldByLabelText("Verify Password", "baz");
       });
       act(() => {
-        editFieldByTestId("email", "baz@bar.com");
+        editFieldByLabelText("Email", "baz@bar.com");
       });
 
       act(() => {
@@ -59,17 +59,17 @@ describe("Register page", () => {
         .mockReturnValue(commandBus);
 
       act(() => {
-        render(<Register />);
-        editFieldByTestId("username", "foo");
+        render(<Register title="Register" />);
+        editFieldByLabelText("Username", "foo");
       });
       act(() => {
-        editFieldByTestId("password", "bar");
+        editFieldByLabelText("Password", "bar");
       });
       act(() => {
-        editFieldByTestId("verifyPassword", "baz");
+        editFieldByLabelText("Verify Password", "baz");
       });
       act(() => {
-        editFieldByTestId("email", "baz2@bar.com");
+        editFieldByLabelText("Email", "baz2@bar.com");
       });
 
       await act(async () => {

@@ -1,12 +1,16 @@
 import "@testing-library/jest-dom/extend-expect";
 import * as React from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
+import {
+  fireEvent,
+  render,
+  screen
+} from "@testing-library/react";
 import Form from "./Form";
-import TextField from "@material-ui/core/TextField";
+import Input from "./form-controls/Input";
 import { act } from "react-dom/test-utils";
 
-const editFieldByTestId = (testId: string, value: string): void => {
-  fireEvent.change(screen.getByTestId(testId), { target: { value } });
+const editFieldByLabelText = (labelText: string, value: string): void => {
+  fireEvent.change(screen.getByLabelText(labelText), { target: { value } });
 };
 
 describe("The Form component", () => {
@@ -15,9 +19,9 @@ describe("The Form component", () => {
       act(() => {
         render(
           <Form onSubmit={jest.fn()}>
-            <TextField label="Field One" />
-            <TextField label="Field Two" />
-            <TextField label="Field Three" />
+            <Input name="one" label="Field One" />
+            <Input name="two" label="Field Twe" />
+            <Input name="three" label="Field Three" />
           </Form>
         );
       });
@@ -28,29 +32,17 @@ describe("The Form component", () => {
       act(() => {
         render(
           <Form onSubmit={jest.fn()}>
-            <TextField
-              label="Field One"
-              inputProps={{ "data-testid": "one" }}
-              name="one"
-            />
-            <TextField
-              label="Field Two"
-              inputProps={{ "data-testid": "two" }}
-              name="two"
-            />
-            <TextField
-              label="Field Three"
-              inputProps={{ "data-testid": "three" }}
-              name="three"
-            />
+            <Input label="Field One" name="one" />
+            <Input label="Field Two" name="two" />
+            <Input label="Field Three" name="three" />
           </Form>
         );
 
-        editFieldByTestId("one", "foo");
+        editFieldByLabelText("Field One", "foo");
       });
 
       act(() => {
-        editFieldByTestId("three", "bar");
+        editFieldByLabelText("Field Three", "bar");
       });
 
       expect(screen.queryByText("Clear")).not.toBeNull();
@@ -60,41 +52,38 @@ describe("The Form component", () => {
       act(() => {
         render(
           <Form onSubmit={jest.fn()}>
-            <TextField
+            <Input
               label="Field One"
               name="one"
-              inputProps={{ "data-testid": "one" }}
             />
-            <TextField
+            <Input
               label="Field Two"
               name="two"
-              inputProps={{ "data-testid": "two" }}
             />
-            <TextField
+            <Input
               label="Field Three"
               name="three"
-              inputProps={{ "data-testid": "three" }}
             />
           </Form>
         );
 
-        editFieldByTestId("one", "foo");
+        editFieldByLabelText("Field One", "foo");
       });
       act(() => {
-        editFieldByTestId("two", "bif");
+        editFieldByLabelText("Field Two", "bif");
       });
       act(() => {
-        editFieldByTestId("three", "bar");
+        editFieldByLabelText("Field Three", "bar");
       });
 
       act(() => {
-        editFieldByTestId("one", "");
+        editFieldByLabelText("Field One", "");
       });
       act(() => {
-        editFieldByTestId("two", "");
+        editFieldByLabelText("Field Two", "");
       });
       act(() => {
-        editFieldByTestId("three", "");
+        editFieldByLabelText("Field Three", "");
       });
 
       expect(screen.queryByText("Clear")).toBeNull();
@@ -104,35 +93,33 @@ describe("The Form component", () => {
       act(() => {
         render(
           <Form onSubmit={jest.fn()}>
-            <TextField
+            <Input
               label="Field One"
-              inputProps={{ "data-testid": "one" }}
               name="one"
             />
-            <TextField
+            <Input
               label="Field Two"
-              inputProps={{ "data-testid": "two" }}
               name="two"
             />
-            <TextField
+            <Input
               label="Field Three"
-              inputProps={{ "data-testid": "three" }}
               name="three"
             />
           </Form>
         );
 
-        editFieldByTestId("one", "foo");
-        editFieldByTestId("three", "bar");
+        editFieldByLabelText("Field One", "foo");
+        editFieldByLabelText("Field Two", "foo");
+        editFieldByLabelText("Field Three", "bar");
       });
 
       act(() => {
         fireEvent.click(screen.getByText("Clear"));
       });
 
-      expect(screen.getByTestId("one")).toHaveValue("");
-      expect(screen.getByTestId("two")).toHaveValue("");
-      expect(screen.getByTestId("three")).toHaveValue("");
+      expect(screen.getByLabelText("Field One")).toHaveValue("");
+      expect(screen.getByLabelText("Field Two")).toHaveValue("");
+      expect(screen.getByLabelText("Field Three")).toHaveValue("");
     });
   });
 
@@ -143,33 +130,30 @@ describe("The Form component", () => {
       act(() => {
         render(
           <Form onSubmit={onSubmit}>
-            <TextField
+            <Input
               label="Field One"
-              inputProps={{ "data-testid": "one" }}
               name="one"
             />
-            <TextField
+            <Input
               label="Field Two"
-              inputProps={{ "data-testid": "two" }}
               name="two"
             />
-            <TextField
+            <Input
               label="Field Three"
-              inputProps={{ "data-testid": "three" }}
               name="three"
             />
           </Form>
         );
 
-        editFieldByTestId("one", "foo");
+        editFieldByLabelText("Field One", "foo");
       });
 
       act(() => {
-        editFieldByTestId("two", "bar");
+        editFieldByLabelText("Field Two", "bar");
       });
 
       act(() => {
-        editFieldByTestId("three", "baz");
+        editFieldByLabelText("Field Three", "baz");
       });
 
       act(() => {

@@ -6,8 +6,8 @@ import {
   RegisterUserCommand,
 } from "@choirpractise/domain";
 import Form, { FormData } from "../components/Form";
+import Input from "../components/form-controls/Input"
 import { ProtectedRouterPageComponentProps } from "../components/ProtectedRouter/ProtectedRouter";
-import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { useDependency } from "../utils/inversify-provider";
 
@@ -33,36 +33,23 @@ const Register: React.FC<ProtectedRouterPageComponentProps> = () => {
         Register!
       </Typography>
       <Form onSubmit={handleSubmit}>
-        <TextField
-          fullWidth
-          name={USERNAME}
-          id={USERNAME}
-          label="Username"
-          inputProps={{ "data-testid": USERNAME }}
-        />
-        <TextField
-          fullWidth
-          name={EMAIL}
-          id={EMAIL}
-          label="Email"
-          inputProps={{ "data-testid": EMAIL }}
-        />
-        <TextField
-          fullWidth
-          name={PASSWORD}
-          id={PASSWORD}
-          label="Password"
-          type="password"
-          inputProps={{ "data-testid": PASSWORD }}
-        />
-        <TextField
-          fullWidth
-          name={VERIFY_PASSWORD}
-          id={VERIFY_PASSWORD}
-          inputProps={{ "data-testid": VERIFY_PASSWORD }}
-          type="password"
-          label="Verify Password"
-        />
+          <Input
+            name={USERNAME}
+            label="Username"
+          />
+          <Input
+            name={EMAIL}
+            label="Email"
+          />
+          <Input
+            name={PASSWORD}
+            label="Password"
+            type="password"
+          />
+          <Input
+            name={VERIFY_PASSWORD}
+            type="password"
+            label="Verify Password" />
       </Form>
     </React.Fragment>
   );

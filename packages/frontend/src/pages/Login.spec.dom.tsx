@@ -9,8 +9,8 @@ import { when } from "jest-when";
 
 jest.mock("../utils/inversify-provider");
 
-const editFieldByTestId = (testId: string, value: string): void => {
-  fireEvent.change(screen.getByTestId(testId), { target: { value } });
+const editFieldByLabelText = (labelText: string, value: string): void => {
+  fireEvent.change(screen.getByLabelText(labelText), { target: { value } });
 };
 
 describe("Login page", () => {
@@ -25,11 +25,11 @@ describe("Login page", () => {
         .mockReturnValue(commandBus);
 
       act(() => {
-        render(<Login />);
-        editFieldByTestId("username", "foo");
+        render(<Login title="Login" />);
+        editFieldByLabelText("Username", "foo");
       });
       act(() => {
-        editFieldByTestId("password", "bar");
+        editFieldByLabelText("Password", "bar");
       });
 
       act(() => {

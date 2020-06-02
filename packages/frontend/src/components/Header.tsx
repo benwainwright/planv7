@@ -50,14 +50,6 @@ const Header: React.FC<HeaderProps> = (props): React.ReactElement => {
     <header className="appBar">
       <AppBar className={classes.root} position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h1" className={classes.title}>
             {props.title}
           </Typography>

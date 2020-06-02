@@ -2,9 +2,18 @@ import { createMuiTheme } from "@material-ui/core/styles";
 
 const Theme = createMuiTheme({
   typography: {
-    fontSize: 20,
     h1: {
-      fontSize: "2em"
+      fontSize: "2rem"
+    },
+    h2: {
+      fontSize: "1.5rem"
+    },
+    h3: {
+      fontSize: "1.2rem"
+    }
+  },
+  overrides: {
+    MuiTextField: {
     }
   }
 });
