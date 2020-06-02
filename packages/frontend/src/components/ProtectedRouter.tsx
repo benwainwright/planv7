@@ -6,13 +6,16 @@ import { mutateGrandChildren } from "../utils/children";
 
 export interface ProtectedRouterComponentProps extends RouteComponentProps {
   public?: boolean;
+  onlyPublic?: boolean;
 }
+
+const allow = (route: React.ReactElement, loggedIn: boolean): boolean =>
+  route.props.public || (route.props.onlyPublic && !loggedIn) || (!route.props.public && loggedIn)
 
 const ProtectedRouter: React.FC = (props) => {
   const currentUser = React.useContext(CurrentUserContext);
 
   const routesMapper = (children: React.ReactNode): React.ReactNode => {
-
     const theDefault = React.Children.toArray(children)
       .filter((node: React.ReactNode) => React.isValidElement(node))
       .find(
@@ -29,7 +32,7 @@ const ProtectedRouter: React.FC = (props) => {
     }
 
     return React.Children.map(children, (child: React.ReactNode) =>
-      (child as React.ReactElement).props.public || currentUser
+      allow(child as React.ReactElement, Boolean(currentUser))
         ? child
         : theDefault
     );
@@ -41,7 +44,7 @@ const ProtectedRouter: React.FC = (props) => {
     routesMapper
   );
 
-  return <React.Fragment>{processedChildren}</React.Fragment>
+  return <React.Fragment>{processedChildren}</React.Fragment>;
 };
 
 export default ProtectedRouter;

@@ -72,8 +72,8 @@ const RawApp: React.FC = (): React.ReactElement => {
         <main>
           <Routes>
             <Home public path="/app" />
-            <Register public path="/app/register" />
-            <Login public path="/app/login" />
+            <Register onlyPublic path="/app/register" />
+            <Login onlyPublic path="/app/login" />
             <Files path="/app/files" />
             <NotFound public default path="/not-found" />
           </Routes>

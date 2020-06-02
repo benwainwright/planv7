@@ -6,10 +6,14 @@ import ProtectedRouter, {
 import { render, screen } from "@testing-library/react";
 import CurrentUserContext from "../utils/CurrentUserContext";
 import Routes from "./Routes";
+import ProtectedRouterNavigationButtons from "./ProtectedRouterNavigationButtons";
+import { User } from "@choirpractise/domain";
 import { act } from "react-dom/test-utils";
 import { navigate } from "@reach/router";
 
 describe("The protected router", () => {
+
+
   it("Renders the route when it is public and there is no user", () => {
     const MockPublicComponent: React.FC<ProtectedRouterComponentProps> = () => (
       <React.Fragment>
@@ -71,7 +75,7 @@ describe("The protected router", () => {
     expect(screen.queryByText("Bar")).not.toBeNull();
   });
 
-  it("Renders the default component if the route is NOT public and you try to navigate to it", async () => {
+  it("Renders the default component if the route is NOT public, there is no user and you try to navigate to it", async () => {
     const RedirectComponent: React.FC<ProtectedRouterComponentProps> = () => (
       <React.Fragment>
         <div>Redirected</div>
@@ -110,6 +114,124 @@ describe("The protected router", () => {
     expect(screen.queryByText("Private")).toBeNull();
     expect(screen.queryByText("Redirected")).not.toBeNull();
   });
+
+  it("Renders the component if the route is NOT public, there is a user and you try to navigate to it", async () => {
+    const RedirectComponent: React.FC<ProtectedRouterComponentProps> = () => (
+      <React.Fragment>
+        <div>Redirected</div>
+      </React.Fragment>
+    );
+
+    const MockPublicComponent: React.FC<ProtectedRouterComponentProps> = () => (
+      <React.Fragment>
+        <div>Foo</div>
+      </React.Fragment>
+    );
+
+    const MockPublicComponent2: React.FC<ProtectedRouterComponentProps> = () => (
+      <CurrentUserContext.Provider value={undefined}>
+        <React.Fragment>
+          <div>Private</div>
+        </React.Fragment>
+      </CurrentUserContext.Provider>
+    );
+
+    await act(async () => {
+      render(
+        <CurrentUserContext.Provider value={jest.fn() as unknown as User}>
+          <ProtectedRouter>
+            <Routes>
+              <MockPublicComponent public path="/" />
+              <MockPublicComponent2 path="/foo" />
+              <RedirectComponent public default />
+            </Routes>
+          </ProtectedRouter>
+        </CurrentUserContext.Provider>
+      );
+      await navigate("/foo");
+    });
+
+    expect(screen.queryByText("Private")).not.toBeNull();
+    expect(screen.queryByText("Redirected")).toBeNull();
+  });
+
+
+  it("Renders the default component if the route is onlyPublic, there IS a user and you try to navigate to it", async () => {
+    const RedirectComponent: React.FC<ProtectedRouterComponentProps> = () => (
+      <React.Fragment>
+        <div>Redirected</div>
+      </React.Fragment>
+    );
+
+    const MockPublicComponent: React.FC<ProtectedRouterComponentProps> = () => (
+      <React.Fragment>
+        <div>Foo</div>
+      </React.Fragment>
+    );
+
+    const MockPublicComponent2: React.FC<ProtectedRouterComponentProps> = () => (
+        <React.Fragment>
+          <div>Private</div>
+        </React.Fragment>
+    );
+
+    await act(async () => {
+      render(
+        <CurrentUserContext.Provider value={jest.fn() as unknown as User}>
+          <ProtectedRouter>
+            <Routes>
+              <MockPublicComponent public path="/" />
+              <MockPublicComponent2 onlyPublic path="/foo" />
+              <RedirectComponent public default />
+            </Routes>
+          </ProtectedRouter>
+        </CurrentUserContext.Provider>
+      );
+      await navigate("/foo");
+    });
+
+    expect(screen.queryByText("Private")).not.toBeNull();
+    expect(screen.queryByText("Redirected")).toBeNull();
+  })
+
+  it("Renders the component if the route is onlyPublic, there is no user and you try to navigate to it", async () => {
+    const RedirectComponent: React.FC<ProtectedRouterComponentProps> = () => (
+      <React.Fragment>
+        <div>Redirected</div>
+      </React.Fragment>
+    );
+
+    const MockPublicComponent: React.FC<ProtectedRouterComponentProps> = () => (
+      <React.Fragment>
+        <div>Foo</div>
+      </React.Fragment>
+    );
+
+    const MockPublicComponent2: React.FC<ProtectedRouterComponentProps> = () => (
+        <React.Fragment>
+          <div>Private</div>
+        </React.Fragment>
+    );
+
+    await act(async () => {
+      render(
+        <CurrentUserContext.Provider value={undefined}>
+          <ProtectedRouter>
+            <Routes>
+              <MockPublicComponent public path="/" />
+              <MockPublicComponent2 onlyPublic path="/foo" />
+              <RedirectComponent public default />
+            </Routes>
+          </ProtectedRouter>
+        </CurrentUserContext.Provider>
+      );
+      await navigate("/foo");
+    });
+
+    expect(screen.queryByText("Private")).not.toBeNull();
+    expect(screen.queryByText("Redirected")).toBeNull();
+  })
+
 
   it("Throws an error if there is no default route", async () => {
     const MockPublicComponent: React.FC<ProtectedRouterComponentProps> = () => (
