@@ -50,7 +50,7 @@ const RawApp: React.FC = (): React.ReactElement => {
   };
 
   return (
-    <React.Fragment>
+    <ProtectedRouter>
       <CssBaseline />
       <Header />
       <SnackBar
@@ -70,18 +70,16 @@ const RawApp: React.FC = (): React.ReactElement => {
       </SnackBar>
       <Container>
         <main>
-          <ProtectedRouter>
-            <Routes>
-              <Home public path="/app" />
-              <Register public path="/app/register" />
-              <Login public path="/app/login" />
-              <Files path="/app/files" />
-              <NotFound public default path="/not-found" />
-            </Routes>
-          </ProtectedRouter>
+          <Routes>
+            <Home public path="/app" />
+            <Register public path="/app/register" />
+            <Login public path="/app/login" />
+            <Files path="/app/files" />
+            <NotFound public default path="/not-found" />
+          </Routes>
         </main>
       </Container>
-    </React.Fragment>
+    </ProtectedRouter>
   );
 };
 
