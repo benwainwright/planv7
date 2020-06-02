@@ -68,7 +68,8 @@ const ProtectedRouter: React.FC = (props) => {
         (routesElement as React.ReactElement).props.children
       )
         .filter(
-          (node: React.ReactNode) => (node as React.ReactElement).props.title
+          (node: React.ReactNode) => (node as React.ReactElement).props.title &&
+          allow(node as React.ReactElement, Boolean(currentUser))
         )
         .map((child: React.ReactNode) => {
           const route = child as React.ReactElement;

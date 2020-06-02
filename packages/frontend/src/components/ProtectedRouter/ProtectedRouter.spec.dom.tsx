@@ -14,8 +14,55 @@ import { navigate } from "@reach/router";
 
 describe("The protected router", () => {
 
-  it("Renders links to public routes in the menu when there is no user", () => {
+  it("Renders links to public and onlyPublic routes in the menu when there is no user", () => {
 
+    const MockPublicComponent: React.FC<ProtectedRouterPageComponentProps> = () => (
+      <React.Fragment>
+        <div>FooElement</div>
+      </React.Fragment>
+    );
+
+    const MockPublicComponent2: React.FC<ProtectedRouterPageComponentProps> = () => (
+      <React.Fragment>
+        <div>Bar</div>
+      </React.Fragment>
+    );
+
+    const MockPublicComponent3: React.FC<ProtectedRouterComponentProps> = () => (
+      <React.Fragment>
+        <div>Bar</div>
+      </React.Fragment>
+    );
+
+    const MockPublicComponent4: React.FC<ProtectedRouterPageComponentProps> = () => (
+      <React.Fragment>
+        <div>OnlyPublic</div>
+      </React.Fragment>
+    );
+
+    act(() => {
+      render(
+        <CurrentUserContext.Provider value={undefined}>
+          <ProtectedRouter>
+            <section>
+              <ProtectedRouterNavigationButtons />
+            </section>
+            <Routes>
+              <MockPublicComponent title="Home" public path="/" />
+              <MockPublicComponent2 title="Foo" public path="/foo" />
+              <MockPublicComponent4 title="FooBar" onlyPublic path="/foo" />
+              <MockPublicComponent3 default public path="/baz" />
+            </Routes>
+          </ProtectedRouter>
+        </CurrentUserContext.Provider>
+      );
+    });
+    expect(screen.queryByText("Home")).not.toBeNull();
+    expect(screen.queryByText("Foo")).not.toBeNull();
+    expect(screen.queryByText("FooBar")).not.toBeNull();
+  })
+
+  it("Doesn't render links to private routes in the menu when there is no user", () => {
     const MockPublicComponent: React.FC<ProtectedRouterPageComponentProps> = () => (
       <React.Fragment>
         <div>FooElement</div>
@@ -43,7 +90,7 @@ describe("The protected router", () => {
             </section>
             <Routes>
               <MockPublicComponent title="Home" public path="/" />
-              <MockPublicComponent2 title="Foo" public path="/foo" />
+              <MockPublicComponent2 title="Foo" path="/foo" />
               <MockPublicComponent3 default public path="/baz" />
             </Routes>
           </ProtectedRouter>
@@ -51,8 +98,88 @@ describe("The protected router", () => {
       );
     });
     expect(screen.queryByText("Home")).not.toBeNull();
-    expect(screen.queryByText("Foo")).not.toBeNull();
+    expect(screen.queryByText("Foo")).toBeNull();
   })
+
+  it("Doesn't render links to private routes in the menu when there is no user", () => {
+    const MockPublicComponent: React.FC<ProtectedRouterPageComponentProps> = () => (
+      <React.Fragment>
+        <div>FooElement</div>
+      </React.Fragment>
+    );
+
+    const MockPublicComponent2: React.FC<ProtectedRouterPageComponentProps> = () => (
+      <React.Fragment>
+        <div>Bar</div>
+      </React.Fragment>
+    );
+
+    const MockPublicComponent3: React.FC<ProtectedRouterComponentProps> = () => (
+      <React.Fragment>
+        <div>Bar</div>
+      </React.Fragment>
+    );
+
+    act(() => {
+      render(
+        <CurrentUserContext.Provider value={undefined}>
+          <ProtectedRouter>
+            <section>
+              <ProtectedRouterNavigationButtons />
+            </section>
+            <Routes>
+              <MockPublicComponent title="Home" public path="/" />
+              <MockPublicComponent2 title="Foo" path="/foo" />
+              <MockPublicComponent3 default public path="/baz" />
+            </Routes>
+          </ProtectedRouter>
+        </CurrentUserContext.Provider>
+      );
+    });
+    expect(screen.queryByText("Home")).not.toBeNull();
+    expect(screen.queryByText("Foo")).toBeNull();
+  })
+
+  it("Doesn't render links to onlyPublic routes in the menu when there is a user", () => {
+    const MockPublicComponent: React.FC<ProtectedRouterPageComponentProps> = () => (
+      <React.Fragment>
+        <div>FooElement</div>
+      </React.Fragment>
+    );
+
+    const MockPublicComponent2: React.FC<ProtectedRouterPageComponentProps> = () => (
+      <React.Fragment>
+        <div>Bar</div>
+      </React.Fragment>
+    );
+
+    const MockPublicComponent3: React.FC<ProtectedRouterComponentProps> = () => (
+      <React.Fragment>
+        <div>Bar</div>
+      </React.Fragment>
+    );
+
+    act(() => {
+      render(
+        <CurrentUserContext.Provider value={jest.fn() as unknown as User}>
+          <ProtectedRouter>
+            <section>
+              <ProtectedRouterNavigationButtons />
+            </section>
+            <Routes>
+              <MockPublicComponent title="Home" public path="/" />
+              <MockPublicComponent2 title="Foo" onlyPublic path="/foo" />
+              <MockPublicComponent3 default public path="/baz" />
+            </Routes>
+          </ProtectedRouter>
+        </CurrentUserContext.Provider>
+      );
+    });
+    expect(screen.queryByText("Home")).not.toBeNull();
+    expect(screen.queryByText("Foo")).toBeNull();
+  })
+
+
 
   it("Renders the route when it is public and there is no user", () => {
     const MockPublicComponent: React.FC<ProtectedRouterPageComponentProps> = () => (
