@@ -21,7 +21,7 @@ const Files: React.FC<ProtectedRouterPageComponentProps> = (
 
   const doUpload = async (data: FormData): Promise<void> => {
     await commandBus.execute(
-      new UploadFileCommand(data[FILE] as File, data[PATH] as string)
+      new UploadFileCommand(data.file, data.values[PATH] as string)
     );
   };
 
