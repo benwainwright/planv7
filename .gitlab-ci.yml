@@ -83,7 +83,6 @@ Cypress:
     reports:
       junit: packages/testing/test-results.xml
     paths:
-      - packages/testing/cypress.log
       - packages/testing/videos
       - packages/testing/screenshots
 
