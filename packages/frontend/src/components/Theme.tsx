@@ -2,6 +2,7 @@ import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
 
 const RawTheme = createMuiTheme({
   typography: {
+    htmlFontSize: 16,
     h1: {
       fontSize: "2.5rem",
     },
@@ -21,14 +22,14 @@ const RawTheme = createMuiTheme({
     },
     MuiInput: {
       root: {
-        display: "block"
-      }
+        display: "block",
+      },
     },
     MuiContainer: {},
     MuiFormControl: {
       root: {
         display: "block",
-        minWidth: "30rem"
+        minWidth: "30rem",
       },
     },
   },

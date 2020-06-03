@@ -24,7 +24,9 @@ const Page: React.FC<PageProps> = (props) => {
       <Typography variant="h2" gutterBottom>
         {props.title}
       </Typography>
+      <Typography variant="body1">
       {props.children}
+      </Typography>
     </Paper>
   );
 };

@@ -1,11 +1,11 @@
 import * as React from "react";
+import Page from "../components/Page";
 import { ProtectedRouterComponentProps } from "../components/ProtectedRouter";
 
 const NotFound: React.FC<ProtectedRouterComponentProps> = (): React.ReactElement => (
-  <React.Fragment>
-    <h1>Whoops!</h1>
+  <Page title="Not Found">
     <p>We couldn&apos;t find what you were looking for...</p>
-  </React.Fragment>
+  </Page>
 );
 
 export default NotFound;
