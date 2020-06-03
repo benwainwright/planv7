@@ -21,10 +21,16 @@ const Register: React.FC<ProtectedRouterPageComponentProps> = (props) => {
 
   const handleSubmit = async (data: FormData): Promise<void> => {
     await commandBus.execute(
-      new RegisterUserCommand(data[USERNAME], data[EMAIL], data[PASSWORD])
+      new RegisterUserCommand(
+        data.values[USERNAME],
+        data.values[EMAIL],
+        data.values[PASSWORD]
+      )
     );
 
-    await commandBus.execute(new LoginCommand(data[USERNAME], data[PASSWORD]));
+    await commandBus.execute(
+      new LoginCommand(data.values[USERNAME], data.values[PASSWORD])
+    );
   };
 
   return (

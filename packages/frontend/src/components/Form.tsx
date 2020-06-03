@@ -11,22 +11,26 @@ interface FormProps {
 }
 
 export interface FormData {
-  [name: string]: string | File;
+  values: { [name: string]: string };
+  file?: File;
 }
 
 const useStyles = makeStyles(() => ({
   root: {
-    paddingTop: "0.5rem"
+    paddingTop: "0.5rem",
   },
   buttons: {
     marginTop: "1.5rem",
-    margin: "0"
-  }
+    margin: "0",
+  },
 }));
 
 const Form: React.FC<FormProps> = (props) => {
   const [dirty, setDirty] = React.useState(false);
-  const [data, setData] = React.useState<FormData>({});
+  const [data, setData] = React.useState<FormData>({
+    values: {},
+    file: undefined,
+  });
   const classes = useStyles();
 
   const handleSubmit = (
@@ -37,19 +41,16 @@ const Form: React.FC<FormProps> = (props) => {
   };
 
   const handleClear = (): void => {
-    setData({});
+    setData({ values: {}, file: undefined });
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const newData = { ...data };
-    newData[event.target.name] = event.target.value;
-    if (
-      !newData[event.target.name] &&
-      event.target.files &&
-      event.target.files.length > 0
-    ) {
-      newData[event.target.name] = event.target.files[0];
+    const newData = { values: { ...data.values }, file: data.file };
+    newData.values[event.target.name] = event.target.value;
+    if (event.target.files) {
+      newData.file = event.target.files[0];
     }
+
     setData(newData);
   };
 
@@ -63,22 +64,22 @@ const Form: React.FC<FormProps> = (props) => {
     return elementItem?.props?.name
       ? React.cloneElement(elementItem, {
           onChange: handleChange,
-          value: data[elementItem.props.name] || "",
+          value: data.values[elementItem.props.name] || "",
         })
       : elementItem;
   });
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
-        <Box flexDirection="column">
-          {nodes}
-          <ButtonGroup className={classes.buttons}>
-            <Button type="submit" onClick={handleSubmit}>
-              {props.submitText ?? "Submit"}
-            </Button>
-            {dirty && <Button onClick={handleClear}>Clear</Button>}
-          </ButtonGroup>
-        </Box>
+      <Box flexDirection="column">
+        {nodes}
+        <ButtonGroup className={classes.buttons}>
+          <Button type="submit" onClick={handleSubmit}>
+            {props.submitText ?? "Submit"}
+          </Button>
+          {dirty && <Button onClick={handleClear}>Clear</Button>}
+        </ButtonGroup>
+      </Box>
     </form>
   );
 };

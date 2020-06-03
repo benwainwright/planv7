@@ -17,7 +17,9 @@ const Login: React.FC<ProtectedRouterPageComponentProps> = (props) => {
   const commandBus = useDependency<CommandBus>(DOMAIN.commandBus);
 
   const handleSubmit = async (data: FormData): Promise<void> => {
-    await commandBus.execute(new LoginCommand(data[USERNAME], data[PASSWORD]));
+    await commandBus.execute(
+      new LoginCommand(data.values[USERNAME], data.values[PASSWORD])
+    );
   };
 
   return (
