@@ -11,7 +11,6 @@ import Page from "../components/Page";
 import { ProtectedRouterPageComponentProps } from "../components/ProtectedRouter";
 import { useDependency } from "../utils/inversify-provider";
 
-const FILE = "file";
 const PATH = "path";
 
 const Files: React.FC<ProtectedRouterPageComponentProps> = (
