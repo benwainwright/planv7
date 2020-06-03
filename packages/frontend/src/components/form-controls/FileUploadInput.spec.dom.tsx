@@ -23,4 +23,17 @@ describe("File upload input", () => {
     });
     expect(screen.getByTitle("foo-button")).toHaveTextContent("foo.zip");
   });
+
+  it("Triggers a click event on the input when you click the button", async () => {
+    let triggered = false;
+    await act(async () => {
+      render(<FileUploadInput label="foo" name="foo" />);
+      const thing = screen.getByTitle("foo");
+      thing.addEventListener("click", () => {
+        triggered = true;
+      })
+      fireEvent.click(screen.getByTitle("foo-button"))
+    })
+    expect(triggered).toBeTruthy();
+  });
 });

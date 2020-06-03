@@ -33,13 +33,20 @@ const FileUploadInput: React.FC<InputProps> = (props) => {
     }
   };
 
+  const handleClick = (): void => {
+    const fileInput = document.querySelector(`#${props.name}`);
+    if (fileInput instanceof HTMLElement) {
+      fileInput.click()
+    }
+  }
+
   const classes = useStyles();
   return (
     <Paper variant="outlined" className={classes.wrapper}>
       <InputLabel className={classes.label} htmlFor={props.name}>
         {props.label}
       </InputLabel>
-      <Button id={`${props.name}-button`} title={`${props.name}-button`}>
+      <Button id={`${props.name}-button`} title={`${props.name}-button`} onClick={handleClick}>
         {filename || "Click to select"}
       </Button>
       <input
