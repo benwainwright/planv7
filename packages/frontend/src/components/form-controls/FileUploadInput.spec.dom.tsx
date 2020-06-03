@@ -11,7 +11,6 @@ describe("File upload input", () => {
       render(<FileUploadInput label="foo" name="foo" />);
     });
     expect(screen.getByTitle("foo-button")).toHaveTextContent(
-
       "Click to select"
     );
   });
