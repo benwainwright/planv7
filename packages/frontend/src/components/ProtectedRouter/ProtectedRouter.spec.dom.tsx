@@ -1,11 +1,11 @@
 import "@testing-library/jest-dom/extend-expect";
 import * as React from "react";
+import { TYPES as DOMAIN, User } from "@choirpractise/domain";
 import ProtectedRouter, {
   ProtectedRouterComponentProps,
   ProtectedRouterPageComponentProps
 } from "./ProtectedRouter";
 import { render, screen } from "@testing-library/react";
-import { TYPES as DOMAIN, User } from "@choirpractise/domain";
 import CurrentUserContext from "../../utils/CurrentUserContext";
 import Header from "../Header";
 import Routes from "./Routes";
