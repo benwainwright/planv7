@@ -19,8 +19,7 @@ const globalSettings = {
 
       },
     ],
-  ],
-  collectCoverage: true,
+  ]
 };
 
 const coverageExclusions = ["!**/*.spec.{ts, tsx}", "!**/*.spec.dom.{ts, tsx}"];

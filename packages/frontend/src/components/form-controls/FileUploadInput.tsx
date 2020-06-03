@@ -26,7 +26,7 @@ const FileUploadInput: React.FC<InputProps> = (props) => {
       <InputLabel className={classes.label} htmlFor={props.name}>
         {props.label}
       </InputLabel>
-      <Button>Click to select</Button>
+      <Button id={`${props.name}-button`}>Click to select</Button>
       <input
         id={props.name}
         type="file"

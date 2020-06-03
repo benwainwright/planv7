@@ -13,7 +13,7 @@
   },
   "scripts": {
     "lint": "yarn workspaces foreach run lint",
-    "test": "APP_LOG_LEVEL=none jest --silent",
+    "test": "APP_LOG_LEVEL=none jest --coverage --silent",
     "start:dev": "webpack --env=dev",
     "build:prod": "yarn workspaces foreach --parallel run build:prod",
     "deploy:stack": "yarn workspace @choirpractise/infrastructure deploy"
