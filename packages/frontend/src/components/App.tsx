@@ -2,8 +2,7 @@ import * as React from "react";
 import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 import {
   ProtectedRouter,
-  ProtectedRouterNavigationButtons,
-  Routes,
+  Routes
 } from "./ProtectedRouter";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
