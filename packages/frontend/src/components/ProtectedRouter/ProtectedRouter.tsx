@@ -13,6 +13,7 @@ import { User } from "@choirpractise/domain";
 export interface ProtectedRouterComponentProps extends RouteComponentProps {
   public?: boolean;
   onlyPublic?: boolean;
+  redirectWhenBlockedTo?: string;
 }
 
 export interface ProtectedRouterPageComponentProps

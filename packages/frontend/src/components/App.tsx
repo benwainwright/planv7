@@ -1,9 +1,6 @@
 import * as React from "react";
 import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
-import {
-  ProtectedRouter,
-  Routes
-} from "./ProtectedRouter";
+import { ProtectedRouter, Routes } from "./ProtectedRouter";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { DomainEvent } from "@choirpractise/domain";
@@ -13,6 +10,7 @@ import Header from "./Header";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import NotFound from "../pages/NotFound";
+import Redirect from "../utils/Redirect";
 import Register from "../pages/Register";
 import SnackBar from "@material-ui/core/Snackbar";
 import { hot } from "react-hot-loader/root";
@@ -79,7 +77,7 @@ const RawApp: React.FC = (): React.ReactElement => {
             <Register onlyPublic title="Register" path="/app/register" />
             <Login onlyPublic title="Login" path="/app/login" />
             <Files title="Files" path="/app/files" />
-            <NotFound public default path="/not-found" />
+            <Redirect public default to="/app" />
           </Routes>
         </main>
       </Container>
