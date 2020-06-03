@@ -9,7 +9,6 @@ import Files from "../pages/Files";
 import Header from "./Header";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
-import NotFound from "../pages/NotFound";
 import Redirect from "../utils/Redirect";
 import Register from "../pages/Register";
 import SnackBar from "@material-ui/core/Snackbar";
