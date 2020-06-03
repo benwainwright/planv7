@@ -76,7 +76,7 @@ const RawApp: React.FC = (): React.ReactElement => {
       <Container>
         <main>
           <Routes>
-            <Home public title="Home" path="/app" />
+            <Home public title="Choirpractise" path="/app" />
             <Register onlyPublic title="Register" path="/app/register" />
             <Login onlyPublic title="Login" path="/app/login" />
             <Files title="Files" path="/app/files" />
