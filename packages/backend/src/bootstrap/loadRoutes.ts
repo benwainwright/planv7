@@ -17,7 +17,7 @@ const loadRoutes = async (
   koaApp.use(routes.statics());
 
   logger.info("Loading files route");
-  koaApp.use(routes.files());
+  koaApp.use(routes.files(logger));
 
   logger.info("Loading auth route");
   koaApp.use(routes.auth(logger, HANDLERS));

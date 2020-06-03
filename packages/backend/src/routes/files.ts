@@ -1,14 +1,14 @@
 import * as AWS from "aws-sdk";
 import * as constants from "../constants";
-import { TYPES as APP, Logger } from "@choirpractise/application";
 import Koa, { Next } from "koa";
 import Router, { RouterContext } from "koa-router";
 import AppContext from "../AppContext";
+import { Logger } from "@choirpractise/application";
 
 const FILES_BASE_URL = "files";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const files = (): Koa.Middleware<any, any> => {
+const files = (logger: Logger): Koa.Middleware<any, any> => {
   const baseUrlRegex = new RegExp(`\\/${FILES_BASE_URL}($|\\/.*)`, "u");
   const router = new Router<Koa.DefaultState, AppContext & RouterContext>();
 
@@ -17,7 +17,6 @@ const files = (): Koa.Middleware<any, any> => {
   router.post(
     baseUrlRegex,
     async (context: AppContext & RouterContext, next: Next) => {
-      const logger = context.container.get<Logger>(APP.logger);
       try {
         if (!context.request.body.path) {
           context.response.status = 400;

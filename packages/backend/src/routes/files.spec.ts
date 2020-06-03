@@ -1,3 +1,4 @@
+import { Logger } from '@choirpractise/application';
 import * as AWS from "aws-sdk";
 import * as constants from "../constants";
 import Koa from "koa";
@@ -21,7 +22,7 @@ describe("The files endpoint", () => {
     asMock(AWS.S3).mockReturnValue(mockS3 as any);
     mockS3.getSignedUrlPromise = jest.fn();
 
-    app.use(files());
+    app.use(files(jest.fn() as unknown as Logger));
     const server = app.listen();
     await request(server).post("/files").send({ path: "foo/bar/baz.zip", contentType: "text/plain" });
 
@@ -45,7 +46,7 @@ describe("The files endpoint", () => {
     asMock(AWS.S3).mockReturnValue(mockS3 as any);
     mockS3.getSignedUrlPromise = jest.fn();
 
-    app.use(files());
+    app.use(files(jest.fn() as unknown as Logger));
     const server = app.listen();
     const response = await request(server).post("/files").send({path: "foo"});
     expect(response.status).toEqual(400);
@@ -62,7 +63,7 @@ describe("The files endpoint", () => {
     asMock(AWS.S3).mockReturnValue(mockS3 as any);
     mockS3.getSignedUrlPromise = jest.fn();
 
-    app.use(files());
+    app.use(files(jest.fn() as unknown as Logger));
     const server = app.listen();
     const response = await request(server).post("/files").send({contentType: "text/plain"});
     expect(response.status).toEqual(400);
@@ -81,7 +82,7 @@ describe("The files endpoint", () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (mockS3.getSignedUrlPromise as any).mockResolvedValue("fooUrl");
 
-    app.use(files());
+    app.use(files(jest.fn() as unknown as Logger));
     const server = app.listen();
     const response = await request(server)
       .post("/files")
