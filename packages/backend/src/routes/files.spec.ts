@@ -1,7 +1,7 @@
-import { Logger } from '@choirpractise/application';
 import * as AWS from "aws-sdk";
 import * as constants from "../constants";
 import Koa from "koa";
+import { Logger } from '@choirpractise/application';
 import bodyParser from "koa-bodyparser";
 import files from "./files";
 import request from "supertest";
