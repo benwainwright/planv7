@@ -161,9 +161,12 @@ describe("The Form component", () => {
       });
 
       expect(onSubmit).toHaveBeenCalledWith({
-        one: "foo",
-        two: "bar",
-        three: "baz",
+        data: undefined,
+        values: {
+          one: "foo",
+          two: "bar",
+          three: "baz",
+        }
       });
     });
   });

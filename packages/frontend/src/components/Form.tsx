@@ -55,7 +55,7 @@ const Form: React.FC<FormProps> = (props) => {
   };
 
   React.useEffect(() => {
-    const valueFound = Object.values(data).find((value) => value);
+    const valueFound = Object.values(data.values).find((value) => value) ?? data.file;
     setDirty(Boolean(valueFound));
   }, [data]);
 
