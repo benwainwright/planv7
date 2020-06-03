@@ -22,10 +22,10 @@ describe("The files page", () => {
     const file = new File([], "foo.zip");
     act(() => {
       render(<Files title="Files" />);
-      fireEvent.change(screen.getByTitle("fileUpload"), {
+      fireEvent.change(screen.getByLabelText("File Upload"), {
         target: { files: [file] },
       });
-      fireEvent.change(screen.getByLabelText("path"), {
+      fireEvent.change(screen.getByLabelText("Path"), {
         target: { value: "foo/bar" },
       });
     });

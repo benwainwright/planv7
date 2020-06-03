@@ -35,7 +35,7 @@ const app = async (
       const session = context.container.get<CurrentLoginSession>(
         APP.currentLoginSession
       );
-      const user = await session.getCurrentUser();
+      const user = session.getCurrentUser();
 
       const sheets = new ServerStyleSheets();
       const reactApp = ReactDOMServer.renderToString(

@@ -1,37 +1,52 @@
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
 
-const Theme = createMuiTheme({
+const RawTheme = createMuiTheme({
   typography: {
     h1: {
-      fontSize: "2rem"
+      fontSize: "2.5rem",
     },
     h2: {
-      fontSize: "1.5rem"
+      fontSize: "2rem",
     },
     h3: {
-      fontSize: "1.2rem"
-    }
+      fontSize: "1.5rem",
+    },
   },
   overrides: {
-
     MuiAppBar: {
       root: {
         flexGrow: 1,
         marginBottom: "2rem",
       },
     },
-    MuiContainer: {
+    MuiInput: {
       root: {
-        width: "80%"
+        display: "block"
       }
     },
+    MuiContainer: {},
     MuiFormControl: {
       root: {
-        display: "flex",
+        display: "block",
         minWidth: "30rem"
-      }
-    }
-  }
+      },
+    },
+  },
 });
+
+if (RawTheme.overrides?.MuiContainer) {
+  RawTheme.overrides.MuiContainer = {
+    root: {
+      [RawTheme.breakpoints.up("md")]: {
+        width: "95%",
+      },
+      [RawTheme.breakpoints.up("lg")]: {
+        width: "70%",
+      },
+    },
+  };
+}
+
+const Theme = responsiveFontSizes(RawTheme);
 
 export default Theme;

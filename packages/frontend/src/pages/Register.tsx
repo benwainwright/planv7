@@ -6,9 +6,9 @@ import {
   RegisterUserCommand,
 } from "@choirpractise/domain";
 import Form, { FormData } from "../components/Form";
-import Input from "../components/form-controls/Input"
+import Input from "../components/form-controls/Input";
+import Page from "../components/Page";
 import { ProtectedRouterPageComponentProps } from "../components/ProtectedRouter/ProtectedRouter";
-import Typography from "@material-ui/core/Typography";
 import { useDependency } from "../utils/inversify-provider";
 
 const USERNAME = "username";
@@ -16,7 +16,7 @@ const EMAIL = "email";
 const PASSWORD = "password";
 const VERIFY_PASSWORD = "verifyPassword";
 
-const Register: React.FC<ProtectedRouterPageComponentProps> = () => {
+const Register: React.FC<ProtectedRouterPageComponentProps> = (props) => {
   const commandBus = useDependency<CommandBus>(DOMAIN.commandBus);
 
   const handleSubmit = async (data: FormData): Promise<void> => {
@@ -28,30 +28,14 @@ const Register: React.FC<ProtectedRouterPageComponentProps> = () => {
   };
 
   return (
-    <React.Fragment>
-      <Typography variant="h2" gutterBottom>
-        Register!
-      </Typography>
+    <Page title={props.title}>
       <Form onSubmit={handleSubmit}>
-          <Input
-            name={USERNAME}
-            label="Username"
-          />
-          <Input
-            name={EMAIL}
-            label="Email"
-          />
-          <Input
-            name={PASSWORD}
-            label="Password"
-            type="password"
-          />
-          <Input
-            name={VERIFY_PASSWORD}
-            type="password"
-            label="Verify Password" />
+        <Input name={USERNAME} label="Username" />
+        <Input name={EMAIL} label="Email" />
+        <Input name={PASSWORD} label="Password" type="password" />
+        <Input name={VERIFY_PASSWORD} type="password" label="Verify Password" />
       </Form>
-    </React.Fragment>
+    </Page>
   );
 };
 
