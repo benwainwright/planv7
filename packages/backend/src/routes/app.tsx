@@ -1,6 +1,11 @@
 import * as React from "react";
-import { App, InversifyProvider, Theme } from "@choirpractise/frontend";
-import { HANDLERS, getHandlerBinder } from "@choirpractise/application";
+import {
+  TYPES as APP,
+  CurrentLoginSession,
+  HANDLERS,
+  getHandlerBinder,
+} from "@choirpractise/application";
+import { App, CurrentUserContext, InversifyProvider, Theme } from "@choirpractise/frontend";
 import Koa, { Next } from "koa";
 import Router, { RouterContext } from "koa-router";
 import { ServerStyleSheets, ThemeProvider } from "@material-ui/core/styles";
@@ -27,17 +32,23 @@ const app = async (
     async (context: AppContext & RouterContext, next: Next) => {
       const binder = getHandlerBinder(container, HANDLERS);
       binder(container);
+      const session = context.container.get<CurrentLoginSession>(
+        APP.currentLoginSession
+      );
+      const user = await session.getCurrentUser();
 
       const sheets = new ServerStyleSheets();
       const reactApp = ReactDOMServer.renderToString(
         sheets.collect(
-          <ThemeProvider theme={Theme}>
-            <InversifyProvider container={container}>
-              <ServerLocation url={context.url}>
-                <App />
-              </ServerLocation>
-            </InversifyProvider>
-          </ThemeProvider>
+          <CurrentUserContext.Provider value={user}>
+            <ThemeProvider theme={Theme}>
+              <InversifyProvider container={container}>
+                <ServerLocation url={context.url}>
+                  <App />
+                </ServerLocation>
+              </InversifyProvider>
+            </ThemeProvider>
+          </CurrentUserContext.Provider>
         )
       );
 
