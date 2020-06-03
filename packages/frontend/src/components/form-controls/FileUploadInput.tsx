@@ -20,19 +20,34 @@ const useStyles = makeStyles(() => ({
 }));
 
 const FileUploadInput: React.FC<InputProps> = (props) => {
+  const [filename, setFilename] = React.useState("");
+
+  const onFileChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+
+    if (event.target?.files) {
+      setFilename(event.target.files[0].name);
+    }
+
+    if (props.onChange) {
+      props.onChange(event);
+    }
+  };
+
   const classes = useStyles();
   return (
     <Paper variant="outlined" className={classes.wrapper}>
       <InputLabel className={classes.label} htmlFor={props.name}>
         {props.label}
       </InputLabel>
-      <Button id={`${props.name}-button`}>Click to select</Button>
+      <Button id={`${props.name}-button`} title={`${props.name}-button`}>
+        {filename || "Click to select"}
+      </Button>
       <input
         id={props.name}
         type="file"
         name={props.name}
         title={props.name}
-        onChange={props.onChange}
+        onChange={onFileChange}
         style={{
           display: "none",
         }}
