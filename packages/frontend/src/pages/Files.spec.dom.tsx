@@ -25,6 +25,8 @@ describe("The files page", () => {
       fireEvent.change(screen.getByLabelText("File Upload"), {
         target: { files: [file] },
       });
+    });
+    act(() => {
       fireEvent.change(screen.getByLabelText("Path"), {
         target: { value: "foo/bar" },
       });

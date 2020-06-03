@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
   wrapper: {
-    marginTop: "0.7em"
+    marginTop: "0.7em",
   },
   label: {
     marginTop: "0.3rem",
@@ -28,12 +28,16 @@ const FileUploadInput: React.FC<InputProps> = (props) => {
       </InputLabel>
       <Button>Click to select</Button>
       <input
+        id={props.name}
         type="file"
+        name={props.name}
+        title={props.name}
+        onChange={props.onChange}
         style={{
           display: "none",
         }}
       />
-      </Paper>
+    </Paper>
   );
 };
 
