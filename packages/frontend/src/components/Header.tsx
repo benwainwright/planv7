@@ -18,6 +18,7 @@ const RIGHT_MARGIN_SPACING = 2;
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    fontSize: 12,
     flexGrow: 1,
     marginBottom: "2rem",
   },
