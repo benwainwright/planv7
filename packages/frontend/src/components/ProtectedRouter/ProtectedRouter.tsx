@@ -19,6 +19,7 @@ export interface ProtectedRouterComponentProps extends RouteComponentProps {
 export interface ProtectedRouterPageComponentProps
   extends ProtectedRouterComponentProps {
   title: string;
+  icon: React.ReactElement;
 }
 
 const allow = (route: React.ReactElement, loggedIn: boolean): boolean =>
@@ -81,6 +82,7 @@ const ProtectedRouter: React.FC = (props) => {
             key={route.props.title}
             to={route.props.path}
             text={route.props.title}
+            icon={route.props.icon}
           />
         );
       });

@@ -17,12 +17,16 @@ const asMocked = <T extends unknown>(
 };
 
 describe("The header", () => {
-
   it("Shows the logout link if there is a user", () => {
     act(() => {
       render(
         <CurrentUserContext.Provider value={asMocked(jest.fn())}>
-          <Header title="Foobar">
+          <Header
+            onExpandHeaderClick={(): void => {
+              // Noop
+            }}
+            title="Foobar"
+          >
             <div>Placeholder</div>
           </Header>
         </CurrentUserContext.Provider>
@@ -35,7 +39,12 @@ describe("The header", () => {
     act(() => {
       render(
         <CurrentUserContext.Provider value={undefined}>
-          <Header title="Foobar">
+          <Header
+            onExpandHeaderClick={(): void => {
+              // Noop
+            }}
+            title="Foobar"
+          >
             <div>Placeholder</div>
           </Header>
         </CurrentUserContext.Provider>
@@ -57,7 +66,12 @@ describe("The header", () => {
       act(() => {
         render(
           <CurrentUserContext.Provider value={asMocked(jest.fn())}>
-            <Header title="Foobar">
+            <Header
+              onExpandHeaderClick={(): void => {
+                // Noop
+              }}
+              title="Foobar"
+            >
               <div>Placeholder</div>
             </Header>
           </CurrentUserContext.Provider>

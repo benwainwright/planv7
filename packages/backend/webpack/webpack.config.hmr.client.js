@@ -1,6 +1,7 @@
 const { CheckerPlugin } = require("awesome-typescript-loader");
 const webpack = require("webpack");
 const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   resolve: {
@@ -71,7 +72,13 @@ module.exports = {
       {
         exclude: /node_modules/u,
         test: /\.css$/u,
-        use: ["css-loader"],
+        use: {
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            hmr: true,
+            reloadAll: true,
+          },
+        },
       },
     ],
   },
@@ -81,6 +88,10 @@ module.exports = {
     module: true,
   },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css",
+    }),
     new webpack.NoEmitOnErrorsPlugin(),
     new CheckerPlugin(),
     new webpack.EnvironmentPlugin([

@@ -1,10 +1,11 @@
 import * as React from "react";
-import { ListItem, ListItemText } from "@material-ui/core";
+import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { navigate } from "@reach/router";
 
 interface MenuListButtonProps {
   text: string;
   to: string;
+  icon: React.ReactElement
 }
 
 const DrawerItem: React.FC<MenuListButtonProps> = (props) => (
@@ -16,6 +17,7 @@ const DrawerItem: React.FC<MenuListButtonProps> = (props) => (
     }}
     color="inherit"
   >
+    <ListItemIcon>{props.icon}</ListItemIcon>
     <ListItemText primary={props.text} />
   </ListItem>
 );

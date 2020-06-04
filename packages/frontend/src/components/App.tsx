@@ -3,16 +3,20 @@ import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 import { ProtectedRouter, Routes } from "./ProtectedRouter";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import DescriptionIcon from "@material-ui/icons/Description";
 import { DomainEvent } from "@choirpractise/domain";
 import Drawer from "./Drawer";
+import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
 import { EventEmitterWrapper } from "@choirpractise/application";
 import Files from "../pages/Files";
 import Header from "./Header";
 import Home from "../pages/Home";
+import HomeIcon from "@material-ui/icons/Home";
 import Login from "../pages/Login";
 import Redirect from "../utils/Redirect";
 import Register from "../pages/Register";
 import SnackBar from "@material-ui/core/Snackbar";
+import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import { hot } from "react-hot-loader/root";
 import { makeStyles } from "@material-ui/core/styles";
 import { useDependency } from "../utils/inversify-provider";
@@ -105,10 +109,29 @@ const RawApp: React.FC = (): React.ReactElement => {
         <Container>
           <main className={classes.content}>
             <Routes>
-              <Home public title="Choirpractise" path="/app" />
-              <Register onlyPublic title="Register" path="/app/register" />
-              <Login onlyPublic title="Login" path="/app/login" />
-              <Files title="Files" path="/app/files" />
+              <Home
+                public
+                icon={<HomeIcon />}
+                title="Choirpractise"
+                path="/app"
+              />
+              <Register
+                onlyPublic
+                icon={<EmojiPeopleIcon />}
+                title="Register"
+                path="/app/register"
+              />
+              <Login
+                icon={<VpnKeyIcon />}
+                onlyPublic
+                title="Login"
+                path="/app/login"
+              />
+              <Files
+                icon={<DescriptionIcon />}
+                title="Files"
+                path="/app/files"
+              />
               <Redirect public default to="/app" />
             </Routes>
           </main>
