@@ -5,6 +5,7 @@ import { format, transports } from "winston";
 import { Container } from "inversify";
 
 const initialiseLogger = (container: Container): Logger => {
+  const loggingFolder = process.env.LOG_DIR ?? `/var/log/${constants.APP_NAME}/`;
   const transportConfig =
     process.env.NODE_ENV === "production"
       ? [
@@ -12,7 +13,7 @@ const initialiseLogger = (container: Container): Logger => {
             format: format.simple(),
           }),
           new transports.File({
-            filename: `/var/log/${constants.APP_NAME}/app.log`,
+            filename: `${loggingFolder}/app.log`,
           }),
         ]
       : [

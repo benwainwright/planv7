@@ -4,8 +4,8 @@ import {
   mutateGrandChildren,
 } from "../../utils/children";
 import CurrentUserContext from "../../utils/CurrentUserContext";
-import Header from "../Header";
-import NavigationButton from "../NavigationButton";
+import Drawer from "../Drawer";
+import DrawerItem from "../DrawerItem";
 import { RouteComponentProps } from "@reach/router";
 import Routes from "./Routes";
 import { User } from "@choirpractise/domain";
@@ -62,7 +62,7 @@ const ProtectedRouter: React.FC = (props) => {
   const routesElement = findGrandChildOfType(Routes, childrenWithSecuredRoutes);
 
   const securedChildren = mutateGrandChildren(
-    Header,
+    Drawer,
     childrenWithSecuredRoutes,
     () => {
       const array = React.Children.toArray(
@@ -77,9 +77,11 @@ const ProtectedRouter: React.FC = (props) => {
       return filtered.map((child: React.ReactNode) => {
         const route = child as React.ReactElement;
         return (
-          <NavigationButton key={route.props.title} to={route.props.path}>
-            {route.props.title}
-          </NavigationButton>
+          <DrawerItem
+            key={route.props.title}
+            to={route.props.path}
+            text={route.props.title}
+          />
         );
       });
     }

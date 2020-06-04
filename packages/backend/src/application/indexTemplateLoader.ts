@@ -56,7 +56,7 @@ const generateIndexTemplate = (
           <head>
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-            <title>Hello React!</title>
+            <title>Choirpractise</title>
             ${cssString}
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
             <style id="css-server-side"></style>

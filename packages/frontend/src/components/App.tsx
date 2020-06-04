@@ -4,6 +4,7 @@ import { ProtectedRouter, Routes } from "./ProtectedRouter";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { DomainEvent } from "@choirpractise/domain";
+import Drawer from "./Drawer";
 import { EventEmitterWrapper } from "@choirpractise/application";
 import Files from "../pages/Files";
 import Header from "./Header";
@@ -13,16 +14,36 @@ import Redirect from "../utils/Redirect";
 import Register from "../pages/Register";
 import SnackBar from "@material-ui/core/Snackbar";
 import { hot } from "react-hot-loader/root";
+import { makeStyles } from "@material-ui/core/styles";
 import { useDependency } from "../utils/inversify-provider";
 
 const Alert = (props: AlertProps): React.ReactElement => (
   <MuiAlert elevation={6} variant="filled" {...props} />
 );
 
+const drawerWidth = 240;
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+  },
+  header: {
+    [theme.breakpoints.up("sm")]: {
+      width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: drawerWidth,
+    },
+  },
+  content: {
+    flexGrow: 1,
+    marginTop: "6rem",
+  },
+}));
+
 const RawApp: React.FC = (): React.ReactElement => {
   const [alertText, setAlertText] = React.useState("");
   const [success, setSuccess] = React.useState(true);
   const events = useDependency(EventEmitterWrapper);
+  const [mobileOpen, setMobileOpen] = React.useState(false);
 
   React.useEffect(() => {
     events.onError((error: Error) => {
@@ -48,39 +69,52 @@ const RawApp: React.FC = (): React.ReactElement => {
     setAlertText("");
   };
 
+  const classes = useStyles();
+
+  const handleToggleDrawer = (): void => {
+    setMobileOpen(!mobileOpen);
+  };
+
   return (
-    <ProtectedRouter>
-      <CssBaseline />
-      <Header title="Choirpractise">
-        <div>Placeholder</div>
-      </Header>
-      <SnackBar
-        className="alert"
-        autoHideDuration={3000}
-        open={Boolean(alertText)}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        onClose={handleClose}
-      >
-        <Alert
-          role="alert"
-          severity={success ? "success" : "error"}
+    <section className={classes.root}>
+      <ProtectedRouter>
+        <CssBaseline />
+        <Drawer onClose={handleToggleDrawer} mobileOpen={mobileOpen}>
+          <div>Placeholder</div>
+        </Drawer>
+        <Header
+          onExpandHeaderClick={handleToggleDrawer}
+          className={classes.header}
+          title="Choirpractise"
+        />
+        <SnackBar
+          className="alert"
+          autoHideDuration={3000}
+          open={Boolean(alertText)}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
           onClose={handleClose}
         >
-          {alertText}
-        </Alert>
-      </SnackBar>
-      <Container>
-        <main>
-          <Routes>
-            <Home public title="Choirpractise" path="/app" />
-            <Register onlyPublic title="Register" path="/app/register" />
-            <Login onlyPublic title="Login" path="/app/login" />
-            <Files title="Files" path="/app/files" />
-            <Redirect public default to="/app" />
-          </Routes>
-        </main>
-      </Container>
-    </ProtectedRouter>
+          <Alert
+            role="alert"
+            severity={success ? "success" : "error"}
+            onClose={handleClose}
+          >
+            {alertText}
+          </Alert>
+        </SnackBar>
+        <Container>
+          <main className={classes.content}>
+            <Routes>
+              <Home public title="Choirpractise" path="/app" />
+              <Register onlyPublic title="Register" path="/app/register" />
+              <Login onlyPublic title="Login" path="/app/login" />
+              <Files title="Files" path="/app/files" />
+              <Redirect public default to="/app" />
+            </Routes>
+          </main>
+        </Container>
+      </ProtectedRouter>
+    </section>
   );
 };
 

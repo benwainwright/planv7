@@ -28,3 +28,5 @@ export const APP_WEBSOCKET_PATH = `ws://${serverAddress}${DATA_ROUTE_PATH}`;
 export const AUTH_ENDPOINT = `http://${serverAddress}${AUTH_ROUTE_PATH}`;
 
 export const FILES_ENDPOINT = `http://${serverAddress}${FILES_ROUTE_PATH}`;
+
+export const DRAWER_WIDTH = 240;

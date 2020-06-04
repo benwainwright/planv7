@@ -1,6 +1,9 @@
 import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
 
 const RawTheme = createMuiTheme({
+  palette: {
+    type: "dark"
+  },
   typography: {
     htmlFontSize: 16,
     h1: {

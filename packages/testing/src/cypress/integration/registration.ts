@@ -11,8 +11,8 @@ describe("The register form", () => {
     cy.get("#password").type(TEST_USER_PASSWORD);
     cy.get("#verifyPassword").type(TEST_USER_PASSWORD);
     cy.get('button[type="submit"]').click();
-    cy.get("header.appBar").should("contain", "Logout");
-    cy.get("header.appBar").should("not.contain", "Login");
+    cy.get(".appBar").should("contain", "Logout");
+    cy.get("nav.drawer").should("not.contain", "Login");
   });
 
   it("Redirects the user away from the register from when successful", () => {
@@ -31,8 +31,8 @@ describe("The login form", () => {
     cy.get("#username").type(TEST_USER_USERNAME);
     cy.get("#password").type(TEST_USER_PASSWORD);
     cy.get('button[type="submit"]').click();
-    cy.get("header.appBar").should("contain", "Logout");
-    cy.get("header.appBar").should("not.contain", "Login");
+    cy.get(".appBar").should("contain", "Logout");
+    cy.get("nav.drawer").should("not.contain", "Login");
   });
 
   it("Displays an alert when not successful", () => {
@@ -51,8 +51,8 @@ describe("The logout link", () => {
     cy.get("#email").type(TEST_USER_EMAIL);
     cy.get("#password").type(TEST_USER_PASSWORD);
     cy.get('button[type="submit"]').click();
-    cy.get("header.appBar").contains("Logout").click();
-    cy.get("header.appBar").should("not.contain", "Logout");
-    cy.get("header.appBar").should("contain", "Login");
+    cy.get(".appBar").contains("Logout").click();
+    cy.get(".appBar").should("not.contain", "Logout");
+    cy.get("nav.drawer").should("contain", "Login");
   });
 });
