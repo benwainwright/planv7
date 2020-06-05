@@ -19,6 +19,14 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+export interface FileUploadInputProps {
+  label: string;
+  name?: string;
+  value?: string;
+  type?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
 const FileUploadInput: React.FC<InputProps> = (props) => {
   const [filename, setFilename] = React.useState("");
 

@@ -5,6 +5,7 @@ import {
   render,
   screen
 } from "@testing-library/react";
+import FileUploadInput from "./form-controls/FileUploadInput";
 import Form from "./Form";
 import Input from "./form-controls/Input";
 import { act } from "react-dom/test-utils";
@@ -120,6 +121,31 @@ describe("The Form component", () => {
       expect(screen.getByLabelText("Field One")).toHaveValue("");
       expect(screen.getByLabelText("Field Two")).toHaveValue("");
       expect(screen.getByLabelText("Field Three")).toHaveValue("");
+    });
+
+    it("Results in a file input being cleared", () => {
+      const file = new File([], "foo.zip");
+      act(() => {
+        render(
+          <Form onSubmit={jest.fn()}>
+            <FileUploadInput
+              label="Field One"
+              name="foo"
+            />
+          </Form>
+        );
+        fireEvent.change(screen.getByTitle("foo"), { target: { files: [file] } });
+      })
+
+      act(() => {
+        fireEvent.click(screen.getByText("Clear"));
+      });
+
+      const filesInput = screen.getByTitle("foo") as HTMLInputElement;
+      expect(filesInput.files).toBeDefined()
+      if (filesInput.files) {
+        expect(filesInput?.files.length).toEqual(0);
+      }
     });
   });
 
