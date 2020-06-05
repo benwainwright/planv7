@@ -25,17 +25,12 @@ const Alert = (props: AlertProps): React.ReactElement => (
   <MuiAlert elevation={6} variant="filled" {...props} />
 );
 
-const drawerWidth = 240;
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
   },
   header: {
-    [theme.breakpoints.up("sm")]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-    },
+    zIndex: 1000,
   },
   content: {
     flexGrow: 1,

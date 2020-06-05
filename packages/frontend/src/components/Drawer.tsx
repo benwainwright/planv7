@@ -18,9 +18,9 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
+    zIndex: 1,
     width: DRAWER_WIDTH,
-    backgroundColor: theme.palette.primary.dark,
-    color: "#FFFFFF"
+    backgroundColor: theme.palette.background.paper
   },
 }));
 
@@ -40,6 +40,7 @@ const Drawer: React.FC<DrawerProps> = (props) => {
   return (
     <nav className={`${classes.drawer} drawer`}>
       <MuiDrawer
+      elevation={2}
         classes={{ paper: classes.drawerPaper }}
         variant={isDesktop ? "permanent" : "temporary"}
         anchor="left"
