@@ -1,4 +1,5 @@
 {
+  "exclude": ["node_modules", "../../node_modules"],
   "compilerOptions": {
     "target": "es2019",
     "outDir": "./dist/",
@@ -31,7 +32,8 @@
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
     "typeRoots": [
-      "../../node_modules/@types", "../../node_modules/@choirpractise/types"
+      "../../node_modules/@types",
+      "../../node_modules/@choirpractise/types"
     ]
   }
 }
