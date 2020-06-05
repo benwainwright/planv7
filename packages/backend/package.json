@@ -61,6 +61,7 @@
   "scripts": {
     "start": "node dist/choirpractise-server",
     "test": "jest",
+    "test:clear-cache": "jest --clearCache",
     "test:watch": "jest --watch",
     "lint": "eslint '**/*.{ts,tsx,js,jsx,d.ts}'",
     "lint:fix": "eslint --fix '**/*.{ts,tsx,js,jsx,d.ts}'",
