@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: DRAWER_WIDTH,
-    backgroundColor: theme.palette.grey.A200,
+    backgroundColor: theme.palette.primary.dark,
     color: "#FFFFFF"
   },
 }));

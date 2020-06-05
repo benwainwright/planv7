@@ -2,12 +2,13 @@ import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
 
 const RawTheme = createMuiTheme({
   palette: {
-    type: "dark"
+    type: "light"
   },
   typography: {
     htmlFontSize: 16,
     h1: {
-      fontSize: "2.5rem",
+      textAlign:"center",
+      fontSize: "2rem",
     },
     h2: {
       fontSize: "2rem",
@@ -50,7 +51,6 @@ if (RawTheme.overrides?.MuiContainer) {
     },
   };
 }
-
 const Theme = responsiveFontSizes(RawTheme);
 
 export default Theme;

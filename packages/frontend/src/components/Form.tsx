@@ -74,7 +74,7 @@ const Form: React.FC<FormProps> = (props) => {
       <Box flexDirection="column">
         {nodes}
         <ButtonGroup className={classes.buttons}>
-          <Button type="submit" onClick={handleSubmit}>
+          <Button color="primary" type="submit" onClick={handleSubmit}>
             {props.submitText ?? "Submit"}
           </Button>
           {dirty && <Button onClick={handleClear}>Clear</Button>}
