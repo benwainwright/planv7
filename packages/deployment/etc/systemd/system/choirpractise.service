@@ -6,4 +6,4 @@ After=network.target network-online.target
 Type=simple
 Restart=always
 Environment=ASSETS_DIR=/srv/choirpractise/assets
-ExecStart=/bin/sh -c 'JWT_PUBLIC_KEY=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id choirpractise/JWT_PUBLIC_KEY | jq --raw-output .SecretString) JWT_PRIVATE_KEY=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id choirpractise/JWT_PRIVATE_KEY | jq --raw-output .SecretString) /usr/bin/choirpractise-server'
+ExecStart=/bin/sh -c 'FILES_BUCKET=choirpractise-files-bucket JWT_PUBLIC_KEY=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id choirpractise/JWT_PUBLIC_KEY | jq --raw-output .SecretString) JWT_PRIVATE_KEY=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id choirpractise/JWT_PRIVATE_KEY | jq --raw-output .SecretString) /usr/bin/choirpractise-server'
