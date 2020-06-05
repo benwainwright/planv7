@@ -62,9 +62,24 @@ describe("The protected router", () => {
               <div>Placeholder</div>
             </Drawer>
             <Routes>
-              <MockPublicComponent title="Home" public path="/" />
-              <MockPublicComponent2 title="Foo" public path="/foo" />
-              <MockPublicComponent4 title="FooBar" onlyPublic path="/foo" />
+              <MockPublicComponent
+                icon={(jest.fn() as unknown) as React.ReactElement}
+                title="Home"
+                public
+                path="/"
+              />
+              <MockPublicComponent2
+                icon={(jest.fn() as unknown) as React.ReactElement}
+                title="Foo"
+                public
+                path="/foo"
+              />
+              <MockPublicComponent4
+                icon={(jest.fn() as unknown) as React.ReactElement}
+                title="FooBar"
+                onlyPublic
+                path="/foo"
+              />
               <MockPublicComponent3 default public path="/baz" />
             </Routes>
           </ProtectedRouter>
@@ -114,8 +129,17 @@ describe("The protected router", () => {
               <div>Placeholder</div>
             </Drawer>
             <Routes>
-              <MockPublicComponent title="Home" public path="/" />
-              <MockPublicComponent2 title="Foo" path="/foo" />
+              <MockPublicComponent
+                icon={(jest.fn() as unknown) as React.ReactElement}
+                title="Home"
+                public
+                path="/"
+              />
+              <MockPublicComponent2
+                icon={(jest.fn() as unknown) as React.ReactElement}
+                title="Foo"
+                path="/foo"
+              />
               <MockPublicComponent3 default public path="/baz" />
             </Routes>
           </ProtectedRouter>
@@ -165,8 +189,17 @@ describe("The protected router", () => {
               <div>Placeholder</div>
             </Drawer>
             <Routes>
-              <MockPublicComponent title="Home" public path="/" />
-              <MockPublicComponent2 title="Foo" path="/foo" />
+              <MockPublicComponent
+                icon={(jest.fn() as unknown) as React.ReactElement}
+                title="Home"
+                public
+                path="/"
+              />
+              <MockPublicComponent2
+                icon={(jest.fn() as unknown) as React.ReactElement}
+                title="Foo"
+                path="/foo"
+              />
               <MockPublicComponent3 default public path="/baz" />
             </Routes>
           </ProtectedRouter>
@@ -206,7 +239,6 @@ describe("The protected router", () => {
       render(
         <CurrentUserContext.Provider value={(jest.fn() as unknown) as User}>
           <ProtectedRouter>
-
             <Drawer
               mobileOpen={true}
               onClose={(): void => {
@@ -216,8 +248,18 @@ describe("The protected router", () => {
               <div>Placeholder</div>
             </Drawer>
             <Routes>
-              <MockPublicComponent title="Home" public path="/" />
-              <MockPublicComponent2 title="Foo" onlyPublic path="/foo" />
+              <MockPublicComponent
+                icon={(jest.fn() as unknown) as React.ReactElement}
+                title="Home"
+                public
+                path="/"
+              />
+              <MockPublicComponent2
+                icon={(jest.fn() as unknown) as React.ReactElement}
+                title="Foo"
+                onlyPublic
+                path="/foo"
+              />
               <MockPublicComponent3 default public path="/baz" />
             </Routes>
           </ProtectedRouter>
@@ -252,8 +294,18 @@ describe("The protected router", () => {
         <CurrentUserContext.Provider value={undefined}>
           <ProtectedRouter>
             <Routes>
-              <MockPublicComponent title="Home" public path="/" />
-              <MockPublicComponent2 title="Foo" public path="/foo" />
+              <MockPublicComponent
+                icon={(jest.fn() as unknown) as React.ReactElement}
+                title="Home"
+                public
+                path="/"
+              />
+              <MockPublicComponent2
+                icon={(jest.fn() as unknown) as React.ReactElement}
+                title="Foo"
+                public
+                path="/foo"
+              />
               <MockPublicComponent3 default public path="/baz" />
             </Routes>
           </ProtectedRouter>
@@ -288,8 +340,18 @@ describe("The protected router", () => {
         <CurrentUserContext.Provider value={undefined}>
           <ProtectedRouter>
             <Routes>
-              <MockPublicComponent title="Home" public path="/" />
-              <MockPublicComponent2 title="Foo" public path="/foo" />
+              <MockPublicComponent
+                icon={(jest.fn() as unknown) as React.ReactElement}
+                title="Home"
+                public
+                path="/"
+              />
+              <MockPublicComponent2
+                icon={(jest.fn() as unknown) as React.ReactElement}
+                title="Foo"
+                public
+                path="/foo"
+              />
               <MockPublicComponent3 default public path="/baz" />
             </Routes>
           </ProtectedRouter>
@@ -327,8 +389,17 @@ describe("The protected router", () => {
         <CurrentUserContext.Provider value={undefined}>
           <ProtectedRouter>
             <Routes>
-              <MockPublicComponent title="Home" public path="/" />
-              <MockPublicComponent2 title="Foo" path="/foo" />
+              <MockPublicComponent
+                icon={(jest.fn() as unknown) as React.ReactElement}
+                title="Home"
+                public
+                path="/"
+              />
+              <MockPublicComponent2
+                icon={(jest.fn() as unknown) as React.ReactElement}
+                title="Foo"
+                path="/foo"
+              />
               <RedirectComponent public default />
             </Routes>
           </ProtectedRouter>
@@ -367,8 +438,17 @@ describe("The protected router", () => {
         <CurrentUserContext.Provider value={(jest.fn() as unknown) as User}>
           <ProtectedRouter>
             <Routes>
-              <MockPublicComponent public title="Home" path="/" />
-              <MockPublicComponent2 title="Foo" path="/foo" />
+              <MockPublicComponent
+                icon={(jest.fn() as unknown) as React.ReactElement}
+                public
+                title="Home"
+                path="/"
+              />
+              <MockPublicComponent2
+                icon={(jest.fn() as unknown) as React.ReactElement}
+                title="Foo"
+                path="/foo"
+              />
               <RedirectComponent public default />
             </Routes>
           </ProtectedRouter>
@@ -405,8 +485,18 @@ describe("The protected router", () => {
         <CurrentUserContext.Provider value={(jest.fn() as unknown) as User}>
           <ProtectedRouter>
             <Routes>
-              <MockPublicComponent title="Home" public path="/" />
-              <MockPublicComponent2 title="Foo" onlyPublic path="/foo" />
+              <MockPublicComponent
+                icon={(jest.fn() as unknown) as React.ReactElement}
+                title="Home"
+                public
+                path="/"
+              />
+              <MockPublicComponent2
+                icon={(jest.fn() as unknown) as React.ReactElement}
+                title="Foo"
+                onlyPublic
+                path="/foo"
+              />
               <RedirectComponent public default />
             </Routes>
           </ProtectedRouter>
@@ -443,8 +533,18 @@ describe("The protected router", () => {
         <CurrentUserContext.Provider value={undefined}>
           <ProtectedRouter>
             <Routes>
-              <MockPublicComponent public title="Home" path="/" />
-              <MockPublicComponent2 title="Foo" onlyPublic path="/foo" />
+              <MockPublicComponent
+                icon={(jest.fn() as unknown) as React.ReactElement}
+                public
+                title="Home"
+                path="/"
+              />
+              <MockPublicComponent2
+                icon={(jest.fn() as unknown) as React.ReactElement}
+                title="Foo"
+                onlyPublic
+                path="/foo"
+              />
               <RedirectComponent public default />
             </Routes>
           </ProtectedRouter>
@@ -486,8 +586,18 @@ describe("The protected router", () => {
           <CurrentUserContext.Provider value={undefined}>
             <ProtectedRouter>
               <Routes>
-                <MockPublicComponent public title="Home" path="/" />
-                <MockPublicComponent2 public title="Foo" path="/foo" />
+                <MockPublicComponent
+                  icon={(jest.fn() as unknown) as React.ReactElement}
+                  public
+                  title="Home"
+                  path="/"
+                />
+                <MockPublicComponent2
+                  icon={(jest.fn() as unknown) as React.ReactElement}
+                  public
+                  title="Foo"
+                  path="/foo"
+                />
               </Routes>
             </ProtectedRouter>
           </CurrentUserContext.Provider>
@@ -527,8 +637,18 @@ describe("The protected router", () => {
           <CurrentUserContext.Provider value={undefined}>
             <ProtectedRouter>
               <Routes>
-                <MockPublicComponent title="Home" public path="/" />
-                <MockPublicComponent2 title="Foo" default path="/foo" />
+                <MockPublicComponent
+                  icon={(jest.fn() as unknown) as React.ReactElement}
+                  title="Home"
+                  public
+                  path="/"
+                />
+                <MockPublicComponent2
+                  icon={(jest.fn() as unknown) as React.ReactElement}
+                  title="Foo"
+                  default
+                  path="/foo"
+                />
               </Routes>
             </ProtectedRouter>
           </CurrentUserContext.Provider>
