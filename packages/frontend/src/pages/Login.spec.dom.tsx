@@ -25,7 +25,7 @@ describe("Login page", () => {
         .mockReturnValue(commandBus);
 
       act(() => {
-        render(<Login title="Login" />);
+        render(<Login icon={jest.fn() as unknown as React.ReactElement}title="Login" />);
         editFieldByLabelText("Username", "foo");
       });
       act(() => {

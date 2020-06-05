@@ -29,7 +29,7 @@ describe("Register page", () => {
         .mockReturnValue(commandBus);
 
       act(() => {
-        render(<Register title="Register" />);
+        render(<Register icon={jest.fn() as unknown as React.ReactElement}title="Register" />);
         editFieldByLabelText("Username", "foo");
       });
       act(() => {
@@ -59,7 +59,7 @@ describe("Register page", () => {
         .mockReturnValue(commandBus);
 
       act(() => {
-        render(<Register title="Register" />);
+        render(<Register icon={jest.fn() as unknown as React.ReactElement}title="Register" />);
         editFieldByLabelText("Username", "foo");
       });
       act(() => {

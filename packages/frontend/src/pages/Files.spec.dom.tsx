@@ -21,7 +21,7 @@ describe("The files page", () => {
 
     const file = new File([], "foo.zip");
     act(() => {
-      render(<Files title="Files" />);
+      render(<Files icon={jest.fn() as unknown as React.ReactElement} title="Files" />);
       fireEvent.change(screen.getByLabelText("File Upload"), {
         target: { files: [file] },
       });
