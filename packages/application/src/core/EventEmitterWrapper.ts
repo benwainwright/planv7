@@ -20,6 +20,7 @@ export default class EventEmitterWrapper {
   private readonly events = new EventEmitter();
 
   public constructor(@inject(TYPES.logger) logger: Logger) {
+    this.events.setMaxListeners(0);
     this.logger = logger;
   }
 

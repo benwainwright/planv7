@@ -12,7 +12,7 @@ const initialiseLogger = (container: Container): Logger => {
   ]);
 
   container.bind<WinstonConfig>(WinstonConfig).toConstantValue(loggingConfig);
-  container.bind<Logger>(APP.logger).to(WinstonLogger);
+  container.bind<Logger>(APP.logger).to(WinstonLogger).inSingletonScope();
   return container.get<Logger>(APP.logger);
 };
 
