@@ -10,7 +10,7 @@ import { useOptionalDependency } from "./inversify-provider";
 const Redirect: React.FC<RedirectProps<{}> & ProtectedRouterComponentProps> = (props: RedirectProps<{}>) => {
   const response = useOptionalDependency<ServerResponse>(ServerResponse);
   if (canUseDom) {
-    return <ReachRedirect {...props} />;
+    return <ReachRedirect noThrow={true} {...props} />;
   } else if (response) {
     response.writeHead(HttpStatus.MOVED_TEMPORARILY, {
       Location: props.to.toString(),
