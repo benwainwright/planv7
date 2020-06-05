@@ -25,7 +25,7 @@ const Alert = (props: AlertProps): React.ReactElement => (
   <MuiAlert elevation={6} variant="filled" {...props} />
 );
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
   },
