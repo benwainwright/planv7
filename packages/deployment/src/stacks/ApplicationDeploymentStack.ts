@@ -5,7 +5,7 @@ import * as ec2 from "@aws-cdk/aws-ec2";
 import * as iam from "@aws-cdk/aws-iam";
 import * as route53 from "@aws-cdk/aws-route53";
 import * as s3 from "@aws-cdk/aws-s3";
-import * as secretsManager from "@aws-cdk/aws-secretsmanager";
+import ApplicationSecrets from "../constructs/ApplicationSecrets";
 import Casing from "../utils/Casing";
 
 interface ApplicationDeploymentStackProps {
@@ -25,8 +25,8 @@ export default class ApplicationDeploymentStack extends cdk.Stack {
     super(context, `${props.applicationName}DeploymentStack`, props);
 
     const vpc = ec2.Vpc.fromLookup(this, "VPC", {
-      isDefault: true
-    })
+      isDefault: true,
+    });
 
     const machineImage = ec2.MachineImage.latestAmazonLinux({
       generation: ec2.AmazonLinuxGeneration.AMAZON_LINUX_2,
@@ -91,23 +91,11 @@ chmod +x ./install
       target: route53.RecordTarget.fromIpAddresses(ip.ref),
     });
 
-    const publicKeyConfig = new secretsManager.Secret(
-      this,
-      `${props.applicationName}JwtPublicKeySecret`,
-      {
-        secretName: `${props.applicationName}/JWT_PUBLIC_KEY`,
-      }
-    );
-    publicKeyConfig.grantRead(instance);
-
-    const privateKeyConfig = new secretsManager.Secret(
-      this,
-      `${props.applicationName}JwtPrivateKeySecret`,
-      {
-        secretName: `${props.applicationName}/JWT_PRIVATE_KEY`,
-      }
-    );
-    privateKeyConfig.grantRead(instance);
+    new ApplicationSecrets(this, {
+      applicationName: props.applicationName,
+      secrets: ["OPENSTACK_API_KEY", "JWT_PUBLIC_KEY", "JWT_PRIVATE_KEY"],
+      grantables: [instance],
+    });
 
     const codeBuildDeployPolicy = new iam.PolicyStatement({
       effect: iam.Effect.ALLOW,
@@ -166,7 +154,7 @@ chmod +x ./install
     filesBucket.addCorsRule({
       allowedMethods: [s3.HttpMethods.PUT, s3.HttpMethods.GET],
       allowedOrigins: ["*"],
-      allowedHeaders: ["*"]
+      allowedHeaders: ["*"],
     });
 
     filesBucket.grantReadWrite(instance);
