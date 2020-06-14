@@ -4,6 +4,9 @@
   "bin": "bin/infrastructure.js",
   "scripts": {
     "deploy:app": "ts-node src/deploy-revision.ts",
+    "deploy:stack": "cdk deploy",
+    "synth": "cdk synth > stack.template.json",
+    "deploy:localstack": "yarn synth && aws --endpoint-url=http://localhost:4566 cloudformation create-stack --stack-name LocalAppStack --template-body file://./stack.template.json",
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
@@ -25,6 +28,7 @@
   },
   "dependencies": {
     "@aws-cdk/aws-codedeploy": "^1.45.0",
+    "@aws-cdk/aws-cognito": "^1.45.0",
     "@aws-cdk/aws-ec2": "^1.45.0",
     "@aws-cdk/aws-iam": "^1.45.0",
     "@aws-cdk/aws-route53": "^1.45.0",

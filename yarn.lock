@@ -97,6 +97,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@aws-cdk/aws-cloudformation@npm:1.45.0":
+  version: 1.45.0
+  resolution: "@aws-cdk/aws-cloudformation@npm:1.45.0"
+  dependencies:
+    "@aws-cdk/aws-iam": 1.45.0
+    "@aws-cdk/aws-lambda": 1.45.0
+    "@aws-cdk/aws-s3": 1.45.0
+    "@aws-cdk/aws-sns": 1.45.0
+    "@aws-cdk/core": 1.45.0
+    "@aws-cdk/cx-api": 1.45.0
+    constructs: ^3.0.2
+  peerDependencies:
+    "@aws-cdk/aws-iam": 1.45.0
+    "@aws-cdk/aws-lambda": 1.45.0
+    "@aws-cdk/aws-s3": 1.45.0
+    "@aws-cdk/aws-sns": 1.45.0
+    "@aws-cdk/core": 1.45.0
+    "@aws-cdk/cx-api": 1.45.0
+    constructs: ^3.0.2
+  checksum: 3/2dc373449dcce0560e6eb0899b6c00dca9e7128a9e88cd28368d7a32a1cebc65367c86a0b8e56876a275ebd28540a89904e9bfef86e9784c061d4d22cfa9ef26
+  languageName: node
+  linkType: hard
+
 "@aws-cdk/aws-cloudwatch@npm:1.45.0":
   version: 1.45.0
   resolution: "@aws-cdk/aws-cloudwatch@npm:1.45.0"
@@ -138,6 +161,27 @@ __metadata:
     "@aws-cdk/core": 1.45.0
     constructs: ^3.0.2
   checksum: 3/6edcbba4f0ba6a5d6cb7b8f84cb41ec60f28834a5ef8e15eb07d6af923ff7cf07a1f8f375fb317bb4c3cdcb5e767b70d027ec99cf9296c83804bd1e9160ada30
+  languageName: node
+  linkType: hard
+
+"@aws-cdk/aws-cognito@npm:^1.45.0":
+  version: 1.45.0
+  resolution: "@aws-cdk/aws-cognito@npm:1.45.0"
+  dependencies:
+    "@aws-cdk/aws-certificatemanager": 1.45.0
+    "@aws-cdk/aws-iam": 1.45.0
+    "@aws-cdk/aws-lambda": 1.45.0
+    "@aws-cdk/core": 1.45.0
+    "@aws-cdk/custom-resources": 1.45.0
+    constructs: ^3.0.2
+  peerDependencies:
+    "@aws-cdk/aws-certificatemanager": 1.45.0
+    "@aws-cdk/aws-iam": 1.45.0
+    "@aws-cdk/aws-lambda": 1.45.0
+    "@aws-cdk/core": 1.45.0
+    "@aws-cdk/custom-resources": 1.45.0
+    constructs: ^3.0.2
+  checksum: 3/fe32c5b1831b6066ee89392f7545b2f226d9b8b8d2c707278908f77803c697ac8df69b1669915293563defedf855555fdd4779c64f299c0e4b2a5292fa1c8caa
   languageName: node
   linkType: hard
 
@@ -516,6 +560,29 @@ __metadata:
     "@aws-cdk/cx-api": 1.45.0
     constructs: ^3.0.2
   checksum: 3/bf4c8975bba39fd8758c76a8a3cc0e1de75456813d063cf1eca4be16eaf226c826653d277518f3ca0e64b2b25e1ae6b16679c865a925a67f893d6dc7b6270ae3
+  languageName: node
+  linkType: hard
+
+"@aws-cdk/custom-resources@npm:1.45.0":
+  version: 1.45.0
+  resolution: "@aws-cdk/custom-resources@npm:1.45.0"
+  dependencies:
+    "@aws-cdk/aws-cloudformation": 1.45.0
+    "@aws-cdk/aws-iam": 1.45.0
+    "@aws-cdk/aws-lambda": 1.45.0
+    "@aws-cdk/aws-logs": 1.45.0
+    "@aws-cdk/aws-sns": 1.45.0
+    "@aws-cdk/core": 1.45.0
+    constructs: ^3.0.2
+  peerDependencies:
+    "@aws-cdk/aws-cloudformation": 1.45.0
+    "@aws-cdk/aws-iam": 1.45.0
+    "@aws-cdk/aws-lambda": 1.45.0
+    "@aws-cdk/aws-logs": 1.45.0
+    "@aws-cdk/aws-sns": 1.45.0
+    "@aws-cdk/core": 1.45.0
+    constructs: ^3.0.2
+  checksum: 3/d5c6500847237a1e766311425779351b7db460ff5982a622a4cf989ac582b447c0364786cc5931e936b9b712bf09efaca87bb582f8aebeef3c940eaa8b1a16c9
   languageName: node
   linkType: hard
 
@@ -2001,6 +2068,7 @@ __metadata:
   dependencies:
     "@aws-cdk/assert": ^1.45.0
     "@aws-cdk/aws-codedeploy": ^1.45.0
+    "@aws-cdk/aws-cognito": ^1.45.0
     "@aws-cdk/aws-ec2": ^1.45.0
     "@aws-cdk/aws-iam": ^1.45.0
     "@aws-cdk/aws-route53": ^1.45.0
@@ -2146,6 +2214,7 @@ __metadata:
     "@choirpractise/eslint-config-choirpractise": "workspace:packages/eslint-config-choirpractise"
     "@types/eslint": 6.8.0
     cypress: ^4.5.0
+    dotenv: ^8.2.0
     eslint: ^7.0.0
     inversify: ^5.0.1
     jest-junit: ^10.0.0
@@ -7617,6 +7686,13 @@ __metadata:
   version: 5.0.1
   resolution: "dotenv@npm:5.0.1"
   checksum: 3/6e5990d203590796f5576b73576df3c97767b9d30572a51e8b676539ba682910a9a7b2bc7f0b7445b4d4f9d1aa0b5850bf3d4c6ac516a56d82c9575515a6cf74
+  languageName: node
+  linkType: hard
+
+"dotenv@npm:^8.2.0":
+  version: 8.2.0
+  resolution: "dotenv@npm:8.2.0"
+  checksum: 3/16cb89cbd7b98b053899b8aba8c5044c8fb61a2db8a81fe70360b75035fce5fed53bd7a34d772be717d0880c0321122a4c09423f518025e1b52d96791521b1a7
   languageName: node
   linkType: hard
 

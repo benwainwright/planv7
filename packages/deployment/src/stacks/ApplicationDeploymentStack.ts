@@ -7,6 +7,7 @@ import * as route53 from "@aws-cdk/aws-route53";
 import * as s3 from "@aws-cdk/aws-s3";
 import ApplicationSecrets from "../constructs/ApplicationSecrets";
 import Casing from "../utils/Casing";
+import CognitoUserPool from "../constructs/CognitoUserPool";
 
 interface ApplicationDeploymentStackProps {
   applicationName: string;
@@ -78,17 +79,24 @@ chmod +x ./install
       instanceId: instance.instanceId,
     });
 
+    const host = `${props.applicationName.toLowerCase()}.benwainwright.me`;
+
     const hostedZone = new route53.HostedZone(
       this,
       `${props.applicationName}HostedZone`,
       {
-        zoneName: `${props.applicationName.toLowerCase()}.benwainwright.me`,
+        zoneName: host,
       }
     );
 
     new route53.ARecord(this, `${props.applicationName}ARecord`, {
       zone: hostedZone,
       target: route53.RecordTarget.fromIpAddresses(ip.ref),
+    });
+
+    new CognitoUserPool(this, {
+      applicationName: props.applicationName,
+      callbackUrl: host,
     });
 
     new ApplicationSecrets(this, {

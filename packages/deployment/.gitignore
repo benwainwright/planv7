@@ -11,3 +11,4 @@ cdk.out
 .cache
 .build
 revision
+stack.template.json
