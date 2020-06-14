@@ -14,8 +14,8 @@ Get secrets:
   image: benwainwright/node14-with-yarn-and-aws-cli:latest
   stage: Install
   script:
-    - JWT_PUBLIC_KEY=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id choirpractise/JAVASCRIPT_WEB_TOKEN_PUBLIC_KEY | jq --raw-output .SecretString)
-    - JWT_PRIVATE_KEY=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id choirpractise/JAVASCRIPT_WEB_TOKEN_PRIVATE_KEY | jq --raw-output .SecretString)
+    - echo "JWT_PUBLIC_KEY=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id choirpractise/JAVASCRIPT_WEB_TOKEN_PUBLIC_KEY | jq --raw-output .SecretString)" >> build.env
+    - echo "JWT_PRIVATE_KEY=$(aws secretsmanager get-secret-value --region us-east-1 --secret-id choirpractise/JAVASCRIPT_WEB_TOKEN_PRIVATE_KEY | jq --raw-output .SecretString)" >> build.env
   artifacts:
     reports:
       dotenv: build.env
