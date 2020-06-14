@@ -4,7 +4,7 @@
   "bin": "bin/infrastructure.js",
   "scripts": {
     "deploy:app": "ts-node src/deploy-revision.ts",
-    "deploy:stack": "cdk deploy",
+    "deploy:stack": "cdk deploy '*'",
     "synth": "cdk synth > stack.template.json",
     "deploy:localstack": "yarn synth && aws --endpoint-url=http://localhost:4566 cloudformation create-stack --stack-name LocalAppStack --template-body file://./stack.template.json",
     "build": "tsc",

@@ -101,7 +101,11 @@ chmod +x ./install
 
     new ApplicationSecrets(this, {
       applicationName: props.applicationName,
-      secrets: ["OPENSTACK_API_KEY", "JWT_PUBLIC_KEY", "JWT_PRIVATE_KEY"],
+      secrets: [
+        "OPENSTACK_API_KEY",
+        "JAVASCRIPT_WEB_TOKEN_PUBLIC_KEY",
+        "JAVASCRIPT_WEB_TOKEN_PRIVATE_KEY",
+      ],
       grantables: [instance],
     });
 

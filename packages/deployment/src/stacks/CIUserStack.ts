@@ -17,36 +17,25 @@ export default class CIUserStack extends cdk.Stack {
       userName: props.userName,
     });
 
-    const cloudFormationDeployStatement = new iam.PolicyStatement({
+    const ciUserPolicyStatement = new iam.PolicyStatement({
       effect: iam.Effect.ALLOW,
     });
-    cloudFormationDeployStatement.addActions(
-      "cloudformation:CreateChangeSet",
-      "cloudformation:CreateStack",
-      "cloudformation:UpdateStack",
-      "cloudformation:DeleteStack",
-      "cloudformation:GetTemplate",
-      "cloudformation:DescribeStacks"
-    );
-    cloudFormationDeployStatement.addResources("*");
 
-    ciUser.addToPolicy(cloudFormationDeployStatement);
-
-    const manageIamPolicyStatement = new iam.PolicyStatement({
-      effect: iam.Effect.ALLOW,
-    });
-    manageIamPolicyStatement.addActions(
-      "iam:CreateRole",
-      "iam:UpdateRole",
-      "iam:DeleteRole",
-      "iam:CreateUser",
-      "iam:UpdateUser",
-      "iam:DeleteUser",
-      "iam:CreatePolicy",
-      "iam:UpdatePolicy",
-      "iam:DeletePolicy"
+    ciUserPolicyStatement.addActions(
+      "cloudformation:*",
+      "iam:*",
+      "ssm:*",
+      "ec2:*",
+      "s3:*",
+      "codedeploy:*",
+      "secretsmanager:*",
+      "route53:*",
+      "cloudfront:*",
+      "cognito:*",
+      "cognito-idp:*"
     );
-    manageIamPolicyStatement.addResources("*");
-    ciUser.addToPolicy(manageIamPolicyStatement);
+    ciUserPolicyStatement.addResources("*");
+
+    ciUser.addToPolicy(ciUserPolicyStatement);
   }
 }

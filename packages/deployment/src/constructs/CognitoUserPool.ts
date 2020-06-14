@@ -28,10 +28,11 @@ export default class CognitoUserPool extends cdk.Construct {
       userPoolClientName: `${props.applicationName}UsersWebClient`,
       userPool,
       authFlows: {
+        refreshToken: true,
         userPassword: true
       },
       oAuth: {
-        callbackUrls: [props.callbackUrl],
+        callbackUrls: [`https://${props.callbackUrl}`],
         flows: {
           authorizationCodeGrant: true
         }
