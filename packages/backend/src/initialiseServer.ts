@@ -46,7 +46,7 @@ const initialiseServer = async (): Promise<InitialisationResult> => {
 
     return { koaApp, cleanupHandlers, logger };
   } catch (error) {
-    logger.error(error);
+    logger.error(error.message);
     return {};
   }
 };
