@@ -10,6 +10,16 @@ variables:
   YARN_CACHE_FOLDER: $CI_PROJECT_DIR/.yarn/cache
   CYPRESS_CACHE_FOLDER: $CI_PROJECT_DIR/cache/Cypress
 
+Get secrets:
+  image: benwainwright/node14-with-yarn-and-aws-cli:latest
+  stage: Install
+  script:
+    - JWT_PUBLIC_KEY=$(aws secretsmanager get-secret-value --region us-east -1 --secret-id choirpractise/JAVASCRIPT_WEB_TOKEN_PUBLIC_KEY | jq --raw-output .SecretString)
+    - JWT_PRIVATE_KEY=$(aws secretsmanager get-secret-value --region us-east -1 --secret-id choirpractise/JAVASCRIPT_WEB_TOKEN_PRIVATE_KEY | jq --raw-output .SecretString)
+  artifacts:
+    reports:
+      dotenv: build.env
+
 Yarn install:
   cache:
     key: ${CI_COMMIT_REF_SLUG}
@@ -18,7 +28,7 @@ Yarn install:
       - .yarn
       - cache/Cypress
       - node_modules/
-      - packages/*/node_modules
+      - packages/*/node_modulesk
       - yarn.lock
   stage: Install
   script:
@@ -59,6 +69,7 @@ Unit tests:
 Build:
   stage: Build and test
   dependencies:
+    - Get secrets
     - Yarn install
   script:
     - APP_LOG_LEVEL=verbose yarn build:prod
@@ -72,6 +83,7 @@ Cypress:
   image: cypress/base:14.0.0
   stage: Integration test
   dependencies:
+    - Get secrets
     - Yarn install
     - Build
   script:
@@ -92,6 +104,7 @@ Deploy:
     url: http://3.233.7.98/app
 
   dependencies:
+    - Get secrets
     - Yarn install
     - Build
   image: benwainwright/node14-with-yarn-and-aws-cli:latest
