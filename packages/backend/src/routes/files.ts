@@ -12,7 +12,9 @@ const files = (logger: Logger): Koa.Middleware<any, any> => {
   const baseUrlRegex = new RegExp(`\\/${FILES_BASE_URL}($|\\/.*)`, "u");
   const router = new Router<Koa.DefaultState, AppContext & RouterContext>();
 
-  const s3 = new AWS.S3();
+  const s3 = new AWS.S3({
+    s3ForcePathStyle: true
+  });
 
   router.post(
     baseUrlRegex,
@@ -32,7 +34,7 @@ const files = (logger: Logger): Koa.Middleware<any, any> => {
             Key: context.request.body.path,
             Expires: constants.PRESIGNED_URL_EXPIRY,
             /* eslint-enable @typescript-eslint/naming-convention */
-          }
+          };
           const url = await s3.getSignedUrlPromise("putObject", options);
           context.response.status = 200;
           context.response.body = JSON.stringify({ url });
